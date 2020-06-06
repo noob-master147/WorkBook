@@ -1,9 +1,13 @@
 const router = require("express")();
-const chalk = require('chalk')
 
 //route to create for a user
-router.post('/', (req, res) => {
-    userControls.createUser(req.user)
-        .then(resp => res.status(200).send(resp))
-        .catch(err => res.status(400).send(err))
+router.get('/', (req, res) => {
+    res.send({
+        statusCode: 200,
+        payload: {
+            msg: "The employee routes is healthy and running"
+        },
+    }).status(200)
 })
+
+module.exports = router;

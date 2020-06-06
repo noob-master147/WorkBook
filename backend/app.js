@@ -1,39 +1,49 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const mongoose = require('mongoose');
 var cors = require('cors');
 app.use(cors());
+const chalk = require('chalk');
 const dotenv = require("dotenv");
 dotenv.config();
-
+const path = require('path')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Route imports
+const admin = require('./routes/admin');
+const customer = require('./routes/customer');
+const employee = require('./routes/employee');
+app.use('/api/admin', admin)
+app.use('/api/employee', employee)
+app.use('/api/customer', customer)
 
+//Load the Landing page for the form
 app.get('/api', (req, res) => {
     res.send({
         statusCode: 200,
         payload: {
-            msg: "The Backend is healthy and running",
-            ci: "CI Test successfull"
+            msg: "The API is healthy and running"
+
         },
     }).status(200)
 })
 
-//Route imports
-const adminRoute = require('./routes/admin')
-const customerRoute = require('./routes/customer')
-const employeeRoute = require('./routes/employee')
+// Connect to Database
+mongoose.connect('mongodb://localhost:27017/WorkBook', {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    },
+    () => {
+        console.log(chalk.green.bold('Connected to MongoDB'))
+    })
 
-
-//Use Routes
-app.use('/api/admin', adminRoute);
-app.use('/api/customer', customerRoute);
-app.use('/api/employee', employeeRoute);
-
-const port = process.env.PORT
+//Listen to Server
+const port = process.env.PORT || 8000
 app.listen(port, () => {
-    console.log('Server is up on port ', port)
+    console.log(chalk.bold.yellow.bgBlack('\nServer is up on port ', port))
 })
