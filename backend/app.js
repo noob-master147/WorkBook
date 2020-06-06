@@ -17,12 +17,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const admin = require('./routes/admin');
 const customer = require('./routes/customer');
 const employee = require('./routes/employee');
-app.use('/api/admin', admin)
-app.use('/api/employee', employee)
-app.use('/api/customer', customer)
+app.use('/admin', admin)
+app.use('/employee', employee)
+app.use('/customer', customer)
 
 //Load the Landing page for the form
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
     res.send({
         statusCode: 200,
         payload: {

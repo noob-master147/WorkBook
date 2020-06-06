@@ -1,0 +1,8 @@
+POST http://localhost:8000/admin/create
+content-type: application/json
+
+{
+    "name":"Divyansh",
+    "email":"divyanshkhandelwal147@gmail.com",
+    "phoneNumber": 9935071772
+}
