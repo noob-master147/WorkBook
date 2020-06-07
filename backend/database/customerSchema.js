@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const adminSchema = new mongoose.Schema({
+const customerSchema = new mongoose.Schema({
     role: {
         type: String,
         required: true
@@ -57,5 +57,5 @@ const adminSchema = new mongoose.Schema({
 
 
 module.exports = {
-    User: mongoose.model('Admin', adminSchema)
+    User: mongoose.model('Customer', customerSchema)
 }
