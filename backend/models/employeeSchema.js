@@ -26,18 +26,6 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    associateName: {
-        type: String,
-        required: true
-    },
-    numberOfMembers: {
-        type: Number,
-        required: true
-    },
-    mailAddress: {
-        type: String,
-        required: true
-    },
     adharNumber: {
         type: Number,
         required: true
