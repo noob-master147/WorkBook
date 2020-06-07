@@ -2,12 +2,16 @@ const mongoose = require('mongoose')
 
 
 const adminSchema = new mongoose.Schema({
+    role: {
+        type: String,
+        required: true
+    },
     userName: {
         type: String,
         required: true
     },
     userID: {
-        type: Number,
+        type: String,
         required: true
     },
     password: {
@@ -15,9 +19,8 @@ const adminSchema = new mongoose.Schema({
         required: true
     },
     organizationName: {
-        type: Boolean,
-        required: true,
-        default: flase
+        type: String,
+        required: true
     },
     organizationType: {
         type: String,
@@ -28,7 +31,7 @@ const adminSchema = new mongoose.Schema({
         required: true
     },
     numberOfMembers: {
-        type: String,
+        type: Number,
         required: true
     },
     state: {
@@ -48,12 +51,17 @@ const adminSchema = new mongoose.Schema({
         required: true
     },
     adharNumber: {
-        type: String,
+        type: Number,
         required: true
     },
     contactNumber: {
-        type: String,
+        type: Number,
         required: true
+    },
+    approved: {
+        type: Boolean,
+        required: true,
+        default: false
     },
 });
 
