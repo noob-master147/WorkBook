@@ -15,7 +15,8 @@ router.get('/', (req, res) => {
 
 // Create New Admin
 router.post('/create', (req, res) => {
-    adminControl.createAdmin(req.body)
+    console.log("Create Admin route hit...")
+    adminControl.create(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })
@@ -27,9 +28,18 @@ router.post('/update', (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
-// View all Employee
+
+// View Particular Employee
 router.post('/viewEmployee', (req, res) => {
-    adminControl.viewEmployee()
+    adminControl.viewEmployee(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+// View all Employees
+router.post('/viewAllEmployees', (req, res) => {
+    adminControl.viewAllEmployees()
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })

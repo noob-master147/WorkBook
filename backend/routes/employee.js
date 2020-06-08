@@ -18,6 +18,13 @@ router.post('/create', (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
+router.post('/update', (req, res) => {
+    employeeControl.update(req.body)
+        .then((obj) => res.send(obj).status(201))
+        .catch((err) => res.send(err).status(400))
+})
+
+
 
 
 module.exports = router;

@@ -1,4 +1,4 @@
-POST http://localhost:8000/admin/create
+GET  http://localhost:8000/admin
 content-type: application/json
 
 {
@@ -6,3 +6,29 @@ content-type: application/json
     "email":"divyanshkhandelwal147@gmail.com",
     "phoneNumber": 9935071772
 }
+
+####
+
+
+POST http://localhost:8000/admin/create
+content-type: application/json
+
+{
+    "role":"Admin",
+    "userName":"Divyansh",
+    "userID":"divyanshkhandelwal147@gmail.com",
+    "password":"test",
+    "organizationName":"IEEE",
+    "organizationType":"Chapter",
+    "organizationImage":"sample.jpeg",
+    "numberOfMembers":50,
+    "state":"Tamil Nadu",
+    "district":"Vellore",
+    "city":"Vellore",
+    "mailAddress":"divyanshkhandelwal147@gmail.com",
+    "adharNumber":123456789789,
+    "contactNumber":9935071772
+}
+
+
+

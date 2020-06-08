@@ -1,5 +1,5 @@
 const chalk = require('chalk')
-const { Employee } = require('../database/employeeSchema')
+const { Employee } = require('../models/employeeSchema')
 
 
 

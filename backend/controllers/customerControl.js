@@ -1,5 +1,5 @@
 const chalk = require('chalk')
-const { Customer } = require('../database/customerSchema')
+const { Customer } = require('../models/customerSchema')
 
 
 const createCustomer = (user) => {

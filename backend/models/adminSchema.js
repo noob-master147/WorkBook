@@ -80,5 +80,5 @@ const adminSchema = new mongoose.Schema({
 
 
 module.exports = {
-    User: mongoose.model('Admin', adminSchema)
+    Admin: mongoose.model('Admin', adminSchema)
 }
