@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/create', (req, res) => {
-    customerControl.create(req.body)
+    customerControl.createCustomer(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })
