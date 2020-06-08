@@ -8,23 +8,30 @@ const adminSchema = new mongoose.Schema({
     },
     userName: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        unique: true
     },
     userID: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        unique: true
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     organizationName: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     organizationType: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     organizationImage: {
         type: String,
@@ -36,18 +43,22 @@ const adminSchema = new mongoose.Schema({
     },
     state: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
     },
     district: {
         type: String,
+        trim: true,
         required: true
     },
     city: {
         type: String,
+        trim: true,
         required: true
     },
     mailAddress: {
         type: String,
+        trim: true,
         required: true
     },
     adharNumber: {

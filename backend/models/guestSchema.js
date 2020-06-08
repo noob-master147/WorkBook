@@ -1,13 +1,18 @@
 const mongoose = require('mongoose')
-
+const Schema = mongoose.Schema;
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const validator = require('validator');
 
 const guestSchema = new mongoose.Schema({
     role: {
         type: String,
+        trim: true,
         required: true
     },
     organization: {
         type: String,
+        trim: true,
         required: true
     },
     adharNumber: {
@@ -20,6 +25,7 @@ const guestSchema = new mongoose.Schema({
     },
     emailId: {
         type: String,
+        trim: true,
         required: true
     },
     approved: {
