@@ -3,7 +3,7 @@ const { Employee } = require('../models/employeeSchema')
 
 
 
-const createEmployee = (user) => {
+const create = (user) => {
     return new Promise(async(resolve, reject) => {
         employee = new Employee({
             role: user.role,
@@ -40,5 +40,5 @@ const createEmployee = (user) => {
 }
 
 module.exports = {
-    createEmployee
+    create
 }

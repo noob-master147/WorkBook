@@ -53,5 +53,5 @@ const driverSchema = new mongoose.Schema({
 
 
 module.exports = {
-    User: mongoose.model('Driver', driverSchema)
+    Driver: mongoose.model('Driver', driverSchema)
 }

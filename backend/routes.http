@@ -1,15 +1,25 @@
+####################################### ROOT ROUTE #################################################
+
+GET  http://localhost:8000/
+content-type: application/json
+
+
+
+#####################################################################################################
+#                                                                                                   #
+#                                          ADMIN ROTES                                              #
+#                                                                                                   #
+#####################################################################################################
+
+# Root Admin Route
 GET  http://localhost:8000/admin
 content-type: application/json
 
-{
-    "name":"Divyansh",
-    "email":"divyanshkhandelwal147@gmail.com",
-    "phoneNumber": 9935071772
-}
+
 
 ####
 
-
+# Create Admin Route
 POST http://localhost:8000/admin/create
 content-type: application/json
 
@@ -32,3 +42,66 @@ content-type: application/json
 
 
 
+
+
+
+
+
+
+
+
+#####################################################################################################
+#                                                                                                   #
+#                                          EMPLOYEE ROTES                                           #
+#                                                                                                   #
+#####################################################################################################
+
+
+
+# Root Employee Route
+GET  http://localhost:8000/employee
+content-type: application/json
+
+
+
+####
+
+# Create Admin Route
+POST http://localhost:8000/employee/create
+content-type: application/json
+
+{
+    "role":"Employee",
+    "userName":"Divyansh",
+    "userID":"divyanshkhandelwal147@gmail.com",
+    "password":"test",
+    "grade":"Tech head",
+    "division":"Web",
+    "adharNumber":123456789789,
+    "contactNumber":9935071772
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####################################################################################################
+#                                                                                                   #
+#                                          CUSTOMER ROTES                                           #
+#                                                                                                   #
+#####################################################################################################

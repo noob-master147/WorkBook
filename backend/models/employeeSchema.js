@@ -52,5 +52,5 @@ const employeeSchema = new mongoose.Schema({
 
 
 module.exports = {
-    User: mongoose.model('Employee', employeeSchema)
+    Employee: mongoose.model('Employee', employeeSchema)
 }
