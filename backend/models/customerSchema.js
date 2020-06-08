@@ -66,5 +66,5 @@ const customerSchema = new mongoose.Schema({
 
 
 module.exports = {
-    User: mongoose.model('Customer', customerSchema)
+    Customer: mongoose.model('Customer', customerSchema)
 }

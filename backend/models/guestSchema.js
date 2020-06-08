@@ -39,5 +39,5 @@ const guestSchema = new mongoose.Schema({
 
 
 module.exports = {
-    User: mongoose.model('Guest', guestSchema)
+    Guest: mongoose.model('Guest', guestSchema)
 }
