@@ -26,7 +26,12 @@ app.get('/', (req, res) => {
     res.send({
         statusCode: 200,
         payload: {
-            msg: "The API is healthy and running"
+            msg: "The API is healthy and running",
+            Routes: {
+                admin: "/admin",
+                employee: "/employee",
+                customer: "/customer"
+            }
 
         },
     }).status(200)
