@@ -14,8 +14,8 @@ router.get('/', (req, res) => {
 
 
 // route to create an Employee
-router.post('/create', (req, res) => {
-    employeeControl.create(req.body)
+router.post('/register', (req, res) => {
+    employeeControl.register(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })

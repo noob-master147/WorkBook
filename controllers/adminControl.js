@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const { Admin } = require('../models/adminSchema')
 
-const create = (user) => {
+const register = (user) => {
     return new Promise(async(resolve, reject) => {
         admin = new Admin({
             role: user.role,
@@ -44,5 +44,5 @@ const create = (user) => {
 }
 
 module.exports = {
-    create
+    register
 }

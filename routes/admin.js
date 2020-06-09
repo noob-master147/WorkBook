@@ -14,9 +14,9 @@ router.get('/', (req, res) => {
 
 
 // Create New Admin
-router.post('/create', (req, res) => {
+router.post('/register', (req, res) => {
     console.log("Create Admin route hit...")
-    adminControl.create(req.body)
+    adminControl.register(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })
