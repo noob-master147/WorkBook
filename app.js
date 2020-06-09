@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 })
 
 // Connect to Database
-mongoose.connect('mongodb://localhost:27017/WorkBook', {
+mongoose.connect(process.env.MONGO_URL, {
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true

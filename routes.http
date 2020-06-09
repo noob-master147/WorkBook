@@ -25,8 +25,8 @@ content-type: application/json
 
 {
     "role":"Admin",
-    "userName":"Divyansh",
-    "userID":"divyanshkhandelwal147@gmail.com",
+    "userName":"test1",
+    "userID":"divyanshkhandelwal17@gmail.com",
     "password":"test",
     "organizationName":"IEEE",
     "organizationType":"Chapter",
