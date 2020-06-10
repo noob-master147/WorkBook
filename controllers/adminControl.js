@@ -1,5 +1,6 @@
 const chalk = require('chalk')
 const { Admin } = require('../models/adminSchema')
+const { Employee } = require('../models/employeeSchema')
 const brypt = require('bcrypt')
 const { ObjectID } = require('mongodb')
 
@@ -47,11 +48,9 @@ const register = (user) => {
     })
 }
 
-
-
 const login = (user) => {
     return new Promise(async(resolve, reject) => {
-        console.log(chalk.yellow.bold("Logging in..."))
+        console.log(chalk.yellow.bold("Admin Logging in..."))
         const formPassword = user.password
         Admin.findOne({
                 'userID': user.email
@@ -59,7 +58,7 @@ const login = (user) => {
             .then(async(admin) => {
                 if (await brypt.compare(formPassword, admin.password) === true) {
                     console.log(chalk.green.bold('Admin Authenticated'))
-                    if (admin.approved) {
+                    if (admin.approved === true) {
                         resolve({
                             statusCode: 200,
                             payload: {
@@ -100,8 +99,29 @@ const login = (user) => {
     })
 }
 
+const viewAllEmployees = () => {
+    return new Promise(async(resolve, reject) => {
+        await Employee.find()
+            .then((employees) => {
+                console.log(employees)
+            })
+            .catch((err) => {
+                console.log("Error in Loading Employee Data")
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Loading Employee Data! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 
 module.exports = {
     register,
-    login
+    login,
+    viewAllEmployees
 }

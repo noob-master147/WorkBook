@@ -1,15 +1,18 @@
 const router = require("express")();
-const chalk = require('chalk')
 const adminControl = require('../controllers/adminControl')
 const { hashPassword } = require('../middleware/hashPassword')
-
+const chalk = require('chalk')
 
 // TEST ROUTE
 router.get('/', (req, res) => {
     res.send({
         statusCode: 200,
         payload: {
-            msg: "The admin routes is healthy and running"
+            msg: "The admin routes is healthy and running",
+            routes: {
+                register: "/register",
+                login: "/login"
+            }
 
         },
     }).status(200)
@@ -18,7 +21,7 @@ router.get('/', (req, res) => {
 
 // Create New Admin
 router.post('/register', hashPassword, (req, res) => {
-    console.log("Create Admin route hit...")
+    console.log(chalk.yellow.bold("\nCreate Admin route hit..."))
     adminControl.register(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
@@ -27,7 +30,7 @@ router.post('/register', hashPassword, (req, res) => {
 
 // Login Admin
 router.post('/login', (req, res) => {
-    console.log(chalk.bold.yellow("Login Admin route hit..."))
+    console.log(chalk.bold.yellow("\nLogin Admin route hit..."))
     adminControl.login(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -52,6 +55,7 @@ router.post('/viewEmployee', (req, res) => {
 
 // View all Employees
 router.post('/viewAllEmployees', (req, res) => {
+    console.log(chalk.bold.yellow("\viewAllEmployees route hit..."))
     adminControl.viewAllEmployees()
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))

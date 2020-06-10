@@ -24,8 +24,8 @@ content-type: application/json
 
 {
     "role":"Admin",
-    "userName":"divyansh",
-    "userID":"divyanshkhandelwal147@gmail.com",
+    "userName":"divyansh1",
+    "userID":"divyanshkhandelwal@gmail.com",
     "password":"divyansh",
     "organizationName":"IEEE",
     "organizationType":"Chapter",
@@ -62,25 +62,21 @@ content-type: application/json
 #                                                                                                   #
 #####################################################################################################
 
-
-
 # Root Employee Route
 GET  http://localhost:8000/employee
 content-type: application/json
 
 
-
 ####
-
-# Create Admin Route
+# Create Employee Route
 POST http://localhost:8000/employee/register
 content-type: application/json
 
 {
     "role":"Employee",
-    "userName":"Divyansh",
-    "userID":"divyanshkhandelwal147@gmail.com",
-    "password":"test",
+    "userName":"Divyansh1",
+    "userID":"divyanshkhandelwal@gmail.com",
+    "password":"password",
     "grade":"Tech head",
     "division":"Web",
     "adharNumber":123456789789,
@@ -88,6 +84,15 @@ content-type: application/json
 }
 
 
+####
+# Login Employee Route
+POST http://localhost:8000/employee/login
+content-type: application/json
+
+{
+    "email":"divyanshkhandelwal@gmail.com",
+    "password": "password"
+}
 
 
 
