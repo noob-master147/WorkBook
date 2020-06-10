@@ -54,10 +54,12 @@ const login = (user) => {
         console.log(chalk.yellow.bold("Logging in..."))
         const formPassword = user.password
         Admin.findOne({
-                'userID': user.email
-            })
-            .then((admin) => {
-                if (brypt.compare(formPassword, admin.password)) {
+            'userID': user.email,
+            'userName': user.userName
+        })
+
+        .then(async(admin) => {
+                if (await brypt.compare(formPassword, admin.password) === true) {
                     console.log(chalk.green.bold('Admin Authenticated'))
                     if (admin.approved) {
                         resolve({

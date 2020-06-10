@@ -47,6 +47,7 @@ POST http://localhost:8000/admin/login
 content-type: application/json
 
 {
+    "userName": "test123",
     "email":"divyanshkhandelwal@gmail.com",
     "password": "pass1"
 }
