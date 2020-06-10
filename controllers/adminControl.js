@@ -54,11 +54,9 @@ const login = (user) => {
         console.log(chalk.yellow.bold("Logging in..."))
         const formPassword = user.password
         Admin.findOne({
-            'userID': user.email,
-            'userName': user.userName
-        })
-
-        .then(async(admin) => {
+                'userID': user.email
+            })
+            .then(async(admin) => {
                 if (await brypt.compare(formPassword, admin.password) === true) {
                     console.log(chalk.green.bold('Admin Authenticated'))
                     if (admin.approved) {
@@ -95,7 +93,7 @@ const login = (user) => {
                     statusCode: 400,
                     payload: {
                         msg: "Error in Logging In Admin! Contact Support",
-                        err: err
+                        err: "Email not found"
                     }
                 })
             })
