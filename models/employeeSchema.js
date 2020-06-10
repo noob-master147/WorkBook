@@ -23,6 +23,12 @@ const employeeSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    instituteName: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
     grade: {
         type: String,
         trim: true,

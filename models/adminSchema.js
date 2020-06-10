@@ -22,17 +22,18 @@ const adminSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    organizationName: {
+    instituteName: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    },
+    instituteType: {
         type: String,
         required: true,
         trim: true
     },
-    organizationType: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    organizationImage: {
+    instituteImage: {
         type: String,
         required: true
     },

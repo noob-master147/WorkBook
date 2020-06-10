@@ -24,12 +24,12 @@ content-type: application/json
 
 {
     "role":"Admin",
-    "userName":"divyansh1",
-    "userID":"divyanshkhandelwal@gmail.com",
+    "userName":"test1",
+    "userID":"test@gmadiel.com",
     "password":"divyansh",
-    "organizationName":"IEEE",
-    "organizationType":"Chapter",
-    "organizationImage":"sample.jpeg",
+    "instituteName":"inst1",
+    "instituteType":"Chapter",
+    "instituteImage":"sample.jpeg",
     "numberOfMembers":50,
     "state":"Tamil Nadu",
     "district":"Vellore",
