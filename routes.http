@@ -18,16 +18,15 @@ content-type: application/json
 
 
 ####
-
 # Register Admin Route
 POST http://localhost:8000/admin/register
 content-type: application/json
 
 {
     "role":"Admin",
-    "userName":"test11",
-    "userID":"divyanshkhandelwal1711@gmail.com",
-    "password":"tests",
+    "userName":"test123",
+    "userID":"divyanshkhandelwal@gmail.com",
+    "password":"pass1",
     "organizationName":"IEEE",
     "organizationType":"Chapter",
     "organizationImage":"sample.jpeg",
@@ -43,13 +42,13 @@ content-type: application/json
 
 
 ####
-
-
+# Admin Login Route
 POST http://localhost:8000/admin/login
 content-type: application/json
 
 {
-
+    "email":"divyanshkhandelwal@gmail.com",
+    "password": "pass1"
 }
 
 

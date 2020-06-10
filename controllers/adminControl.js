@@ -1,9 +1,13 @@
 const chalk = require('chalk')
 const { Admin } = require('../models/adminSchema')
+const brypt = require('bcrypt')
+const { ObjectID } = require('mongodb')
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
+        const id = new ObjectID()
         admin = new Admin({
+            _id: id,
             role: user.role,
             userName: user.userName,
             userID: user.userID,
@@ -35,7 +39,7 @@ const register = (user) => {
                 reject({
                     statusCode: 400,
                     payload: {
-                        msg: "Error in Adding Admin",
+                        msg: "Error in Adding Admin. Contact Support",
                         err: err
                     }
                 })
@@ -43,6 +47,61 @@ const register = (user) => {
     })
 }
 
+
+
+const login = (user) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Logging in..."))
+        const formPassword = user.password
+        Admin.findOne({
+                'userID': user.email
+            })
+            .then((admin) => {
+                if (brypt.compare(formPassword, admin.password)) {
+                    console.log(chalk.green.bold('Admin Authenticated'))
+                    if (admin.approved) {
+                        resolve({
+                            statusCode: 200,
+                            payload: {
+                                msg: "Admin Logged In and Approved",
+                                approved: admin.approved,
+                                admin: admin
+                            }
+                        })
+                    } else {
+                        resolve({
+                            statusCode: 200,
+                            payload: {
+                                msg: "Admin Logged In and Not Approved",
+                                approved: admin.approved,
+                                admin: admin
+                            }
+                        })
+                    }
+                } else {
+                    resolve({
+                        statusCode: 200,
+                        payload: {
+                            msg: "Password Incorrect",
+                        }
+                    })
+                }
+            })
+            .catch((err) => {
+                console.log("Error in Logging In Admin!")
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Logging In Admin! Contact Support",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
 module.exports = {
-    register
+    register,
+    login
 }

@@ -1,4 +1,5 @@
 const router = require("express")();
+const chalk = require('chalk')
 const adminControl = require('../controllers/adminControl')
 const { hashPassword } = require('../middleware/hashPassword')
 
@@ -26,7 +27,7 @@ router.post('/register', hashPassword, (req, res) => {
 
 // Login Admin
 router.post('/login', (req, res) => {
-    console.log("Login Admin route hit...")
+    console.log(chalk.bold.yellow("Login Admin route hit..."))
     adminControl.login(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
