@@ -154,8 +154,36 @@ const addInstitute = (obj) => {
     })
 }
 
+const getInstitutes = () => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Fetching Institutes..."))
+        Institute.find()
+            .then((institutes) => {
+                console.log(chalk.bold.green("Institutes Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Institute Fetch Successful",
+                        institute: institutes
+                    }
+                })
+            })
+            .catch((err) => {
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Loading Institute Data! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 module.exports = {
     register,
     login,
-    viewAllEmployees
+    viewAllEmployees,
+    getInstitutes
 }
