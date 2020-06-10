@@ -1,14 +1,15 @@
+const chalk = require('chalk');
+const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
-const mongoose = require('mongoose');
+
 var cors = require('cors');
 app.use(cors());
-const chalk = require('chalk');
+
 const dotenv = require("dotenv");
 dotenv.config();
-const path = require('path')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
