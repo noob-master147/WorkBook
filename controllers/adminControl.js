@@ -1,6 +1,7 @@
 const chalk = require('chalk')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
+const { Institute } = require('../models/instituteSchema')
 const brypt = require('bcrypt')
 const { ObjectID } = require('mongodb')
 
@@ -13,9 +14,9 @@ const register = (user) => {
             userName: user.userName,
             userID: user.userID,
             password: user.password,
-            organizationName: user.organizationName,
-            organizationType: user.organizationType,
-            organizationImage: user.organizationImage,
+            instituteName: user.instituteName,
+            instituteType: user.instituteType,
+            instituteImage: user.instituteImage,
             numberOfMembers: user.numberOfMembers,
             state: user.state,
             district: user.district,
@@ -25,15 +26,34 @@ const register = (user) => {
             contactNumber: user.contactNumber,
             approved: false
         })
+
         await admin.save()
-            .then(() => {
-                console.log("New Admin Added!")
-                resolve({
-                    statusCode: 200,
-                    payload: {
-                        msg: "Admin Successfully Added",
-                    }
-                })
+            .then(async() => {
+                console.log(chalk.bold.green("New Admin Added!"))
+                await addInstitute({
+                        instituteName: user.instituteName,
+                        instituteType: user.instituteType,
+                        instituteImage: user.instituteImage
+                    })
+                    .then(() => {
+                        console.log(chalk.bold.green("New Institute Added!"))
+                        resolve({
+                            statusCode: 200,
+                            payload: {
+                                msg: "Admin and Institute Successfully Added",
+                            }
+                        })
+                    })
+                    .catch((err) => {
+                        console.log(chalk.red.bold("Error in Adding Institute!"))
+                        reject({
+                            statusCode: 400,
+                            payload: {
+                                msg: "Error in Adding Institute. Contact Support",
+                                err: err
+                            }
+                        })
+                    })
             })
             .catch((err) => {
                 console.log("Error in Adding Admin!")
@@ -119,9 +139,51 @@ const viewAllEmployees = () => {
     })
 }
 
+const addInstitute = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        const id = new ObjectID()
+        institute = new Institute({
+            _id: id,
+            instituteName: obj.instituteName,
+            instituteType: obj.instituteType,
+            instituteImage: obj.instituteImage
+        })
+        await institute.save()
+            .then(() => resolve(true))
+            .catch((err) => reject("No Duplicates Allowed"))
+    })
+}
+
+const getInstitutes = () => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Fetching Institutes..."))
+        Institute.find()
+            .then((institutes) => {
+                console.log(chalk.bold.green("Institutes Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Institute Fetch Successful",
+                        institute: institutes
+                    }
+                })
+            })
+            .catch((err) => {
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Loading Institute Data! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
 
 module.exports = {
     register,
     login,
-    viewAllEmployees
+    viewAllEmployees,
+    getInstitutes
 }

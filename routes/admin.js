@@ -55,7 +55,7 @@ router.post('/viewEmployee', (req, res) => {
 
 // View all Employees
 router.post('/viewAllEmployees', (req, res) => {
-    console.log(chalk.bold.yellow("\viewAllEmployees route hit..."))
+    console.log(chalk.bold.yellow("\nView All Employees route hit..."))
     adminControl.viewAllEmployees()
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -68,6 +68,13 @@ router.post('/approveEmployee', (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
+// View all Organizations
+router.get('/institutes', (req, res) => {
+    console.log(chalk.bold.yellow("\nFetch All Institutes route hit..."))
+    adminControl.getInstitutes()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
 
 
 module.exports = router;
