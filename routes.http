@@ -18,16 +18,15 @@ content-type: application/json
 
 
 ####
-
-# Create Admin Route
-POST http://localhost:8000/admin/create
+# Register Admin Route
+POST http://localhost:8000/admin/register
 content-type: application/json
 
 {
     "role":"Admin",
-    "userName":"test1",
-    "userID":"divyanshkhandelwal17@gmail.com",
-    "password":"test",
+    "userName":"divyansh",
+    "userID":"divyanshkhandelwal147@gmail.com",
+    "password":"divyansh",
     "organizationName":"IEEE",
     "organizationType":"Chapter",
     "organizationImage":"sample.jpeg",
@@ -42,9 +41,16 @@ content-type: application/json
 
 
 
+####
+# Admin Login Route
+POST http://localhost:8000/admin/login
+content-type: application/json
 
-
-
+{
+    "userName": "test123",
+    "email":"divyanshkhandelwal@gmail.com",
+    "password": "pass1"
+}
 
 
 
@@ -67,7 +73,7 @@ content-type: application/json
 ####
 
 # Create Admin Route
-POST http://localhost:8000/employee/create
+POST http://localhost:8000/employee/register
 content-type: application/json
 
 {

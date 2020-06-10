@@ -10,7 +10,6 @@ const adminSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        unique: true
     },
     userID: {
         type: String,

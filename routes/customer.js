@@ -11,8 +11,8 @@ router.get('/', (req, res) => {
 })
 
 // Create a Customer
-router.post('/create', (req, res) => {
-    customerControl.createCustomer(req.body)
+router.post('/register', (req, res) => {
+    customerControl.register(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })

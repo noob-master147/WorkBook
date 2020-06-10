@@ -2,7 +2,7 @@ const chalk = require('chalk')
 const { Customer } = require('../models/customerSchema')
 
 
-const createCustomer = (user) => {
+const register = (user) => {
     return new Promise(async(resolve, reject) => {
         customer = new Customer({
             role: user.role,
@@ -43,5 +43,5 @@ const createCustomer = (user) => {
 }
 
 module.exports = {
-    createCustomer
+    register
 }
