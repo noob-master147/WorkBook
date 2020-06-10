@@ -9,9 +9,9 @@ const employeeSchema = new mongoose.Schema({
     },
     userName: {
         type: String,
-        unique: true,
         trim: true,
-        required: true
+        required: true,
+        unique: true
     },
     userID: {
         type: String,
