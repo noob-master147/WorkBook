@@ -46,8 +46,8 @@ router.post('/update', (req, res) => {
 
 
 // View Particular Employee
-router.post('/viewEmployee', (req, res) => {
-    adminControl.viewEmployee(req.body)
+router.post('/approveEmployee', (req, res) => {
+    adminControl.approveEmployee(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -67,6 +67,15 @@ router.post('/approveEmployee', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+// reject an Employee
+router.post('/rejectEmployee', (req, res) => {
+    adminControl.rejectEmployee(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
 
 // View all Organizations
 router.get('/institutes', (req, res) => {

@@ -60,13 +60,42 @@ content-type: application/json
 
 
 ####
-# View All Institute Employee
+# View All Institute's Employee
 POST http://localhost:8000/admin/viewAllEmployees
 content-type: application/json
 
 {
-    "instituteName": "IEEcE"
+    "instituteName": "IEEE"
 }
+
+
+
+####
+# Approve Employee
+POST http://localhost:8000/admin/approveEmployee
+content-type: application/json
+
+{
+    "id": "5ee0ea50659bf815cdc6269c"
+}
+
+
+
+####
+# Reject Employee
+POST http://localhost:8000/admin/rejectEmployee
+content-type: application/json
+
+{
+    "id": "5ee0ea50659bf815cdc6269c"
+}
+
+
+
+
+
+
+
 
 
 

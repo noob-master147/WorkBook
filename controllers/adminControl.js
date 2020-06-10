@@ -191,9 +191,65 @@ const getInstitutes = () => {
     })
 }
 
+
+const approveEmployee = (employee) => {
+    return new Promise(async(resolve, reject) => {
+        await Employee.findByIdAndUpdate(employee.id, {
+                'approved': true
+            })
+            .then((obj) => {
+                console.log(obj)
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Employee Approved"
+                    }
+                })
+            })
+            .catch((err) => {
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Approving Employee! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+const rejectEmployee = (employee) => {
+    return new Promise(async(resolve, reject) => {
+        await Employee.findByIdAndDelete(employee.id)
+            .then(() => {
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Employee Rejected"
+                    }
+                })
+            })
+            .catch((err) => {
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Rejecting Employee! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
 module.exports = {
     register,
     login,
     viewAllEmployees,
-    getInstitutes
+    getInstitutes,
+    approveEmployee,
+    rejectEmployee
 }
