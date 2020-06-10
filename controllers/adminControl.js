@@ -119,11 +119,21 @@ const login = (user) => {
     })
 }
 
-const viewAllEmployees = () => {
+const viewAllEmployees = (obj) => {
     return new Promise(async(resolve, reject) => {
-        await Employee.find()
+        console.log(chalk.yellow.bold("Fetching All Employees..."))
+        await Employee.find({
+                'instituteName': obj.instituteName
+            })
             .then((employees) => {
-                console.log(employees)
+                console.log(chalk.green.bold("Fetched All Employees"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Employee in the Institute",
+                        employees: employees
+                    }
+                })
             })
             .catch((err) => {
                 console.log("Error in Loading Employee Data")

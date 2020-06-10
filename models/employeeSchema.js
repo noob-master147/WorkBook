@@ -11,12 +11,12 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true,
-        unique: true
     },
     userID: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -27,7 +27,6 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        unique: true
     },
     grade: {
         type: String,

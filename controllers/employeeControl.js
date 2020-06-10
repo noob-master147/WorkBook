@@ -13,6 +13,7 @@ const register = (user) => {
             userName: user.userName,
             userID: user.userID,
             password: user.password,
+            instituteName: user.instituteName,
             grade: user.grade,
             division: user.division,
             adharNumber: user.adharNumber,
@@ -21,16 +22,16 @@ const register = (user) => {
         })
         await employee.save()
             .then(() => {
-                console.log("New Employee Added!")
+                console.log(chalk.green.bold("New Employee Registered!"))
                 resolve({
-                    statusCode: 200,
+                    statusCode: 201,
                     payload: {
-                        msg: "Employee Successfully Added",
+                        msg: "Employee Successfully Registered",
                     }
                 })
             })
             .catch((err) => {
-                console.log("Error in Employee Admin!")
+                console.log(chalk.red.bold("Error in Employee Registration!"))
                 reject({
                     statusCode: 400,
                     payload: {

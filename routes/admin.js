@@ -56,7 +56,7 @@ router.post('/viewEmployee', (req, res) => {
 // View all Employees
 router.post('/viewAllEmployees', (req, res) => {
     console.log(chalk.bold.yellow("\nView All Employees route hit..."))
-    adminControl.viewAllEmployees()
+    adminControl.viewAllEmployees(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
