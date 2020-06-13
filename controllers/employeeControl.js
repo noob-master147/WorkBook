@@ -130,7 +130,8 @@ const viewCustomers = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Fetching All Customers..."))
         await Customer.find({
-                'employeeID': obj.employeeID
+                'employeeID': obj.employeeID,
+                'approved': true
             })
             .then((customer) => {
                 console.log(chalk.green.bold("Fetched All Customer under the Employee"))
@@ -157,9 +158,39 @@ const viewCustomers = (obj) => {
 }
 
 
+const approveCustomer = (customer) => {
+    return new Promise(async(resolve, reject) => {
+        await Customer.findByIdAndUpdate(customer.id, {
+                'approved': true,
+                'employeeID': customer.employeeID
+            })
+            .then(() => {
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Customer Approved"
+                    }
+                })
+            })
+            .catch((err) => {
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Approving Customer! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
 module.exports = {
     register,
     login,
     pendingCustomers,
-    viewCustomers
+    viewCustomers,
+    approveCustomer,
+    rejectCustomer
 }

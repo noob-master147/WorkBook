@@ -55,7 +55,7 @@ const register = (user) => {
                     })
             })
             .catch((err) => {
-                console.log("Error in Adding Admin!")
+                console.log(chalk.red.bold("Error in Adding Admin!"))
                 reject({
                     statusCode: 400,
                     payload: {
@@ -178,6 +178,7 @@ const getInstitutes = () => {
                 })
             })
             .catch((err) => {
+                console.log(chalk.red.bold("Error in Loading Institute Data!"))
                 reject({
                     statusCode: 400,
                     payload: {
@@ -196,8 +197,8 @@ const approveEmployee = (employee) => {
         await Employee.findByIdAndUpdate(employee.id, {
                 'approved': true
             })
-            .then((obj) => {
-                console.log(obj)
+            .then(() => {
+                console.log(chalk.bold.green("Employee Approved!"))
                 resolve({
                     statusCode: 200,
                     payload: {
@@ -206,6 +207,7 @@ const approveEmployee = (employee) => {
                 })
             })
             .catch((err) => {
+                console.log(chalk.red.bold("Employee Not Approved!"))
                 reject({
                     statusCode: 400,
                     payload: {
@@ -223,6 +225,7 @@ const rejectEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
         await Employee.findByIdAndDelete(employee.id)
             .then(() => {
+                console.log(chalk.bold.green("Employee Rejected!"))
                 resolve({
                     statusCode: 200,
                     payload: {
@@ -231,6 +234,7 @@ const rejectEmployee = (employee) => {
                 })
             })
             .catch((err) => {
+                console.log(chalk.red.bold("Employee Not Rejected!"))
                 reject({
                     statusCode: 400,
                     payload: {
