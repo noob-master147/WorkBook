@@ -41,6 +41,10 @@ const driverSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    fcmToken: {
+        type: String,
+        required: true
+    },
     approved: {
         type: Boolean,
         required: true,

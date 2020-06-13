@@ -19,7 +19,6 @@ const register = (user) => {
             instituteImage: user.instituteImage,
             numberOfMembers: user.numberOfMembers,
             state: user.state,
-            district: user.district,
             city: user.city,
             mailAddress: user.mailAddress,
             adharNumber: user.adharNumber,

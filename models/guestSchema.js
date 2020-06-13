@@ -28,6 +28,10 @@ const guestSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    fcmToken: {
+        type: String,
+        required: true
+    },
     approved: {
         type: Boolean,
         required: true,

@@ -46,11 +46,6 @@ const adminSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    district: {
-        type: String,
-        trim: true,
-        required: true
-    },
     city: {
         type: String,
         trim: true,
@@ -67,6 +62,10 @@ const adminSchema = new mongoose.Schema({
     },
     contactNumber: {
         type: Number,
+        required: true
+    },
+    fcmToken: {
+        type: String,
         required: true
     },
     approved: {
