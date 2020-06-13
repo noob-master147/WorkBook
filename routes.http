@@ -164,8 +164,25 @@ content-type: application/json
 
 
 
+####
+# View Customer Route
+POST http://localhost:8000/employee/approveCustomer
+content-type: application/json
+
+{
+    "id":"SFASFaSF",
+    "employeeID":"IEEE"
+}
 
 
+
+POST http://localhost:8000/employee/rejectCustomer
+content-type: application/json
+
+{
+    "id":"SFASFaSF",
+    "employeeID":"IEEE"
+}
 
 
 
@@ -215,8 +232,8 @@ POST http://localhost:8000/customer/login
 content-type: application/json
 
 {
-    "fcmToken" : "asdlkfhdslf",
-    "email":"cus3",
+    "fcmToken" : "asdlkfccccccchdslf",
+    "email":"customer1",
     "password": "123456"
 }
 
