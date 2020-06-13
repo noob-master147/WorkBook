@@ -1,5 +1,6 @@
 const chalk = require('chalk')
 const { Employee } = require('../models/employeeSchema')
+const { Customer } = require('../models/customerSchema')
 const brypt = require('bcrypt')
 const { ObjectID } = require('mongodb')
 
@@ -94,7 +95,41 @@ const login = (user) => {
     })
 }
 
+const viewAllCustomer = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Fetching All Customers..."))
+        await Customer.find({
+                'associateName': obj.associateName
+            })
+            .then((customer) => {
+                console.log(chalk.green.bold("Fetched All Customer"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Customer under the Employee",
+                        customer: customer
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log("Error in Loading Customer Data")
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Loading Customer Data! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
 module.exports = {
     register,
-    login
+    login,
+    viewAllCustomer
 }
