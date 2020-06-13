@@ -195,8 +195,8 @@ content-type: application/json
 
 {
     "role":"customer",
-    "userName":"cus1",
-    "userID":"cus2",
+    "userName":"customer1",
+    "userID":"customer1",
     "password":"123456",
     "grade":"sFsdg",
     "division":"sdgsdga",
@@ -216,8 +216,8 @@ content-type: application/json
 
 {
     "fcmToken" : "asdlkfhdslf",
-    "email":"divyanshkhandelwal@gmail.com",
-    "password": "password"
+    "email":"cus3",
+    "password": "123456"
 }
 
 
