@@ -44,6 +44,15 @@ router.post('/update', (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
+
+// View Pending Customers
+router.post('/pendingCustomers', (req, res) => {
+    employeeControl.pendingCustomers(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
 // Approve a Customer
 router.post('/approveCustomer', (req, res) => {
     employeeControl.approveCustomer(req.body)

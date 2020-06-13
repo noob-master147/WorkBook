@@ -95,14 +95,45 @@ const login = (user) => {
     })
 }
 
-const viewAllCustomer = (obj) => {
+const pendingCustomers = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Fetching All Pending Customers..."))
+        await Customer.find({
+                'instituteName': obj.instituteName,
+                'approved': false
+            })
+            .then((customer) => {
+                console.log(chalk.green.bold("Fetched All Pending Customer"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Pending Customer in the Institute",
+                        customer: customer
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log("Error in Loading Customer Data")
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Loading Customer Data! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+const viewCustomers = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Fetching All Customers..."))
         await Customer.find({
-                'associateName': obj.associateName
+                'employeeID': obj.employeeID
             })
             .then((customer) => {
-                console.log(chalk.green.bold("Fetched All Customer"))
+                console.log(chalk.green.bold("Fetched All Customer under the Employee"))
                 resolve({
                     statusCode: 200,
                     payload: {
@@ -126,10 +157,9 @@ const viewAllCustomer = (obj) => {
 }
 
 
-
-
 module.exports = {
     register,
     login,
-    viewAllCustomer
+    pendingCustomers,
+    viewCustomers
 }

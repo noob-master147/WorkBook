@@ -33,10 +33,17 @@ const customerSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    associateName: {
+    employeeID: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        default: '0',
+    },
+    instituteName: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
     },
     numberOfMembers: {
         type: Number,
