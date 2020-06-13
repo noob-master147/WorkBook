@@ -36,18 +36,10 @@ router.post('/login', (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
-
+//#######################YET TO DO########################
 // Update Admin
 router.post('/update', (req, res) => {
     adminControl.update(req.body)
-        .then((obj) => res.send(obj).status(200))
-        .catch((err) => res.send(err).status(400))
-})
-
-
-// View Particular Employee
-router.post('/approveEmployee', (req, res) => {
-    adminControl.approveEmployee(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -77,7 +69,7 @@ router.post('/rejectEmployee', (req, res) => {
 })
 
 
-// View all Organizations
+// View all institutes
 router.get('/institutes', (req, res) => {
     console.log(chalk.bold.yellow("\nFetch All Institutes route hit..."))
     adminControl.getInstitutes()

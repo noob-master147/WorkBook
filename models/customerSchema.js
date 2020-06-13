@@ -10,12 +10,12 @@ const customerSchema = new mongoose.Schema({
     userName: {
         type: String,
         trim: true,
-        unique: true,
         required: true
     },
     userID: {
         type: String,
         trim: true,
+        unique: true,
         required: true
     },
     password: {
@@ -33,10 +33,22 @@ const customerSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    associateName: {
+    employeeID: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        default: '0',
+    },
+    instituteName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    type: {
+        type: String,
+        required: true,
+        trim: true,
+        default: "secondary"
     },
     numberOfMembers: {
         type: Number,

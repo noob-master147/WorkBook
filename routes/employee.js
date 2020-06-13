@@ -36,7 +36,7 @@ router.post('/login', (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
-
+//#######################YET TO DO########################
 // route to update an employee
 router.post('/update', (req, res) => {
     employeeControl.update(req.body)
@@ -45,6 +45,27 @@ router.post('/update', (req, res) => {
 })
 
 
+// View Pending Customers
+router.post('/pendingCustomers', (req, res) => {
+    employeeControl.pendingCustomers(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
 
+
+// Approve a Customer
+router.post('/approveCustomer', (req, res) => {
+    employeeControl.approveCustomer(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+// reject a Customer
+router.post('/rejectCustomer', (req, res) => {
+    employeeControl.rejectCustomer(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
 
 module.exports = router;
