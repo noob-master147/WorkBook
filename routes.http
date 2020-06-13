@@ -32,7 +32,6 @@ content-type: application/json
     "instituteImage":"sample.jpeg",
     "numberOfMembers":50,
     "state":"Tamil Nadu",
-    "district":"Vellore",
     "city":"Vellore",
     "mailAddress":"divyanshkhandelwal147@gmail.com",
     "adharNumber":123456789789,
@@ -47,7 +46,7 @@ POST http://localhost:8000/admin/login
 content-type: application/json
 
 {
-    "userName": "test123",
+    "fcmToken": "test123",
     "email":"divyanshkhandelwal@gmail.com",
     "password": "pass1"
 }
@@ -134,6 +133,7 @@ POST http://localhost:8000/employee/login
 content-type: application/json
 
 {
+    "fcmToken" : "asdlkfhdslf",
     "email":"divyanshkhandelwal@gmail.com",
     "password": "password"
 }
