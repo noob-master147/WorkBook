@@ -113,7 +113,7 @@ const pendingCustomers = (obj) => {
                 })
             })
             .catch((err) => {
-                console.log("Error in Loading Customer Data")
+                console.log(chalk.red.bold("Error in Loading Customer Data"))
                 reject({
                     statusCode: 400,
                     payload: {
@@ -144,7 +144,7 @@ const viewCustomers = (obj) => {
                 })
             })
             .catch((err) => {
-                console.log("Error in Loading Customer Data")
+                console.log(chalk.red.bold("Error in Loading Customer Data"))
                 reject({
                     statusCode: 400,
                     payload: {
@@ -160,11 +160,13 @@ const viewCustomers = (obj) => {
 
 const approveCustomer = (customer) => {
     return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Approving Customer..."))
         await Customer.findByIdAndUpdate(customer.id, {
                 'approved': true,
                 'employeeID': customer.employeeID
             })
             .then(() => {
+                console.log(chalk.green.bold("Customer Approved!"))
                 resolve({
                     statusCode: 200,
                     payload: {
@@ -173,6 +175,7 @@ const approveCustomer = (customer) => {
                 })
             })
             .catch((err) => {
+                console.log(chalk.red.bold("Customer Not Approved!"))
                 reject({
                     statusCode: 400,
                     payload: {
@@ -184,6 +187,36 @@ const approveCustomer = (customer) => {
             })
     })
 }
+
+
+
+const rejectCustomer = (customer) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Approving Customer..."))
+        await Customer.findByIdAndDelete(customer.id)
+            .then(() => {
+                console.log(chalk.green.bold("Customer Rejected!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Customer Approved"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Customer Not Rejected!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Rejecting Customer! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 
 
 module.exports = {
