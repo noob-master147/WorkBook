@@ -1,5 +1,8 @@
 const chalk = require('chalk')
 const { Customer } = require('../models/customerSchema')
+const brypt = require('bcrypt')
+const { ObjectID } = require('mongodb')
+
 
 
 const register = (user) => {
@@ -11,12 +14,13 @@ const register = (user) => {
             password: user.password,
             grade: user.grade,
             division: user.division,
-            associateName: user.associateName,
+            instituteName: user.instituteName,
             numberOfMembers: user.numberOfMembers,
             state: user.state,
             mailAddress: user.mailAddress,
             adharNumber: user.adharNumber,
             contactNumber: user.contactNumber,
+            fcmToken: user.fcmToken,
             approved: false
         })
         await customer.save()

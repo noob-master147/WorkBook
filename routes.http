@@ -24,10 +24,10 @@ content-type: application/json
 
 {
     "role":"Admin",
-    "userName":"test1",
-    "userID":"test@gmadiel.com",
+    "userName":"admin2",
+    "userID":"admin2.com",
     "password":"divyansh",
-    "instituteName":"inst1",
+    "instituteName":"inst2",
     "instituteType":"Chapter",
     "instituteImage":"sample.jpeg",
     "numberOfMembers":50,
@@ -35,7 +35,8 @@ content-type: application/json
     "city":"Vellore",
     "mailAddress":"divyanshkhandelwal147@gmail.com",
     "adharNumber":123456789789,
-    "contactNumber":9935071772
+    "contactNumber":9935071772,
+    "fcmToken": "afafaaf"
 }
 
 
@@ -46,9 +47,9 @@ POST http://localhost:8000/admin/login
 content-type: application/json
 
 {
-    "fcmToken": "test123",
-    "email":"divyanshkhandelwal@gmail.com",
-    "password": "pass1"
+    "fcmToken": "test1ccc23",
+    "email":"admin2.com",
+    "password": "divyansh"
 }
 
 
@@ -117,13 +118,14 @@ content-type: application/json
 {
     "role":"Employee",
     "userName":"b",
-    "userID":"b@gmail.com",
+    "userID":"b@gmaiddl.com",
     "password":"password",
     "instituteName":"IEEE",
     "grade":"Tech head",
     "division":"Web",
     "adharNumber":123456789789,
-    "contactNumber":9935071772
+    "contactNumber":9935071772,
+    "fcmToken": "safasd"
 }
 
 
@@ -133,8 +135,8 @@ POST http://localhost:8000/employee/login
 content-type: application/json
 
 {
-    "fcmToken" : "asdlkfhdslf",
-    "email":"divyanshkhandelwal@gmail.com",
+    "fcmToken" : "asdddlkfhdslf",
+    "email":"b@gmaiddl.com",
     "password": "password"
 }
 
@@ -179,3 +181,43 @@ content-type: application/json
 #                                          CUSTOMER ROTES                                           #
 #                                                                                                   #
 #####################################################################################################
+
+
+# Root Customer Route
+GET  http://localhost:8000/customer
+content-type: application/json
+
+
+####
+# Register Customer Route
+POST http://localhost:8000/customer/register
+content-type: application/json
+
+{
+    "role":"customer",
+    "userName":"cus1",
+    "userID":"cus2",
+    "password":"123456",
+    "grade":"sFsdg",
+    "division":"sdgsdga",
+    "instituteName":"agdd",
+    "numberOfMembers":50,
+    "mailAddress":"sdgdsg@gmil.com",
+    "adharNumber":1234564564,
+    "contactNumber":1234566544,
+    "fcmToken": "afafsfg"
+}
+
+
+####
+# Login Customer Route
+POST http://localhost:8000/customer/login
+content-type: application/json
+
+{
+    "fcmToken" : "asdlkfhdslf",
+    "email":"divyanshkhandelwal@gmail.com",
+    "password": "password"
+}
+
+

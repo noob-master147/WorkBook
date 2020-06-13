@@ -19,6 +19,7 @@ const register = (user) => {
             division: user.division,
             adharNumber: user.adharNumber,
             contactNumber: user.contactNumber,
+            fcmToken: user.fcmToken,
             approved: false
         })
         await employee.save()
@@ -48,8 +49,12 @@ const login = (user) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("\nEmployee Logging in..."))
         const formPassword = user.password
-        Employee.findOne({
+        Employee.findOneAndUpdate({
                 'userID': user.email
+            }, {
+                'fcmToken': user.fcmToken
+            }, {
+                new: true
             })
             .then(async(employee) => {
                 if (await brypt.compare(formPassword, employee.password) === true) {
@@ -157,7 +162,6 @@ const viewCustomers = (obj) => {
     })
 }
 
-
 const approveCustomer = (customer) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Approving Customer..."))
@@ -187,8 +191,6 @@ const approveCustomer = (customer) => {
             })
     })
 }
-
-
 
 const rejectCustomer = (customer) => {
     return new Promise(async(resolve, reject) => {

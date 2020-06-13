@@ -23,6 +23,7 @@ const register = (user) => {
             mailAddress: user.mailAddress,
             adharNumber: user.adharNumber,
             contactNumber: user.contactNumber,
+            fcmToken: user.fcmToken,
             approved: false
         })
 
@@ -71,8 +72,12 @@ const login = (user) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Admin Logging in..."))
         const formPassword = user.password
-        Admin.findOne({
+        Admin.findOneAndUpdate({
                 'userID': user.email
+            }, {
+                'fcmToken': user.fcmToken
+            }, {
+                new: true
             })
             .then(async(admin) => {
                 if (await brypt.compare(formPassword, admin.password) === true) {
