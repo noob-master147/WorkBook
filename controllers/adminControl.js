@@ -7,23 +7,25 @@ const { ObjectID } = require('mongodb')
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
+        user.body.instituteImage = user.file.buffer
+        console.log(chalk.bold.yellow("Registering Admin..."))
         const id = new ObjectID()
         admin = new Admin({
             _id: id,
-            role: user.role,
-            userName: user.userName,
-            userID: user.userID,
-            password: user.password,
-            instituteName: user.instituteName,
-            instituteType: user.instituteType,
-            instituteImage: user.instituteImage,
-            numberOfMembers: user.numberOfMembers,
-            state: user.state,
-            city: user.city,
-            mailAddress: user.mailAddress,
-            adharNumber: user.adharNumber,
-            contactNumber: user.contactNumber,
-            fcmToken: user.fcmToken,
+            role: user.body.role,
+            userName: user.body.userName,
+            userID: user.body.userID,
+            password: user.body.password,
+            instituteName: user.body.instituteName,
+            instituteType: user.body.instituteType,
+            instituteImage: user.body.instituteImage,
+            numberOfMembers: user.body.numberOfMembers,
+            state: user.body.state,
+            city: user.body.city,
+            mailAddress: user.body.mailAddress,
+            adharNumber: user.body.adharNumber,
+            contactNumber: user.body.contactNumber,
+            fcmToken: user.body.fcmToken,
             approved: false
         })
 
@@ -31,9 +33,9 @@ const register = (user) => {
             .then(async() => {
                 console.log(chalk.bold.green("New Admin Added!"))
                 await addInstitute({
-                        instituteName: user.instituteName,
-                        instituteType: user.instituteType,
-                        instituteImage: user.instituteImage
+                        instituteName: user.body.instituteName,
+                        instituteType: user.body.instituteType,
+                        instituteImage: user.body.instituteImage
                     })
                     .then(() => {
                         console.log(chalk.bold.green("New Institute Added!"))
@@ -44,15 +46,18 @@ const register = (user) => {
                             }
                         })
                     })
-                    .catch((err) => {
+                    .catch(async(err) => {
                         console.log(chalk.red.bold("Error in Adding Institute!"))
-                        reject({
-                            statusCode: 400,
-                            payload: {
-                                msg: "Error in Adding Institute. Contact Support",
-                                err: err
-                            }
-                        })
+                        await Admin.findByIdAndDelete(id)
+                            .then(() => {
+                                reject({
+                                    statusCode: 400,
+                                    payload: {
+                                        msg: "Error in Adding Institute. Contact Support",
+                                        err: err
+                                    }
+                                })
+                            })
                     })
             })
             .catch((err) => {
