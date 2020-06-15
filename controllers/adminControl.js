@@ -201,7 +201,6 @@ const getInstitutes = () => {
     })
 }
 
-
 const approveEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
         await Employee.findByIdAndUpdate(employee.id, {
@@ -229,7 +228,6 @@ const approveEmployee = (employee) => {
             })
     })
 }
-
 
 const rejectEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
