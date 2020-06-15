@@ -34,7 +34,7 @@ const adminSchema = new mongoose.Schema({
         trim: true
     },
     instituteImage: {
-        type: String,
+        type: Buffer,
         required: true
     },
     numberOfMembers: {
