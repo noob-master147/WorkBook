@@ -18,9 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const admin = require('./routes/admin');
 const customer = require('./routes/customer');
 const employee = require('./routes/employee');
+const superAdmin = require('./routes/superAdmin')
 app.use('/admin', admin)
 app.use('/employee', employee)
 app.use('/customer', customer)
+app.use('/superAdmin', superAdmin)
 
 //Load the Landing page for the form
 app.get('/', (req, res) => {

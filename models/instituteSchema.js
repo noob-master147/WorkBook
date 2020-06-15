@@ -14,7 +14,7 @@ const instituteSchema = new mongoose.Schema({
         trim: true
     },
     instituteImage: {
-        type: String,
+        type: Buffer,
         required: true
     }
 });

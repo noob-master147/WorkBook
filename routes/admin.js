@@ -2,27 +2,27 @@ const router = require("express")();
 const adminControl = require('../controllers/adminControl')
 const { hashPassword } = require('../middleware/hashPassword')
 const chalk = require('chalk')
+const { upload } = require('../middleware/multerUpload')
+
 
 // TEST ROUTE
-router.get('/', (req, res) => {
+router.post('/', upload.single('instituteImage'), (req, res) => {
+    req.body.instituteImage = req.file.buffer
+    console.log(req.body)
+    console.log(req.file)
     res.send({
         statusCode: 200,
         payload: {
-            msg: "The admin routes is healthy and running",
-            routes: {
-                register: "/register",
-                login: "/login"
-            }
-
+            msg: "The admin routes is healthy and running"
         },
     }).status(200)
 })
 
 
 // Create New Admin
-router.post('/register', hashPassword, (req, res) => {
-    console.log(chalk.yellow.bold("\nCreate Admin route hit..."))
-    adminControl.register(req.body)
+router.post('/register', upload.single('instituteImage'), hashPassword, (req, res) => {
+    console.log(chalk.yellow.bold("\nRegister Admin route hit..."))
+    adminControl.register(req)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })
