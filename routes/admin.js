@@ -2,20 +2,8 @@ const router = require("express")();
 const adminControl = require('../controllers/adminControl')
 const { hashPassword } = require('../middleware/hashPassword')
 const chalk = require('chalk')
-const multer = require('multer')
+const { upload } = require('../middleware/multerUpload')
 
-
-const upload = multer({
-    limits: {
-        fileSize: 1000000
-    },
-    fileFilter(req, file, cb) {
-        console.log("file multer")
-        if (!file.originalname.match(/\.(jpeg|png|jpg)$/))
-            return cb(new Error('Please Upload an Image'))
-        cb(undefined, true)
-    }
-})
 
 // TEST ROUTE
 router.post('/', upload.single('instituteImage'), (req, res) => {
