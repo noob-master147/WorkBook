@@ -7,23 +7,25 @@ const { ObjectID } = require('mongodb')
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
+        user.body.instituteImage = user.file.buffer
+        console.log(chalk.bold.yellow("Registering Admin..."))
         const id = new ObjectID()
         admin = new Admin({
             _id: id,
-            role: user.role,
-            userName: user.userName,
-            userID: user.userID,
-            password: user.password,
-            instituteName: user.instituteName,
-            instituteType: user.instituteType,
-            instituteImage: user.instituteImage,
-            numberOfMembers: user.numberOfMembers,
-            state: user.state,
-            district: user.district,
-            city: user.city,
-            mailAddress: user.mailAddress,
-            adharNumber: user.adharNumber,
-            contactNumber: user.contactNumber,
+            role: user.body.role,
+            userName: user.body.userName,
+            userID: user.body.userID,
+            password: user.body.password,
+            instituteName: user.body.instituteName,
+            instituteType: user.body.instituteType,
+            instituteImage: user.body.instituteImage,
+            numberOfMembers: user.body.numberOfMembers,
+            state: user.body.state,
+            city: user.body.city,
+            mailAddress: user.body.mailAddress,
+            adharNumber: user.body.adharNumber,
+            contactNumber: user.body.contactNumber,
+            fcmToken: user.body.fcmToken,
             approved: false
         })
 
@@ -31,9 +33,9 @@ const register = (user) => {
             .then(async() => {
                 console.log(chalk.bold.green("New Admin Added!"))
                 await addInstitute({
-                        instituteName: user.instituteName,
-                        instituteType: user.instituteType,
-                        instituteImage: user.instituteImage
+                        instituteName: user.body.instituteName,
+                        instituteType: user.body.instituteType,
+                        instituteImage: user.body.instituteImage
                     })
                     .then(() => {
                         console.log(chalk.bold.green("New Institute Added!"))
@@ -44,19 +46,22 @@ const register = (user) => {
                             }
                         })
                     })
-                    .catch((err) => {
+                    .catch(async(err) => {
                         console.log(chalk.red.bold("Error in Adding Institute!"))
-                        reject({
-                            statusCode: 400,
-                            payload: {
-                                msg: "Error in Adding Institute. Contact Support",
-                                err: err
-                            }
-                        })
+                        await Admin.findByIdAndDelete(id)
+                            .then(() => {
+                                reject({
+                                    statusCode: 400,
+                                    payload: {
+                                        msg: "Error in Adding Institute. Contact Support",
+                                        err: err
+                                    }
+                                })
+                            })
                     })
             })
             .catch((err) => {
-                console.log("Error in Adding Admin!")
+                console.log(chalk.red.bold("Error in Adding Admin!"))
                 reject({
                     statusCode: 400,
                     payload: {
@@ -72,8 +77,12 @@ const login = (user) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Admin Logging in..."))
         const formPassword = user.password
-        Admin.findOne({
+        Admin.findOneAndUpdate({
                 'userID': user.email
+            }, {
+                'fcmToken': user.fcmToken
+            }, {
+                new: true
             })
             .then(async(admin) => {
                 if (await brypt.compare(formPassword, admin.password) === true) {
@@ -179,6 +188,7 @@ const getInstitutes = () => {
                 })
             })
             .catch((err) => {
+                console.log(chalk.red.bold("Error in Loading Institute Data!"))
                 reject({
                     statusCode: 400,
                     payload: {
@@ -191,14 +201,13 @@ const getInstitutes = () => {
     })
 }
 
-
 const approveEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
         await Employee.findByIdAndUpdate(employee.id, {
                 'approved': true
             })
-            .then((obj) => {
-                console.log(obj)
+            .then(() => {
+                console.log(chalk.bold.green("Employee Approved!"))
                 resolve({
                     statusCode: 200,
                     payload: {
@@ -207,6 +216,7 @@ const approveEmployee = (employee) => {
                 })
             })
             .catch((err) => {
+                console.log(chalk.red.bold("Employee Not Approved!"))
                 reject({
                     statusCode: 400,
                     payload: {
@@ -219,11 +229,11 @@ const approveEmployee = (employee) => {
     })
 }
 
-
 const rejectEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
         await Employee.findByIdAndDelete(employee.id)
             .then(() => {
+                console.log(chalk.bold.green("Employee Rejected!"))
                 resolve({
                     statusCode: 200,
                     payload: {
@@ -232,6 +242,7 @@ const rejectEmployee = (employee) => {
                 })
             })
             .catch((err) => {
+                console.log(chalk.red.bold("Employee Not Rejected!"))
                 reject({
                     statusCode: 400,
                     payload: {

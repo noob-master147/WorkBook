@@ -1,5 +1,6 @@
 const chalk = require('chalk')
 const { Employee } = require('../models/employeeSchema')
+const { Customer } = require('../models/customerSchema')
 const brypt = require('bcrypt')
 const { ObjectID } = require('mongodb')
 
@@ -18,6 +19,7 @@ const register = (user) => {
             division: user.division,
             adharNumber: user.adharNumber,
             contactNumber: user.contactNumber,
+            fcmToken: user.fcmToken,
             approved: false
         })
         await employee.save()
@@ -47,8 +49,12 @@ const login = (user) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("\nEmployee Logging in..."))
         const formPassword = user.password
-        Employee.findOne({
+        Employee.findOneAndUpdate({
                 'userID': user.email
+            }, {
+                'fcmToken': user.fcmToken
+            }, {
+                new: true
             })
             .then(async(employee) => {
                 if (await brypt.compare(formPassword, employee.password) === true) {
@@ -94,7 +100,132 @@ const login = (user) => {
     })
 }
 
+const pendingCustomers = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Fetching All Pending Customers..."))
+        await Customer.find({
+                'instituteName': obj.instituteName,
+                'approved': false
+            })
+            .then((customer) => {
+                console.log(chalk.green.bold("Fetched All Pending Customer"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Pending Customer in the Institute",
+                        customer: customer
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Loading Customer Data"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Loading Customer Data! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+const viewCustomers = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Fetching All Customers..."))
+        await Customer.find({
+                'employeeID': obj.employeeID,
+                'approved': true
+            })
+            .then((customer) => {
+                console.log(chalk.green.bold("Fetched All Customer under the Employee"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Customer under the Employee",
+                        customer: customer
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Loading Customer Data"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Loading Customer Data! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+const approveCustomer = (customer) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Approving Customer..."))
+        await Customer.findByIdAndUpdate(customer.id, {
+                'approved': true,
+                'employeeID': customer.employeeID
+            })
+            .then(() => {
+                console.log(chalk.green.bold("Customer Approved!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Customer Approved"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Customer Not Approved!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Approving Customer! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+const rejectCustomer = (customer) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Approving Customer..."))
+        await Customer.findByIdAndDelete(customer.id)
+            .then(() => {
+                console.log(chalk.green.bold("Customer Rejected!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Customer Approved"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Customer Not Rejected!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Rejecting Customer! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
 module.exports = {
     register,
-    login
+    login,
+    pendingCustomers,
+    viewCustomers,
+    approveCustomer,
+    rejectCustomer
 }

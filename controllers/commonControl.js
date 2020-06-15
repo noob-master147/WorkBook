@@ -45,4 +45,8 @@ const sendNotification = (obj) => {
 
 module.exports = {
     sendNotification
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> fdaa295df04fdb03ba621a0aff9274aa562df038

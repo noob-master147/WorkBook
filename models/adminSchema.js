@@ -34,7 +34,7 @@ const adminSchema = new mongoose.Schema({
         trim: true
     },
     instituteImage: {
-        type: String,
+        type: Buffer,
         required: true
     },
     numberOfMembers: {
@@ -45,11 +45,6 @@ const adminSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-    },
-    district: {
-        type: String,
-        trim: true,
-        required: true
     },
     city: {
         type: String,
@@ -67,6 +62,10 @@ const adminSchema = new mongoose.Schema({
     },
     contactNumber: {
         type: Number,
+        required: true
+    },
+    fcmToken: {
+        type: String,
         required: true
     },
     approved: {

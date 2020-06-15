@@ -1,5 +1,7 @@
+const chalk = require('chalk')
 const router = require("express")();
 const customerControl = require('../controllers/customerControl')
+const { hashPassword } = require('../middleware/hashPassword')
 
 router.get('/', (req, res) => {
     res.send({
@@ -10,8 +12,8 @@ router.get('/', (req, res) => {
     }).status(200)
 })
 
-// Create a Customer
-router.post('/register', (req, res) => {
+// Register a Customer
+router.post('/register', hashPassword, (req, res) => {
     customerControl.register(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
@@ -26,26 +28,13 @@ router.post('/update', (req, res) => {
 })
 
 
-// // View Particular Customer
-// router.post('/viewCustomer', (req, res) => {
-//     customerControl.viewCustomer(req.body)
-//         .then((obj) => res.send(obj).status(200))
-//         .catch((err) => res.send(err).status(400))
-// })
-
-// // View all Customer
-// router.post('/viewAllCustomers', (req, res) => {
-//     customerControl.viewAllCustomers()
-//         .then((obj) => res.send(obj).status(200))
-//         .catch((err) => res.send(err).status(400))
-// })
-
-// // Approve an Customer
-// router.post('/approveCustomer', (req, res) => {
-//     customerControl.approveCustomer(req.body)
-//         .then((obj) => res.send(obj).status(200))
-//         .catch((err) => res.send(err).status(400))
-// })
+// route to Login Customer
+router.post('/login', (req, res) => {
+    console.log(chalk.bold.yellow("\nLogin Customer route hit..."))
+    customerControl.login(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
 
 
 module.exports = router;

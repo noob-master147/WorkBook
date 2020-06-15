@@ -18,9 +18,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const admin = require('./routes/admin');
 const customer = require('./routes/customer');
 const employee = require('./routes/employee');
+const superAdmin = require('./routes/superAdmin')
+const common = require('./routes/common')
 app.use('/admin', admin)
 app.use('/employee', employee)
 app.use('/customer', customer)
+app.use('/superAdmin', superAdmin)
+app.use('/', common)
 
 //Load the Landing page for the form
 app.get('/', (req, res) => {
@@ -42,7 +46,8 @@ app.get('/', (req, res) => {
 mongoose.connect(process.env.MONGO_URL, {
         useCreateIndex: true,
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: false
     },
     () => {
         console.log(chalk.green.bold('Connected to MongoDB'))
