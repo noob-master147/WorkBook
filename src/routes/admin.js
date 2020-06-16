@@ -6,10 +6,7 @@ const { upload } = require('../middleware/multerUpload')
 
 
 // TEST ROUTE
-router.post('/', upload.single('instituteImage'), (req, res) => {
-    req.body.instituteImage = req.file.buffer
-    console.log(req.body)
-    console.log(req.file)
+router.get('/', (req, res) => {
     res.send({
         statusCode: 200,
         payload: {
