@@ -13,7 +13,7 @@ const sendNotification = (obj) => {
         const fcmToken = obj.fcmToken;
         const payload = {
             notification: {
-                title: 'Request Accepted',
+                title: obj.title,
                 body: obj.message
             }
         }
