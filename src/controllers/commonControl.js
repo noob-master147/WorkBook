@@ -1,5 +1,5 @@
 const chalk = require('chalk')
-const serviceAccount = require("../firebase-key.json")
+const serviceAccount = require("../../firebase-key.json")
 
 const admin = require("firebase-admin")
 admin.initializeApp({
