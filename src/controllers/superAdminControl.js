@@ -40,19 +40,19 @@ const approveAdmin = (admin) => {
 
 const purge = () => {
     return new Promise(async(resolve, reject) => {
-        const p1 = Admin.remove({}, function(err) {
+        const p1 = await Admin.remove({}, function(err) {
             console.log(chalk.red.bold('Admin collection removed'))
         })
-        const p2 = Employee.remove({}, function(err) {
+        const p2 = await Employee.remove({}, function(err) {
             console.log(chalk.red.bold('Employee collection removed'))
         })
-        const p3 = Institute.remove({}, function(err) {
+        const p3 = await Institute.remove({}, function(err) {
             console.log(chalk.red.bold('Institute collection removed'))
         })
-        const p4 = Customer.remove({}, function(err) {
+        const p4 = await Customer.remove({}, function(err) {
             console.log(chalk.red.bold('Customer collection removed'))
         })
-        const p5 = Driver.remove({}, function(err) {
+        const p5 = await Driver.remove({}, function(err) {
             console.log(chalk.red.bold('Driver collection removed'))
         })
 

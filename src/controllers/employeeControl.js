@@ -1,6 +1,7 @@
 const chalk = require('chalk')
 const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
+const { Role } = require('../models/RoleSchema')
 const brypt = require('bcrypt')
 const { ObjectID } = require('mongodb')
 
@@ -22,7 +23,15 @@ const register = (user) => {
             fcmToken: user.fcmToken,
             approved: false
         })
-        await employee.save()
+        role = new Role({
+            userId: id,
+            role: "employee"
+
+        })
+        const P1 = await employee.save()
+        const P2 = role.save()
+
+        Promise.all([P1, P2])
             .then(() => {
                 console.log(chalk.green.bold("New Employee Registered!"))
                 resolve({

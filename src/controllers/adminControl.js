@@ -2,6 +2,7 @@ const chalk = require('chalk')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
 const { Institute } = require('../models/instituteSchema')
+const { Role } = require('../models/RoleSchema')
 const brypt = require('bcrypt')
 const { ObjectID } = require('mongodb')
 
@@ -28,40 +29,34 @@ const register = (user) => {
             fcmToken: user.body.fcmToken,
             approved: false
         })
+        institute = new Institute({
+            _id: id,
+            instituteName: user.body.instituteName,
+            instituteType: user.body.instituteType,
+            instituteImage: user.body.instituteImage,
+        })
+        role = new Role({
+            _id: id,
+            role: "admin"
+        })
 
-        await admin.save()
-            .then(async() => {
+        Promise.all([admin.save(), institute.save(), role.save()])
+            .then(() => {
                 console.log(chalk.bold.green("New Admin Added!"))
-                await addInstitute({
-                        instituteName: user.body.instituteName,
-                        instituteType: user.body.instituteType,
-                        instituteImage: user.body.instituteImage
-                    })
-                    .then(() => {
-                        console.log(chalk.bold.green("New Institute Added!"))
-                        resolve({
-                            statusCode: 200,
-                            payload: {
-                                msg: "Admin and Institute Successfully Added",
-                            }
-                        })
-                    })
-                    .catch(async(err) => {
-                        console.log(chalk.red.bold("Error in Adding Institute!"))
-                        await Admin.findByIdAndDelete(id)
-                            .then(() => {
-                                reject({
-                                    statusCode: 400,
-                                    payload: {
-                                        msg: "Error in Adding Institute. Contact Support",
-                                        err: err
-                                    }
-                                })
-                            })
-                    })
+                console.log(chalk.bold.green("New Institute Added!"))
+                console.log(chalk.bold.green("New Role Added!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Admin and Institute Successfully Added",
+                    }
+                })
             })
-            .catch((err) => {
+            .catch(async(err) => {
                 console.log(chalk.red.bold("Error in Adding Admin!"))
+                await Admin.findByIdAndDelete(id)
+                await Institute.findByIdAndDelete(id)
+                await Role.findByIdAndDelete(id)
                 reject({
                     statusCode: 400,
                     payload: {
@@ -70,6 +65,7 @@ const register = (user) => {
                     }
                 })
             })
+
     })
 }
 
@@ -264,3 +260,46 @@ module.exports = {
     approveEmployee,
     rejectEmployee
 }
+
+
+
+// .then(async() => {
+//         console.log(chalk.bold.green("New Admin Added!"))
+//         await addInstitute({
+//                 instituteName: user.body.instituteName,
+//                 instituteType: user.body.instituteType,
+//                 instituteImage: user.body.instituteImage
+//             })
+//             .then(() => {
+//                 console.log(chalk.bold.green("New Institute Added!"))
+//                 resolve({
+//                     statusCode: 200,
+//                     payload: {
+//                         msg: "Admin and Institute Successfully Added",
+//                     }
+//                 })
+//             })
+//             .catch(async(err) => {
+//                 console.log(chalk.red.bold("Error in Adding Institute!"))
+//                 await Admin.findByIdAndDelete(id)
+//                     .then(() => {
+//                         reject({
+//                             statusCode: 400,
+//                             payload: {
+//                                 msg: "Error in Adding Institute. Contact Support",
+//                                 err: err
+//                             }
+//                         })
+//                     })
+//             })
+//     })
+//     .catch((err) => {
+//         console.log(chalk.red.bold("Error in Adding Admin!"))
+//         reject({
+//             statusCode: 400,
+//             payload: {
+//                 msg: "Error in Adding Admin. Contact Support",
+//                 err: err
+//             }
+//         })
+//     })
