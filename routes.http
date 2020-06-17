@@ -6,7 +6,7 @@ content-type: application/json
 
 #####################################################################################################
 #                                                                                                   #
-#                                          ADMIN ROTES                                              #
+#                                         SUPER ADMIN ROTES                                         #
 #                                                                                                   #
 #####################################################################################################
 
@@ -59,18 +59,6 @@ content-type: application/json
     "fcmToken": "afafaaf"
 }
 
-
-
-####
-# Admin Login Route
-POST http://localhost:8000/admin/login
-content-type: application/json
-
-{
-    "fcmToken": "test1ccc23",
-    "email":"admin2.com",
-    "password": "divyansh"
-}
 
 
 ####
@@ -146,18 +134,6 @@ content-type: application/json
     "adharNumber":123456789789,
     "contactNumber":9935071772,
     "fcmToken": "safasd"
-}
-
-
-####
-# Login Employee Route
-POST http://localhost:8000/employee/login
-content-type: application/json
-
-{
-    "fcmToken" : "asdddlkfhdslf",
-    "email":"b@gmaiddl.com",
-    "password": "password"
 }
 
 
@@ -246,17 +222,6 @@ content-type: application/json
 }
 
 
-####
-# Login Customer Route
-POST http://localhost:8000/customer/login
-content-type: application/json
-
-{
-    "fcmToken" : "asdlkfccccccchdslf",
-    "email":"customer1",
-    "password": "123456"
-}
-
 
 
 
@@ -266,7 +231,7 @@ content-type: application/json
 #                                                                                                   #
 #####################################################################################################
 
-
+####
 # send Notifications
 POST http://localhost:8000/sendNotification
 content-type: application/json
@@ -274,4 +239,15 @@ content-type: application/json
 {
     "fcmToken":"dItTSf1Lq5A:APA91bFhccnuE3JjCcCgdWtyuTU0UAeD7lgIRyhqY1_8x51kt1uJc2V-YHaKEBilFSv2yiKO8VetrBc790rrkp94_EmUd4JueoVEl38keHEsqJO_Rnco6r4bAolk7Tjdp2H_3n02gTRx",
     "message":"Approved"
+}
+
+####
+# Login Route
+POST http://localhost:8000/login
+content-type: application/json
+
+{
+    "fcmToken" : "asdlkfccccccchdslf",
+    "email":"customer1",
+    "password": "123456"
 }
