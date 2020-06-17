@@ -8,7 +8,8 @@ const guestSchema = new mongoose.Schema({
     role: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        default: "guest"
     },
     organization: {
         type: String,

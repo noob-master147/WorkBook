@@ -11,7 +11,6 @@ const register = (user) => {
         const id = new ObjectID()
         employee = new Employee({
             _id: id,
-            role: user.role,
             userName: user.userName,
             userID: user.userID,
             password: user.password,
@@ -25,6 +24,7 @@ const register = (user) => {
         })
         role = new Role({
             _id: id,
+            userID: user.userID,
             role: "employee"
 
         })

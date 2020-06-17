@@ -248,6 +248,6 @@ content-type: application/json
 
 {
     "fcmToken" : "asdlkfccccccchdslf",
-    "email":"customer1",
-    "password": "123456"
+    "userID":"b@gmaiddl.com",
+    "password": "password"
 }

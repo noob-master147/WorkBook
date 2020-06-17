@@ -13,7 +13,6 @@ const register = (user) => {
         const id = new ObjectID()
         admin = new Admin({
             _id: id,
-            role: user.body.role,
             userName: user.body.userName,
             userID: user.body.userID,
             password: user.body.password,
@@ -37,6 +36,7 @@ const register = (user) => {
         })
         role = new Role({
             _id: id,
+            userID: user.body.userID,
             role: "admin"
         })
 
@@ -77,7 +77,7 @@ const login = (user) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Admin Logging in..."))
         const formPassword = user.password
-        Admin.findOneAndUpdate({
+        await Admin.findOneAndUpdate({
                 'userID': user.email
             }, {
                 'fcmToken': user.fcmToken

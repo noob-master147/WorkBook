@@ -1,5 +1,11 @@
 const chalk = require('chalk')
 const serviceAccount = require("../../firebase-key.json")
+const { Admin } = require('../models/adminSchema')
+const { Employee } = require('../models/employeeSchema')
+const { Customer } = require('../models/customerSchema')
+const { Institute } = require('../models/instituteSchema')
+const { Driver } = require('../models/driverSchema')
+const { Role } = require('../models/RoleSchema')
 
 const admin = require("firebase-admin")
 admin.initializeApp({
@@ -43,6 +49,19 @@ const sendNotification = (obj) => {
     })
 }
 
+
+
+const login = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(obj)
+        resolve()
+    })
+}
+
+
+
+
 module.exports = {
-    sendNotification
+    sendNotification,
+    login
 }
