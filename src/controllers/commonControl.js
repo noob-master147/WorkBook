@@ -77,8 +77,8 @@ const login = (obj) => {
                 })
             }
         } else {
-            resolve({
-                statusCode: 200,
+            reject({
+                statusCode: 401,
                 payload: {
                     msg: "Password Incorrect",
                 }

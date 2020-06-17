@@ -46,14 +46,15 @@ const getUser = async(req, res, next) => {
                 throw new Error("Role not found")
             })
         next()
-    } catch {
+    } catch (err) {
         res.send({
             statusCode: 500,
             payload: {
-                msg: "Contact Support"
+                msg: "Contact Support",
+                err: err
 
             },
-        }).status(200)
+        }).status(500)
     }
 
 }
