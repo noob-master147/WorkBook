@@ -3,7 +3,7 @@ const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
 const { Institute } = require('../models/instituteSchema')
 const { Role } = require('../models/RoleSchema')
-const brypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 const { ObjectID } = require('mongodb')
 
 const register = (user) => {
@@ -85,7 +85,7 @@ const login = (user) => {
                 new: true
             })
             .then(async(admin) => {
-                if (await brypt.compare(formPassword, admin.password) === true) {
+                if (await bcrypt.compare(formPassword, admin.password) === true) {
                     console.log(chalk.green.bold('Admin Authenticated'))
                     if (admin.approved === true) {
                         resolve({

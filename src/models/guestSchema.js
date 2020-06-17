@@ -1,8 +1,4 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema;
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const validator = require('validator');
 
 const guestSchema = new mongoose.Schema({
     role: {

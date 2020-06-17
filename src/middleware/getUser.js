@@ -2,7 +2,7 @@ const chalk = require('chalk')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
-const { Institute } = require('../models/instituteSchema')
+const { Guest } = require('../models/guestSchema')
 const { Driver } = require('../models/driverSchema')
 const { Role } = require('../models/RoleSchema')
 
@@ -26,8 +26,11 @@ const getUser = async(req, res, next) => {
                     case "customer":
                         alias = Customer
                         break;
-                    case "Driver":
+                    case "driver":
                         alias = Driver
+                        break;
+                    case "guest":
+                        alias = Guest
                         break;
                 }
                 await alias.findOne({ 'userID': req.body.userID })
