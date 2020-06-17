@@ -1,14 +1,11 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema;
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const validator = require('validator');
 
 const guestSchema = new mongoose.Schema({
     role: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        default: "guest"
     },
     organization: {
         type: String,
@@ -37,6 +34,11 @@ const guestSchema = new mongoose.Schema({
         required: true,
         default: false
     },
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now()
+    }
 });
 
 

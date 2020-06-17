@@ -5,7 +5,8 @@ const driverSchema = new mongoose.Schema({
     role: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        default: "driver"
     },
     userName: {
         type: String,
@@ -50,6 +51,11 @@ const driverSchema = new mongoose.Schema({
         required: true,
         default: false
     },
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now()
+    }
 });
 
 

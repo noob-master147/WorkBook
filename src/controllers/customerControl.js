@@ -1,14 +1,17 @@
 const chalk = require('chalk')
-const { Customer } = require('../models/customerSchema')
 const brypt = require('bcrypt')
+
+const { Customer } = require('../models/customerSchema')
+const { Role } = require('../models/RoleSchema')
 const { ObjectID } = require('mongodb')
 
 
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
+        const id = new ObjectID()
         customer = new Customer({
-            role: user.role,
+            _id: id,
             userName: user.userName,
             userID: user.userID,
             password: user.password,
@@ -23,7 +26,15 @@ const register = (user) => {
             fcmToken: user.fcmToken,
             approved: false
         })
-        await customer.save()
+        role = new Role({
+            _id: id,
+            userID: user.userID,
+            role: "employee"
+        })
+        Promise.all([
+                customer.save(),
+                role.save()
+            ])
             .then(() => {
                 console.log(chalk.green.bold("New Customer Registered!"))
                 resolve({
@@ -33,8 +44,10 @@ const register = (user) => {
                     }
                 })
             })
-            .catch((err) => {
+            .catch(async(err) => {
                 console.log(chalk.red.bold("Error in Customer Registration!"))
+                await Customer.findByIdAndDelete(id)
+                await Role.findByIdAndDelete(id)
                 reject({
                     statusCode: 400,
                     payload: {

@@ -1,6 +1,7 @@
 const chalk = require('chalk')
 const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
+const { Role } = require('../models/RoleSchema')
 const brypt = require('bcrypt')
 const { ObjectID } = require('mongodb')
 
@@ -10,7 +11,6 @@ const register = (user) => {
         const id = new ObjectID()
         employee = new Employee({
             _id: id,
-            role: user.role,
             userName: user.userName,
             userID: user.userID,
             password: user.password,
@@ -22,7 +22,16 @@ const register = (user) => {
             fcmToken: user.fcmToken,
             approved: false
         })
-        await employee.save()
+        role = new Role({
+            _id: id,
+            userID: user.userID,
+            role: "employee"
+
+        })
+        Promise.all([
+                employee.save(),
+                role.save()
+            ])
             .then(() => {
                 console.log(chalk.green.bold("New Employee Registered!"))
                 resolve({
@@ -32,8 +41,10 @@ const register = (user) => {
                     }
                 })
             })
-            .catch((err) => {
+            .catch(async(err) => {
                 console.log(chalk.red.bold("Error in Employee Registration!"))
+                await Employee.findByIdAndDelete(id)
+                await Role.findByIdAndDelete(id)
                 reject({
                     statusCode: 400,
                     payload: {
