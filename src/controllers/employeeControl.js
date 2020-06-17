@@ -41,8 +41,10 @@ const register = (user) => {
                     }
                 })
             })
-            .catch((err) => {
+            .catch(async(err) => {
                 console.log(chalk.red.bold("Error in Employee Registration!"))
+                await Employee.findByIdAndDelete(id)
+                await Role.findByIdAndDelete(id)
                 reject({
                     statusCode: 400,
                     payload: {

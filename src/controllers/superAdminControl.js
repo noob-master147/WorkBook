@@ -5,6 +5,7 @@ const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
 const { Institute } = require('../models/instituteSchema')
 const { Driver } = require('../models/driverSchema')
+const { Role } = require('../models/RoleSchema')
 const { ObjectID } = require('mongodb')
 
 
@@ -55,8 +56,11 @@ const purge = () => {
         const p5 = await Driver.remove({}, function(err) {
             console.log(chalk.red.bold('Driver collection removed'))
         })
+        const p6 = await Role.remove({}, function(err) {
+            console.log(chalk.red.bold('Role collection removed'))
+        })
 
-        Promise.all([p1, p2, p3, p4, p5])
+        Promise.all([p1, p2, p3, p4, p5, p6])
             .then(() => {
                 console.log(chalk.red.bold("ALL DATABASE PURGED"))
                 resolve({
