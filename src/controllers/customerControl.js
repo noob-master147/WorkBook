@@ -7,7 +7,9 @@ const { ObjectID } = require('mongodb')
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
+        const id = new ObjectID()
         customer = new Customer({
+            _id: id,
             role: user.role,
             userName: user.userName,
             userID: user.userID,
@@ -23,7 +25,14 @@ const register = (user) => {
             fcmToken: user.fcmToken,
             approved: false
         })
-        await customer.save()
+        role = new Role({
+            _id: id,
+            role: "employee"
+        })
+        Promise.all([
+                customer.save(),
+                role.save()
+            ])
             .then(() => {
                 console.log(chalk.green.bold("New Customer Registered!"))
                 resolve({

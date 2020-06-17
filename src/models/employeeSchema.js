@@ -5,7 +5,8 @@ const employeeSchema = new mongoose.Schema({
     role: {
         type: String,
         trim: true,
-        required: true
+        required: true,
+        default: "employee"
     },
     userName: {
         type: String,
@@ -55,6 +56,11 @@ const employeeSchema = new mongoose.Schema({
         required: true,
         default: false
     },
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now()
+    }
 });
 
 

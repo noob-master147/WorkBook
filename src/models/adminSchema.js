@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 const adminSchema = new mongoose.Schema({
     role: {
         type: String,
-        required: true
+        required: true,
+        default: "admin"
     },
     userName: {
         type: String,
@@ -72,6 +73,11 @@ const adminSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now()
     }
 });
 

@@ -50,6 +50,11 @@ const driverSchema = new mongoose.Schema({
         required: true,
         default: false
     },
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now()
+    }
 });
 
 

@@ -24,14 +24,14 @@ const register = (user) => {
             approved: false
         })
         role = new Role({
-            userId: id,
+            _id: id,
             role: "employee"
 
         })
-        const P1 = await employee.save()
-        const P2 = role.save()
-
-        Promise.all([P1, P2])
+        Promise.all([
+                employee.save(),
+                role.save()
+            ])
             .then(() => {
                 console.log(chalk.green.bold("New Employee Registered!"))
                 resolve({

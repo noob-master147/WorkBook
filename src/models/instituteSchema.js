@@ -16,6 +16,11 @@ const instituteSchema = new mongoose.Schema({
     instituteImage: {
         type: Buffer,
         required: true
+    },
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now()
     }
 });
 
