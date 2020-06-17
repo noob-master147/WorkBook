@@ -26,5 +26,13 @@ router.post('/approveAdmin', (req, res) => {
 })
 
 
+// Purge DataBase
+router.delete('/purge', (req, res) => {
+    superAdminControl.purge()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
 
 module.exports = router;

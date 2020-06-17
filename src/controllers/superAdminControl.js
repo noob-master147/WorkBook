@@ -2,7 +2,9 @@ const chalk = require('chalk')
 const brypt = require('bcrypt')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
+const { Customer } = require('../models/customerSchema')
 const { Institute } = require('../models/instituteSchema')
+const { Driver } = require('../models/driverSchema')
 const { ObjectID } = require('mongodb')
 
 
@@ -36,9 +38,50 @@ const approveAdmin = (admin) => {
     })
 }
 
+const purge = () => {
+    return new Promise(async(resolve, reject) => {
+        const p1 = Admin.remove({}, function(err) {
+            console.log(chalk.red.bold('Admin collection removed'))
+        })
+        const p2 = Employee.remove({}, function(err) {
+            console.log(chalk.red.bold('Employee collection removed'))
+        })
+        const p3 = Institute.remove({}, function(err) {
+            console.log(chalk.red.bold('Institute collection removed'))
+        })
+        const p4 = Customer.remove({}, function(err) {
+            console.log(chalk.red.bold('Customer collection removed'))
+        })
+        const p5 = Driver.remove({}, function(err) {
+            console.log(chalk.red.bold('Driver collection removed'))
+        })
 
+        Promise.all([p1, p2, p3, p4, p5])
+            .then(() => {
+                console.log(chalk.red.bold("ALL DATABASE PURGED"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "All DB Purged"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("DataBase Not Purged!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Purging DataBase! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
 
 
 module.exports = {
-    approveAdmin
+    approveAdmin,
+    purge
 }

@@ -4,6 +4,26 @@ GET  http://localhost:8000/
 content-type: application/json
 
 
+#####################################################################################################
+#                                                                                                   #
+#                                          ADMIN ROTES                                              #
+#                                                                                                   #
+#####################################################################################################
+
+####
+# Purge the Database
+DELETE http://localhost:8000/superAdmin/purge
+content-type: application/json
+
+
+####
+# Approve Admin
+POST http://localhost:8000/superAdmin/approveAdmin
+content-type: application/json
+
+{
+    "id": "5ee0ea50659bf815cdc6269c"
+}
 
 #####################################################################################################
 #                                                                                                   #
@@ -253,5 +273,5 @@ content-type: application/json
 
 {
     "fcmToken":"dItTSf1Lq5A:APA91bFhccnuE3JjCcCgdWtyuTU0UAeD7lgIRyhqY1_8x51kt1uJc2V-YHaKEBilFSv2yiKO8VetrBc790rrkp94_EmUd4JueoVEl38keHEsqJO_Rnco6r4bAolk7Tjdp2H_3n02gTRx",
-    "message":"GANDU GANDU GANDU GANDU GANDU GANDU GANDU GANDU GANDU GANDU"
+    "message":"Approved"
 }
