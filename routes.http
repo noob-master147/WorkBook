@@ -25,6 +25,22 @@ content-type: application/json
     "id": "5ee0ea50659bf815cdc6269c"
 }
 
+####
+# Delete Admin
+POST http://localhost:8000/superAdmin/deleteAdmin
+content-type: application/json
+
+{
+    "id": "5ee0ea50659bf815cdc6269c"
+}
+
+
+
+
+
+
+
+
 #####################################################################################################
 #                                                                                                   #
 #                                          ADMIN ROTES                                              #

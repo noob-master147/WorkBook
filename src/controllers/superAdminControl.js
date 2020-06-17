@@ -85,7 +85,36 @@ const purge = () => {
 }
 
 
+const deleteAdmin = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Deleteing Admin..."))
+        await Admin.findByIdAndDelete(obj.id)
+            .then(() => {
+                console.log(chalk.bold.green("Admin Deleted!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Admin Deleted"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Admin Not Deleted!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Deleting Admin! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
 module.exports = {
     approveAdmin,
-    purge
+    purge,
+    deleteAdmin
 }

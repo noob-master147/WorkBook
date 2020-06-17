@@ -34,5 +34,13 @@ router.delete('/purge', (req, res) => {
 })
 
 
+// Delete Admin
+router.post('/deleteAdmin', (req, res) => {
+    superAdminControl.deleteAdmin(req.bod)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
 
 module.exports = router;
