@@ -205,8 +205,8 @@ POST http://localhost:8000/customer/register
 content-type: application/json
 
 {
-    "userName":"customer1",
-    "userID":"customer1",
+    "userName":"cus",
+    "userID":"cus",
     "password":"123456",
     "grade":"sFsdg",
     "division":"sdgsdga",
@@ -244,8 +244,8 @@ content-type: application/json
 
 {
     "fcmToken" : "asdlkfccccccchdslf",
-    "userID":"b@gmaiddl.com",
-    "password": "password"
+    "userID":"cus",
+    "password": "123456"
 }
 
 
