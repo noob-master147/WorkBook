@@ -23,7 +23,7 @@
  * @apiName View Customers
  * @apiGroup Employee
  * 
- * @apiParam {String} employeeID Name of the Insitute
+ * @apiParam {String} instituteName Name of the Insitute
  * 
  *   
  */
@@ -34,7 +34,7 @@
  * @apiName Approve Customer
  * @apiGroup Employee
  *
- * @apiParam {String} employeeID Name of the Insitute
+ * @apiParam {String} employeeID userID of Employee
  * @apiParam {String} id _id of the Customer Document
  *   
  */

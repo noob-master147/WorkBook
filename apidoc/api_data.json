@@ -375,7 +375,7 @@
             "type": "String",
             "optional": false,
             "field": "employeeID",
-            "description": "<p>Name of the Insitute</p>"
+            "description": "<p>userID of Employee</p>"
           },
           {
             "group": "Parameter",
@@ -383,29 +383,6 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Customer Document</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "documentation/employeeDocs.js",
-    "groupTitle": "Employee"
-  },
-  {
-    "type": "get",
-    "url": "employee/pendingCustomers",
-    "title": "View Pending Customers",
-    "name": "Pending_Customers",
-    "group": "Employee",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "instituteName",
-            "description": "<p>Name of the Institute</p>"
           }
         ]
       }
@@ -525,7 +502,7 @@
   },
   {
     "type": "post",
-    "url": "employee/viewCustomers",
+    "url": "employee/viewAllCustomers",
     "title": "View Customers",
     "name": "View_Customers",
     "group": "Employee",
@@ -536,7 +513,7 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "employeeID",
+            "field": "instituteName",
             "description": "<p>Name of the Insitute</p>"
           }
         ]
