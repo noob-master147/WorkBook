@@ -1,7 +1,7 @@
 define({ "api": [
   {
     "type": "post",
-    "url": "admin/approveEmployee",
+    "url": "/admin/approveEmployee",
     "title": "Approve Employee",
     "name": "Approve_Employee",
     "group": "Admin",
@@ -24,7 +24,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "admin/institutes",
+    "url": "/admin/institutes",
     "title": "Get Registered Institutes",
     "name": "Institutes",
     "group": "Admin",
@@ -141,7 +141,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "admin/approveEmployee",
+    "url": "/admin/approveEmployee",
     "title": "Reject Employee",
     "name": "Reject_Employee",
     "group": "Admin",
@@ -164,7 +164,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "admin/viewAllEmployees",
+    "url": "/admin/viewAllEmployees",
     "title": "View Institute's Employee",
     "name": "View_All_Employees",
     "group": "Admin",
@@ -551,7 +551,7 @@ define({ "api": [
     "url": "/superAdmin/approveAdmin",
     "title": "Approve Admin",
     "name": "Approve_Admin",
-    "group": "Super_Admin",
+    "group": "SuperAdmin",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -567,14 +567,14 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "documentation/superAdminDocs.js",
-    "groupTitle": "Super_Admin"
+    "groupTitle": "SuperAdmin"
   },
   {
     "type": "post",
     "url": "/superAdmin/deleteAdmin",
     "title": "Delete Admin",
     "name": "Delete_Admin",
-    "group": "Super_Admin",
+    "group": "SuperAdmin",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -590,16 +590,16 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "documentation/superAdminDocs.js",
-    "groupTitle": "Super_Admin"
+    "groupTitle": "SuperAdmin"
   },
   {
     "type": "delete",
     "url": "/superAdmin/purge",
     "title": "Purge Database",
     "name": "PurgeDatabase",
-    "group": "Super_Admin",
+    "group": "SuperAdmin",
     "version": "0.0.0",
     "filename": "documentation/superAdminDocs.js",
-    "groupTitle": "Super_Admin"
+    "groupTitle": "SuperAdmin"
   }
 ] });

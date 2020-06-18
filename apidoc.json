@@ -7,9 +7,10 @@
         "url": "https://api.github.com/v1"
     },
     "order": [
-        "Super Admin",
+        "SuperAdmin",
         "Common",
         "Admin",
-        "Employee"
+        "Employee",
+        "Customer"
     ]
 }

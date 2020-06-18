@@ -23,7 +23,7 @@
 
 
 /**
- * @api {get} admin/institutes Get Registered Institutes
+ * @api {get} /admin/institutes Get Registered Institutes
  * @apiName Institutes
  * @apiGroup Admin
  *
@@ -33,7 +33,7 @@
 
 
 /**
- * @api {post} admin/viewAllEmployees View Institute's Employee
+ * @api {post} /admin/viewAllEmployees View Institute's Employee
  * @apiName View All Employees
  * @apiGroup Admin
  * 
@@ -45,7 +45,7 @@
 
 
 /**
- * @api {post} admin/approveEmployee Approve Employee
+ * @api {post} /admin/approveEmployee Approve Employee
  * @apiName Approve Employee
  * @apiGroup Admin
  *
@@ -55,7 +55,7 @@
 
 
 /**
- * @api {post} admin/approveEmployee Reject Employee
+ * @api {post} /admin/approveEmployee Reject Employee
  * @apiName Reject Employee
  * @apiGroup Admin
  *
