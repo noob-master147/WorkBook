@@ -24,6 +24,9 @@ const driverSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    profilePicture: {
+        type: Buffer
+    },
     organization: {
         type: String,
         trim: true,

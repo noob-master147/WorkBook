@@ -7,6 +7,9 @@ const adminSchema = new mongoose.Schema({
         required: true,
         default: "admin"
     },
+    profilePicture: {
+        type: Buffer
+    },
     userName: {
         type: String,
         required: true,

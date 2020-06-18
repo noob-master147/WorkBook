@@ -88,9 +88,14 @@ const login = (obj) => {
 }
 
 
+const uploadPicture = (obj) => {
+    return new Promise(async(resolve, reject) => {
 
+    })
+}
 
 module.exports = {
     sendNotification,
-    login
+    login,
+    uploadPicture
 }
