@@ -76,6 +76,5 @@ router.post('/activeCustomer', (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
-activeCustomer
 
 module.exports = router;

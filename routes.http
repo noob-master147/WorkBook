@@ -185,6 +185,16 @@ content-type: application/json
 }
 
 
+####
+# Approve Customer Route
+POST http://localhost:8000/employee/activeCustomer
+content-type: application/json
+
+{
+    "employeeID":"emp@emp.com"
+}
+
+
 
 
 #####################################################################################################
