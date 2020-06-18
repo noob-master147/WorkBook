@@ -1,0 +1,16 @@
+{
+    "name": "Workbook",
+    "version": "0.1.0",
+    "description": "WorkBook API Documentation",
+    "apidoc": {
+        "title": "WorkBook",
+        "url": "https://api.github.com/v1"
+    },
+    "order": [
+        "SuperAdmin",
+        "Common",
+        "Admin",
+        "Employee",
+        "Customer"
+    ]
+}

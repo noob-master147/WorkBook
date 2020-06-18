@@ -54,15 +54,6 @@ const customerSchema = new mongoose.Schema({
         trim: true,
         default: "secondary"
     },
-    numberOfMembers: {
-        type: Number,
-        required: true
-    },
-    mailAddress: {
-        type: String,
-        trim: true,
-        required: true
-    },
     adharNumber: {
         type: Number,
         required: true

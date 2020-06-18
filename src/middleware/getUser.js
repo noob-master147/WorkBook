@@ -14,7 +14,7 @@ const getUser = async(req, res, next) => {
         let alias = null
         await Role.findOne({ 'userID': req.body.userID })
             .then(async(obj) => {
-                console.log(obj)
+                console.log("user", obj)
                 const role = obj.role
                 switch (role) {
                     case "admin":
@@ -48,6 +48,7 @@ const getUser = async(req, res, next) => {
             })
 
     } catch (err) {
+        console.log(chalk.red.bold("User Role not Found!!"))
         res.send({
             statusCode: 500,
             payload: {
