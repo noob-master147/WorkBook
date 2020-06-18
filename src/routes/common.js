@@ -22,9 +22,9 @@ router.post('/login', getUser, (req, res) => {
 })
 
 // Upload Profile Picture Route
-router.post('/uploadPicture', getUser, upload.single('profileImage'), (req, res) => {
+router.post('/uploadPicture', upload.single('profilePicture'), getUser, (req, res) => {
     console.log(chalk.bold.yellow("Upload Picture Route Hit!"))
-    commonControl.uploadPicture(req.body)
+    commonControl.uploadPicture(req)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })

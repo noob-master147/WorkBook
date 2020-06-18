@@ -141,8 +141,8 @@ content-type: application/json
 
 {
     "role":"Employee",
-    "userName":"b",
-    "userID":"b@gmaiddl.com",
+    "userName":"emp",
+    "userID":"emp",
     "password":"password",
     "instituteName":"IEEE",
     "grade":"Tech head",
