@@ -20,13 +20,12 @@
  */
 
 
-
 /**
- * @api {delete} /superAdmin/purge Request
- * @apiName Purge Database
+ * @api {post} /superAdmin/deleteAdmin Delete Admin
+ * @apiName Delete Admin
  * @apiGroup Super Admin
  *
- * @apiParam {Number} id Users unique ID.
+ * @apiParam {String} id _id of the Admin Document
  *
  *
  */

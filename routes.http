@@ -140,7 +140,6 @@ POST http://localhost:8000/employee/register
 content-type: application/json
 
 {
-    "role":"Employee",
     "userName":"emp",
     "userID":"emp",
     "password":"password",
@@ -174,10 +173,8 @@ content-type: application/json
 }
 
 
-
-
 ####
-# View Customer Route
+# Approve Customer Route
 POST http://localhost:8000/employee/approveCustomer
 content-type: application/json
 
@@ -187,7 +184,8 @@ content-type: application/json
 }
 
 
-
+####
+# Approve Customer Route
 POST http://localhost:8000/employee/rejectCustomer
 content-type: application/json
 
@@ -195,12 +193,6 @@ content-type: application/json
     "id":"SFASFaSF",
     "employeeID":"IEEE"
 }
-
-
-
-
-
-
 
 
 
@@ -223,14 +215,12 @@ POST http://localhost:8000/customer/register
 content-type: application/json
 
 {
-    "role":"customer",
     "userName":"customer1",
     "userID":"customer1",
     "password":"123456",
     "grade":"sFsdg",
     "division":"sdgsdga",
     "instituteName":"agdd",
-    "numberOfMembers":50,
     "mailAddress":"sdgdsg@gmil.com",
     "adharNumber":1234564564,
     "contactNumber":1234566544,
