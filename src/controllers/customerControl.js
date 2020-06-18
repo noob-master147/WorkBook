@@ -29,7 +29,7 @@ const register = (user) => {
         role = new Role({
             _id: id,
             userID: user.userID,
-            role: "employee"
+            role: "customer"
         })
         Promise.all([
                 customer.save(),
