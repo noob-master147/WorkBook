@@ -111,12 +111,11 @@ const login = (user) => {
     })
 }
 
-const pendingCustomers = (obj) => {
+const viewAllCustomers = (obj) => {
     return new Promise(async(resolve, reject) => {
-        console.log(chalk.yellow.bold("Fetching All Pending Customers..."))
+        console.log(chalk.yellow.bold("Fetching All Customers..."))
         await Customer.find({
-                'instituteName': obj.instituteName,
-                'approved': false
+                'instituteName': obj.instituteName
             })
             .then((customer) => {
                 console.log(chalk.green.bold("Fetched All Pending Customer"))
@@ -124,37 +123,6 @@ const pendingCustomers = (obj) => {
                     statusCode: 200,
                     payload: {
                         msg: "Pending Customer in the Institute",
-                        customer: customer
-                    }
-                })
-            })
-            .catch((err) => {
-                console.log(chalk.red.bold("Error in Loading Customer Data"))
-                reject({
-                    statusCode: 400,
-                    payload: {
-                        msg: "Error in Loading Customer Data! Contact Support",
-                        Error: "Issue in connecting to the Datebase",
-                        err: err
-                    }
-                })
-            })
-    })
-}
-
-const viewCustomers = (obj) => {
-    return new Promise(async(resolve, reject) => {
-        console.log(chalk.yellow.bold("Fetching All Customers..."))
-        await Customer.find({
-                'employeeID': obj.employeeID,
-                'approved': true
-            })
-            .then((customer) => {
-                console.log(chalk.green.bold("Fetched All Customer under the Employee"))
-                resolve({
-                    statusCode: 200,
-                    payload: {
-                        msg: "Customer under the Employee",
                         customer: customer
                     }
                 })
@@ -235,8 +203,7 @@ const rejectCustomer = (customer) => {
 module.exports = {
     register,
     login,
-    pendingCustomers,
-    viewCustomers,
+    viewAllCustomers,
     approveCustomer,
     rejectCustomer
 }

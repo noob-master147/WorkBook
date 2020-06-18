@@ -154,18 +154,8 @@ content-type: application/json
 
 
 ####
-# View Pending Customer Route
-POST http://localhost:8000/employee/pendingCustomers
-content-type: application/json
-
-{
-    "instituteName":"IEEE"
-}
-
-
-####
 # View Customer Route
-POST http://localhost:8000/employee/viewCustomers
+POST http://localhost:8000/employee/viewAllCustomers
 content-type: application/json
 
 {

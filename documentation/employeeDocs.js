@@ -19,18 +19,7 @@
 
 
 /**
- * @api {get} employee/pendingCustomers View Pending Customers
- * @apiName Pending Customers
- * @apiGroup Employee
- * 
- * @apiParam {String} instituteName Name of the Institute
- *   
- */
-
-
-
-/**
- * @api {post} employee/viewCustomers View Customers 
+ * @api {post} employee/viewAllCustomers View Customers 
  * @apiName View Customers
  * @apiGroup Employee
  * 
