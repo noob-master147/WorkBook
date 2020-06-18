@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "description": "WorkBook API Documentation",
     "apidoc": {
-        "title": "Custom apiDoc browser title",
+        "title": "WorkBook",
         "url": "https://api.github.com/v1"
     },
     "order": [

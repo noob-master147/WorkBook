@@ -238,7 +238,7 @@ content-type: application/json
 #####################################################################################################
 
 ####
-# send Notifications
+# Send Notifications
 POST http://localhost:8000/sendNotification
 content-type: application/json
 

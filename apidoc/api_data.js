@@ -187,6 +187,182 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/sendNotification",
+    "title": "Send Notifications",
+    "name": "Send_Notifications",
+    "group": "Common",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Device Token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Notification Message</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "documentation/commonDocs.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "post",
+    "url": "/login",
+    "title": "Upload Profile Picture",
+    "name": "Upload_Profile_Picture",
+    "group": "Common",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": false,
+            "field": "profilePicture",
+            "description": "<p>Profile Picture</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "documentation/commonDocs.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "post",
+    "url": "/login",
+    "title": "Login",
+    "name": "View_All_Employees",
+    "group": "Common",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>fcmToken FCM Device Token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "documentation/commonDocs.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "post",
+    "url": "/customer/register",
+    "title": "Customer Register",
+    "name": "Register",
+    "group": "Customer",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userName",
+            "description": "<p>User Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Name of The Institute</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>Grade</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "division",
+            "description": "<p>Division</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "adharNumber",
+            "description": "<p>Adhar Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "contactNumber",
+            "description": "<p>Contact Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Device Token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "documentation/customerDocs.js",
+    "groupTitle": "Customer"
+  },
+  {
+    "type": "post",
     "url": "employee/approveCustomer",
     "title": "Approve Customer",
     "name": "Approve_Customer",
