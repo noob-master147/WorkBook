@@ -45,7 +45,18 @@
  * @apiName Reject Customer
  * @apiGroup Employee
  *
- * @apiParam {String} employeeID Name of the Insitute
+ * @apiParam {String} employeeID userID of Employee
  * @apiParam {String} id _id of the Employee Document
+ *   
+ */
+
+
+
+/**
+ * @api {post} employee/activeCustomer Active Customer
+ * @apiName Active Customer
+ * @apiGroup Employee
+ *
+ * @apiParam {String} employeeID userID of Employee
  *   
  */

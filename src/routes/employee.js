@@ -61,11 +61,21 @@ router.post('/approveCustomer', (req, res) => {
 })
 
 
-// reject a Customer
+// Reject a Customer
 router.post('/rejectCustomer', (req, res) => {
     employeeControl.rejectCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+// Active Customer
+router.post('/activeCustomer', (req, res) => {
+    employeeControl.activeCustomer(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+activeCustomer
 
 module.exports = router;

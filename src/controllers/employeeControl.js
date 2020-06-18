@@ -118,11 +118,11 @@ const viewAllCustomers = (obj) => {
                 'instituteName': obj.instituteName
             })
             .then((customer) => {
-                console.log(chalk.green.bold("Fetched All Pending Customer"))
+                console.log(chalk.green.bold("Fetched All Customer"))
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: "Pending Customer in the Institute",
+                        msg: "Customer in the Institute",
                         customer: customer
                     }
                 })
@@ -200,10 +200,44 @@ const rejectCustomer = (customer) => {
 
 
 
+const activeCustomer = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Fetching All Active Customers..."))
+        await Customer.find({
+                'employeeID': obj.employeeID
+            })
+            .then((customer) => {
+                console.log(chalk.green.bold("Fetched All Active  Customer"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Active Customer Under Employee",
+                        customer: customer
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Loading Active Customer Data"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Active Loading Customer Data! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
 module.exports = {
     register,
     login,
     viewAllCustomers,
     approveCustomer,
-    rejectCustomer
+    rejectCustomer,
+    activeCustomer
 }
