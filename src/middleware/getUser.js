@@ -11,11 +11,11 @@ const { Role } = require('../models/RoleSchema')
 const getUser = async(req, res, next) => {
     console.log(chalk.bold.yellow("\nChecking User Role..."))
     try {
+        let alias = null
         await Role.findOne({ 'userID': req.body.userID })
             .then(async(obj) => {
                 console.log(obj)
                 const role = obj.role
-                let alias = null
                 switch (role) {
                     case "admin":
                         alias = Admin
@@ -35,8 +35,9 @@ const getUser = async(req, res, next) => {
                 }
                 await alias.findOne({ 'userID': req.body.userID })
                     .then((user) => {
-                        console.log(chalk.bold.green("User Fetched"))
+                        console.log(chalk.bold.green("User Role Fetched"))
                         req.body.user = user
+                        next()
                     })
                     .catch(() => {
                         throw new Error("Role not found")
@@ -45,7 +46,7 @@ const getUser = async(req, res, next) => {
             .catch(() => {
                 throw new Error("Role not found")
             })
-        next()
+
     } catch (err) {
         res.send({
             statusCode: 500,

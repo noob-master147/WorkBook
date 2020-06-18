@@ -24,6 +24,9 @@ const employeeSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    profilePicture: {
+        type: Buffer
+    },
     instituteName: {
         type: String,
         required: true,

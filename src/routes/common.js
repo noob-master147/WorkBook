@@ -2,6 +2,7 @@ const router = require("express")();
 const chalk = require('chalk')
 const commonControl = require('../controllers/commonControl')
 const { getUser } = require('../middleware/getUser')
+const { upload } = require('../middleware/multerUpload')
 
 // Send Notification
 router.post('/sendNotification', (req, res) => {
@@ -20,6 +21,13 @@ router.post('/login', getUser, (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
+// Upload Profile Picture Route
+router.post('/uploadPicture', upload.single('profilePicture'), getUser, (req, res) => {
+    console.log(chalk.bold.yellow("Upload Picture Route Hit!"))
+    commonControl.uploadPicture(req)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
 
 
 module.exports = router;

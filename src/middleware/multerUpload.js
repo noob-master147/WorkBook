@@ -2,7 +2,7 @@ const multer = require('multer')
 
 const upload = multer({
     limits: {
-        fileSize: 1000000
+        fileSize: 1500000
     },
     fileFilter(req, file, cb) {
         console.log("file multer")

@@ -88,9 +88,60 @@ const login = (obj) => {
 }
 
 
+const uploadPicture = (user) => {
+    return new Promise(async(resolve, reject) => {
+        user.body.profilePicture = user.file.buffer
+        console.log(chalk.bold.yellow("Updating Profile Picture..."))
+        const role = user.body.user.role
+        let alias = null
+        switch (role) {
+            case "admin":
+                alias = Admin
+                break;
+            case "employee":
+                alias = Employee
+                break;
+            case "customer":
+                alias = Customer
+                break;
+            case "driver":
+                alias = Driver
+                break;
+            case "guest":
+                alias = Guest
+                break;
+        }
 
+        await alias.findByIdAndUpdate(user.body.user._id, {
+            'profilePicture': user.body.profilePicture
+        })
+
+        .then(() => {
+                console.log(chalk.bold.green("Profile Picture Added!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Profile Picture Added"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Adding Profile Picture!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Adding Profile Picture! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+
+    })
+}
 
 module.exports = {
     sendNotification,
-    login
+    login,
+    uploadPicture
 }

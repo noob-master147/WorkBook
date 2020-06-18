@@ -78,7 +78,7 @@ const login = (user) => {
         console.log(chalk.yellow.bold("Admin Logging in..."))
         const formPassword = user.password
         await Admin.findOneAndUpdate({
-                'userID': user.email
+                'userID': user.userID
             }, {
                 'fcmToken': user.fcmToken
             }, {

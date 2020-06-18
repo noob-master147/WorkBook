@@ -24,6 +24,9 @@ const customerSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    profilePicture: {
+        type: Buffer
+    },
     grade: {
         type: String,
         trim: true,
