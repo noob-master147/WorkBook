@@ -1,6 +1,7 @@
 const chalk = require('chalk')
 const serviceAccount = require("../../firebase-key.json")
 const bcrypt = require('bcrypt')
+const sharp = require('sharp')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
@@ -90,7 +91,7 @@ const login = (obj) => {
 
 const uploadPicture = (user) => {
     return new Promise(async(resolve, reject) => {
-        user.body.profilePicture = user.file.buffer
+        user.body.profilePicture = await sharp(user.file.buffer).resize({ width: 500, height: 500 }).png.toBuffer()
         console.log(chalk.bold.yellow("Updating Profile Picture..."))
         const role = user.body.user.role
         let alias = null
