@@ -4,11 +4,12 @@ const { Employee } = require('../models/employeeSchema')
 const { Institute } = require('../models/instituteSchema')
 const { Role } = require('../models/RoleSchema')
 const bcrypt = require('bcrypt')
+const sharp = require('sharp')
 const { ObjectID } = require('mongodb')
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
-        user.body.instituteImage = user.file.buffer
+        user.body.instituteImage = await sharp(user.file.buffer).resize({ width: 500, height: 500 }).png().toBuffer()
         console.log(chalk.bold.yellow("Registering Admin..."))
         const id = new ObjectID()
         admin = new Admin({
