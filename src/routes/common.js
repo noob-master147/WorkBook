@@ -31,9 +31,18 @@ router.post('/uploadPicture', upload.single('profilePicture'), getUser, (req, re
 
 
 // Get Profile Picture
-router.get('/getProfile/:role/:id', (req, res) => {
+router.get('/getUserProfile/:role/:id', (req, res) => {
     console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
-    commonControl.getProfile(req.params)
+    commonControl.getUserProfile(req.params)
+        .then((obj) => res.set('Content-Type', 'image/png').send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+// Get Institute Picture
+router.get('/getInstituteProfile/:instituteName', (req, res) => {
+    console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
+    commonControl.getInstituteProfile(req.params)
         .then((obj) => res.set('Content-Type', 'image/png').send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })

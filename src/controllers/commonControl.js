@@ -141,7 +141,7 @@ const uploadPicture = (user) => {
 }
 
 
-const getProfile = (params) => {
+const getUserProfile = (params) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Fetching Profile Picture..."))
         const role = params.role
@@ -167,7 +167,7 @@ const getProfile = (params) => {
         alias.findById(params.id)
             .then((user) => {
                 console.log(chalk.bold.green("Profile Picture Fetched!"))
-                resolve(user.instituteImage)
+                resolve(user.profilePicture)
             })
             .catch((err) => {
                 console.log(chalk.red.bold("Error in Adding Profile Picture!"))
@@ -183,6 +183,31 @@ const getProfile = (params) => {
     })
 }
 
+// Institute Picture
+const getInstituteProfile = (params) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Fetching Institute Picture..."))
+        Institute.findOne({
+                'instituteName': params.instituteName
+            })
+            .then((institute) => {
+                console.log(chalk.bold.green("Institute Picture Fetched!"))
+                resolve(institute.instituteImage)
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Institute Picture!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Institute Picture Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 
 
 
@@ -190,5 +215,6 @@ module.exports = {
     sendNotification,
     login,
     uploadPicture,
-    getProfile
+    getUserProfile,
+    getInstituteProfile
 }
