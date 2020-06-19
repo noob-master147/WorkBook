@@ -9,7 +9,7 @@ const { ObjectID } = require('mongodb')
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
-        user.body.instituteImage = await sharp(user.file.buffer).resize({ width: 500, height: 500 }).png.toBuffer()
+        user.body.instituteImage = await sharp(user.file.buffer).resize({ width: 500, height: 500 }).png().toBuffer()
         console.log(chalk.bold.yellow("Registering Admin..."))
         const id = new ObjectID()
         admin = new Admin({

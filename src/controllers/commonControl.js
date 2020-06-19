@@ -91,7 +91,7 @@ const login = (obj) => {
 
 const uploadPicture = (user) => {
     return new Promise(async(resolve, reject) => {
-        user.body.profilePicture = await sharp(user.file.buffer).resize({ width: 500, height: 500 }).png.toBuffer()
+        user.body.profilePicture = await sharp(user.file.buffer).resize({ width: 500, height: 500 }).png().toBuffer()
         console.log(chalk.bold.yellow("Updating Profile Picture..."))
         const role = user.body.user.role
         let alias = null
