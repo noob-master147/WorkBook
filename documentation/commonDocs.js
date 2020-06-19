@@ -34,3 +34,13 @@
  * @apiParam {File} profilePicture Profile Picture
  *   
  */
+
+
+
+/**
+ * @api {post} /getProfile/:role/:id Fetch Profile Picture
+ * @apiName Fetch Profile Picture
+ * @apiGroup Common
+ * 
+ *   
+ */
