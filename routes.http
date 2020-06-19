@@ -269,3 +269,9 @@ content-type: application/json
     "profilePicture": "sample.jpeg"
 }
 
+
+
+####
+# Root Customer Route
+GET  http://localhost:8000/getProfile/admin/5eec4a75a3d2575c7032728a
+content-type: application/json

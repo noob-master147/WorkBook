@@ -30,4 +30,18 @@ router.post('/uploadPicture', upload.single('profilePicture'), getUser, (req, re
 })
 
 
+// Get Profile Picture
+router.get('/getProfile/:role/:id', (req, res) => {
+    console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
+    commonControl.getProfile(req.params)
+        .then((obj) => res.set('Content-Type', 'image/png').send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+
+
+
 module.exports = router;
