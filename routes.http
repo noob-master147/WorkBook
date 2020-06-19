@@ -269,3 +269,16 @@ content-type: application/json
     "profilePicture": "sample.jpeg"
 }
 
+
+
+####
+# Fetch User Profile Picture
+GET  http://localhost:8000/getUserProfile/admin/5eec4a75a3d2575c7032728a
+content-type: application/json
+
+
+
+####
+# Fetch Institute Profile Picture
+GET  http://localhost:8000/getInstituteProfile/ieeec
+content-type: application/json

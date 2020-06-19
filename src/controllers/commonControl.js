@@ -140,8 +140,81 @@ const uploadPicture = (user) => {
     })
 }
 
+
+const getUserProfile = (params) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Fetching Profile Picture..."))
+        const role = params.role
+        let alias = null
+        switch (role) {
+            case "admin":
+                alias = Admin
+                break;
+            case "employee":
+                alias = Employee
+                break;
+            case "customer":
+                alias = Customer
+                break;
+            case "driver":
+                alias = Driver
+                break;
+            case "guest":
+                alias = Guest
+                break;
+        }
+
+        alias.findById(params.id)
+            .then((user) => {
+                console.log(chalk.bold.green("Profile Picture Fetched!"))
+                resolve(user.profilePicture)
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Adding Profile Picture!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Adding Profile Picture! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+// Institute Picture
+const getInstituteProfile = (params) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Fetching Institute Picture..."))
+        Institute.findOne({
+                'instituteName': params.instituteName
+            })
+            .then((institute) => {
+                console.log(chalk.bold.green("Institute Picture Fetched!"))
+                resolve(institute.instituteImage)
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Institute Picture!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Institute Picture Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
 module.exports = {
     sendNotification,
     login,
-    uploadPicture
+    uploadPicture,
+    getUserProfile,
+    getInstituteProfile
 }

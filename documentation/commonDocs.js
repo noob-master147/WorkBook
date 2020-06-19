@@ -23,8 +23,6 @@
  */
 
 
-
-
 /**
  * @api {post} /login Upload Profile Picture
  * @apiName Upload Profile Picture
@@ -32,5 +30,22 @@
  * 
  * @apiParam {String} userID Email ID of the User
  * @apiParam {File} profilePicture Profile Picture
+ *   
+ */
+
+
+/**
+ * @api {get} /getUserProfile/:role/:id Fetch Profile Picture
+ * @apiName Fetch Profile Picture
+ * @apiGroup Common
+ * 
+ *   
+ */
+
+/**
+ * @api {get} /getInstituteProfile/:instituteName Fetch Profile Picture
+ * @apiName Fetch Institute Profile Picture
+ * @apiGroup Common
+ * 
  *   
  */
