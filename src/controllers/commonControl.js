@@ -167,15 +167,27 @@ const getUserProfile = (params) => {
 
         alias.findById(params.id)
             .then((user) => {
-                console.log(chalk.bold.green("Profile Picture Fetched!"))
-                resolve(user.profilePicture)
+                if (user.profilePicture) {
+                    console.log(chalk.bold.green("Profile Picture Fetched!"))
+                    resolve(user.profilePicture)
+                } else {
+                    console.log(chalk.bold.red("Profile Picture Doesn't Exist!"))
+                    reject({
+                        statusCode: 400,
+                        payload: {
+                            msg: "Profile Picture Doesn't Exist!",
+                            err: err
+                        }
+                    })
+                }
+
             })
             .catch((err) => {
-                console.log(chalk.red.bold("Error in Adding Profile Picture!"))
+                console.log(chalk.red.bold("Error in Fetching Profile Picture!"))
                 reject({
                     statusCode: 400,
                     payload: {
-                        msg: "Error in Adding Profile Picture! Contact Support",
+                        msg: "Error in Fetching Profile Picture! Contact Support",
                         Error: "Issue in connecting to the Datebase",
                         err: err
                     }
