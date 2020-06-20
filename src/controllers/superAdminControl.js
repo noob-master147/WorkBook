@@ -9,7 +9,6 @@ const { Role } = require('../models/RoleSchema')
 const { ObjectID } = require('mongodb')
 
 
-
 const approveAdmin = (admin) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Approving Admin..."))
@@ -31,6 +30,33 @@ const approveAdmin = (admin) => {
                     statusCode: 400,
                     payload: {
                         msg: "Error in Approving Admin! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+const rejectAdmin = (admin) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Rejecting Admin..."))
+        await Admin.findByIdAndDelete(admin.id)
+            .then(() => {
+                console.log(chalk.bold.green("Admin Rejected and Deleted!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Admin Rejected and Deleted"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Admin Not Rejected!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Rejecting Admin! Contact Support",
                         Error: "Issue in connecting to the Datebase",
                         err: err
                     }
@@ -84,7 +110,6 @@ const purge = () => {
     })
 }
 
-
 const deleteAdmin = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Deleteing Admin..."))
@@ -112,9 +137,37 @@ const deleteAdmin = (obj) => {
     })
 }
 
+const viewAllAdmin = () => {
+    return new Promise(async(resolve, reject) => {
+        await Admin.find()
+            .then((admin) => {
+                console.log(chalk.bold.green("Admin Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Admin Fetched",
+                        admin: admin
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Admin Not Fetched!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Admin! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
 
 module.exports = {
     approveAdmin,
+    rejectAdmin,
     purge,
-    deleteAdmin
+    deleteAdmin,
+    viewAllAdmin
 }
