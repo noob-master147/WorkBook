@@ -82,7 +82,7 @@ router.get('/getUserProfile/:role/:id', (req, res) => {
 
 
 /** Get Institute Picture
- * @api {get} /getInstituteProfile/:instituteName Fetch Profile Picture
+ * @api {get} /getInstituteProfile/:instituteName Fetch Institute Profile Picture
  * @apiName Fetch Institute Profile Picture
  * @apiGroup Common
  * 

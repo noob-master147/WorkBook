@@ -23,6 +23,29 @@ define({ "api": [
     "groupTitle": "Admin"
   },
   {
+    "type": "post",
+    "url": "/admin/deleteEmployee",
+    "title": "Delete Employee",
+    "name": "Delete_Employee",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of the Employee Document</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
     "type": "get",
     "url": "/admin/institutes",
     "title": "Get Registered Institutes",
@@ -304,7 +327,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/getInstituteProfile/:instituteName",
-    "title": "Fetch Profile Picture",
+    "title": "Fetch Institute Profile Picture",
     "name": "Fetch_Institute_Profile_Picture",
     "group": "Common",
     "version": "0.0.0",
@@ -552,6 +575,46 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "employee/deleteCustomer",
+    "title": "Delete Customer",
+    "name": "Delete_Customer",
+    "group": "Employee",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "employeeID",
+            "description": "<p>userID of Employee</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of the Employee Document</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/employee.js",
+    "groupTitle": "Employee"
+  },
+  {
+    "type": "post",
+    "url": "employee/login",
+    "title": "Login Employee",
+    "name": "Login_Employee",
+    "group": "Employee",
+    "version": "0.0.0",
+    "filename": "src/routes/employee.js",
+    "groupTitle": "Employee"
+  },
+  {
+    "type": "post",
     "url": "/employee/register",
     "title": "Employee Register",
     "name": "Register",
@@ -732,7 +795,40 @@ define({ "api": [
     "type": "delete",
     "url": "/superAdmin/purge",
     "title": "Purge Database",
-    "name": "PurgeDatabase",
+    "name": "Purge_Database",
+    "group": "SuperAdmin",
+    "version": "0.0.0",
+    "filename": "src/routes/superAdmin.js",
+    "groupTitle": "SuperAdmin"
+  },
+  {
+    "type": "post",
+    "url": "/superAdmin/rejectAdmin",
+    "title": "Reject Admin",
+    "name": "Reject_Admin",
+    "group": "SuperAdmin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of the Admin Document</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/superAdmin.js",
+    "groupTitle": "SuperAdmin"
+  },
+  {
+    "type": "get",
+    "url": "/superAdmin/viewAllAdmin",
+    "title": "View All Admin",
+    "name": "View_All_Admin",
     "group": "SuperAdmin",
     "version": "0.0.0",
     "filename": "src/routes/superAdmin.js",
