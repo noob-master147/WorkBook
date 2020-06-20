@@ -45,7 +45,12 @@ router.post('/register', hashPassword, (req, res) => {
 
 
 
-// route to Login Employee
+/** Login Employee
+ * @api {post} employee/login Login Employee 
+ * @apiName Login Employee
+ * @apiGroup Employee
+ * 
+ */ // Login Employee
 router.post('/login', (req, res) => {
     console.log(chalk.bold.yellow("\nLogin Employee route hit..."))
     employeeControl.login(req.body)
@@ -112,6 +117,23 @@ router.post('/rejectCustomer', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+/** Delete a Customer
+ * @api {post} employee/deleteCustomer Delete Customer
+ * @apiName Delete Customer
+ * @apiGroup Employee
+ *
+ * @apiParam {String} employeeID userID of Employee
+ * @apiParam {String} id _id of the Employee Document
+ *   
+ */ // Delete a Customer
+router.post('/deleteCustomer', (req, res) => {
+    employeeControl.deleteCustomer(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
 
 
 

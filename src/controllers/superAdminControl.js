@@ -165,7 +165,6 @@ const viewAllAdmin = () => {
 }
 
 module.exports = {
-    login,
     approveAdmin,
     rejectAdmin,
     purge,
