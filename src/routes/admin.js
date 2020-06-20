@@ -136,6 +136,22 @@ router.post('/rejectEmployee', (req, res) => {
 })
 
 
+/** Delete an Employee
+ * @api {post} /admin/deleteEmployee Delete Employee
+ * @apiName Delete Employee
+ * @apiGroup Admin
+ *
+ * @apiParam {String} id _id of the Employee Document
+ *   
+ */ // Delete an Employee
+router.post('/deleteEmployee', (req, res) => {
+    adminControl.deleteEmployeee(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
 
 /** View all institutes
  * @api {get} /admin/institutes Get Registered Institutes

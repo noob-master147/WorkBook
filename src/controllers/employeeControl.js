@@ -198,7 +198,32 @@ const rejectCustomer = (customer) => {
     })
 }
 
-
+const deleteCustomer = (customer) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Deleting Customer..."))
+        await Customer.findByIdAndDelete(customer.id)
+            .then(() => {
+                console.log(chalk.green.bold("Customer Deleted!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Customer Deleted"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Customer Not Deleted!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Deleting Customer! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
 
 const activeCustomer = (obj) => {
     return new Promise(async(resolve, reject) => {
@@ -231,13 +256,12 @@ const activeCustomer = (obj) => {
 }
 
 
-
-
 module.exports = {
     register,
     login,
     viewAllCustomers,
     approveCustomer,
     rejectCustomer,
-    activeCustomer
+    activeCustomer,
+    deleteCustomer
 }

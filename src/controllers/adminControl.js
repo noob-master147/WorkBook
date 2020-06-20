@@ -282,6 +282,34 @@ const rejectEmployee = (employee) => {
 }
 
 
+const deleteEmployee = (employee) => {
+    return new Promise(async(resolve, reject) => {
+        await Employee.findByIdAndDelete(employee.id)
+            .then(() => {
+                console.log(chalk.bold.green("Employee Deleted!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Employee Deleted"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Employee Not Deleted!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Deleting Employee! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
 module.exports = {
     register,
     login,
@@ -289,5 +317,6 @@ module.exports = {
     viewAllEmployees,
     getInstitutes,
     approveEmployee,
-    rejectEmployee
+    rejectEmployee,
+    deleteEmployee
 }

@@ -1,4 +1,5 @@
 const chalk = require('chalk')
+const { SuperAdmin } = require('../models/superAdmin')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
@@ -17,6 +18,9 @@ const getUser = async(req, res, next) => {
                 console.log("user", obj)
                 const role = obj.role
                 switch (role) {
+                    case "superAdmin":
+                        alias = SuperAdmin
+                        break;
                     case "admin":
                         alias = Admin
                         break;
@@ -33,14 +37,20 @@ const getUser = async(req, res, next) => {
                         alias = Guest
                         break;
                 }
-                await alias.findOne({ 'userID': req.body.userID })
+                await alias.findOneAndUpdate({
+                        'userID': req.body.userID
+                    }, {
+                        'fcmToken': req.body.fcmToken
+                    }, {
+                        new: true
+                    })
                     .then((user) => {
-                        console.log(chalk.bold.green("User Role Fetched"))
+                        console.log(chalk.bold.green("User Document Fetched"))
                         req.body.user = user
                         next()
                     })
                     .catch(() => {
-                        throw new Error("Role not found")
+                        throw new Error("User Ducument not found")
                     })
             })
             .catch(() => {
