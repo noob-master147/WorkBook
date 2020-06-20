@@ -134,10 +134,6 @@ const login = (user) => {
     })
 }
 
-
-
-
-
 module.exports = {
     register,
     login

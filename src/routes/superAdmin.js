@@ -53,7 +53,7 @@ router.post('/rejectAdmin', (req, res) => {
 
 /** Purge DataBase
  * @api {delete} /superAdmin/purge Purge Database
- * @apiName PurgeDatabase
+ * @apiName Purge Database
  * @apiGroup SuperAdmin
  *
  */ // Purge DataBase
