@@ -19,13 +19,30 @@ router.get('/', (req, res) => {
 })
 
 
-// route to create an Employee
+/** Register an Employee
+ * @api {post} /employee/register Employee Register
+ * @apiName Register
+ * @apiGroup Employee
+ *  
+ * @apiParam {String} userName user name
+ * @apiParam {String} userID email id
+ * @apiParam {String} password password
+ * @apiParam {String} instituteName Name of The Institute
+ * @apiParam {String} grade Grade
+ * @apiParam {String} division Division
+ * @apiParam {Number} adharNumber Adhar Number
+ * @apiParam {Number} contactNumber Contact Number
+ * @apiParam {String} fcmToken FCM Device Token
+ * 
+ */ // Register an Employee
 router.post('/register', hashPassword, (req, res) => {
     console.log(chalk.bold.yellow("\nRegister Employee route hit..."))
     employeeControl.register(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })
+
+
 
 
 // route to Login Employee
@@ -36,6 +53,7 @@ router.post('/login', (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
+
 //#######################YET TO DO########################
 // route to update an employee
 router.post('/update', (req, res) => {
@@ -45,7 +63,15 @@ router.post('/update', (req, res) => {
 })
 
 
-// View Pending Customers
+
+/** View All Customers
+ * @api {post} employee/viewAllCustomers View Customers 
+ * @apiName View Customers
+ * @apiGroup Employee
+ * 
+ * @apiParam {String} instituteName Name of the Insitute
+ * 
+ */ // View All Customers
 router.post('/viewAllCustomers', (req, res) => {
     employeeControl.viewAllCustomers(req.body)
         .then((obj) => res.send(obj).status(200))
@@ -53,7 +79,16 @@ router.post('/viewAllCustomers', (req, res) => {
 })
 
 
-// Approve a Customer
+
+/** Approve a Customer
+ * @api {post} employee/approveCustomer Approve Customer
+ * @apiName Approve Customer
+ * @apiGroup Employee
+ *
+ * @apiParam {String} employeeID userID of Employee
+ * @apiParam {String} id _id of the Customer Document
+ *   
+ */ // Approve a Customer
 router.post('/approveCustomer', (req, res) => {
     employeeControl.approveCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
@@ -61,7 +96,17 @@ router.post('/approveCustomer', (req, res) => {
 })
 
 
-// Reject a Customer
+
+
+/** Reject a Customer
+ * @api {post} employee/rejectCustomer Reject Customer
+ * @apiName Reject Customer
+ * @apiGroup Employee
+ *
+ * @apiParam {String} employeeID userID of Employee
+ * @apiParam {String} id _id of the Employee Document
+ *   
+ */ // Reject a Customer
 router.post('/rejectCustomer', (req, res) => {
     employeeControl.rejectCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
@@ -69,7 +114,15 @@ router.post('/rejectCustomer', (req, res) => {
 })
 
 
-// Active Customer
+
+/** Active Customer
+ * @api {post} employee/activeCustomer Active Customer
+ * @apiName Active Customer
+ * @apiGroup Employee
+ *
+ * @apiParam {String} employeeID userID of Employee
+ *   
+ */ // Active Customer
 router.post('/activeCustomer', (req, res) => {
     employeeControl.activeCustomer(req.body)
         .then((obj) => res.send(obj).status(200))

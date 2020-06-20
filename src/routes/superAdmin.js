@@ -18,15 +18,27 @@ router.get('/', (req, res) => {
 })
 
 
-// Approve an Admin
+
+/** Approve Admin
+ * @api {post} /superAdmin/approveAdmin Approve Admin
+ * @apiName Approve Admin
+ * @apiGroup SuperAdmin
+ *
+ * @apiParam {String} id _id of the Admin Document
+ *
+ */ // Approve Admin
 router.post('/approveAdmin', (req, res) => {
     superAdminControl.approveAdmin(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
 
-
-// Purge DataBase
+/** Purge DataBase
+ * @api {delete} /superAdmin/purge Purge Database
+ * @apiName PurgeDatabase
+ * @apiGroup SuperAdmin
+ *
+ */ // Purge DataBase
 router.delete('/purge', (req, res) => {
     superAdminControl.purge()
         .then((obj) => res.send(obj).status(200))
@@ -34,9 +46,16 @@ router.delete('/purge', (req, res) => {
 })
 
 
-// Delete Admin
-router.post('/deleteAdmin', (req, res) => {
-    superAdminControl.deleteAdmin(req.bod)
+/**
+ * @api {delete} /superAdmin/deleteAdmin Delete Admin
+ * @apiName Delete Admin
+ * @apiGroup SuperAdmin
+ *
+ * @apiParam {String} id _id of the Admin Document
+ *
+ */ // Delete Admin
+router.delete('/deleteAdmin', (req, res) => {
+    superAdminControl.deleteAdmin(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
+
 
 const guestSchema = new mongoose.Schema({
     role: {

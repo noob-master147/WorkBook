@@ -19,7 +19,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/adminDocs.js",
+    "filename": "src/routes/admin.js",
     "groupTitle": "Admin"
   },
   {
@@ -29,13 +29,129 @@
     "name": "Institutes",
     "group": "Admin",
     "version": "0.0.0",
-    "filename": "documentation/adminDocs.js",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/login",
+    "title": "Login Admin",
+    "name": "Login",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Device Token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Email",
+            "description": "<p>ID userID of Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/update",
+    "title": "Update Admin",
+    "name": "Login",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userName",
+            "description": "<p>user name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteType",
+            "description": "<p>Type of the Institute</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "numberOfMembers",
+            "description": "<p>Number of Members in the Institute</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "state",
+            "description": "<p>State</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "city",
+            "description": "<p>City</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "mailAddress",
+            "description": "<p>Mailing Address</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "adharNumber",
+            "description": "<p>Adhar Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "contactNumber",
+            "description": "<p>Contact Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Device Token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
     "groupTitle": "Admin"
   },
   {
     "type": "post",
     "url": "/admin/register",
-    "title": "Register",
+    "title": "Register Admin",
     "name": "Register",
     "group": "Admin",
     "parameter": {
@@ -136,7 +252,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/adminDocs.js",
+    "filename": "src/routes/admin.js",
     "groupTitle": "Admin"
   },
   {
@@ -159,7 +275,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/adminDocs.js",
+    "filename": "src/routes/admin.js",
     "groupTitle": "Admin"
   },
   {
@@ -182,7 +298,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/adminDocs.js",
+    "filename": "src/routes/admin.js",
     "groupTitle": "Admin"
   },
   {
@@ -192,7 +308,7 @@
     "name": "Fetch_Institute_Profile_Picture",
     "group": "Common",
     "version": "0.0.0",
-    "filename": "documentation/commonDocs.js",
+    "filename": "src/routes/common.js",
     "groupTitle": "Common"
   },
   {
@@ -202,7 +318,7 @@
     "name": "Fetch_Profile_Picture",
     "group": "Common",
     "version": "0.0.0",
-    "filename": "documentation/commonDocs.js",
+    "filename": "src/routes/common.js",
     "groupTitle": "Common"
   },
   {
@@ -232,12 +348,12 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/commonDocs.js",
+    "filename": "src/routes/common.js",
     "groupTitle": "Common"
   },
   {
     "type": "post",
-    "url": "/login",
+    "url": "/uploadPicture",
     "title": "Upload Profile Picture",
     "name": "Upload_Profile_Picture",
     "group": "Common",
@@ -262,7 +378,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/commonDocs.js",
+    "filename": "src/routes/common.js",
     "groupTitle": "Common"
   },
   {
@@ -299,7 +415,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/commonDocs.js",
+    "filename": "src/routes/common.js",
     "groupTitle": "Common"
   },
   {
@@ -378,7 +494,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/customerDocs.js",
+    "filename": "src/controllers/customerControl.js",
     "groupTitle": "Customer"
   },
   {
@@ -401,7 +517,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/employeeDocs.js",
+    "filename": "src/routes/employee.js",
     "groupTitle": "Employee"
   },
   {
@@ -431,7 +547,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/employeeDocs.js",
+    "filename": "src/routes/employee.js",
     "groupTitle": "Employee"
   },
   {
@@ -510,7 +626,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/employeeDocs.js",
+    "filename": "src/routes/employee.js",
     "groupTitle": "Employee"
   },
   {
@@ -540,7 +656,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/employeeDocs.js",
+    "filename": "src/routes/employee.js",
     "groupTitle": "Employee"
   },
   {
@@ -563,7 +679,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/employeeDocs.js",
+    "filename": "src/routes/employee.js",
     "groupTitle": "Employee"
   },
   {
@@ -586,11 +702,11 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/superAdminDocs.js",
+    "filename": "src/routes/superAdmin.js",
     "groupTitle": "SuperAdmin"
   },
   {
-    "type": "post",
+    "type": "delete",
     "url": "/superAdmin/deleteAdmin",
     "title": "Delete Admin",
     "name": "Delete_Admin",
@@ -609,7 +725,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "documentation/superAdminDocs.js",
+    "filename": "src/routes/superAdmin.js",
     "groupTitle": "SuperAdmin"
   },
   {
@@ -619,7 +735,7 @@
     "name": "PurgeDatabase",
     "group": "SuperAdmin",
     "version": "0.0.0",
-    "filename": "documentation/superAdminDocs.js",
+    "filename": "src/routes/superAdmin.js",
     "groupTitle": "SuperAdmin"
   }
 ]
