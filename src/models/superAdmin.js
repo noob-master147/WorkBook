@@ -12,17 +12,20 @@ const superAdminSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
+        default: "SuperAdmin"
     },
     userID: {
         type: String,
         required: true,
         trim: true,
-        unique: true
+        unique: true,
+        default: "superAdmin@superadmin.com"
     },
     password: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        default: "workbook@superadmin"
     },
     fcmToken: {
         type: String,

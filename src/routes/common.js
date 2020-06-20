@@ -70,7 +70,6 @@ router.post('/uploadPicture', upload.single('profilePicture'), getUser, (req, re
  * @apiName Fetch Profile Picture
  * @apiGroup Common
  * 
- *   
  */ // Get Profile Picture
 router.get('/getUserProfile/:role/:id', (req, res) => {
     console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
@@ -87,7 +86,6 @@ router.get('/getUserProfile/:role/:id', (req, res) => {
  * @apiName Fetch Institute Profile Picture
  * @apiGroup Common
  * 
- *   
  */ // Get Institute Picture
 router.get('/getInstituteProfile/:instituteName', (req, res) => {
     console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
