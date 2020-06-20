@@ -46,9 +46,6 @@ router.delete('/purge', (req, res) => {
 })
 
 
-
-
-
 /**
  * @api {delete} /superAdmin/deleteAdmin Delete Admin
  * @apiName Delete Admin
@@ -58,7 +55,7 @@ router.delete('/purge', (req, res) => {
  *
  */ // Delete Admin
 router.delete('/deleteAdmin', (req, res) => {
-    superAdminControl.deleteAdmin(req.bod)
+    superAdminControl.deleteAdmin(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
