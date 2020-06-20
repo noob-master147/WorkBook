@@ -2,6 +2,7 @@ const chalk = require('chalk')
 const serviceAccount = require("../../firebase-key.json")
 const bcrypt = require('bcrypt')
 const sharp = require('sharp')
+const { SuperAdmin } = require('../models/superAdmin')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
@@ -148,6 +149,9 @@ const getUserProfile = (params) => {
         const role = params.role
         let alias = null
         switch (role) {
+            case "superAdmin":
+                alias = SuperAdmin
+                break;
             case "admin":
                 alias = Admin
                 break;

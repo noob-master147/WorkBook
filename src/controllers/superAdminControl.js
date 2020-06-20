@@ -1,5 +1,6 @@
 const chalk = require('chalk')
 const brypt = require('bcrypt')
+const { SuperAdmin } = require('../models/superAdmin')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
@@ -7,7 +8,6 @@ const { Institute } = require('../models/instituteSchema')
 const { Driver } = require('../models/driverSchema')
 const { Role } = require('../models/RoleSchema')
 const { ObjectID } = require('mongodb')
-
 
 const approveAdmin = (admin) => {
     return new Promise(async(resolve, reject) => {
@@ -165,6 +165,7 @@ const viewAllAdmin = () => {
 }
 
 module.exports = {
+    login,
     approveAdmin,
     rejectAdmin,
     purge,
