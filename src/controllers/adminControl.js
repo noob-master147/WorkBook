@@ -129,6 +129,46 @@ const login = (user) => {
     })
 }
 
+const update = (user) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Updating Admin"))
+        await Admin.findByIdAndUpdate(user._id, {
+                userName: user.userName,
+                instituteType: user.instituteType,
+                numberOfMembers: user.numberOfMembers,
+                state: user.state,
+                city: user.city,
+                mailAddress: user.mailAddress,
+                adharNumber: user.adharNumber,
+                contactNumber: user.contactNumber,
+                fcmToken: user.fcmToken
+            }, {
+                new: true
+            })
+            .then((admin) => {
+                console.log(chalk.green.bold("Admin Updated"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Updated Admin",
+                        admin: admin
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log("Error in Updating Admin")
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating Admin! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 const viewAllEmployees = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Fetching All Employees..."))
@@ -245,6 +285,7 @@ const rejectEmployee = (employee) => {
 module.exports = {
     register,
     login,
+    update,
     viewAllEmployees,
     getInstitutes,
     approveEmployee,
