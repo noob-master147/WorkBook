@@ -4,7 +4,17 @@ const commonControl = require('../controllers/commonControl')
 const { getUser } = require('../middleware/getUser')
 const { upload } = require('../middleware/multerUpload')
 
-// Send Notification
+
+/** Send Notification
+ * @api {post} /sendNotification Send Notifications
+ * @apiName Send Notifications
+ * @apiGroup Common
+ *
+ * @apiParam {String} fcmToken FCM Device Token
+ * @apiParam {String} message Notification Message
+ * 
+ *   
+ */ //Send Notification
 router.post('/sendNotification', (req, res) => {
     console.log(chalk.bold.yellow("SendNotification Route Hit!"))
     commonControl.sendNotification(req.body)
@@ -13,7 +23,18 @@ router.post('/sendNotification', (req, res) => {
 })
 
 
-// Login Route
+
+
+/** Login Route
+ * @api {post} /login Login
+ * @apiName View All Employees
+ * @apiGroup Common
+ * 
+ * @apiParam {String} fcmToken fcmToken FCM Device Token
+ * @apiParam {String} userID Email ID of the User
+ * @apiParam {String} password Password
+ *   
+ */ // Login Route
 router.post('/login', getUser, (req, res) => {
     console.log(chalk.bold.yellow("Login Route Hit!"))
     commonControl.login(req.body)
@@ -21,7 +42,19 @@ router.post('/login', getUser, (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
-// Upload Profile Picture Route
+
+
+
+
+/** Upload Profile Picture
+ * @api {post} /uploadPicture Upload Profile Picture
+ * @apiName Upload Profile Picture
+ * @apiGroup Common
+ * 
+ * @apiParam {String} userID Email ID of the User
+ * @apiParam {File} profilePicture Profile Picture
+ *   
+ */ // Upload Profile Picture
 router.post('/uploadPicture', upload.single('profilePicture'), getUser, (req, res) => {
     console.log(chalk.bold.yellow("Upload Picture Route Hit!"))
     commonControl.uploadPicture(req)
@@ -30,7 +63,15 @@ router.post('/uploadPicture', upload.single('profilePicture'), getUser, (req, re
 })
 
 
-// Get Profile Picture
+
+
+/** Get Profile Picture
+ * @api {get} /getUserProfile/:role/:id Fetch Profile Picture
+ * @apiName Fetch Profile Picture
+ * @apiGroup Common
+ * 
+ *   
+ */ // Get Profile Picture
 router.get('/getUserProfile/:role/:id', (req, res) => {
     console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
     commonControl.getUserProfile(req.params)
@@ -39,7 +80,15 @@ router.get('/getUserProfile/:role/:id', (req, res) => {
 })
 
 
-// Get Institute Picture
+
+
+/** Get Institute Picture
+ * @api {get} /getInstituteProfile/:instituteName Fetch Profile Picture
+ * @apiName Fetch Institute Profile Picture
+ * @apiGroup Common
+ * 
+ *   
+ */ // Get Institute Picture
 router.get('/getInstituteProfile/:instituteName', (req, res) => {
     console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
     commonControl.getInstituteProfile(req.params)

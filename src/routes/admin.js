@@ -66,7 +66,15 @@ router.post('/login', (req, res) => {
  * @apiName Login
  * @apiGroup Admin
  * 
- * @apiParam {Object} update Updated Admin object 
+ * @apiParam {String} userName user name
+ * @apiParam {String} instituteType Type of the Institute
+ * @apiParam {Number} numberOfMembers Number of Members in the Institute
+ * @apiParam {String} state State
+ * @apiParam {String} city City
+ * @apiParam {String} mailAddress Mailing Address
+ * @apiParam {Number} adharNumber Adhar Number
+ * @apiParam {Number} contactNumber Contact Number
+ * @apiParam {String} fcmToken FCM Device Token
  */ // Update Admin
 router.post('/update', (req, res) => {
     adminControl.update(req.body)
