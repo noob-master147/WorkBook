@@ -327,7 +327,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/getInstituteProfile/:instituteName",
-    "title": "Fetch Profile Picture",
+    "title": "Fetch Institute Profile Picture",
     "name": "Fetch_Institute_Profile_Picture",
     "group": "Common",
     "version": "0.0.0",
@@ -795,7 +795,7 @@ define({ "api": [
     "type": "delete",
     "url": "/superAdmin/purge",
     "title": "Purge Database",
-    "name": "PurgeDatabase",
+    "name": "Purge_Database",
     "group": "SuperAdmin",
     "version": "0.0.0",
     "filename": "src/routes/superAdmin.js",
