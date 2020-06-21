@@ -102,7 +102,7 @@ router.get('/viewAllAdmin', (req, res) => {
 
 
 /** Create Super Admin
- * @api {post} /superAdmin/viewAllAdmin Create SuperAdmin
+ * @api {post} /superAdmin/create Create SuperAdmin
  * @apiName Create SuperAdmin
  * @apiGroup SuperAdmin
  *

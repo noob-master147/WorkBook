@@ -828,7 +828,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/superAdmin/viewAllAdmin",
+    "url": "/superAdmin/create",
     "title": "Create SuperAdmin",
     "name": "Create_SuperAdmin",
     "group": "SuperAdmin",
