@@ -325,11 +325,11 @@ const deleteEmployee = (employee) => {
 const approveDriver = (driver) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Approving Driver..."))
-        Driver.findByIdAndUpdate(driver.id), {
+        Driver.findByIdAndUpdate(driver.id, {
                 'approved': true
             }, {
                 new: true
-            }
+            })
             .then((driver) => {
                 console.log(chalk.bold.green("Driver Approved!"))
                 resolve({

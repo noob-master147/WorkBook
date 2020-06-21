@@ -173,6 +173,18 @@ content-type: application/json
 }
 
 
+####
+# Approve Driver
+POST http://localhost:8000/admin/approveDriver
+content-type: application/json
+
+{
+    "id": "5eefa5187416ad00177c7127"
+}
+
+
+
+
 #####################################################################################################
 #                                                                                                   #
 #                                          EMPLOYEE ROTES                                           #
