@@ -12,7 +12,7 @@ const hashPassword = async(req, res, next) => {
         res.send({
             statusCode: 500,
             payload: {
-                msg: "Could not register Admin, Contact Support"
+                msg: "Could not Hash The Password, Contact Support"
 
             },
         }).status(200)

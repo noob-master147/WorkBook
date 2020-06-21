@@ -1,5 +1,5 @@
 const chalk = require('chalk')
-const { SuperAdmin } = require('../models/superAdmin')
+const { SuperAdmin } = require('../models/superAdminSchema')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
