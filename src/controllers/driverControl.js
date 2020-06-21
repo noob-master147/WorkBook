@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const brypt = require('bcrypt')
 
-const { Customer } = require('../models/customerSchema')
+const { Driver } = require('../models/driverSchema')
 const { Role } = require('../models/RoleSchema')
 const { ObjectID } = require('mongodb')
 
@@ -9,16 +9,13 @@ const { ObjectID } = require('mongodb')
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
         const id = new ObjectID()
-        customer = new Customer({
+        driver = new Driver({
             _id: id,
             userName: user.userName,
             userID: user.userID,
             password: user.password,
-            grade: user.grade,
-            division: user.division,
+            carNumber: user.carNumber,
             instituteName: user.instituteName,
-            state: user.state,
-            mailAddress: user.mailAddress,
             adharNumber: user.adharNumber,
             contactNumber: user.contactNumber,
             fcmToken: user.fcmToken,
@@ -27,29 +24,29 @@ const register = (user) => {
         role = new Role({
             _id: id,
             userID: user.userID,
-            role: "customer"
+            role: "driver"
         })
         Promise.all([
-                customer.save(),
+                driver.save(),
                 role.save()
             ])
             .then(() => {
-                console.log(chalk.green.bold("New Customer Registered!"))
+                console.log(chalk.green.bold("New Driver Registered!"))
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: "Customer Successfully Registered"
+                        msg: "Driver Successfully Registered"
                     }
                 })
             })
             .catch(async(err) => {
-                console.log(chalk.red.bold("Error in Customer Registration!"))
-                await Customer.findByIdAndDelete(id)
+                console.log(chalk.red.bold("Error in Driver Registration!"))
+                await driver.findByIdAndDelete(id)
                 await Role.findByIdAndDelete(id)
                 reject({
                     statusCode: 400,
                     payload: {
-                        msg: "Error in Adding Customer",
+                        msg: "Error in Adding Driver",
                         err: err
                     }
                 })
@@ -59,41 +56,41 @@ const register = (user) => {
 
 const login = (user) => {
     return new Promise(async(resolve, reject) => {
-        console.log(chalk.yellow.bold("\nCustomer Logging in..."))
+        console.log(chalk.yellow.bold("\nDriver Logging in..."))
         const formPassword = user.password
-        Customer.findOneAndUpdate({
+        Driver.findOneAndUpdate({
                 'userID': user.email
             }, {
                 'fcmToken': user.fcmToken
             }, {
                 new: true
             })
-            .then(async(customer) => {
-                if (await brypt.compare(formPassword, customer.password) === true) {
-                    console.log(chalk.green.bold('Customer Authenticated'))
-                    if (customer.approved === true) {
-                        console.log(chalk.green.bold('Customer Approved'))
+            .then(async(driver) => {
+                if (await brypt.compare(formPassword, driver.password) === true) {
+                    console.log(chalk.green.bold('Driver Authenticated'))
+                    if (driver.approved === true) {
+                        console.log(chalk.green.bold('Driver Approved'))
                         resolve({
                             statusCode: 200,
                             payload: {
-                                msg: "Customer Logged In and Approved",
-                                approved: customer.approved,
-                                customer: customer
+                                msg: "Driver Logged In and Approved",
+                                approved: driver.approved,
+                                driver: driver
                             }
                         })
                     } else {
-                        console.log(chalk.green.bold('Customer Not Approved'))
+                        console.log(chalk.green.bold('Driver Not Approved'))
                         resolve({
                             statusCode: 200,
                             payload: {
-                                msg: "Customer Logged In and Not Approved",
-                                approved: customer.approved,
-                                customer: customer
+                                msg: "Driver Logged In and Not Approved",
+                                approved: driver.approved,
+                                driver: driver
                             }
                         })
                     }
                 } else {
-                    console.log(chalk.red.bold('Customer Not Authenticated'))
+                    console.log(chalk.red.bold('Driver Not Authenticated'))
                     resolve({
                         statusCode: 200,
                         payload: {
@@ -103,11 +100,11 @@ const login = (user) => {
                 }
             })
             .catch((err) => {
-                console.log(chalk.red.bold("Error in Logging In Customer!"))
+                console.log(chalk.red.bold("Error in Logging In Driver!"))
                 reject({
                     statusCode: 400,
                     payload: {
-                        msg: "Error in Logging In Customer! Contact Support",
+                        msg: "Error in Logging In Driver! Contact Support",
                         err: "Email not found"
                     }
                 })
@@ -115,37 +112,34 @@ const login = (user) => {
     })
 }
 
-const updateCustomer = (customer) => {
+const updateDriver = (driver) => {
     return new Promise(async(resolve, reject) => {
-        console.log(chalk.yellow.bold("Updating Customer..."))
-        Customer.findByIdAndUpdate(customer.id, {
+        console.log(chalk.yellow.bold("Updating driver..."))
+        driver.findByIdAndUpdate(driver.id, {
                 userName: user.userName,
-                grade: user.grade,
-                division: user.division,
-                state: user.state,
-                mailAddress: user.mailAddress,
+                carNumber: user.carNumber,
                 adharNumber: user.adharNumber,
                 contactNumber: user.contactNumber,
                 fcmToken: user.fcmToken,
             }, {
                 new: true
             })
-            .then((customer) => {
-                console.log(chalk.green.bold("New Customer Updated!"))
+            .then((driver) => {
+                console.log(chalk.green.bold("New driver Updated!"))
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: "Customer Successfully Updated",
-                        customer: customer
+                        msg: "driver Successfully Updated",
+                        driver: driver
                     }
                 })
             })
             .catch(async(err) => {
-                console.log(chalk.red.bold("Error in Updating Customer!"))
+                console.log(chalk.red.bold("Error in Updating driver!"))
                 reject({
                     statusCode: 400,
                     payload: {
-                        msg: "Error in Adding Customer",
+                        msg: "Error in Adding driver",
                         err: err
                     }
                 })
@@ -156,5 +150,5 @@ const updateCustomer = (customer) => {
 module.exports = {
     register,
     login,
-    updateCustomer
+    updateDriver
 }

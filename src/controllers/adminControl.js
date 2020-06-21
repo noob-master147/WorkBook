@@ -1,6 +1,8 @@
 const chalk = require('chalk')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
+const { Customer } = require('../models/customerSchema')
+const { Driver } = require('../models/driverSchema')
 const { Institute } = require('../models/instituteSchema')
 const { Role } = require('../models/RoleSchema')
 const bcrypt = require('bcrypt')
@@ -132,7 +134,7 @@ const login = (user) => {
 const update = (user) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Updating Admin"))
-        await Admin.findByIdAndUpdate(user._id, {
+        await Admin.findByIdAndUpdate(user.id, {
                 userName: user.userName,
                 instituteType: user.instituteType,
                 numberOfMembers: user.numberOfMembers,
@@ -285,7 +287,6 @@ const rejectEmployee = (employee) => {
     })
 }
 
-
 const deleteEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Deleting Eployee..."))
@@ -315,6 +316,38 @@ const deleteEmployee = (employee) => {
     })
 }
 
+const approveDriver = (driver) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Approving Driver..."))
+        Driver.findByIdAndUpdate(driver.id), {
+                'approved': true
+            }, {
+                new: true
+            }
+            .then((driver) => {
+                console.log(chalk.bold.green("Driver Approved!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Driver Approved",
+                        driver: driver
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Driver Not Approved!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Approving Driver! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 
 
 module.exports = {
@@ -325,5 +358,6 @@ module.exports = {
     getInstitutes,
     approveEmployee,
     rejectEmployee,
-    deleteEmployee
+    deleteEmployee,
+    approveDriver
 }

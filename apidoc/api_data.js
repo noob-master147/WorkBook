@@ -1,6 +1,64 @@
 define({ "api": [
   {
     "type": "post",
+    "url": "/admin/approveDriver",
+    "title": "Approve Driver",
+    "name": "Approve_Driver",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of the Driver Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userName",
+            "description": "<p>Name of the driver</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "carNumber",
+            "description": "<p>Car Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "adharNumber",
+            "description": "<p>Adhaar Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "contactNumber",
+            "description": "<p>Contact Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Device Token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
     "url": "/admin/approveEmployee",
     "title": "Approve Employee",
     "name": "Approve_Employee",
@@ -101,6 +159,13 @@ define({ "api": [
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of the doc</p>"
+          },
           {
             "group": "Parameter",
             "type": "String",
@@ -547,6 +612,13 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
+            "field": "state",
+            "description": "<p>State</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
             "field": "division",
             "description": "<p>Division</p>"
           },
@@ -577,6 +649,129 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/routes/customer.js",
     "groupTitle": "Customer"
+  },
+  {
+    "type": "post",
+    "url": "/driver/register",
+    "title": "Driver Register",
+    "name": "Register",
+    "group": "Driver",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userName",
+            "description": "<p>User Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Name of The Institute</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "carNumber",
+            "description": "<p>Car Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "adharNumber",
+            "description": "<p>Adhar Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "contactNumber",
+            "description": "<p>Contact Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Device Token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/driver.js",
+    "groupTitle": "Driver"
+  },
+  {
+    "type": "post",
+    "url": "/driver/register",
+    "title": "Update Driver",
+    "name": "Register",
+    "group": "Driver",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userName",
+            "description": "<p>User Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "carNumber",
+            "description": "<p>Car Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "adharNumber",
+            "description": "<p>Adhar Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "contactNumber",
+            "description": "<p>Contact Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Device Token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/driver.js",
+    "groupTitle": "Driver"
   },
   {
     "type": "post",
