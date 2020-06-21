@@ -54,7 +54,9 @@ content-type: application/json
 
 {
     "fcmToken": "sdgsg",
-    "userID": "superAdmin@superAdmin"
+    "userID": "superAdmin@superAdmin",
+    "password": "123",
+    "userName": "superadmin"
 }
 
 
@@ -265,8 +267,8 @@ content-type: application/json
 
 {
     "fcmToken" : "asdlkfccccccchdslf",
-    "userID":"cus",
-    "password": "123456"
+    "userID":"superAdmin@superAdmin",
+    "password": "123"
 }
 
 

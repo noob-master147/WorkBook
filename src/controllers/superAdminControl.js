@@ -173,7 +173,9 @@ const create = (user) => {
         const id = new ObjectID()
         superAdmin = new SuperAdmin({
             _id: id,
+            userName: user.userName,
             userID: user.userID,
+            password: user.password,
             fcmToken: user.fcmToken
         })
 
