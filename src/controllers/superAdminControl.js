@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 const brypt = require('bcrypt')
-const { SuperAdmin } = require('../models/superAdmin')
+const { SuperAdmin } = require('../models/superAdminSchema')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
@@ -85,8 +85,11 @@ const purge = () => {
         const p6 = await Role.remove({}, function(err) {
             console.log(chalk.red.bold('Role collection removed'))
         })
+        const p7 = await SuperAdmin.remove({}, function(err) {
+            console.log(chalk.red.bold('SuperAdmin collection removed'))
+        })
 
-        Promise.all([p1, p2, p3, p4, p5, p6])
+        Promise.all([p1, p2, p3, p4, p5, p6, p7])
             .then(() => {
                 console.log(chalk.red.bold("ALL DATABASE PURGED"))
                 resolve({
@@ -164,10 +167,56 @@ const viewAllAdmin = () => {
     })
 }
 
+const create = (user) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(user)
+        const id = new ObjectID()
+        superAdmin = new SuperAdmin({
+            _id: id,
+            userID: user.userID,
+            fcmToken: user.fcmToken
+        })
+
+        role = new Role({
+            _id: id,
+            userID: user.userID,
+            role: "superAdmin"
+        })
+        const p1 = await superAdmin.save()
+        const p2 = await role.save()
+
+        Promise.all([p1, p2])
+            .then((superAdmin) => {
+                console.log(chalk.bold.green("SuperAdmin Created!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "SuperAdmin Created",
+                        superAdmin: superAdmin
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("SuperAdmin Not Created!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Creating SuperAdmin! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+
+    })
+}
+
+
 module.exports = {
     approveAdmin,
     rejectAdmin,
     purge,
     deleteAdmin,
-    viewAllAdmin
+    viewAllAdmin,
+    create
 }

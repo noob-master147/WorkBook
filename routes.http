@@ -10,6 +10,17 @@ content-type: application/json
 #                                                                                                   #
 #####################################################################################################
 
+
+
+
+
+####
+# Test Route
+GET  http://localhost:8000/superAdmin
+content-type: application/json
+
+
+
 ####
 # Purge the Database
 DELETE http://localhost:8000/superAdmin/purge
@@ -31,13 +42,20 @@ POST http://localhost:8000/superAdmin/deleteAdmin
 content-type: application/json
 
 {
-    "id": "5ee0ea50659bf815cdc6269c"
+    "id": "5ee0ea50659bf815cdc6269c",
+    "userID": "superAdmin@superAdmin"
 }
 
 
+####
+# Create SuperAdmin
+POST http://localhost:8000/superAdmin/create
+content-type: application/json
 
-
-
+{
+    "fcmToken": "sdgsg",
+    "userID": "superAdmin@superAdmin"
+}
 
 
 
@@ -113,13 +131,6 @@ content-type: application/json
 {
     "id": "5ee0ea50659bf815cdc6269c"
 }
-
-
-
-
-
-
-
 
 
 

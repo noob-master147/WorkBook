@@ -28,6 +28,7 @@ router.get('/', (req, res) => {
  *
  */ // Approve Admin
 router.post('/approveAdmin', (req, res) => {
+    console.log(chalk.yellow.bold('Approve Admin Route Hit'))
     superAdminControl.approveAdmin(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -44,6 +45,7 @@ router.post('/approveAdmin', (req, res) => {
  *
  */ // Reject Admin
 router.post('/rejectAdmin', (req, res) => {
+    console.log(chalk.yellow.bold('Reject Admin Route Hit'))
     superAdminControl.rejectAdmin(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -58,6 +60,7 @@ router.post('/rejectAdmin', (req, res) => {
  *
  */ // Purge DataBase
 router.delete('/purge', (req, res) => {
+    console.log(chalk.yellow.bold('Purge DB Route Hit'))
     superAdminControl.purge()
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -74,6 +77,7 @@ router.delete('/purge', (req, res) => {
  *
  */ // Delete Admin
 router.delete('/deleteAdmin', (req, res) => {
+    console.log(chalk.yellow.bold('Delete Admin Route Hit'))
     superAdminControl.deleteAdmin(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -88,10 +92,32 @@ router.delete('/deleteAdmin', (req, res) => {
  *
  */ // View All Admin
 router.get('/viewAllAdmin', (req, res) => {
+    console.log(chalk.yellow.bold('View All Admin Route Hit'))
     superAdminControl.viewAllAdmin(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+
+
+/** Create Super Admin
+ * @api {post} /superAdmin/viewAllAdmin Create SuperAdmin
+ * @apiName Create SuperAdmin
+ * @apiGroup SuperAdmin
+ *
+ * @apiParam {String} userID Email SuperAdmin
+ * @apiParam {String} fcmToken FCM Token
+ */ // View All Admin
+router.post('/create', (req, res) => {
+    console.log(chalk.yellow.bold('Create SuperAdmin Route Hit'))
+    superAdminControl.create(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
 
 
 
