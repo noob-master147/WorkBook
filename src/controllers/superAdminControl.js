@@ -180,7 +180,7 @@ const create = (user) => {
             userName: user.userName,
             userID: user.userID,
             password: user.password,
-            fcmToken: user.fcmToken
+            fcmToken: user.fcmToken,
         })
 
         role = new Role({

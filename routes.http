@@ -54,13 +54,23 @@ content-type: application/json
 
 {
     "fcmToken": "sdgsg",
-    "userID": "superAdmin@superAdmin",
+    "userID": "superAdmin",
     "password": "123",
-    "userName": "superadmin"
+    "userName": "superAdmin"
 }
 
 
 
+####
+# Login Route
+POST http://localhost:8000/login
+content-type: application/json
+
+{
+    "fcmToken" : "asdlkfccccccchdslf",
+    "userID":"superAdmin",
+    "password": "123"
+}
 #####################################################################################################
 #                                                                                                   #
 #                                          ADMIN ROTES                                              #
@@ -275,8 +285,8 @@ content-type: application/json
 
 {
     "fcmToken" : "asdlkfccccccchdslf",
-    "userID":"emp",
-    "password": "password"
+    "userID":"superAdmin@superAdmin",
+    "password": "123"
 }
 
 

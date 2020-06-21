@@ -30,6 +30,10 @@ const superAdminSchema = new mongoose.Schema({
     fcmToken: {
         type: String,
         required: true
+    },
+    approved: {
+        type: Boolean,
+        default: true
     }
 });
 
