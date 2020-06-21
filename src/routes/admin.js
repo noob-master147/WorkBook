@@ -123,7 +123,7 @@ router.post('/approveEmployee', (req, res) => {
 
 
 /** Reject an Employee
- * @api {post} /admin/approveEmployee Reject Employee
+ * @api {post} /admin/rejectEmployee Reject Employee
  * @apiName Reject Employee
  * @apiGroup Admin
  *
@@ -189,6 +189,61 @@ router.post('/approveDriver', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+
+
+
+/** View all Drivers
+ * @api {post} /admin/viewAllDrivers View Institute's Drivers
+ * @apiName View All Drivers
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} instituteName Name of the Institute
+ *   
+ */ // View all Drivers
+router.post('/viewAllDrivers', (req, res) => {
+    console.log(chalk.bold.yellow("\nView All Driver route hit..."))
+    adminControl.viewAllDrivers(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+
+/** Reject an Driver
+ * @api {post} /admin/rejectDriver Reject Driver
+ * @apiName Reject Driver
+ * @apiGroup Admin
+ *
+ * @apiParam {String} id _id of the Driver Document
+ *   
+ */ // Reject an Driver
+router.post('/rejectDriver', (req, res) => {
+    adminControl.rejectDriver(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+/** Delete an Driver
+ * @api {post} /admin/deleteDriver Delete Driver
+ * @apiName Delete Driver
+ * @apiGroup Admin
+ *
+ * @apiParam {String} id _id of the Driver Document
+ *   
+ */ // Delete an Driver
+router.post('/deleteDriver', (req, res) => {
+    adminControl.deleteDriver(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
 
 
 

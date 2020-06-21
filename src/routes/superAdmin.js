@@ -69,14 +69,14 @@ router.delete('/purge', (req, res) => {
 
 
 /**
- * @api {delete} /superAdmin/deleteAdmin Delete Admin
+ * @api {post} /superAdmin/deleteAdmin Delete Admin
  * @apiName Delete Admin
  * @apiGroup SuperAdmin
  *
  * @apiParam {String} id _id of the Admin Document
  *
  */ // Delete Admin
-router.delete('/deleteAdmin', (req, res) => {
+router.post('/deleteAdmin', (req, res) => {
     console.log(chalk.yellow.bold('Delete Admin Route Hit'))
     superAdminControl.deleteAdmin(req.body)
         .then((obj) => res.send(obj).status(200))

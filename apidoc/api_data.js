@@ -82,6 +82,29 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/admin/deleteDriver",
+    "title": "Delete Driver",
+    "name": "Delete_Driver",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of the Driver Document</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
     "url": "/admin/deleteEmployee",
     "title": "Delete Employee",
     "name": "Delete_Employee",
@@ -345,7 +368,30 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/admin/approveEmployee",
+    "url": "/admin/rejectDriver",
+    "title": "Reject Driver",
+    "name": "Reject_Driver",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of the Driver Document</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/rejectEmployee",
     "title": "Reject Employee",
     "name": "Reject_Employee",
     "group": "Admin",
@@ -358,6 +404,29 @@ define({ "api": [
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Employee Document</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/viewAllDrivers",
+    "title": "View Institute's Drivers",
+    "name": "View_All_Drivers",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Name of the Institute</p>"
           }
         ]
       }
@@ -1066,7 +1135,7 @@ define({ "api": [
     "groupTitle": "SuperAdmin"
   },
   {
-    "type": "delete",
+    "type": "post",
     "url": "/superAdmin/deleteAdmin",
     "title": "Delete Admin",
     "name": "Delete_Admin",
