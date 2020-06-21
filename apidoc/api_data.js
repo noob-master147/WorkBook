@@ -769,6 +769,36 @@ define({ "api": [
     "groupTitle": "SuperAdmin"
   },
   {
+    "type": "post",
+    "url": "/superAdmin/viewAllAdmin",
+    "title": "Create SuperAdmin",
+    "name": "Create_SuperAdmin",
+    "group": "SuperAdmin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email SuperAdmin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/superAdmin.js",
+    "groupTitle": "SuperAdmin"
+  },
+  {
     "type": "delete",
     "url": "/superAdmin/deleteAdmin",
     "title": "Delete Admin",
