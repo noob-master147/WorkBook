@@ -41,7 +41,9 @@ const approveAdmin = (admin) => {
 const rejectAdmin = (admin) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Rejecting Admin..."))
-        await Admin.findByIdAndDelete(admin.id)
+        const p1 = await Admin.findByIdAndDelete(admin.id)
+        const p2 = await Role.findByIdAndDelete(admin.id)
+        Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.bold.green("Admin Rejected and Deleted!"))
                 resolve({
@@ -113,10 +115,12 @@ const purge = () => {
     })
 }
 
-const deleteAdmin = (obj) => {
+const deleteAdmin = (admin) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Deleteing Admin..."))
-        await Admin.findByIdAndDelete(obj.id)
+        const p1 = await Admin.findByIdAndDelete(admin.id)
+        const p2 = await Role.findByIdAndDelete(admin.id)
+        Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.bold.green("Admin Deleted!"))
                 resolve({
@@ -169,11 +173,13 @@ const viewAllAdmin = () => {
 
 const create = (user) => {
     return new Promise(async(resolve, reject) => {
-        console.log(user)
+        console.log(chalk.yellow("Creating SuperAdmin..."))
         const id = new ObjectID()
         superAdmin = new SuperAdmin({
             _id: id,
+            userName: user.userName,
             userID: user.userID,
+            password: user.password,
             fcmToken: user.fcmToken
         })
 

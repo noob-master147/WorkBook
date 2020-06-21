@@ -174,7 +174,9 @@ const approveCustomer = (customer) => {
 const rejectCustomer = (customer) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Approving Customer..."))
-        await Customer.findByIdAndDelete(customer.id)
+        const p1 = await Customer.findByIdAndDelete(customer.id)
+        const p2 = await Role.findByIdAndDelete(customer.id)
+        Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.green.bold("Customer Rejected!"))
                 resolve({
@@ -201,7 +203,9 @@ const rejectCustomer = (customer) => {
 const deleteCustomer = (customer) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Deleting Customer..."))
-        await Customer.findByIdAndDelete(customer.id)
+        const p1 = await Customer.findByIdAndDelete(customer.id)
+        const p2 = await Role.findByIdAndDelete(customer.id)
+        Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.green.bold("Customer Deleted!"))
                 resolve({

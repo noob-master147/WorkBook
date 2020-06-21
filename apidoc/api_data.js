@@ -517,7 +517,65 @@ define({ "api": [
       }
     },
     "version": "0.0.0",
-    "filename": "src/controllers/customerControl.js",
+    "filename": "src/routes/customer.js",
+    "groupTitle": "Customer"
+  },
+  {
+    "type": "post",
+    "url": "/customer/register",
+    "title": "Update Customer",
+    "name": "Register",
+    "group": "Customer",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userName",
+            "description": "<p>User Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>Grade</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "division",
+            "description": "<p>Division</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "adharNumber",
+            "description": "<p>Adhar Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "contactNumber",
+            "description": "<p>Contact Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Device Token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/customer.js",
     "groupTitle": "Customer"
   },
   {
@@ -790,6 +848,20 @@ define({ "api": [
             "optional": false,
             "field": "fcmToken",
             "description": "<p>FCM Token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userName",
+            "description": "<p>Name of SuperAdmin</p>"
           }
         ]
       }

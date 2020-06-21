@@ -108,8 +108,10 @@ router.get('/viewAllAdmin', (req, res) => {
  *
  * @apiParam {String} userID Email SuperAdmin
  * @apiParam {String} fcmToken FCM Token
+ * @apiParam {String} password Password
+ * @apiParam {String} userName Name of SuperAdmin
  */ // View All Admin
-router.post('/create', (req, res) => {
+router.post('/create', hashPassword, (req, res) => {
     console.log(chalk.yellow.bold('Create SuperAdmin Route Hit'))
     superAdminControl.create(req.body)
         .then((obj) => res.send(obj).status(200))
