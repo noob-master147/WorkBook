@@ -19,11 +19,13 @@ app.use('/apidoc', express.static('apidoc'));
 const admin = require('./routes/admin');
 const customer = require('./routes/customer');
 const employee = require('./routes/employee');
+const driver = require('./routes/driver')
 const superAdmin = require('./routes/superAdmin')
 const common = require('./routes/common')
 app.use('/admin', admin)
 app.use('/employee', employee)
 app.use('/customer', customer)
+app.use('/driver', driver)
 app.use('/superAdmin', superAdmin)
 app.use('/', common)
 

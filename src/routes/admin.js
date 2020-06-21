@@ -66,6 +66,7 @@ router.post('/login', (req, res) => {
  * @apiName Login
  * @apiGroup Admin
  * 
+ * @apiParam {String} id _id of the doc
  * @apiParam {String} userName user name
  * @apiParam {String} instituteType Type of the Institute
  * @apiParam {Number} numberOfMembers Number of Members in the Institute
@@ -145,7 +146,7 @@ router.post('/rejectEmployee', (req, res) => {
  *   
  */ // Delete an Employee
 router.post('/deleteEmployee', (req, res) => {
-    adminControl.deleteEmployeee(req.body)
+    adminControl.deleteEmployee(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -166,6 +167,33 @@ router.get('/institutes', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+
+
+/** Approve Driver
+ * @api {post} /admin/approveDriver Approve Driver
+ * @apiName Approve Driver
+ * @apiGroup Admin
+ *
+ * @apiParam {String} id _id of the Driver Document
+ * @apiParam {String} userName Name of the driver
+ * @apiParam {String} carNumber Car Number
+ * @apiParam {String} adharNumber Adhaar Number
+ * @apiParam {String} contactNumber Contact Number
+ * @apiParam {String} fcmToken FCM Device Token
+ * 
+ */ // Approve an Driver
+router.post('/approveDriver', (req, res) => {
+    adminControl.approveDriver(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+
 
 
 module.exports = router;

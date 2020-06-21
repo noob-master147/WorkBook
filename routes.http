@@ -33,17 +33,16 @@ POST http://localhost:8000/superAdmin/approveAdmin
 content-type: application/json
 
 {
-    "id": "5ee0ea50659bf815cdc6269c"
+    "id": "5eef64e2e59e040017aded48"
 }
 
 ####
 # Delete Admin
-POST http://localhost:8000/superAdmin/deleteAdmin
+DELETE  http://localhost:8000/superAdmin/deleteAdmin
 content-type: application/json
 
 {
-    "id": "5ee0ea50659bf815cdc6269c",
-    "userID": "superAdmin@superAdmin"
+    "id": "5eef64e2e59e040017aded48"
 }
 
 
@@ -130,7 +129,7 @@ POST http://localhost:8000/admin/approveEmployee
 content-type: application/json
 
 {
-    "id": "5eef52404322216db5ec43a8"
+    "id": "5eef66dceaad484382c4f4e9"
 }
 
 
@@ -150,7 +149,27 @@ POST http://localhost:8000/admin/deleteEmployee
 content-type: application/json
 
 {
-    "id": "5eef52404322216db5ec43a8"
+    "id": "5eef66dceaad484382c4f4e9"
+}
+
+
+
+####
+# Update Admin
+POST http://localhost:8000/admin/update
+content-type: application/json
+
+{
+    "id": "5eef64e2e59e040017aded48",
+    "userName":"admin2",
+    "instituteType":"Chapter",
+    "numberOfMembers":50,
+    "state":"Tamil Nadu",
+    "city":"Vellore",
+    "mailAddress":"divyanshkhandelwal147@gmail.com",
+    "adharNumber":123456789789,
+    "contactNumber":9935071772,
+    "fcmToken": "afafaaf"
 }
 
 
