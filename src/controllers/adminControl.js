@@ -131,6 +131,34 @@ const login = (user) => {
     })
 }
 
+const getInstitutes = () => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Fetching Institutes..."))
+        Institute.find()
+            .then((institutes) => {
+                console.log(chalk.bold.green("Institutes Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Institute Fetch Successful",
+                        institute: institutes
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Loading Institute Data!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Loading Institute Data! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 const update = (user) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Updating Admin"))
@@ -170,6 +198,8 @@ const update = (user) => {
             })
     })
 }
+
+
 
 const viewAllEmployees = (obj) => {
     return new Promise(async(resolve, reject) => {
@@ -232,7 +262,7 @@ const approveEmployee = (employee) => {
 
 const rejectEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
-        console.log(chalk.bold.yellow("Rejecting Employee"))
+        console.log(chalk.bold.yellow("Rejecting Employee..."))
         const p1 = await Employee.findByIdAndDelete(employee.id)
         const p2 = await Role.findByIdAndDelete(employee.id)
         Promise.all([p1, p2])
@@ -288,6 +318,10 @@ const deleteEmployee = (employee) => {
     })
 }
 
+
+
+
+
 const approveDriver = (driver) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Approving Driver..."))
@@ -312,34 +346,6 @@ const approveDriver = (driver) => {
                     statusCode: 400,
                     payload: {
                         msg: "Error in Approving Driver! Contact Support",
-                        Error: "Issue in connecting to the Datebase",
-                        err: err
-                    }
-                })
-            })
-    })
-}
-
-const getInstitutes = () => {
-    return new Promise(async(resolve, reject) => {
-        console.log(chalk.bold.yellow("Fetching Institutes..."))
-        Institute.find()
-            .then((institutes) => {
-                console.log(chalk.bold.green("Institutes Fetched!"))
-                resolve({
-                    statusCode: 200,
-                    payload: {
-                        msg: "Institute Fetch Successful",
-                        institute: institutes
-                    }
-                })
-            })
-            .catch((err) => {
-                console.log(chalk.red.bold("Error in Loading Institute Data!"))
-                reject({
-                    statusCode: 400,
-                    payload: {
-                        msg: "Error in Loading Institute Data! Contact Support",
                         Error: "Issue in connecting to the Datebase",
                         err: err
                     }
@@ -378,6 +384,65 @@ const viewAllDrivers = (obj) => {
     })
 }
 
+const rejectDriver = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Rejecting Driver..."))
+        const p1 = await Driver.findByIdAndDelete(obj.id)
+        const p2 = await Role.findByIdAndDelete(obj.id)
+        Promise.all([p1, p2])
+            .then(() => {
+                console.log(chalk.bold.green("Driver Rejected!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Driver Rejected"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Driver Not Rejected!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Rejecting Driver! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+const deleteDriver = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Deleting Driver..."))
+        const p1 = await Driver.findByIdAndDelete(obj.id)
+        const p2 = await Role.findByIdAndDelete(obj.id)
+        Promise.all([p1, p2])
+            .then(() => {
+                console.log(chalk.bold.green("Driver Deleted!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Driver Deleted"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Driver Not Deleted!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Deleting Driver! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
 module.exports = {
     register,
     login,
@@ -388,5 +453,7 @@ module.exports = {
     rejectEmployee,
     deleteEmployee,
     approveDriver,
-    viewAllDrivers
+    viewAllDrivers,
+    rejectDriver,
+    deleteDriver
 }
