@@ -229,6 +229,7 @@ const getInstitutes = () => {
 
 const approveEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Approving Employee..."))
         await Employee.findByIdAndUpdate(employee.id, {
                 'approved': true
             })
@@ -257,7 +258,10 @@ const approveEmployee = (employee) => {
 
 const rejectEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
-        await Employee.findByIdAndDelete(employee.id)
+        console.log(chalk.bold.yellow("Rejecting Employee"))
+        const p1 = await Employee.findByIdAndDelete(employee.id)
+        const p2 = await Role.findByIdAndDelete(employee.id)
+        Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.bold.green("Employee Rejected!"))
                 resolve({
@@ -284,7 +288,10 @@ const rejectEmployee = (employee) => {
 
 const deleteEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
-        await Employee.findByIdAndDelete(employee.id)
+        console.log(chalk.bold.yellow("Deleting Eployee..."))
+        const p1 = await Employee.findByIdAndDelete(employee.id)
+        const p2 = await Role.findByIdAndDelete(employee.id)
+        Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.bold.green("Employee Deleted!"))
                 resolve({

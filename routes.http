@@ -120,7 +120,7 @@ POST http://localhost:8000/admin/approveEmployee
 content-type: application/json
 
 {
-    "id": "5ee0ea50659bf815cdc6269c"
+    "id": "5eef52404322216db5ec43a8"
 }
 
 
@@ -131,9 +131,17 @@ POST http://localhost:8000/admin/rejectEmployee
 content-type: application/json
 
 {
-    "id": "5ee0ea50659bf815cdc6269c"
+    "id": "5eef52404322216db5ec43a8"
 }
 
+####
+# Delete Employee
+POST http://localhost:8000/admin/deleteEmployee
+content-type: application/json
+
+{
+    "id": "5eef52404322216db5ec43a8"
+}
 
 
 #####################################################################################################
@@ -267,8 +275,8 @@ content-type: application/json
 
 {
     "fcmToken" : "asdlkfccccccchdslf",
-    "userID":"superAdmin@superAdmin",
-    "password": "123"
+    "userID":"emp",
+    "password": "password"
 }
 
 
