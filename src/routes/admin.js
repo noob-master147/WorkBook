@@ -177,12 +177,7 @@ router.get('/institutes', (req, res) => {
  * @apiGroup Admin
  *
  * @apiParam {String} id _id of the Driver Document
- * @apiParam {String} userName Name of the driver
- * @apiParam {String} carNumber Car Number
- * @apiParam {String} adharNumber Adhaar Number
- * @apiParam {String} contactNumber Contact Number
- * @apiParam {String} fcmToken FCM Device Token
- * 
+
  */ // Approve an Driver
 router.post('/approveDriver', (req, res) => {
     adminControl.approveDriver(req.body)

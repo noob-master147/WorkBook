@@ -14,41 +14,6 @@ define({ "api": [
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Driver Document</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "userName",
-            "description": "<p>Name of the driver</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "carNumber",
-            "description": "<p>Car Number</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "adharNumber",
-            "description": "<p>Adhaar Number</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "contactNumber",
-            "description": "<p>Contact Number</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "fcmToken",
-            "description": "<p>FCM Device Token</p>"
           }
         ]
       }
