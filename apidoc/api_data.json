@@ -368,6 +368,29 @@
   },
   {
     "type": "post",
+    "url": "/admin/viewAllDrivers",
+    "title": "View Institute's Drivers",
+    "name": "View_All_Drivers",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Name of the Institute</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
     "url": "/admin/viewAllEmployees",
     "title": "View Institute's Employee",
     "name": "View_All_Employees",
@@ -1066,7 +1089,7 @@
     "groupTitle": "SuperAdmin"
   },
   {
-    "type": "delete",
+    "type": "post",
     "url": "/superAdmin/deleteAdmin",
     "title": "Delete Admin",
     "name": "Delete_Admin",

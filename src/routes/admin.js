@@ -194,6 +194,21 @@ router.post('/approveDriver', (req, res) => {
 
 
 
+/** View all Drivers
+ * @api {post} /admin/viewAllDrivers View Institute's Drivers
+ * @apiName View All Drivers
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} instituteName Name of the Institute
+ *   
+ */ // View all Drivers
+router.post('/viewAllDrivers', (req, res) => {
+    console.log(chalk.bold.yellow("\nView All Driver route hit..."))
+    adminControl.viewAllDrivers(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
 
 
 module.exports = router;
