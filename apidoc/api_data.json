@@ -92,6 +92,43 @@
     "groupTitle": "Admin"
   },
   {
+    "type": "post",
+    "url": "/admin/setGD",
+    "title": "Grade & Division",
+    "name": "Grade_&_Division",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Name of the Institute</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "grade",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "Array",
+            "optional": false,
+            "field": "division",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
     "type": "get",
     "url": "/admin/institutes",
     "title": "Get Registered Institutes",
@@ -422,6 +459,26 @@
     "version": "0.0.0",
     "filename": "src/routes/admin.js",
     "groupTitle": "Admin"
+  },
+  {
+    "type": "get",
+    "url": "/fetchGrade/:instituteName",
+    "title": "Fetch Institute Divisions",
+    "name": "Fetch_Institute_Divisions",
+    "group": "Common",
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "get",
+    "url": "/fetchGrade/:instituteName",
+    "title": "Fetch Institute Grades",
+    "name": "Fetch_Institute_Grades",
+    "group": "Common",
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
   },
   {
     "type": "get",
