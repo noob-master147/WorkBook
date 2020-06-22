@@ -365,7 +365,7 @@ content-type: application/json
 
 ####
 # Fetch Institute Profile Picture
-GET  http://localhost:8000/getInstituteProfile/ieeec
+GET  http://localhost:8000/fetchGrade/IEEE
 content-type: application/json
 
 

@@ -226,6 +226,78 @@ const getInstituteProfile = (params) => {
 }
 
 
+const fetchGrade = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Fetching Grades..."))
+        Institute.findOne({
+                instituteName: obj.instituteName
+            })
+            .then((institute) => {
+                let grades = []
+                console.log(chalk.bold.green("Grades Fetched!"))
+                institute.grade.forEach(obj => {
+                    grades.push(obj.grade)
+                });
+                console.log(grades)
+                return grades
+            })
+            .then((grades) => {
+                console.log(chalk.bold.green("Grades Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Grades Fetched",
+                        grades: grades
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Grades !"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Grades! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+
+    })
+}
+
+
+
+const fetchDivision = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Fetching Grades..."))
+        Institute.findOne({
+                instituteName: obj.instituteName
+            })
+            .then((grades) => {
+                console.log(chalk.bold.green("Grades Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Grades Fetched",
+                        grades: grades
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Grades !"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Grades! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 
 
 module.exports = {
@@ -233,5 +305,7 @@ module.exports = {
     login,
     uploadPicture,
     getUserProfile,
-    getInstituteProfile
+    getInstituteProfile,
+    fetchGrade,
+    fetchDivision
 }

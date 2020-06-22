@@ -98,6 +98,39 @@ router.get('/getInstituteProfile/:instituteName', (req, res) => {
 
 
 
+/** Get Institute Grades
+ * @api {get} /fetchGrade/:instituteName Fetch Institute Grades
+ * @apiName Fetch Institute Grades
+ * @apiGroup Common
+ * 
+ */ // Get Grades
+router.get('/fetchGrade/:instituteName', (req, res) => {
+    console.log(chalk.bold.yellow("Fetch Grades Route Hit!"))
+    commonControl.fetchGrade(req.params)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+/** Get Institute Divisions
+ * @api {get} /fetchGrade/:instituteName Fetch Institute Divisions
+ * @apiName Fetch Institute Divisions
+ * @apiGroup Common
+ * 
+ */ // Get Divisions
+router.get('/fetchDivision/:instituteName', (req, res) => {
+    console.log(chalk.bold.yellow("Fetch Divisions Route Hit!"))
+    commonControl.fetchDivision(req.params)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+
+
 
 
 module.exports = router;
