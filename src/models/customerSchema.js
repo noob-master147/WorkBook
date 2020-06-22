@@ -25,6 +25,14 @@ const customerSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    state: {
+        type: String,
+        trim: true,
+    },
+    city: {
+        type: String,
+        trim: true,
+    },
     profilePicture: {
         type: Buffer
     },

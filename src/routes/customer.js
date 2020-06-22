@@ -46,6 +46,7 @@ router.post('/register', hashPassword, (req, res) => {
  * @apiParam {String} userName User Name
  * @apiParam {String} grade Grade
  * @apiParam {String} state State
+ * @apiParam {String} city City
  * @apiParam {String} division Division
  * @apiParam {Number} adharNumber Adhar Number
  * @apiParam {Number} contactNumber Contact Number
