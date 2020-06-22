@@ -365,7 +365,7 @@ content-type: application/json
 
 ####
 # Fetch Institute Profile Picture
-GET  http://localhost:8000/fetchGrade/IEEE
+GET  http://localhost:8000/fetchDivision/IEEE
 content-type: application/json
 
 
@@ -379,14 +379,14 @@ content-type: application/json
 {
     "instituteName": "IEEE",
     "division": [
-        { "division": "1" },
-        { "division": "2" },
-        { "division": "3" },
-        { "division": "4" },
-        { "division": "5" }
+        { "division": "zsd" },
+        { "division": "2sdg" },
+        { "division": "3zbsd" },
+        { "division": "4Adgd" },
+        { "division": "5gdsgdgd" }
     ],
     "grade": [
-        { "grade": "chair" },
+        { "grade": "hola" },
         { "grade": "V.chair" },
         { "grade": "TechHead" },
         { "grade": "SponHead" },

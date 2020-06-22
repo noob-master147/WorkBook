@@ -443,7 +443,7 @@ const setGD = (obj) => {
                 instituteName: obj.instituteName
             }, {
                 grade: obj.grade,
-                division: obj.grade
+                division: obj.division
             }, {
                 new: true
             })

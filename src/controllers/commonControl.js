@@ -274,22 +274,31 @@ const fetchDivision = (obj) => {
         Institute.findOne({
                 instituteName: obj.instituteName
             })
-            .then((grades) => {
-                console.log(chalk.bold.green("Grades Fetched!"))
+            .then((institute) => {
+                let divisions = []
+                console.log(chalk.bold.green("Institute Fetched!"))
+                institute.division.forEach(obj => {
+                    divisions.push(obj.division)
+                });
+                console.log(divisions)
+                return divisions
+            })
+            .then((divisions) => {
+                console.log(chalk.bold.green("Divisions Fetched!"))
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: "Grades Fetched",
-                        grades: grades
+                        msg: "Divisions Fetched",
+                        divisions: divisions
                     }
                 })
             })
             .catch((err) => {
-                console.log(chalk.red.bold("Error in Fetching Grades !"))
+                console.log(chalk.red.bold("Error in Fetching Divisions !"))
                 reject({
                     statusCode: 400,
                     payload: {
-                        msg: "Error in Fetching Grades! Contact Support",
+                        msg: "Error in Fetching Divisions! Contact Support",
                         Error: "Issue in connecting to the Datebase",
                         err: err
                     }
