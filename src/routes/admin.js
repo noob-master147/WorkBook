@@ -242,6 +242,22 @@ router.post('/deleteDriver', (req, res) => {
 
 
 
+/** Grade & Division
+ * @api {post} /admin/setGD Grade & Division
+ * @apiName Grade & Division
+ * @apiGroup Admin
+ *
+ * @apiParam {String} instituteName Name of the Institute
+ * @apiParam {Array} grade
+ * @apiParam {Array} division   
+ */ // Delete an Driver
+router.post('/setGD', (req, res) => {
+    adminControl.setGD(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
 
 
 

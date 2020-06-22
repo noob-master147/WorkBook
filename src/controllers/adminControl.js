@@ -199,8 +199,6 @@ const update = (user) => {
     })
 }
 
-
-
 const viewAllEmployees = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Fetching All Employees..."))
@@ -317,10 +315,6 @@ const deleteEmployee = (employee) => {
             })
     })
 }
-
-
-
-
 
 const approveDriver = (driver) => {
     return new Promise(async(resolve, reject) => {
@@ -442,6 +436,41 @@ const deleteDriver = (obj) => {
     })
 }
 
+const setGD = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Setting Grades and Division"))
+        Institute.findOneAndUpdate({
+                instituteName: obj.instituteName
+            }, {
+                grade: obj.grade,
+                division: obj.grade
+            }, {
+                new: true
+            })
+            .then((institute) => {
+                console.log(chalk.bold.green("Institute Grade and Division Set!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Institute Grade and Division Set",
+                        institute: institute
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Institute Grade and Division Not Set!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Setting Institute Grade and Division! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 
 module.exports = {
     register,
@@ -455,5 +484,6 @@ module.exports = {
     approveDriver,
     viewAllDrivers,
     rejectDriver,
-    deleteDriver
+    deleteDriver,
+    setGD
 }

@@ -1,6 +1,6 @@
 ####################################### ROOT ROUTE #################################################
 
-GET  http://localhost:8000/
+GET  https://app-workbook.herokuapp.com/
 content-type: application/json
 
 
@@ -291,6 +291,29 @@ content-type: application/json
 
 
 
+#####################################################################################################
+#                                                                                                   #
+#                                          DRIVER ROTES                                             #
+#                                                                                                   #
+#####################################################################################################
+
+
+####
+# Register Driver Route
+POST https://app-workbook.herokuapp.com/driver/register
+content-type: application/json
+
+{
+    "userName":"driver",
+    "userID":"driver",
+    "password":"123456",
+    "carNumber":"sFsdg",
+    "instituteName":"IEEE",
+    "adharNumber":1234564564,
+    "contactNumber":1234566544,
+    "fcmToken": "afafsfg"
+}
+
 
 
 #####################################################################################################
@@ -344,3 +367,29 @@ content-type: application/json
 # Fetch Institute Profile Picture
 GET  http://localhost:8000/getInstituteProfile/ieeec
 content-type: application/json
+
+
+
+
+
+####
+POST http://localhost:8000/admin/setGD
+content-type: application/json
+
+{
+    "instituteName": "IEEE",
+    "division": [
+        { "division": "1" },
+        { "division": "2" },
+        { "division": "3" },
+        { "division": "4" },
+        { "division": "5" }
+    ],
+    "grade": [
+        { "grade": "chair" },
+        { "grade": "V.chair" },
+        { "grade": "TechHead" },
+        { "grade": "SponHead" },
+        { "grade": "TechLead" }
+    ]
+}
