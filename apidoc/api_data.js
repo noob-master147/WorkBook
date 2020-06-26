@@ -1202,7 +1202,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/update",
+    "url": "/updatePost",
     "title": "Update Post",
     "name": "Update_Post",
     "group": "Post",
@@ -1233,6 +1233,16 @@ define({ "api": [
         ]
       }
     },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "get",
+    "url": "/viewAllPost",
+    "title": "View All Post",
+    "name": "View_All_Post",
+    "group": "Post",
     "version": "0.0.0",
     "filename": "src/routes/post.js",
     "groupTitle": "Post"
