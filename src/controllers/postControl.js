@@ -1,22 +1,25 @@
 const { Post } = require('../models/postSchema')
-
-
-
+const chalk = require('chalk')
+const { ObjectID } = require('mongodb')
 
 const createPost = (obj) => {
     return new Promise(async(resolve, reject) => {
+        const id = new ObjectID()
         newPost = new Post({
+            _id: id,
             createdBy: obj.createdBy,
             content: obj.content,
             mediaUrl: obj.mediaUrl
         })
         await newPost.save()
-            .then(() => {
+
+        .then(() => {
                 console.log(chalk.green.bold("New Post Saved!"))
                 resolve({
                     statusCode: 200,
                     payload: {
                         msg: "New Post Saved!",
+                        _id: id
                     }
                 })
             })
@@ -101,12 +104,13 @@ const disablePost = (obj) => {
             }, {
                 new: true
             })
-            .then(() => {
+            .then((newPost) => {
                 console.log(chalk.green.bold("Post Disabled!"))
                 resolve({
                     statusCode: 200,
                     payload: {
                         msg: "Post Disabled",
+                        pst: newPost
                     }
                 })
             })
@@ -126,7 +130,33 @@ const disablePost = (obj) => {
 
 const updatePost = (obj) => {
     return new Promise(async(resolve, reject) => {
-
+        await Post.findByIdAndUpdate(obj.id, {
+                content: obj.content,
+                mediaUrl: obj.mediaUrl,
+                enabled: true
+            }, {
+                new: true
+            })
+            .then((newPost) => {
+                console.log(chalk.green.bold("Post Updated!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Post Updated",
+                        pst: newPost
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Updating Post!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating Post",
+                        err: err
+                    }
+                })
+            })
     })
 }
 
@@ -139,33 +169,3 @@ module.exports = {
     disablePost,
     updatePost
 }
-
-
-
-
-
-
-
-
-
-
-
-.then(() => {
-        console.log(chalk.green.bold("!"))
-        resolve({
-            statusCode: 200,
-            payload: {
-                msg: "",
-            }
-        })
-    })
-    .catch((err) => {
-        console.log(chalk.red.bold("Error in !"))
-        reject({
-            statusCode: 400,
-            payload: {
-                msg: "Error in ",
-                err: err
-            }
-        })
-    })

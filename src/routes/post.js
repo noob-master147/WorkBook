@@ -15,9 +15,9 @@ const chalk = require('chalk')
  * @apiParam {String} mediaUrl
  * 
  */ // Create Post
-router.get('/createPost', (req, res) => {
+router.post('/createPost', (req, res) => {
     console.log(chalk.bold.yellow("Create Post Route Hit!"))
-    postControl.createPost(req.params)
+    postControl.createPost(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -34,9 +34,9 @@ router.get('/createPost', (req, res) => {
  * @apiParam @apiParam {String} id _id document id
  * 
  */ // Delete Post
-router.get('/deletePost', (req, res) => {
+router.post('/deletePost', (req, res) => {
     console.log(chalk.bold.yellow("Delete Post Route Hit!"))
-    postControl.deletePost(req.params)
+    postControl.deletePost(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -52,9 +52,9 @@ router.get('/deletePost', (req, res) => {
  * @apiParam {String} id _id document id
  * 
  */ // Enable Post
-router.get('/enablePost', (req, res) => {
+router.post('/enablePost', (req, res) => {
     console.log(chalk.bold.yellow("Enable Post Route Hit!"))
-    postControl.enablePost(req.params)
+    postControl.enablePost(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -71,9 +71,9 @@ router.get('/enablePost', (req, res) => {
  * @apiParam {String} id _id document id
  * 
  */ // Disable Post
-router.get('/disablePost', (req, res) => {
+router.post('/disablePost', (req, res) => {
     console.log(chalk.bold.yellow("Disable Post Route Hit!"))
-    postControl.disablePost(req.params)
+    postControl.disablePost(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -88,11 +88,13 @@ router.get('/disablePost', (req, res) => {
  * @apiGroup Post
  * 
  * @apiParam {String} id _id document id
+ * @apiParam {String} content
+ * @apiParam {String} mediaUrl
  * 
  */ // Update Post
-router.get('/updatePost', (req, res) => {
-    console.log(chalk.bold.yellow("Disable Post Route Hit!"))
-    postControl.updatePost(req.params)
+router.post('/updatePost', (req, res) => {
+    console.log(chalk.bold.yellow("Update Post Route Hit!"))
+    postControl.updatePost(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
