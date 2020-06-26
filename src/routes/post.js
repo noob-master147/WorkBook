@@ -15,9 +15,9 @@ const chalk = require('chalk')
  * @apiParam {String} mediaUrl
  * 
  */ // Create Post
-router.get('/create', (req, res) => {
+router.get('/createPost', (req, res) => {
     console.log(chalk.bold.yellow("Create Post Route Hit!"))
-    postControl.create(req.params)
+    postControl.createPost(req.params)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -34,9 +34,9 @@ router.get('/create', (req, res) => {
  * @apiParam @apiParam {String} id _id document id
  * 
  */ // Delete Post
-router.get('/delete', (req, res) => {
+router.get('/deletePost', (req, res) => {
     console.log(chalk.bold.yellow("Delete Post Route Hit!"))
-    postControl.delete(req.params)
+    postControl.deletePost(req.params)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -45,16 +45,16 @@ router.get('/delete', (req, res) => {
 
 
 /** 
- * @api {post} /enable Enable Post
+ * @api {post} /enablePost Enable Post
  * @apiName Enable Post
  * @apiGroup Post
  * 
  * @apiParam {String} id _id document id
  * 
  */ // Enable Post
-router.get('/enable', (req, res) => {
+router.get('/enablePost', (req, res) => {
     console.log(chalk.bold.yellow("Enable Post Route Hit!"))
-    postControl.enable(req.params)
+    postControl.enablePost(req.params)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -64,16 +64,35 @@ router.get('/enable', (req, res) => {
 
 
 /** 
- * @api {post} /disable Disable Post
+ * @api {post} /disablePost Disable Post
  * @apiName Disable Post
  * @apiGroup Post
  * 
  * @apiParam {String} id _id document id
  * 
  */ // Disable Post
-router.get('/disable', (req, res) => {
+router.get('/disablePost', (req, res) => {
     console.log(chalk.bold.yellow("Disable Post Route Hit!"))
-    postControl.disable(req.params)
+    postControl.disablePost(req.params)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+
+/** 
+ * @api {post} /update Update Post
+ * @apiName Update Post
+ * @apiGroup Post
+ * 
+ * @apiParam {String} id _id document id
+ * 
+ */ // Update Post
+router.get('/updatePost', (req, res) => {
+    console.log(chalk.bold.yellow("Disable Post Route Hit!"))
+    postControl.updatePost(req.params)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
