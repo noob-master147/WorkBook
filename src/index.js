@@ -22,11 +22,13 @@ const employee = require('./routes/employee');
 const driver = require('./routes/driver')
 const superAdmin = require('./routes/superAdmin')
 const common = require('./routes/common')
+const post = require('./routes/post')
 app.use('/admin', admin)
 app.use('/employee', employee)
 app.use('/customer', customer)
 app.use('/driver', driver)
 app.use('/superAdmin', superAdmin)
+app.use('/post', post)
 app.use('/', common)
 
 //Load the Landing page for the form
