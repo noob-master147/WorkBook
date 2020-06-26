@@ -143,7 +143,7 @@ const updatePost = (obj) => {
                     statusCode: 200,
                     payload: {
                         msg: "Post Updated",
-                        pst: newPost
+                        post: newPost
                     }
                 })
             })
@@ -162,10 +162,46 @@ const updatePost = (obj) => {
 
 
 
+
+
+const viewAllPost = () => {
+    return new Promise(async(resolve, reject) => {
+        await Post.find()
+            .then((allPost) => {
+                console.log(chalk.green.bold("All Post Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "All Post Fetched",
+                        post: allPost
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Post!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Post",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
+
+
+
+
 module.exports = {
     createPost,
     deletePost,
     enablePost,
     disablePost,
-    updatePost
+    updatePost,
+    viewAllPost
 }

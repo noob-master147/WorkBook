@@ -83,7 +83,7 @@ router.post('/disablePost', (req, res) => {
 
 
 /** 
- * @api {post} /update Update Post
+ * @api {post} /updatePost Update Post
  * @apiName Update Post
  * @apiGroup Post
  * 
@@ -98,6 +98,24 @@ router.post('/updatePost', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+
+
+
+/** 
+ * @api {get} /viewAllPost View All Post
+ * @apiName View All Post
+ * @apiGroup Post
+
+ */ // viewAllPost Post
+router.get('/viewAllPost', (req, res) => {
+    console.log(chalk.bold.yellow("View All Post Route Hit!"))
+    postControl.viewAllPost()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
 
 
 

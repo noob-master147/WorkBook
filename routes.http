@@ -459,3 +459,9 @@ content-type: application/json
     "createdBy": "szxvdg",
     "mediaUrl": "ss"
 }
+
+
+####
+# Fetch User Profile Picture
+GET  http://localhost:6000/post/viewAllPost
+content-type: application/json
