@@ -3,7 +3,6 @@ node_js:
     - "14"
 branches:
     only:
-    - server
     - master
 script:
     - npm test

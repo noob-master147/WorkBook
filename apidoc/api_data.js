@@ -1098,6 +1098,147 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/create",
+    "title": "Create Post",
+    "name": "Create_Post",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "createdBy",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "content",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "mediaUrl",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
+    "url": "/delete",
+    "title": "Delete Post",
+    "name": "Delete_Post",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
+    "url": "/disablePost",
+    "title": "Disable Post",
+    "name": "Disable_Post",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id document id</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
+    "url": "/enablePost",
+    "title": "Enable Post",
+    "name": "Enable_Post",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id document id</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
+    "url": "/update",
+    "title": "Update Post",
+    "name": "Update_Post",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id document id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "content",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "mediaUrl",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
     "url": "/superAdmin/approveAdmin",
     "title": "Approve Admin",
     "name": "Approve_Admin",
