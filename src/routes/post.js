@@ -6,13 +6,13 @@ const chalk = require('chalk')
 
 
 /** 
- * @api {post} /create Create Post
+ * @api {post} /post/create Create Post
  * @apiName Create Post
  * @apiGroup Post
  * 
- * @apiParam {String} createdBy
- * @apiParam {String} content
- * @apiParam {String} mediaUrl
+ * @apiParam {String} createdBy User Name
+ * @apiParam {String} content content of the Post
+ * @apiParam {String} mediaUrl URL of the attached media
  * 
  */ // Create Post
 router.post('/createPost', (req, res) => {
@@ -27,11 +27,11 @@ router.post('/createPost', (req, res) => {
 
 
 /** 
- * @api {post} /delete Delete Post
+ * @api {post} /post/delete Delete Post
  * @apiName Delete Post
  * @apiGroup Post
  * 
- * @apiParam @apiParam {String} id _id document id
+ * @apiParam {String} id _id document id
  * 
  */ // Delete Post
 router.post('/deletePost', (req, res) => {
@@ -45,7 +45,7 @@ router.post('/deletePost', (req, res) => {
 
 
 /** 
- * @api {post} /enablePost Enable Post
+ * @api {post} /post/enablePost Enable Post
  * @apiName Enable Post
  * @apiGroup Post
  * 
@@ -64,7 +64,7 @@ router.post('/enablePost', (req, res) => {
 
 
 /** 
- * @api {post} /disablePost Disable Post
+ * @api {post} /post/disablePost Disable Post
  * @apiName Disable Post
  * @apiGroup Post
  * 
@@ -83,13 +83,13 @@ router.post('/disablePost', (req, res) => {
 
 
 /** 
- * @api {post} /updatePost Update Post
+ * @api {post} /post/updatePost Update Post
  * @apiName Update Post
  * @apiGroup Post
  * 
  * @apiParam {String} id _id document id
- * @apiParam {String} content
- * @apiParam {String} mediaUrl
+ * @apiParam {String} content content of the Post
+ * @apiParam {String} mediaUrl URL of the attached media
  * 
  */ // Update Post
 router.post('/updatePost', (req, res) => {
@@ -104,10 +104,10 @@ router.post('/updatePost', (req, res) => {
 
 
 /** 
- * @api {get} /viewAllPost View All Post
+ * @api {get} /post/viewAllPost View All Post
  * @apiName View All Post
  * @apiGroup Post
-
+ *
  */ // viewAllPost Post
 router.get('/viewAllPost', (req, res) => {
     console.log(chalk.bold.yellow("View All Post Route Hit!"))
@@ -115,6 +115,65 @@ router.get('/viewAllPost', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+
+
+
+/** 
+ * @api {post} /post/like Like Post
+ * @apiName Like Post
+ * @apiGroup Post
+ * 
+ * @apiParam {String} id _id document id
+ * @apiParam {String} userName User Name
+ *
+ */ // 
+router.post('/like', (req, res) => {
+    console.log(chalk.bold.yellow("Like Post Route Hit!"))
+    postControl.like(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+
+/** 
+ * @api {post} /post/comment Comment on Post
+ * @apiName Comment Post
+ * @apiGroup Post
+ * 
+ * @apiParam {String} id _id document id
+ * @apiParam {String} content
+ * @apiParam {String} mediaUrl
+ * 
+ */ // Comment Post
+router.post('/comment', (req, res) => {
+    console.log(chalk.bold.yellow("Comment Post Route Hit!"))
+    postControl.comment(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+/** 
+ * @api {delete} /post/delete Delete All Post
+ * @apiName Delete All Post
+ * @apiGroup Post
+ * 
+ * 
+ */ // Comment Post
+router.delete('/delete', (req, res) => {
+    console.log(chalk.bold.yellow("Delete Post Route Hit!"))
+    postControl.deleteAllPost()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
 
 
 

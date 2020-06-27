@@ -1098,9 +1098,9 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/create",
-    "title": "Create Post",
-    "name": "Create_Post",
+    "url": "/post/comment",
+    "title": "Comment on Post",
+    "name": "Comment_Post",
     "group": "Post",
     "parameter": {
       "fields": {
@@ -1109,8 +1109,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "createdBy",
-            "description": ""
+            "field": "id",
+            "description": "<p>_id document id</p>"
           },
           {
             "group": "Parameter",
@@ -1135,7 +1135,54 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/delete",
+    "url": "/post/create",
+    "title": "Create Post",
+    "name": "Create_Post",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "createdBy",
+            "description": "<p>User Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "content",
+            "description": "<p>content of the Post</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "mediaUrl",
+            "description": "<p>URL of the attached media</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "delete",
+    "url": "/post/delete",
+    "title": "Delete All Post",
+    "name": "Delete_All_Post",
+    "group": "Post",
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
+    "url": "/post/delete",
     "title": "Delete Post",
     "name": "Delete_Post",
     "group": "Post",
@@ -1144,8 +1191,10 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
+            "type": "String",
             "optional": false,
-            "description": ""
+            "field": "id",
+            "description": "<p>_id document id</p>"
           }
         ]
       }
@@ -1156,7 +1205,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/disablePost",
+    "url": "/post/disablePost",
     "title": "Disable Post",
     "name": "Disable_Post",
     "group": "Post",
@@ -1179,7 +1228,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/enablePost",
+    "url": "/post/enablePost",
     "title": "Enable Post",
     "name": "Enable_Post",
     "group": "Post",
@@ -1202,7 +1251,37 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/update",
+    "url": "/post/like",
+    "title": "Like Post",
+    "name": "Like_Post",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id document id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userName",
+            "description": "<p>User Name</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
+    "url": "/post/updatePost",
     "title": "Update Post",
     "name": "Update_Post",
     "group": "Post",
@@ -1221,18 +1300,28 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "content",
-            "description": ""
+            "description": "<p>content of the Post</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "mediaUrl",
-            "description": ""
+            "description": "<p>URL of the attached media</p>"
           }
         ]
       }
     },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "get",
+    "url": "/post/viewAllPost",
+    "title": "View All Post",
+    "name": "View_All_Post",
+    "group": "Post",
     "version": "0.0.0",
     "filename": "src/routes/post.js",
     "groupTitle": "Post"
