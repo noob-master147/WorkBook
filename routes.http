@@ -393,3 +393,75 @@ content-type: application/json
         { "grade": "TechLead" }
     ]
 }
+
+
+
+
+
+#####################################################################################################
+#                                                                                                   #
+#                                          POST ROTES                                               #
+#                                                                                                   #
+#####################################################################################################
+
+####
+# create Post
+POST http://localhost:6000/post/createPost
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f",
+    "content": "new ssspost",
+    "createdBy": "sdg",
+    "mediaUrl": "dgGdsaag"
+}
+
+
+
+####
+# delete Post
+POST http://localhost:6000/post/deletePost
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f"
+}
+
+
+####
+# enable Post
+POST http://localhost:6000/post/enablePost
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f"
+}
+
+
+
+####
+# disable Post
+POST http://localhost:6000/post/disablePost
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f"
+}
+
+####
+# Update Post
+POST http://localhost:6000/post/updatePost
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f",
+    "content": "newzxc s",
+    "createdBy": "szxvdg",
+    "mediaUrl": "ss"
+}
+
+
+####
+# Fetch User Profile Picture
+GET  http://localhost:6000/post/viewAllPost
+content-type: application/json
