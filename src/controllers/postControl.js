@@ -9,7 +9,8 @@ const createPost = (obj) => {
             _id: id,
             createdBy: obj.createdBy,
             content: obj.content,
-            mediaUrl: obj.mediaUrl
+            mediaUrl: obj.mediaUrl,
+            mediaType: obj.mediaType
         })
         await newPost.save()
 
@@ -133,6 +134,7 @@ const updatePost = (obj) => {
         await Post.findByIdAndUpdate(obj.id, {
                 content: obj.content,
                 mediaUrl: obj.mediaUrl,
+                mediaType: obj.mediaType,
                 enabled: true
             }, {
                 new: true
@@ -336,6 +338,76 @@ const updateViews = (obj) => {
 
 
 
+
+
+
+const enableComment = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        await Post.findByIdAndUpdate(obj.id, {
+                commentEnabled: true
+            }, {
+                new: true
+            })
+            .then((newPost) => {
+                console.log(chalk.green.bold("Comments Enabled!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Comments Enabled!",
+                        post: newPost
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Enabling Comments!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Enabling Comments",
+                        err: err
+                    }
+                })
+            })
+
+    })
+}
+
+
+const disableComment = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        await Post.findByIdAndUpdate(obj.id, {
+                commentEnabled: false
+            }, {
+                new: true
+            })
+            .then((newPost) => {
+                console.log(chalk.green.bold("Comments Disabled!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Comments Disabled",
+                        pst: newPost
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Disabling Comments!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Disabling Comments",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
+
+
 module.exports = {
     createPost,
     deletePost,
@@ -346,5 +418,7 @@ module.exports = {
     deleteAllPost,
     like,
     comment,
-    updateViews
+    updateViews,
+    enableComment,
+    disableComment
 }

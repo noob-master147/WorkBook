@@ -1251,9 +1251,55 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/post/enableComment",
+    "title": "Disable Post Comment",
+    "name": "Disable_Post_Comment",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id document id</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
     "url": "/post/enablePost",
     "title": "Enable Post",
     "name": "Enable_Post",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id document id</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
+    "url": "/post/enableComment",
+    "title": "Enable Post Comment",
+    "name": "Enable_Post_Comment",
     "group": "Post",
     "parameter": {
       "fields": {

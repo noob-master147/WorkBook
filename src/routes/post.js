@@ -200,4 +200,42 @@ router.delete('/delete', (req, res) => {
 
 
 
+
+/** 
+ * @api {post} /post/enableComment Enable Post Comment
+ * @apiName Enable Post Comment
+ * @apiGroup Post
+ * 
+ * @apiParam {String} id _id document id
+ * 
+ */ // Enable Post Comment
+router.post('/enableComment', (req, res) => {
+    console.log(chalk.bold.yellow("Enable Post Route Hit!"))
+    postControl.enableComment(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+
+/** 
+ * @api {post} /post/enableComment Disable Post Comment
+ * @apiName Disable Post Comment
+ * @apiGroup Post
+ * 
+ * @apiParam {String} id _id document id
+ * 
+ */ // Disable Post Comment
+router.post('/disableComment', (req, res) => {
+    console.log(chalk.bold.yellow("Disable Post Route Hit!"))
+    postControl.disableComment(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
 module.exports = router;
