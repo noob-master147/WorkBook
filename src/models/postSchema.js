@@ -9,12 +9,10 @@ const likedBySchema = new mongoose.Schema({
     },
     userName: {
         type: String,
-        required: true,
         trim: true
     },
     userID: {
         type: String,
-        required: true,
         trim: true
     }
 
@@ -29,12 +27,10 @@ const commentSchema = new mongoose.Schema({
     },
     userName: {
         type: String,
-        required: true,
         trim: true
     },
     comment: {
         type: String,
-        required: true,
         trim: true,
     }
 })
@@ -45,7 +41,6 @@ const commentSchema = new mongoose.Schema({
 const postSchema = new mongoose.Schema({
     createdBy: {
         type: String,
-        required: true,
         trim: true,
     },
     content: {
@@ -54,11 +49,9 @@ const postSchema = new mongoose.Schema({
     },
     mediaType: {
         type: String,
-        required: true
     },
     mediaUrl: {
         type: String,
-        required: true
     },
     enabled: {
         type: Boolean,
@@ -72,14 +65,14 @@ const postSchema = new mongoose.Schema({
     },
     likes: {
         type: Number,
-        required: true,
         trim: true,
+        required: true,
         default: 0
     },
     views: {
         type: Number,
-        required: true,
         trim: true,
+        required: true,
         default: 0
     },
     createdAt: {
