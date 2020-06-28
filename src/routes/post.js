@@ -160,6 +160,27 @@ router.post('/comment', (req, res) => {
 
 
 
+
+/** 
+ * @api {post} /post/updateViews Add Views on Post
+ * @apiName Add Views on Post
+ * @apiGroup Post
+ * 
+ * @apiParam {String} id _id document id
+ * 
+ */ // Comment Post
+router.post('/updateViews', (req, res) => {
+    console.log(chalk.bold.yellow("Add Views on Post Route Hit!"))
+    postControl.updateViews(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+
+
 /** 
  * @api {delete} /post/delete Delete All Post
  * @apiName Delete All Post

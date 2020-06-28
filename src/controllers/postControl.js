@@ -300,6 +300,42 @@ const deleteAllPost = () => {
 
 
 
+
+const updateViews = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        await Post.findByIdAndUpdate(obj.id, {
+                $inc: {
+                    views: 1
+                }
+            }, {
+                new: true
+            })
+            .then((post) => {
+                console.log(chalk.green.bold("Views updated on Post!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Views updated on Post",
+                        post: post
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Updating Post Post!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating Post Post",
+                        err: err
+                    }
+                })
+            })
+
+    })
+}
+
+
+
 module.exports = {
     createPost,
     deletePost,
@@ -309,5 +345,6 @@ module.exports = {
     viewAllPost,
     deleteAllPost,
     like,
-    comment
+    comment,
+    updateViews
 }
