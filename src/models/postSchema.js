@@ -44,15 +44,22 @@ const postSchema = new mongoose.Schema({
     },
     content: {
         type: String,
-        required: true,
         trim: true,
-        unique: true
+    },
+    mediaType: {
+        type: String,
+        required: true
     },
     mediaUrl: {
         type: String,
         required: true
     },
     enabled: {
+        type: Boolean,
+        required: true,
+        default: true
+    },
+    commentEnabled: {
         type: Boolean,
         required: true,
         default: true
