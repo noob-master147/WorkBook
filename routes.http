@@ -413,7 +413,8 @@ content-type: application/json
     "id": "5ef5d361c4be2314e90a1b4f",
     "content": "newff sf",
     "createdBy": "sdg",
-    "mediaUrl": "fs"
+    "mediaUrl": "fs",
+    "mediaType": "file"
 }
 
 
@@ -462,7 +463,7 @@ content-type: application/json
 
 
 ####
-# Fetch User Profile Picture
+# View add Post
 GET  http://localhost:6000/post/viewAllPost
 content-type: application/json
 
@@ -487,9 +488,9 @@ POST http://localhost:6000/post/comment
 content-type: application/json
 
 {
-    "id": "5ef5d361c4be2314e90a1b4f",
-    "userName": "ff",
-    "comment": "new sFFFF"
+    "id": "5ef8b1f01523a634e057f2b8",
+    "userName": "gg",
+    "comment": "newasfasf"
 }
 
 

@@ -1140,14 +1140,14 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "content",
-            "description": ""
+            "description": "<p>Content of the Post</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "mediaUrl",
-            "description": ""
+            "field": "userName",
+            "description": "<p>Name of the User</p>"
           }
         ]
       }
