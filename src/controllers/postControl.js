@@ -202,7 +202,8 @@ const like = (obj) => {
                 },
                 $push: {
                     likedBy: [{
-                        userName: obj.userName
+                        userName: obj.userName,
+                        userID: obj.userID
                     }]
                 }
             }, {
