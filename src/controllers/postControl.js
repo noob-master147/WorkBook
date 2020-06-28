@@ -192,8 +192,111 @@ const viewAllPost = () => {
 
 
 
+const like = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        await Post.findByIdAndUpdate(obj.id, {
+                $inc: {
+                    likes: 1
+                },
+                $push: {
+                    likedBy: [{
+                        userName: obj.userName
+                    }]
+                }
+            }, {
+                new: true
+            })
+            .then((post) => {
+                console.log(chalk.green.bold("Post Liked!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Post Liked",
+                        post: post
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Liking Post!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Liking Post",
+                        err: err
+                    }
+                })
+            })
+
+    })
+}
 
 
+
+
+
+const comment = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        await Post.findByIdAndUpdate(obj.id, {
+                $push: {
+                    comments: [{
+                        userName: obj.userName,
+                        comment: obj.comment
+                    }]
+                }
+            }, {
+                new: true
+            })
+            .then((post) => {
+                console.log(chalk.green.bold("Post Commented!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Post Commented",
+                        post: post
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Commenting Post!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Commenting Post",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
+const deleteAllPost = () => {
+    return new Promise(async(resolve, reject) => {
+        await Post.remove({}, function(err) {
+                console.log(chalk.red.bold('Post collection removed'))
+            })
+            .then((post) => {
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Post collection removed",
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error Post collection removed!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in  Removing Post collection",
+                        err: err
+                    }
+                })
+            })
+    })
+}
 
 
 
@@ -203,5 +306,8 @@ module.exports = {
     enablePost,
     disablePost,
     updatePost,
-    viewAllPost
+    viewAllPost,
+    deleteAllPost,
+    like,
+    comment
 }

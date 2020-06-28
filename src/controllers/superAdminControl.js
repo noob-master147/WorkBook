@@ -7,6 +7,7 @@ const { Customer } = require('../models/customerSchema')
 const { Institute } = require('../models/instituteSchema')
 const { Driver } = require('../models/driverSchema')
 const { Role } = require('../models/RoleSchema')
+const { Post } = require('../models/postSchema')
 const { ObjectID } = require('mongodb')
 
 const approveAdmin = (admin) => {
@@ -90,8 +91,11 @@ const purge = () => {
         const p7 = await SuperAdmin.remove({}, function(err) {
             console.log(chalk.red.bold('SuperAdmin collection removed'))
         })
+        const p8 = await Post.remove({}, function(err) {
+            console.log(chalk.red.bold('Post collection removed'))
+        })
 
-        Promise.all([p1, p2, p3, p4, p5, p6, p7])
+        Promise.all([p1, p2, p3, p4, p5, p6, p7, p8])
             .then(() => {
                 console.log(chalk.red.bold("ALL DATABASE PURGED"))
                 resolve({

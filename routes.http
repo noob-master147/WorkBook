@@ -411,9 +411,9 @@ content-type: application/json
 
 {
     "id": "5ef5d361c4be2314e90a1b4f",
-    "content": "new ssspost",
+    "content": "newff sf",
     "createdBy": "sdg",
-    "mediaUrl": "dgGdsaag"
+    "mediaUrl": "fs"
 }
 
 
@@ -434,7 +434,7 @@ POST http://localhost:6000/post/enablePost
 content-type: application/json
 
 {
-    "id": "5ef5d361c4be2314e90a1b4f"
+    "id": "5ef876239ed048372551c07e"
 }
 
 
@@ -464,4 +464,36 @@ content-type: application/json
 ####
 # Fetch User Profile Picture
 GET  http://localhost:6000/post/viewAllPost
+content-type: application/json
+
+
+
+
+####
+# like Post
+POST http://localhost:6000/post/like
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f",
+    "userName": "ff"
+}
+
+
+
+####
+# comment Post
+POST http://localhost:6000/post/comment
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f",
+    "userName": "ff",
+    "comment": "new sFFFF"
+}
+
+
+####
+# delete all Post
+DELETE http://localhost:6000/post/delete
 content-type: application/json

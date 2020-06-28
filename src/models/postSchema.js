@@ -5,7 +5,7 @@ const likedBySchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         required: true,
-        default: Date.now()
+        default: Date.now
     },
     userName: {
         type: String,
@@ -19,7 +19,7 @@ const commentSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         required: true,
-        default: Date.now()
+        default: Date.now
     },
     userName: {
         type: String,
@@ -63,10 +63,16 @@ const postSchema = new mongoose.Schema({
         trim: true,
         default: 0
     },
+    views: {
+        type: Number,
+        required: true,
+        trim: true,
+        default: 0
+    },
     createdAt: {
         type: Date,
         required: true,
-        default: Date.now()
+        default: Date.now
     },
     likedBy: [likedBySchema],
     comments: [commentSchema]
