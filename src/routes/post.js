@@ -11,6 +11,7 @@ const chalk = require('chalk')
  * @apiGroup Post
  * 
  * @apiParam {String} createdBy User Name
+ * @apiParam {String} createdBy UserID
  * @apiParam {String} content content of the Post
  * @apiParam {String} mediaUrl URL of the attached media
  * 
@@ -127,6 +128,7 @@ router.get('/viewAllPost', (req, res) => {
  * 
  * @apiParam {String} id _id document id
  * @apiParam {String} userName User Name
+ * @apiParam {String} userID User ID
  *
  */ // 
 router.post('/like', (req, res) => {
@@ -146,8 +148,8 @@ router.post('/like', (req, res) => {
  * @apiGroup Post
  * 
  * @apiParam {String} id _id document id
- * @apiParam {String} content
- * @apiParam {String} mediaUrl
+ * @apiParam {String} content Content of the Post
+ * @apiParam {String} userName Name of the User
  * 
  */ // Comment Post
 router.post('/comment', (req, res) => {

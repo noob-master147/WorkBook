@@ -202,7 +202,8 @@ const like = (obj) => {
                 },
                 $push: {
                     likedBy: [{
-                        userName: obj.userName
+                        userName: obj.userName,
+                        userID: obj.userID
                     }]
                 }
             }, {
@@ -248,13 +249,13 @@ const comment = (obj) => {
             }, {
                 new: true
             })
-            .then((post) => {
+            .then((newPost) => {
                 console.log(chalk.green.bold("Post Commented!"))
                 resolve({
                     statusCode: 200,
                     payload: {
                         msg: "Post Commented",
-                        post: post
+                        post: newPost
                     }
                 })
             })
