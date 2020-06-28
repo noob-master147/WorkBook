@@ -1098,6 +1098,29 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/post/updateViews",
+    "title": "Add Views on Post",
+    "name": "Add_Views_on_Post",
+    "group": "Post",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id document id</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/post.js",
+    "groupTitle": "Post"
+  },
+  {
+    "type": "post",
     "url": "/post/comment",
     "title": "Comment on Post",
     "name": "Comment_Post",
