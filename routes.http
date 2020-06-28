@@ -411,9 +411,9 @@ content-type: application/json
 
 {
     "id": "5ef5d361c4be2314e90a1b4f",
-    "content": "new ssspost",
+    "content": "newff sf",
     "createdBy": "sdg",
-    "mediaUrl": "dgGdsaag"
+    "mediaUrl": "fs"
 }
 
 
@@ -434,7 +434,7 @@ POST http://localhost:6000/post/enablePost
 content-type: application/json
 
 {
-    "id": "5ef5d361c4be2314e90a1b4f"
+    "id": "5ef876239ed048372551c07e"
 }
 
 
@@ -482,7 +482,7 @@ content-type: application/json
 
 
 ####
-# like Post
+# comment Post
 POST http://localhost:6000/post/comment
 content-type: application/json
 

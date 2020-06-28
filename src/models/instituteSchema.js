@@ -40,7 +40,7 @@ const instituteSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         required: true,
-        default: Date.now()
+        default: Date.now
     },
     grade: [gradeSchema],
     division: [divisionSchema]
@@ -52,28 +52,3 @@ const instituteSchema = new mongoose.Schema({
 module.exports = {
     Institute: mongoose.model('Institute', instituteSchema)
 }
-
-
-
-
-
-
-
-// req = {
-
-//     "instituteName": "IEEE",
-//     "division": [
-//         { "division": "1" },
-//         { "division": "2" },
-//         { "division": "3" },
-//         { "division": "4" },
-//         { "division": "5" },
-//     ],
-//     "grade": [
-//         { "grade": "chair" },
-//         { "grade": "V.chair" },
-//         { "grade": "TechHead" },
-//         { "grade": "SponHead" },
-//         { "grade": "TechLead" },
-//     ]
-// }
