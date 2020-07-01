@@ -308,6 +308,34 @@ const fetchDivision = (obj) => {
 }
 
 
+const getRoles = () => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Getting all Roles..."))
+        await Role.find()
+            .then((roles) => {
+                console.log(chalk.green.bold("Roles Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Roles Fetched",
+                        roles: roles
+                    }
+                })
+            })
+            .catch(async(err) => {
+                console.log(chalk.red.bold("Error in Fetching Roles!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Unable to Reach DataBase! Contact Support",
+                        err: err
+                    }
+                })
+            })
+
+    })
+}
+
 
 module.exports = {
     sendNotification,
@@ -316,5 +344,6 @@ module.exports = {
     getUserProfile,
     getInstituteProfile,
     fetchGrade,
-    fetchDivision
+    fetchDivision,
+    getRoles
 }

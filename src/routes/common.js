@@ -130,6 +130,22 @@ router.get('/fetchDivision/:instituteName', (req, res) => {
 
 
 
+/** Get Roles
+ * @api {get} /getRoles Fetch Roles
+ * @apiName Fetch Roles
+ * @apiGroup Common
+ * 
+ */ // Get Roles
+router.get('/getRoles', (req, res) => {
+    console.log(chalk.bold.yellow("Fetch Roles Route Hit!"))
+    commonControl.getRoles()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
 
 
 
