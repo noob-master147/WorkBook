@@ -148,7 +148,7 @@ router.post('/like', (req, res) => {
  * @apiGroup Post
  * 
  * @apiParam {String} id _id document id
- * @apiParam {String} content Content of the Post
+ * @apiParam {String} comment Comment of the Post
  * @apiParam {String} userName Name of the User
  * 
  */ // Comment Post

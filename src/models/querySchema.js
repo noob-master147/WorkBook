@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 
-const roleSchema = new mongoose.Schema({
-    role: {
+const querySchema = new mongoose.Schema({
+    userName: {
         type: String,
         required: true,
         trim: true
@@ -12,6 +12,11 @@ const roleSchema = new mongoose.Schema({
         required: true,
         trim: true,
         unique: true
+    },
+    message: {
+        type: String,
+        required: true,
+        trim: true,
     },
     createdAt: {
         type: Date,
@@ -30,5 +35,5 @@ const roleSchema = new mongoose.Schema({
 
 
 module.exports = {
-    Role: mongoose.model('Role', roleSchema)
+    Query: mongoose.model('Query', querySchema)
 }

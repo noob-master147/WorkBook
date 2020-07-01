@@ -59,13 +59,27 @@ router.post('/login', (req, res) => {
 })
 
 
-//#######################YET TO DO########################
-// route to update an employee
+/** Update Employee
+ * @api {post} /employee/update Update Employee
+ * @apiName Update
+ * @apiGroup Employee
+ * 
+ * @apiParam {String} id _id of the doc
+ * @apiParam {String} userName user name
+ * @apiParam {String} state State
+ * @apiParam {String} city City
+ * @apiParam {String} grade Grade
+ * @apiParam {String} division Division
+ * @apiParam {Number} adharNumber Adhar Number
+ * @apiParam {Number} contactNumber Contact Number
+ * @apiParam {String} fcmToken FCM Device Token
+ */ // Update Admin
 router.post('/update', (req, res) => {
     employeeControl.update(req.body)
-        .then((obj) => res.send(obj).status(201))
+        .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
 
 
 

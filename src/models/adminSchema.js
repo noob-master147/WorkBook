@@ -48,13 +48,11 @@ const adminSchema = new mongoose.Schema({
     },
     state: {
         type: String,
-        required: true,
         trim: true,
     },
     city: {
         type: String,
         trim: true,
-        required: true
     },
     mailAddress: {
         type: String,

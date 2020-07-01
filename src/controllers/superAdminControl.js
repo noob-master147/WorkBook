@@ -6,9 +6,59 @@ const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
 const { Institute } = require('../models/instituteSchema')
 const { Driver } = require('../models/driverSchema')
+const { Guest } = require('../models/guestSchema')
 const { Role } = require('../models/RoleSchema')
 const { Post } = require('../models/postSchema')
+const { Query } = require('../models/querySchema')
 const { ObjectID } = require('mongodb')
+
+
+const create = (user) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow("Creating SuperAdmin..."))
+        const id = new ObjectID()
+        superAdmin = new SuperAdmin({
+            _id: id,
+            userName: user.userName,
+            userID: user.userID,
+            password: user.password,
+            fcmToken: user.fcmToken,
+        })
+
+        role = new Role({
+            _id: id,
+            fcmToken: user.fcmToken,
+            userID: user.userID,
+            role: "superAdmin"
+        })
+        const p1 = await superAdmin.save()
+        const p2 = await role.save()
+
+        Promise.all([p1, p2])
+            .then((superAdmin) => {
+                console.log(chalk.bold.green("SuperAdmin Created!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "SuperAdmin Created",
+                        superAdmin: superAdmin
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("SuperAdmin Not Created!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Creating SuperAdmin! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+
+    })
+}
 
 const approveAdmin = (admin) => {
     return new Promise(async(resolve, reject) => {
@@ -94,8 +144,14 @@ const purge = () => {
         const p8 = await Post.remove({}, function(err) {
             console.log(chalk.red.bold('Post collection removed'))
         })
+        const p9 = await Query.remove({}, function(err) {
+            console.log(chalk.red.bold('Querry collection removed'))
+        })
+        const p10 = await Guest.remove({}, function(err) {
+            console.log(chalk.red.bold('Guest collection removed'))
+        })
 
-        Promise.all([p1, p2, p3, p4, p5, p6, p7, p8])
+        Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10])
             .then(() => {
                 console.log(chalk.red.bold("ALL DATABASE PURGED"))
                 resolve({
@@ -175,58 +231,44 @@ const viewAllAdmin = () => {
     })
 }
 
-const create = (user) => {
+const getSuperAdmin = () => {
     return new Promise(async(resolve, reject) => {
-        console.log(chalk.yellow("Creating SuperAdmin..."))
-        const id = new ObjectID()
-        superAdmin = new SuperAdmin({
-            _id: id,
-            userName: user.userName,
-            userID: user.userID,
-            password: user.password,
-            fcmToken: user.fcmToken,
-        })
-
-        role = new Role({
-            _id: id,
-            userID: user.userID,
-            role: "superAdmin"
-        })
-        const p1 = await superAdmin.save()
-        const p2 = await role.save()
-
-        Promise.all([p1, p2])
+        console.log(chalk.bold.green("SuperAdmin Fetching..."))
+        await SuperAdmin.find()
             .then((superAdmin) => {
-                console.log(chalk.bold.green("SuperAdmin Created!"))
+                console.log(chalk.bold.green("SuperAdmin Fetched!"))
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: "SuperAdmin Created",
+                        msg: "SuperAdmin Fetched",
                         superAdmin: superAdmin
                     }
                 })
             })
             .catch((err) => {
-                console.log(chalk.red.bold("SuperAdmin Not Created!"))
+                console.log(chalk.red.bold("SuperAdmin Not Fetched!"))
                 reject({
                     statusCode: 400,
                     payload: {
-                        msg: "Error in Creating SuperAdmin! Contact Support",
+                        msg: "Error in Fetching SuperAdmin! Contact Support",
                         Error: "Issue in connecting to the Datebase",
                         err: err
                     }
                 })
             })
-
     })
 }
 
 
+
+
+
 module.exports = {
+    create,
     approveAdmin,
     rejectAdmin,
     purge,
     deleteAdmin,
     viewAllAdmin,
-    create
+    getSuperAdmin
 }

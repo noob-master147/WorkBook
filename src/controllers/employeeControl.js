@@ -24,6 +24,7 @@ const register = (user) => {
         })
         role = new Role({
             _id: id,
+            fcmToken: user.fcmToken,
             userID: user.userID,
             role: "employee"
 
@@ -105,6 +106,45 @@ const login = (user) => {
                     payload: {
                         msg: "Error in Logging In Employee! Contact Support",
                         err: "Email not found"
+                    }
+                })
+            })
+    })
+}
+
+const update = (user) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Updating Employee"))
+        await Employee.findByIdAndUpdate(user.id, {
+                userName: user.userName,
+                state: user.state,
+                city: user.city,
+                division: user.division,
+                grade: user.grade,
+                adharNumber: user.adharNumber,
+                contactNumber: user.contactNumber,
+                fcmToken: user.fcmToken
+            }, {
+                new: true
+            })
+            .then((employee) => {
+                console.log(chalk.green.bold("Employee Updated"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Updated Employee",
+                        employee: employee
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log("Error in Updating Employee")
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating Employee! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
                     }
                 })
             })
@@ -267,5 +307,6 @@ module.exports = {
     approveCustomer,
     rejectCustomer,
     activeCustomer,
-    deleteCustomer
+    deleteCustomer,
+    update
 }

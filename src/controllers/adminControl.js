@@ -39,6 +39,7 @@ const register = (user) => {
         })
         role = new Role({
             _id: id,
+            fcmToken: user.body.fcmToken,
             userID: user.body.userID,
             role: "admin"
         })
