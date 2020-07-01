@@ -1,9 +1,11 @@
 ####################################### ROOT ROUTE #################################################
 
-GET  https://app-workbook.herokuapp.com/
+POST https://escalations.in.ngrok.io/
 content-type: application/json
 
+{
 
+}
 #####################################################################################################
 #                                                                                                   #
 #                                         SUPER ADMIN ROTES                                         #
@@ -339,8 +341,8 @@ content-type: application/json
 
 {
     "fcmToken" : "asdlkfccccccchdslf",
-    "userID":"superAdmin@superAdmin",
-    "password": "123"
+    "userID":"emp",
+    "password": "password"
 }
 
 
@@ -476,8 +478,9 @@ POST http://localhost:6000/post/like
 content-type: application/json
 
 {
-    "id": "5ef5d361c4be2314e90a1b4f",
-    "userName": "ff"
+    "id": "5ef8bc63de6aae0017ca5930",
+    "userName": "ffdsf",
+    "userID": "divyansh"
 }
 
 
@@ -488,9 +491,9 @@ POST http://localhost:6000/post/comment
 content-type: application/json
 
 {
-    "id": "5ef8b1f01523a634e057f2b8",
+    "id": "5ef8db7c2835b95b041274ab",
     "userName": "gg",
-    "comment": "fuck you"
+    "comment": "jhfkj"
 }
 
 

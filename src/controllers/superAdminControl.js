@@ -189,6 +189,7 @@ const create = (user) => {
 
         role = new Role({
             _id: id,
+            fcmToken: user.fcmToken,
             userID: user.userID,
             role: "superAdmin"
         })

@@ -32,7 +32,8 @@ app.use('/post', post)
 app.use('/', common)
 
 //Load the Landing page for the form
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
+    console.log(req.body)
     res.send({
         statusCode: 200,
         payload: {

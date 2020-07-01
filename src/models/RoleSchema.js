@@ -17,6 +17,12 @@ const roleSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+    fcmToken: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
     }
 });
 
