@@ -501,6 +501,16 @@
     "groupTitle": "Common"
   },
   {
+    "type": "get",
+    "url": "/getRoles",
+    "title": "Fetch Roles",
+    "name": "Fetch_Roles",
+    "group": "Common",
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
     "type": "post",
     "url": "/sendNotification",
     "title": "Send Notifications",
@@ -1075,6 +1085,85 @@
   },
   {
     "type": "post",
+    "url": "/employee/update",
+    "title": "Update Employee",
+    "name": "Update",
+    "group": "Employee",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of the doc</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userName",
+            "description": "<p>user name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "state",
+            "description": "<p>State</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "city",
+            "description": "<p>City</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>Grade</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "division",
+            "description": "<p>Division</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "adharNumber",
+            "description": "<p>Adhar Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "contactNumber",
+            "description": "<p>Contact Number</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Device Token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/employee.js",
+    "groupTitle": "Employee"
+  },
+  {
+    "type": "post",
     "url": "employee/viewAllCustomers",
     "title": "View Customers",
     "name": "View_Customers",
@@ -1095,6 +1184,60 @@
     "version": "0.0.0",
     "filename": "src/routes/employee.js",
     "groupTitle": "Employee"
+  },
+  {
+    "type": "post",
+    "url": "/guest/createQuery",
+    "title": "Create Query",
+    "name": "Create_Query",
+    "group": "Guest",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userName",
+            "description": "<p>User Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Query</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fcmToken",
+            "description": "<p>FCM Device Token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/guest.js",
+    "groupTitle": "Guest"
+  },
+  {
+    "type": "get",
+    "url": "/guest/getAllQuery",
+    "title": "Get All Query",
+    "name": "Get_All_Query",
+    "group": "Guest",
+    "version": "0.0.0",
+    "filename": "src/routes/guest.js",
+    "groupTitle": "Guest"
   },
   {
     "type": "post",
@@ -1139,8 +1282,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "content",
-            "description": "<p>Content of the Post</p>"
+            "field": "comment",
+            "description": "<p>Comment of the Post</p>"
           },
           {
             "group": "Parameter",
@@ -1488,6 +1631,16 @@
         ]
       }
     },
+    "version": "0.0.0",
+    "filename": "src/routes/superAdmin.js",
+    "groupTitle": "SuperAdmin"
+  },
+  {
+    "type": "get",
+    "url": "/getSuperAdmin",
+    "title": "Get SuperAdmin",
+    "name": "Fetch_SuperAdmin",
+    "group": "SuperAdmin",
     "version": "0.0.0",
     "filename": "src/routes/superAdmin.js",
     "groupTitle": "SuperAdmin"
