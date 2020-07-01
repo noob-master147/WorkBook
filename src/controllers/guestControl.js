@@ -1,33 +1,36 @@
 const chalk = require('chalk')
 const { ObjectID } = require('mongodb')
-const { Querry } = require('../models/querrySchema')
+const { Query } = require('../models/querySchema')
 
 
 
-const createQuerry = (obj) => {
+const createQuery = (obj) => {
     return new Promise(async(resolve, reject) => {
-        querry = new Querry({
+        const id = new ObjectID()
+        query = new Query({
+            _id: id,
             userID: obj.userID,
             userName: obj.userName,
             message: obj.message,
             fcmToken: obj.fcmToken
         })
-        await querry.save()
+        await query.save()
             .then(() => {
-                console.log(chalk.green.bold("New Querry Created"))
+                console.log(chalk.green.bold("New Query Created"))
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: "New Querry Created",
+                        msg: "New Query Created",
+                        _id: id
                     }
                 })
             })
             .catch((err) => {
-                console.log(chalk.red.bold("Error in Creating New Querry!"))
+                console.log(chalk.red.bold("Error in Creating New Query!"))
                 reject({
                     statusCode: 400,
                     payload: {
-                        msg: "Error in Creating New Querry! Contact Support",
+                        msg: "Error in Creating New Query! Contact Support",
                         Error: "Issue in connecting to the Datebase",
                         err: err
                     }
@@ -42,11 +45,37 @@ const createQuerry = (obj) => {
 
 
 
-
+const getAllQuery = () => {
+    return new Promise(async(resolve, reject) => {
+        await Query.find()
+            .then((query) => {
+                console.log(chalk.green.bold("Query Fetched"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Query Fetched",
+                        query: query
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Query!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Query! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
 
 
 
 
 module.exports = {
-    createQuerry
+    createQuery,
+    getAllQuery
 }

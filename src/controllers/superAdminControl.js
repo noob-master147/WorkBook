@@ -9,7 +9,7 @@ const { Driver } = require('../models/driverSchema')
 const { Guest } = require('../models/guestSchema')
 const { Role } = require('../models/RoleSchema')
 const { Post } = require('../models/postSchema')
-const { Querry } = require('../models/querrySchema')
+const { Query } = require('../models/querySchema')
 const { ObjectID } = require('mongodb')
 
 
@@ -144,7 +144,7 @@ const purge = () => {
         const p8 = await Post.remove({}, function(err) {
             console.log(chalk.red.bold('Post collection removed'))
         })
-        const p9 = await Querry.remove({}, function(err) {
+        const p9 = await Query.remove({}, function(err) {
             console.log(chalk.red.bold('Querry collection removed'))
         })
         const p10 = await Guest.remove({}, function(err) {

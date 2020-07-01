@@ -13,40 +13,34 @@ router.get('/', (req, res) => {
 })
 
 
-/** Create Querry
- * @api {post} /guest/createQuerry Create Querry
- * @apiName Create Querry
+/** Create Query
+ * @api {post} /guest/createQuery Create Query
+ * @apiName Create Query
  * @apiGroup Guest
  *
  * @apiParam {String} userName User Name
  * @apiParam {String} userID Email ID
- * @apiParam {String} message Querry
+ * @apiParam {String} message Query
  * @apiParam {String} fcmToken FCM Device Token
  * 
  *
- */ // Create Querry
-router.post('/createQuerry', hashPassword, (req, res) => {
-    guestControl.createQuerry(req.body)
+ */ // Create Query
+router.post('/createQuery', hashPassword, (req, res) => {
+    guestControl.createQuery(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })
 
 
 
-/** Register Guest
- * @api {post} /guest/register Guest Register
- * @apiName Register
+/** Get All Query
+ * @api {get} /guest/getAllQuery Get All Query
+ * @apiName Get All Query
  * @apiGroup Guest
  *
- * @apiParam {String} userName User Name
- * @apiParam {String} userID Email ID
- * @apiParam {String} message Querry
- * @apiParam {String} fcmToken FCM Device Token
- * 
- *
- */ // Register Guest
-router.post('/register', hashPassword, (req, res) => {
-    guestControl.register(req.body)
+ */ // Get All Query
+router.post('/getAllQuery', hashPassword, (req, res) => {
+    guestControl.getAllQuery(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })

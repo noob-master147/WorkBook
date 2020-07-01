@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const querrySchema = new mongoose.Schema({
+const querySchema = new mongoose.Schema({
     userName: {
         type: String,
         required: true,
@@ -35,5 +35,5 @@ const querrySchema = new mongoose.Schema({
 
 
 module.exports = {
-    Querry: mongoose.model('Querry', querrySchema)
+    Query: mongoose.model('Query', querySchema)
 }
