@@ -119,6 +119,8 @@ const updateDriver = (driver) => {
         driver.findByIdAndUpdate(driver.id, {
                 userName: user.userName,
                 carNumber: user.carNumber,
+                city: user.city,
+                state: user.state,
                 adharNumber: user.adharNumber,
                 contactNumber: user.contactNumber,
                 fcmToken: user.fcmToken,

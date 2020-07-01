@@ -33,6 +33,14 @@ const employeeSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    state: {
+        type: String,
+        trim: true,
+    },
+    city: {
+        type: String,
+        trim: true,
+    },
     grade: {
         type: String,
         trim: true,

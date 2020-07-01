@@ -27,6 +27,14 @@ const superAdminSchema = new mongoose.Schema({
         trim: true,
         default: "workbook@superadmin"
     },
+    state: {
+        type: String,
+        trim: true,
+    },
+    city: {
+        type: String,
+        trim: true,
+    },
     fcmToken: {
         type: String,
         required: true

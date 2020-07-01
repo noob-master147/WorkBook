@@ -18,6 +18,14 @@ const guestSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    state: {
+        type: String,
+        trim: true,
+    },
+    city: {
+        type: String,
+        trim: true,
+    },
     contactNumber: {
         type: Number,
         required: true
