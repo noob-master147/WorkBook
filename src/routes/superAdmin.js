@@ -122,5 +122,22 @@ router.post('/create', hashPassword, (req, res) => {
 
 
 
+/** Get SuperAdmin
+ * @api {get} /getSuperAdmin Get SuperAdmin
+ * @apiName Fetch SuperAdmin
+ * @apiGroup SuperAdmin
+ * 
+ */ // Get Roles
+router.get('/getSuperAdmin', (req, res) => {
+    console.log(chalk.bold.yellow("Fetch SuperAdmin Route Hit!"))
+    superAdminControl.getSuperAdmin()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+
 
 module.exports = router;

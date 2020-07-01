@@ -223,11 +223,46 @@ const create = (user) => {
 }
 
 
+
+
+const getSuperAdmin = () => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.green("SuperAdmin Fetching..."))
+        await SuperAdmin.find()
+            .then((superAdmin) => {
+                console.log(chalk.bold.green("SuperAdmin Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "SuperAdmin Fetched",
+                        superAdmin: superAdmin
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("SuperAdmin Not Fetched!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching SuperAdmin! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
+
 module.exports = {
     approveAdmin,
     rejectAdmin,
     purge,
     deleteAdmin,
     viewAllAdmin,
-    create
+    create,
+    getSuperAdmin
 }
