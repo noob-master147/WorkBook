@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
  * 
  *
  */ // Create Query
-router.post('/createQuery', hashPassword, (req, res) => {
+router.post('/createQuery', (req, res) => {
     guestControl.createQuery(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
