@@ -43,7 +43,7 @@ const createQuery = (obj) => {
 
 const getAllQuery = (obj) => {
     return new Promise(async(resolve, reject) => {
-        await Query.findOne({
+        await Query.find({
                 instituteName: obj.instituteName
             })
             .then((query) => {
