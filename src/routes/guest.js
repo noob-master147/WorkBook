@@ -21,6 +21,7 @@ router.get('/', (req, res) => {
  * @apiParam {String} userName User Name
  * @apiParam {String} userID Email ID
  * @apiParam {String} message Query
+ * @apiParam {String} instituteName Name of the Institute
  * @apiParam {String} fcmToken FCM Device Token
  * 
  *

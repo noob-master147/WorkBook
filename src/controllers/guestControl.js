@@ -12,6 +12,7 @@ const createQuery = (obj) => {
             userID: obj.userID,
             userName: obj.userName,
             message: obj.message,
+            instituteName: obj.instituteName,
             fcmToken: obj.fcmToken
         })
         await query.save()
