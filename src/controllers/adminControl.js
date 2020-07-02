@@ -234,11 +234,9 @@ const approveEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Approving Employee..."))
         const p1 = await Employee.findByIdAndUpdate(employee.id, {
-            'approved': true
+            approved: true
         })
-        const p2 = await Role.findOneAndUpdate({
-            userID: employee.userID
-        }, {
+        const p2 = await Role.findByIdAndUpdate(employee.id, {
             approved: true
         })
         Promise.all([p1, p2])
@@ -326,18 +324,21 @@ const deleteEmployee = (employee) => {
 const approveDriver = (driver) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Approving Driver..."))
-        Driver.findByIdAndUpdate(driver.id, {
-                'approved': true
-            }, {
-                new: true
-            })
-            .then((driver) => {
+        const p1 = await Driver.findByIdAndUpdate(driver.id, {
+            approved: true
+        }, {
+            new: true
+        })
+        const p2 = await Role.findByIdAndUpdate(driver.id, {
+            approved: true
+        })
+        Promise.all([p1, p2])
+            .then(() => {
                 console.log(chalk.bold.green("Driver Approved!"))
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: "Driver Approved",
-                        driver: driver
+                        msg: "Driver Approved"
                     }
                 })
             })
