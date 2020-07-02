@@ -23,6 +23,12 @@ const querySchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    status: {
+        type: String,
+        required: true,
+        trim: true,
+        default: 'created'
+    },
     createdAt: {
         type: Date,
         required: true,

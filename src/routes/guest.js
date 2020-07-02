@@ -38,6 +38,8 @@ router.post('/createQuery', (req, res) => {
  * @api {post} /guest/getAllQuery Get All Query
  * @apiName Get All Query
  * @apiGroup Guest
+ * 
+ * @apiParam {String} instituteName Name of the Institute
  *
  */ // Get All Query
 router.post('/getAllQuery', (req, res) => {
@@ -45,5 +47,24 @@ router.post('/getAllQuery', (req, res) => {
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })
+
+
+
+
+
+/** unregister
+ * @api {post} /guest/unregister Unregister
+ * @apiName Unregister
+ * @apiGroup Guest
+ * 
+ * @apiParam {String} _id id of the Query Doc
+ *
+ */ // Unregister
+router.post('/unregister', (req, res) => {
+    guestControl.unregister(req.body)
+        .then((obj) => res.send(obj).status(201))
+        .catch((err) => res.send(err).status(400))
+})
+
 
 module.exports = router;

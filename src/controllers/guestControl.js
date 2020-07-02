@@ -71,7 +71,43 @@ const getAllQuery = (obj) => {
 }
 
 
+
+const unregister = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        await Query.findByIdAndUpdate(obj.id, {
+                status: 'unregistered'
+            }, {
+                new: true
+            })
+            .then((query) => {
+                console.log(chalk.green.bold("Query Fetched"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Query Fetched",
+                        query: query
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Query!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Query! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
 module.exports = {
     createQuery,
-    getAllQuery
+    getAllQuery,
+    unregister
 }

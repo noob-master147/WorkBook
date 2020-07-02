@@ -2,6 +2,7 @@ const chalk = require('chalk')
 const router = require("express")();
 const customerControl = require('../controllers/customerControl')
 const { hashPassword } = require('../middleware/hashPassword')
+const { registerQuery } = require('../middleware/registerQuery')
 
 router.get('/', (req, res) => {
     res.send({
@@ -30,7 +31,7 @@ router.get('/', (req, res) => {
  * 
  *
  */ // Register Customer
-router.post('/register', hashPassword, (req, res) => {
+router.post('/register', registerQuery, hashPassword, (req, res) => {
     customerControl.register(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))

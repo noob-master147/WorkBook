@@ -10,12 +10,12 @@ const hashPassword = async(req, res, next) => {
         next()
     } catch {
         res.send({
-            statusCode: 500,
+            statusCode: 400,
             payload: {
                 msg: "Could not Hash The Password, Contact Support"
 
             },
-        }).status(200)
+        }).status(400)
     }
 
 }
