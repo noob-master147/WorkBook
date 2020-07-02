@@ -233,9 +233,15 @@ const viewAllEmployees = (obj) => {
 const approveEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Approving Employee..."))
-        await Employee.findByIdAndUpdate(employee.id, {
-                'approved': true
-            })
+        const p1 = await Employee.findByIdAndUpdate(employee.id, {
+            'approved': true
+        })
+        const p2 = await Role.findOneAndUpdate({
+            userID: employee.userID
+        }, {
+            approved: true
+        })
+        Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.bold.green("Employee Approved!"))
                 resolve({
