@@ -40,11 +40,6 @@ const createQuery = (obj) => {
 }
 
 
-
-
-
-
-
 const getAllQuery = () => {
     return new Promise(async(resolve, reject) => {
         await Query.find()
@@ -71,8 +66,6 @@ const getAllQuery = () => {
             })
     })
 }
-
-
 
 
 module.exports = {

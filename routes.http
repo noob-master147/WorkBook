@@ -341,8 +341,8 @@ content-type: application/json
 
 {
     "fcmToken" : "asdlkfccccccchdslf",
-    "userID":"emp",
-    "password": "password"
+    "userID":"superAdmin",
+    "password": "123"
 }
 
 

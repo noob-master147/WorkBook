@@ -63,9 +63,13 @@ const create = (user) => {
 const approveAdmin = (admin) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Approving Admin..."))
-        await Admin.findByIdAndUpdate(admin.id, {
-                'approved': true
-            })
+        const p1 = await Admin.findByIdAndUpdate(admin.id, {
+            'approved': true
+        })
+        const p2 = await Role.findByIdAndUpdate(admin.id, {
+            approved: true
+        })
+        Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.bold.green("Admin Approved!"))
                 resolve({

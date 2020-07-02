@@ -13,8 +13,8 @@ const getUser = async(req, res, next) => {
     console.log(chalk.bold.yellow("\nChecking User Role..."))
     try {
         let alias = null
-        await Role.findByIdAndUpdate({
-                'userID': req.body.userID
+        await Role.findOneAndUpdate({
+                userID: req.body.userID
             }, {
                 fcmToken: req.body.fcmToken
             }, {

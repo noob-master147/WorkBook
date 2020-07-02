@@ -7,6 +7,11 @@ const roleSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    approved: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     userID: {
         type: String,
         required: true,
