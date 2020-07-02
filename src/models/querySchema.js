@@ -18,6 +18,11 @@ const querySchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    instituteName: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     createdAt: {
         type: Date,
         required: true,
