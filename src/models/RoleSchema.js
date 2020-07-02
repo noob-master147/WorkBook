@@ -26,8 +26,7 @@ const roleSchema = new mongoose.Schema({
     fcmToken: {
         type: String,
         required: true,
-        trim: true,
-        unique: true
+        trim: true
     }
 });
 
