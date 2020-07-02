@@ -41,9 +41,11 @@ const createQuery = (obj) => {
 }
 
 
-const getAllQuery = () => {
+const getAllQuery = (obj) => {
     return new Promise(async(resolve, reject) => {
-        await Query.find()
+        await Query.findOne({
+                instituteName: obj.instituteName
+            })
             .then((query) => {
                 console.log(chalk.green.bold("Query Fetched"))
                 resolve({

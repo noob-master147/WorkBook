@@ -35,12 +35,12 @@ router.post('/createQuery', (req, res) => {
 
 
 /** Get All Query
- * @api {get} /guest/getAllQuery Get All Query
+ * @api {post} /guest/getAllQuery Get All Query
  * @apiName Get All Query
  * @apiGroup Guest
  *
  */ // Get All Query
-router.post('/getAllQuery', hashPassword, (req, res) => {
+router.post('/getAllQuery', (req, res) => {
     guestControl.getAllQuery(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
