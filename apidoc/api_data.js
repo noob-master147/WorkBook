@@ -1219,6 +1219,13 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
+            "field": "instituteName",
+            "description": "<p>Name of the Institute</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
             "field": "fcmToken",
             "description": "<p>FCM Device Token</p>"
           }
@@ -1230,11 +1237,47 @@ define({ "api": [
     "groupTitle": "Guest"
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/guest/getAllQuery",
     "title": "Get All Query",
     "name": "Get_All_Query",
     "group": "Guest",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Name of the Institute</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/guest.js",
+    "groupTitle": "Guest"
+  },
+  {
+    "type": "post",
+    "url": "/guest/unregister",
+    "title": "Unregister",
+    "name": "Unregister",
+    "group": "Guest",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>id of the Query Doc</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "src/routes/guest.js",
     "groupTitle": "Guest"
