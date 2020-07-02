@@ -184,10 +184,14 @@ const viewAllCustomers = (obj) => {
 const approveCustomer = (customer) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Approving Customer..."))
-        await Customer.findByIdAndUpdate(customer.id, {
-                'approved': true,
-                'employeeID': customer.employeeID
-            })
+        const p1 = await Customer.findByIdAndUpdate(customer.id, {
+            'approved': true,
+            'employeeID': customer.employeeID
+        })
+        const p2 = await Role.findByIdAndUpdate(admin.id, {
+            approved: true
+        })
+        Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.green.bold("Customer Approved!"))
                 resolve({
