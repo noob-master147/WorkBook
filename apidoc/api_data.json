@@ -14,6 +14,20 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Driver Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
           }
         ]
       }
@@ -37,6 +51,20 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Employee Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
           }
         ]
       }
@@ -60,6 +88,20 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Driver Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
           }
         ]
       }
@@ -83,6 +125,20 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Employee Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
           }
         ]
       }
@@ -120,6 +176,20 @@
             "optional": false,
             "field": "division",
             "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
           }
         ]
       }
@@ -158,8 +228,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "Email",
-            "description": "<p>ID userID of Admin</p>"
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
           },
           {
             "group": "Parameter",
@@ -190,6 +260,13 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the doc</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
           },
           {
             "group": "Parameter",
@@ -253,6 +330,13 @@
             "optional": false,
             "field": "fcmToken",
             "description": "<p>FCM Device Token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
           }
         ]
       }
@@ -275,21 +359,21 @@
             "type": "String",
             "optional": false,
             "field": "userName",
-            "description": "<p>user name</p>"
+            "description": "<p>User Name</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "userID",
-            "description": "<p>email id</p>"
+            "description": "<p>email id of Admin</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "password",
-            "description": "<p>password</p>"
+            "description": "<p>Password</p>"
           },
           {
             "group": "Parameter",
@@ -383,6 +467,20 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Driver Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
           }
         ]
       }
@@ -406,6 +504,20 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Employee Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
           }
         ]
       }
@@ -429,6 +541,20 @@
             "optional": false,
             "field": "instituteName",
             "description": "<p>Name of the Institute</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
           }
         ]
       }
@@ -452,6 +578,13 @@
             "optional": false,
             "field": "instituteName",
             "description": "<p>Name of the Institute</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
           }
         ]
       }
@@ -750,6 +883,20 @@
             "optional": false,
             "field": "fcmToken",
             "description": "<p>FCM Device Token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Customer</p>"
           }
         ]
       }
@@ -896,6 +1043,20 @@
             "optional": false,
             "field": "employeeID",
             "description": "<p>userID of Employee</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Employee</p>"
           }
         ]
       }
@@ -926,6 +1087,20 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Customer Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Employee</p>"
           }
         ]
       }
@@ -956,6 +1131,20 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Employee Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Employee</p>"
           }
         ]
       }
@@ -1075,6 +1264,20 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Employee Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Employee</p>"
           }
         ]
       }
@@ -1154,6 +1357,20 @@
             "optional": false,
             "field": "fcmToken",
             "description": "<p>FCM Device Token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Employee</p>"
           }
         ]
       }
@@ -1177,6 +1394,20 @@
             "optional": false,
             "field": "instituteName",
             "description": "<p>Name of the Insitute</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Employee</p>"
           }
         ]
       }
@@ -1608,6 +1839,20 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
+            "field": "userID",
+            "description": "<p>of the SuperAdmin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
             "field": "id",
             "description": "<p>_id of the Admin Document</p>"
           }
@@ -1677,6 +1922,20 @@
             "optional": false,
             "field": "id",
             "description": "<p>_id of the Admin Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>of the SuperAdmin</p>"
           }
         ]
       }
@@ -1714,6 +1973,20 @@
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>of the SuperAdmin</p>"
+          },
           {
             "group": "Parameter",
             "type": "String",
