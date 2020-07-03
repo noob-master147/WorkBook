@@ -57,12 +57,12 @@ router.post('/getAllQuery', (req, res) => {
  * @apiName Unregister
  * @apiGroup Guest
  * 
- * @apiParam {String} _id id of the Query Doc
+ * @apiParam {String} id _id of the Query Doc
  *
  */ // Unregister
 router.post('/unregister', (req, res) => {
     guestControl.unregister(req.body)
-        .then((obj) => res.send(obj).status(201))
+        .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
 

@@ -1,10 +1,10 @@
 const { Query } = require('../models/querySchema')
 
 
-const registerQuery = async(obj) => {
+const registerQuery = async(req, res, next) => {
     try {
         await Query.findOneAndUpdate({
-                userID: obj.userID
+                userID: req.body.userID
             }, {
                 status: 'registered'
             })
