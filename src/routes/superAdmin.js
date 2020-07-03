@@ -26,6 +26,7 @@ router.get('/', (req, res) => {
  * @apiGroup SuperAdmin
  *
  * @apiParam {String} userID of the SuperAdmin
+ * @apiParam {String} jwtToken JWT Token of the User
  * @apiParam {String} id _id of the Admin Document
  *
  */ // Approve Admin
@@ -43,10 +44,12 @@ router.post('/approveAdmin', authenticate, (req, res) => {
  * @apiName Reject Admin
  * @apiGroup SuperAdmin
  *
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID of the SuperAdmin
  * @apiParam {String} id _id of the Admin Document
  *
  */ // Reject Admin
-router.post('/rejectAdmin', (req, res) => {
+router.post('/rejectAdmin', authenticate, (req, res) => {
     console.log(chalk.yellow.bold('Reject Admin Route Hit'))
     superAdminControl.rejectAdmin(req.body)
         .then((obj) => res.send(obj).status(200))
@@ -76,9 +79,11 @@ router.delete('/purge', (req, res) => {
  * @apiGroup SuperAdmin
  *
  * @apiParam {String} id _id of the Admin Document
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID of the SuperAdmin
  *
  */ // Delete Admin
-router.post('/deleteAdmin', (req, res) => {
+router.post('/deleteAdmin', authenticate, (req, res) => {
     console.log(chalk.yellow.bold('Delete Admin Route Hit'))
     superAdminControl.deleteAdmin(req.body)
         .then((obj) => res.send(obj).status(200))
@@ -112,6 +117,7 @@ router.get('/viewAllAdmin', (req, res) => {
  * @apiParam {String} fcmToken FCM Token
  * @apiParam {String} password Password
  * @apiParam {String} userName Name of SuperAdmin
+ * 
  */ // View All Admin
 router.post('/create', hashPassword, (req, res) => {
     console.log(chalk.yellow.bold('Create SuperAdmin Route Hit'))

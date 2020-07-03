@@ -21,9 +21,9 @@ router.get('/', (req, res) => {
  * @apiName Register
  * @apiGroup Admin
  *
- * @apiParam {String} userName user name
- * @apiParam {String} userID email id
- * @apiParam {String} password password
+ * @apiParam {String} userName User Name
+ * @apiParam {String} userID email id of Admin
+ * @apiParam {String} password Password
  * @apiParam {String} instituteName Name of the Institute
  * @apiParam {String} instituteType Type of the Institute
  * @apiParam {File} instituteImage Image of the Institute
@@ -50,7 +50,7 @@ router.post('/register', upload.single('instituteImage'), hashPassword, (req, re
  * @apiGroup Admin
  *
  * @apiParam {String} fcmToken FCM Device Token
- * @apiParam {String} Email ID userID of Admin
+ * @apiParam {String} userID Email ID of Admin
  * @apiParam {String} password Password
  */ // Login Admin
 router.post('/login', (req, res) => {
@@ -67,6 +67,7 @@ router.post('/login', (req, res) => {
  * @apiGroup Admin
  * 
  * @apiParam {String} id _id of the doc
+ * @apiParam {String} userID Email ID of Admin
  * @apiParam {String} userName user name
  * @apiParam {String} instituteType Type of the Institute
  * @apiParam {Number} numberOfMembers Number of Members in the Institute
@@ -76,8 +77,10 @@ router.post('/login', (req, res) => {
  * @apiParam {Number} adharNumber Adhar Number
  * @apiParam {Number} contactNumber Contact Number
  * @apiParam {String} fcmToken FCM Device Token
+ * @apiParam {String} jwtToken JWT Token of the User
+ * 
  */ // Update Admin
-router.post('/update', (req, res) => {
+router.post('/update', authenticate, (req, res) => {
     adminControl.update(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -92,6 +95,7 @@ router.post('/update', (req, res) => {
  * @apiGroup Admin
  * 
  * @apiParam {String} instituteName Name of the Institute
+ * @apiParam {String} jwtToken JWT Token of the User
  *   
  */ // View all Employees
 router.post('/viewAllEmployees', authenticate, (req, res) => {
@@ -111,9 +115,11 @@ router.post('/viewAllEmployees', authenticate, (req, res) => {
  * @apiGroup Admin
  *
  * @apiParam {String} id _id of the Employee Document
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Admin
  *   
  */ // Approve an Employee
-router.post('/approveEmployee', (req, res) => {
+router.post('/approveEmployee', authenticate, (req, res) => {
     adminControl.approveEmployee(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -128,9 +134,11 @@ router.post('/approveEmployee', (req, res) => {
  * @apiGroup Admin
  *
  * @apiParam {String} id _id of the Employee Document
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Admin
  *   
  */ // Reject an Employee
-router.post('/rejectEmployee', (req, res) => {
+router.post('/rejectEmployee', authenticate, (req, res) => {
     adminControl.rejectEmployee(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -143,9 +151,11 @@ router.post('/rejectEmployee', (req, res) => {
  * @apiGroup Admin
  *
  * @apiParam {String} id _id of the Employee Document
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Admin
  *   
  */ // Delete an Employee
-router.post('/deleteEmployee', (req, res) => {
+router.post('/deleteEmployee', authenticate, (req, res) => {
     adminControl.deleteEmployee(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -177,9 +187,11 @@ router.get('/institutes', (req, res) => {
  * @apiGroup Admin
  *
  * @apiParam {String} id _id of the Driver Document
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Admin
 
  */ // Approve an Driver
-router.post('/approveDriver', (req, res) => {
+router.post('/approveDriver', authenticate, (req, res) => {
     adminControl.approveDriver(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -195,9 +207,11 @@ router.post('/approveDriver', (req, res) => {
  * @apiGroup Admin
  * 
  * @apiParam {String} instituteName Name of the Institute
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Admin
  *   
  */ // View all Drivers
-router.post('/viewAllDrivers', (req, res) => {
+router.post('/viewAllDrivers', authenticate, (req, res) => {
     console.log(chalk.bold.yellow("\nView All Driver route hit..."))
     adminControl.viewAllDrivers(req.body)
         .then((obj) => res.send(obj).status(200))
@@ -214,9 +228,11 @@ router.post('/viewAllDrivers', (req, res) => {
  * @apiGroup Admin
  *
  * @apiParam {String} id _id of the Driver Document
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Admin
  *   
  */ // Reject an Driver
-router.post('/rejectDriver', (req, res) => {
+router.post('/rejectDriver', authenticate, (req, res) => {
     adminControl.rejectDriver(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -229,9 +245,11 @@ router.post('/rejectDriver', (req, res) => {
  * @apiGroup Admin
  *
  * @apiParam {String} id _id of the Driver Document
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Admin
  *   
  */ // Delete an Driver
-router.post('/deleteDriver', (req, res) => {
+router.post('/deleteDriver', authenticate, (req, res) => {
     adminControl.deleteDriver(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -250,8 +268,11 @@ router.post('/deleteDriver', (req, res) => {
  * @apiParam {String} instituteName Name of the Institute
  * @apiParam {Array} grade
  * @apiParam {Array} division   
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Admin
+ * 
  */ // Delete an Driver
-router.post('/setGD', (req, res) => {
+router.post('/setGD', authenticate, (req, res) => {
     adminControl.setGD(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
