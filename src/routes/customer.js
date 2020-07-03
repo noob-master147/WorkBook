@@ -3,6 +3,9 @@ const router = require("express")();
 const customerControl = require('../controllers/customerControl')
 const { hashPassword } = require('../middleware/hashPassword')
 const { registerQuery } = require('../middleware/registerQuery')
+const { authenticate } = require('../middleware/authenticate')
+
+
 
 router.get('/', (req, res) => {
     res.send({
@@ -52,9 +55,11 @@ router.post('/register', registerQuery, hashPassword, (req, res) => {
  * @apiParam {Number} adharNumber Adhar Number
  * @apiParam {Number} contactNumber Contact Number
  * @apiParam {String} fcmToken FCM Device Token
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Customer
  * 
  */ // Update Customer
-router.post('/update', (req, res) => {
+router.post('/update', authenticate, (req, res) => {
     customerControl.updateCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
