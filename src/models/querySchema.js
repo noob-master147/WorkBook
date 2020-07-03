@@ -38,7 +38,11 @@ const querySchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-    }
+    },
+    contactNumber: {
+        type: Number,
+        required: true
+    },
 });
 
 

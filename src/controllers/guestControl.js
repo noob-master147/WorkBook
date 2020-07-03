@@ -13,7 +13,8 @@ const createQuery = (obj) => {
             userName: obj.userName,
             message: obj.message,
             instituteName: obj.instituteName,
-            fcmToken: obj.fcmToken
+            fcmToken: obj.fcmToken,
+            contactNumber: obj.contactNumber
         })
         await query.save()
             .then(() => {

@@ -1228,6 +1228,13 @@ define({ "api": [
             "optional": false,
             "field": "fcmToken",
             "description": "<p>FCM Device Token</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "contactNumber",
+            "description": "<p>Contact Number</p>"
           }
         ]
       }
@@ -1272,8 +1279,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "_id",
-            "description": "<p>id of the Query Doc</p>"
+            "field": "id",
+            "description": "<p>_id of the Query Doc</p>"
           }
         ]
       }
