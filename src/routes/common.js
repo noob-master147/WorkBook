@@ -16,7 +16,7 @@ const { signJWT } = require('../middleware/signJWT')
  *   
  */ //Send Notification
 router.post('/sendNotification', (req, res) => {
-    console.log(chalk.bold.yellow("SendNotification Route Hit!"))
+    console.log(chalk.bold.yellow("Send Notification Route Hit!"))
     commonControl.sendNotification(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))

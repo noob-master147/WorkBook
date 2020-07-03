@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
  * @apiParam {String} division Division
  * @apiParam {Number} adharNumber Adhar Number
  * @apiParam {Number} contactNumber Contact Number
- * @apiParam {String} fcmToken FCM Device Token
+ * @apiParam {String} fcmToken FCM Device Token  
  * 
  */ // Register an Employee
 router.post('/register', hashPassword, (req, res) => {
@@ -73,6 +73,9 @@ router.post('/login', (req, res) => {
  * @apiParam {Number} adharNumber Adhar Number
  * @apiParam {Number} contactNumber Contact Number
  * @apiParam {String} fcmToken FCM Device Token
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Employee
+ * 
  */ // Update Admin
 router.post('/update', authenticate, (req, res) => {
     employeeControl.update(req.body)
@@ -89,6 +92,8 @@ router.post('/update', authenticate, (req, res) => {
  * @apiGroup Employee
  * 
  * @apiParam {String} instituteName Name of the Insitute
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Employee
  * 
  */ // View All Customers
 router.post('/viewAllCustomers', authenticate, (req, res) => {
@@ -106,9 +111,11 @@ router.post('/viewAllCustomers', authenticate, (req, res) => {
  *
  * @apiParam {String} employeeID userID of Employee
  * @apiParam {String} id _id of the Customer Document
- *   
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Employee
+ *    
  */ // Approve a Customer
-router.post('/approveCustomer', (req, res) => {
+router.post('/approveCustomer', authenticate, (req, res) => {
     employeeControl.approveCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -124,9 +131,11 @@ router.post('/approveCustomer', (req, res) => {
  *
  * @apiParam {String} employeeID userID of Employee
  * @apiParam {String} id _id of the Employee Document
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Employee
  *   
  */ // Reject a Customer
-router.post('/rejectCustomer', (req, res) => {
+router.post('/rejectCustomer', authenticate, (req, res) => {
     employeeControl.rejectCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -140,9 +149,12 @@ router.post('/rejectCustomer', (req, res) => {
  *
  * @apiParam {String} employeeID userID of Employee
  * @apiParam {String} id _id of the Employee Document
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Employee
+ * 
  *   
  */ // Delete a Customer
-router.post('/deleteCustomer', (req, res) => {
+router.post('/deleteCustomer', authenticate, (req, res) => {
     employeeControl.deleteCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -157,9 +169,12 @@ router.post('/deleteCustomer', (req, res) => {
  * @apiGroup Employee
  *
  * @apiParam {String} employeeID userID of Employee
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Employee
+ * 
  *   
  */ // Active Customer
-router.post('/activeCustomer', (req, res) => {
+router.post('/activeCustomer', authenticate, (req, res) => {
     employeeControl.activeCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
