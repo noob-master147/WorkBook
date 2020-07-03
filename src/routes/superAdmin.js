@@ -2,6 +2,7 @@ const router = require("express")();
 const superAdminControl = require('../controllers/superAdminControl')
 const { hashPassword } = require('../middleware/hashPassword')
 const chalk = require('chalk')
+const { authenticate } = require('../middleware/authenticate')
 
 // TEST ROUTE
 router.get('/', (req, res) => {
@@ -24,10 +25,11 @@ router.get('/', (req, res) => {
  * @apiName Approve Admin
  * @apiGroup SuperAdmin
  *
+ * @apiParam {String} userID of the SuperAdmin
  * @apiParam {String} id _id of the Admin Document
  *
  */ // Approve Admin
-router.post('/approveAdmin', (req, res) => {
+router.post('/approveAdmin', authenticate, (req, res) => {
     console.log(chalk.yellow.bold('Approve Admin Route Hit'))
     superAdminControl.approveAdmin(req.body)
         .then((obj) => res.send(obj).status(200))

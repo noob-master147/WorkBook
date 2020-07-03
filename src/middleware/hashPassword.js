@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const chalk = require('chalk')
 
 const hashPassword = async(req, res, next) => {
-    console.log(chalk.bold.yellow("\nHashing the Password"))
+    console.log(chalk.bold.cyanBright("\nHashing the Password..."))
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 8)
         req.body.password = hashedPassword

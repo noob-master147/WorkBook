@@ -2,7 +2,7 @@ const router = require("express")();
 const employeeControl = require('../controllers/employeeControl')
 const { hashPassword } = require('../middleware/hashPassword')
 const chalk = require('chalk')
-
+const { authenticate } = require('../middleware/authenticate')
 
 // TEST ROUTE
 router.get('/', (req, res) => {
@@ -74,7 +74,7 @@ router.post('/login', (req, res) => {
  * @apiParam {Number} contactNumber Contact Number
  * @apiParam {String} fcmToken FCM Device Token
  */ // Update Admin
-router.post('/update', (req, res) => {
+router.post('/update', authenticate, (req, res) => {
     employeeControl.update(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -91,7 +91,7 @@ router.post('/update', (req, res) => {
  * @apiParam {String} instituteName Name of the Insitute
  * 
  */ // View All Customers
-router.post('/viewAllCustomers', (req, res) => {
+router.post('/viewAllCustomers', authenticate, (req, res) => {
     employeeControl.viewAllCustomers(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))

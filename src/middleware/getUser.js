@@ -10,7 +10,7 @@ const { Role } = require('../models/RoleSchema')
 
 
 const getUser = async(req, res, next) => {
-    console.log(chalk.bold.yellow("\nChecking User Role..."))
+    console.log(chalk.bold.cyanBright("\nChecking User Role..."))
     try {
         let alias = null
         await Role.findOneAndUpdate({

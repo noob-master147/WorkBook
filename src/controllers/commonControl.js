@@ -65,7 +65,8 @@ const login = (obj) => {
                     payload: {
                         msg: `${obj.user.role} Logged In and Approved`,
                         approved: obj.user.approved,
-                        user: obj.user
+                        user: obj.user,
+                        jwtToken: obj.jwtToken
                     }
                 })
             } else {
@@ -74,7 +75,8 @@ const login = (obj) => {
                     payload: {
                         msg: `${obj.user.role} Logged In and Not Approved`,
                         approved: obj.user.approved,
-                        user: obj.user
+                        user: obj.user,
+                        jwtToken: obj.jwtToken
                     }
                 })
             }

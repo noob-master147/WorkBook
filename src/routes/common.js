@@ -3,7 +3,7 @@ const chalk = require('chalk')
 const commonControl = require('../controllers/commonControl')
 const { getUser } = require('../middleware/getUser')
 const { upload } = require('../middleware/multerUpload')
-
+const { signJWT } = require('../middleware/signJWT')
 
 /** Send Notification
  * @api {post} /sendNotification Send Notifications
@@ -35,7 +35,7 @@ router.post('/sendNotification', (req, res) => {
  * @apiParam {String} password Password
  *   
  */ // Login Route
-router.post('/login', getUser, (req, res) => {
+router.post('/login', signJWT, getUser, (req, res) => {
     console.log(chalk.bold.yellow("Login Route Hit!"))
     commonControl.login(req.body)
         .then((obj) => res.send(obj).status(200))

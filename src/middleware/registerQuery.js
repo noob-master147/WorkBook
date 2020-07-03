@@ -2,6 +2,7 @@ const { Query } = require('../models/querySchema')
 
 
 const registerQuery = async(req, res, next) => {
+    console.log(chalk.bold.cyanBright("Checking Previous Query..."))
     try {
         await Query.findOneAndUpdate({
                 userID: req.body.userID
@@ -9,6 +10,7 @@ const registerQuery = async(req, res, next) => {
                 status: 'registered'
             })
             .then(() => {
+                console.log(chalk.bold.green("Previous Query Found"))
                 next()
             })
             .catch((err) => {

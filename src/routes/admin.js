@@ -3,7 +3,7 @@ const adminControl = require('../controllers/adminControl')
 const { hashPassword } = require('../middleware/hashPassword')
 const chalk = require('chalk')
 const { upload } = require('../middleware/multerUpload')
-
+const { authenticate } = require('../middleware/authenticate')
 
 // TEST ROUTE
 router.get('/', (req, res) => {
@@ -94,7 +94,7 @@ router.post('/update', (req, res) => {
  * @apiParam {String} instituteName Name of the Institute
  *   
  */ // View all Employees
-router.post('/viewAllEmployees', (req, res) => {
+router.post('/viewAllEmployees', authenticate, (req, res) => {
     console.log(chalk.bold.yellow("\nView All Employees route hit..."))
     adminControl.viewAllEmployees(req.body)
         .then((obj) => res.send(obj).status(200))
