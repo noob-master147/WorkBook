@@ -47,17 +47,17 @@ router.post('/login', signJWT, getUser, (req, res) => {
 
 
 /** Upload Profile Picture
- * @api {post} /uploadPicture Upload Profile Picture
- * @apiName Upload Profile Picture
+ * @api {post} /uploadPicture Upload Profile Picture URL
+ * @apiName Upload Profile Picture URL
  * @apiGroup Common
  * 
  * @apiParam {String} userID Email ID of the User
- * @apiParam {File} profilePicture Profile Picture
+ * @apiParam {String} profilePictureUrl Profile Picture URL
  *   
  */ // Upload Profile Picture
-router.post('/uploadPicture', upload.single('profilePicture'), getUser, (req, res) => {
+router.post('/uploadPicture', getUser, (req, res) => {
     console.log(chalk.bold.yellow("Upload Picture Route Hit!"))
-    commonControl.uploadPicture(req)
+    commonControl.uploadPicture(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })

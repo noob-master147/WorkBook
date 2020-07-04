@@ -33,8 +33,8 @@ const customerSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
-    profilePicture: {
-        type: Buffer
+    profilePictureUrl: {
+        type: String
     },
     grade: {
         type: String,

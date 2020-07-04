@@ -11,36 +11,35 @@ const { ObjectID } = require('mongodb')
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
-        user.body.instituteImage = await sharp(user.file.buffer).resize({ width: 500, height: 500 }).png().toBuffer()
         console.log(chalk.bold.yellow("Registering Admin..."))
         const id = new ObjectID()
         admin = new Admin({
             _id: id,
-            userName: user.body.userName,
-            userID: user.body.userID,
-            password: user.body.password,
-            instituteName: user.body.instituteName,
-            instituteType: user.body.instituteType,
-            instituteImage: user.body.instituteImage,
-            numberOfMembers: user.body.numberOfMembers,
-            state: user.body.state,
-            city: user.body.city,
-            mailAddress: user.body.mailAddress,
-            adharNumber: user.body.adharNumber,
-            contactNumber: user.body.contactNumber,
-            fcmToken: user.body.fcmToken,
+            userName: user.userName,
+            userID: user.userID,
+            password: user.password,
+            instituteName: user.instituteName,
+            instituteType: user.instituteType,
+            instituteImageUrl: user.instituteImageUrl,
+            numberOfMembers: user.numberOfMembers,
+            state: user.state,
+            city: user.city,
+            mailAddress: user.mailAddress,
+            adharNumber: user.adharNumber,
+            contactNumber: user.contactNumber,
+            fcmToken: user.fcmToken,
             approved: false
         })
         institute = new Institute({
             _id: id,
-            instituteName: user.body.instituteName,
-            instituteType: user.body.instituteType,
-            instituteImage: user.body.instituteImage,
+            instituteName: user.instituteName,
+            instituteType: user.instituteType,
+            instituteImageUrl: user.instituteImageUrl,
         })
         role = new Role({
             _id: id,
-            fcmToken: user.body.fcmToken,
-            userID: user.body.userID,
+            fcmToken: user.fcmToken,
+            userID: user.userID,
             role: "admin"
         })
 

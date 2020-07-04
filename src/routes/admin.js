@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
  * @apiParam {String} password Password
  * @apiParam {String} instituteName Name of the Institute
  * @apiParam {String} instituteType Type of the Institute
- * @apiParam {File} instituteImage Image of the Institute
+ * @apiParam {String} instituteImageUrl URL of Institute Image
  * @apiParam {Number} numberOfMembers Number of Members in the Institute
  * @apiParam {String} state State
  * @apiParam {String} city City
@@ -34,10 +34,11 @@ router.get('/', (req, res) => {
  * @apiParam {Number} adharNumber Adhar Number
  * @apiParam {Number} contactNumber Contact Number
  * @apiParam {String} fcmToken FCM Device Token
+ * 
  */ //Register New Admin
-router.post('/register', upload.single('instituteImage'), hashPassword, (req, res) => {
+router.post('/register', hashPassword, (req, res) => {
     console.log(chalk.yellow.bold("\nRegister Admin route hit..."))
-    adminControl.register(req)
+    adminControl.register(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })
