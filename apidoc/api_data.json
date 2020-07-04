@@ -391,10 +391,10 @@
           },
           {
             "group": "Parameter",
-            "type": "File",
+            "type": "String",
             "optional": false,
-            "field": "instituteImage",
-            "description": "<p>Image of the Institute</p>"
+            "field": "instituteImageUrl",
+            "description": "<p>URL of Institute Image</p>"
           },
           {
             "group": "Parameter",
@@ -676,8 +676,8 @@
   {
     "type": "post",
     "url": "/uploadPicture",
-    "title": "Upload Profile Picture",
-    "name": "Upload_Profile_Picture",
+    "title": "Upload Profile Picture URL",
+    "name": "Upload_Profile_Picture_URL",
     "group": "Common",
     "parameter": {
       "fields": {
@@ -691,10 +691,10 @@
           },
           {
             "group": "Parameter",
-            "type": "File",
+            "type": "String",
             "optional": false,
-            "field": "profilePicture",
-            "description": "<p>Profile Picture</p>"
+            "field": "profilePictureUrl",
+            "description": "<p>Profile Picture URL</p>"
           }
         ]
       }
