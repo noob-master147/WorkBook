@@ -1,6 +1,4 @@
 const mongoose = require('mongoose')
-const jwt = require('jsonwebtoken')
-
 
 const adminSchema = new mongoose.Schema({
     role: {
@@ -8,8 +6,8 @@ const adminSchema = new mongoose.Schema({
         required: true,
         default: "admin"
     },
-    profilePicture: {
-        type: Buffer
+    profilePictureUrl: {
+        type: String
     },
     userName: {
         type: String,
@@ -38,8 +36,8 @@ const adminSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    instituteImage: {
-        type: Buffer,
+    instituteImageUrl: {
+        type: String,
         required: true
     },
     numberOfMembers: {

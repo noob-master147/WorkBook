@@ -6,6 +6,11 @@ const divisionSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    grade: {
+        type: String,
+        required: true,
+        trim: true
     }
 })
 
@@ -33,8 +38,8 @@ const instituteSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    instituteImage: {
-        type: Buffer,
+    instituteImageUrl: {
+        type: String,
         required: true
     },
     createdAt: {
