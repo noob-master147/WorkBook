@@ -43,6 +43,10 @@ const querySchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    comment: {
+        type: String,
+        trim: true
+    }
 });
 
 

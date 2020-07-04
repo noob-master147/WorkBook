@@ -281,6 +281,25 @@ router.post('/setGD', authenticate, (req, res) => {
 
 
 
+/** Comment a Query
+ * @api {post} /admin/queryComment Comment a Query
+ * @apiName Comment a Query
+ * @apiGroup Admin
+ *
+ * @apiParam {String} id _id of the Query Document
+ * @apiParam {String} comment Comment by Admin
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Admin
+ *   
+ */ // Comment a Query
+router.post('/queryComment', authenticate, (req, res) => {
+    adminControl.queryComment(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
 
 
 
