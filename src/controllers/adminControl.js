@@ -6,7 +6,7 @@ const { Driver } = require('../models/driverSchema')
 const { Institute } = require('../models/instituteSchema')
 const { Role } = require('../models/RoleSchema')
 const bcrypt = require('bcrypt')
-const sharp = require('sharp')
+const { Query } = require('../models/querySchema')
 const { ObjectID } = require('mongodb')
 
 const register = (user) => {
@@ -479,6 +479,41 @@ const setGD = (obj) => {
 }
 
 
+
+const queryComment = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Adding Comment to Query"))
+        await Query.findByIdAndUpdate(obj.id, {
+                comment: obj.comment
+            }, {
+                new: true
+            })
+            .then((query) => {
+                console.log(chalk.bold.green("Comment Added to Query!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Comment Added to Query",
+                        query: query
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Adding Comment to the Query!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Adding Comment to the Query! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
 module.exports = {
     register,
     login,
@@ -492,5 +527,6 @@ module.exports = {
     viewAllDrivers,
     rejectDriver,
     deleteDriver,
-    setGD
+    setGD,
+    queryComment
 }
