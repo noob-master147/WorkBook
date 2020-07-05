@@ -271,17 +271,13 @@ const fetchGrade = (obj) => {
 
 const fetchDivision = (obj) => {
     return new Promise(async(resolve, reject) => {
-        console.log(chalk.bold.yellow("Fetching Grades..."))
+        console.log(chalk.bold.yellow("Fetching Divisions..."))
         Institute.findOne({
                 instituteName: obj.instituteName
             })
             .then((institute) => {
-                let divisions = []
+                const divisions = institute.division
                 console.log(chalk.bold.green("Institute Fetched!"))
-                institute.division.forEach(obj => {
-                    divisions.push(obj.division)
-                });
-                console.log(divisions)
                 return divisions
             })
             .then((divisions) => {

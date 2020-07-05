@@ -478,8 +478,6 @@ const setGD = (obj) => {
     })
 }
 
-
-
 const queryComment = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Adding Comment to Query"))
