@@ -11,6 +11,7 @@ const { Driver } = require('../models/driverSchema')
 const { Guest } = require('../models/guestSchema')
 const { Role } = require('../models/RoleSchema')
 const { Post } = require('../models/postSchema')
+const { Route } = require('../models/routeSchema')
 const { Query } = require('../models/querySchema')
 
 const admin = require("firebase-admin")
@@ -420,6 +421,34 @@ const restoreDataBase = (obj) => {
 }
 
 
+const getRoutes = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        Route.find()
+            .then((routes) => {
+                console.log(chalk.bold.green("Routes Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Routes Fetched",
+                        routes: routes
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Routes!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Routes ! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
 module.exports = {
     sendNotification,
     login,
@@ -429,5 +458,6 @@ module.exports = {
     fetchGrade,
     fetchDivision,
     getRoles,
-    restoreDataBase
+    restoreDataBase,
+    getRoutes
 }

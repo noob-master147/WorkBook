@@ -161,6 +161,19 @@ router.get('/restoreDataBase', (req, res) => {
 
 
 
+/** Get Routes
+ * @api {get} /getRoutes Get Routes
+ * @apiName Get Routes
+ * @apiGroup Common
+ * 
+ */ // Get Routes
+router.get('/getRoutes', (req, res) => {
+    console.log(chalk.bold.yellow("Get Routes Route Hit!"))
+    commonControl.getRoutes()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
 
 
 module.exports = router;

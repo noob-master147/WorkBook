@@ -77,3 +77,11 @@ content-type: application/json
 }
 
 
+
+
+####
+# Fetch Institute Profile Picture
+GET  http://localhost:8000/getRoutes
+content-type: application/json
+
+
