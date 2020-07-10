@@ -688,6 +688,16 @@ define({ "api": [
     "groupTitle": "Common"
   },
   {
+    "type": "get",
+    "url": "/restoreDataBase",
+    "title": "Restore DataBase",
+    "name": "Restore_DataBase",
+    "group": "Common",
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
     "type": "post",
     "url": "/sendNotification",
     "title": "Send Notifications",
@@ -948,6 +958,43 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/routes/customer.js",
     "groupTitle": "Customer"
+  },
+  {
+    "type": "post",
+    "url": "/driver/createRoute",
+    "title": "Create Route",
+    "name": "Create_Route",
+    "group": "Driver",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "driverID",
+            "description": "<p>_id of Driver</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "List",
+            "optional": false,
+            "field": "location",
+            "description": "<p>List of JSON of Coordinates</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "routeName",
+            "description": "<p>Name of the Route</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/driver.js",
+    "groupTitle": "Driver"
   },
   {
     "type": "post",
