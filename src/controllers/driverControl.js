@@ -3,6 +3,7 @@ const brypt = require('bcrypt')
 
 const { Driver } = require('../models/driverSchema')
 const { Role } = require('../models/RoleSchema')
+const { Route } = require('../models/routeSchema')
 const { ObjectID } = require('mongodb')
 
 
@@ -150,8 +151,42 @@ const updateDriver = (driver) => {
     })
 }
 
+
+const createRoute = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        route = new Route({
+            driverID: obj.driverID,
+            location: obj.location,
+            routeName: obj.routeName
+        })
+        await route.save()
+            .then((obj) => {
+                console.log(chalk.green.bold("New Route Registered!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Route Successfully Registered",
+                        route: obj
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Route Registration!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Adding Route",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
 module.exports = {
     register,
     login,
-    updateDriver
+    updateDriver,
+    createRoute
 }

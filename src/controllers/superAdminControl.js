@@ -10,6 +10,7 @@ const { Guest } = require('../models/guestSchema')
 const { Role } = require('../models/RoleSchema')
 const { Post } = require('../models/postSchema')
 const { Query } = require('../models/querySchema')
+const { Route } = require('../models/routeSchema')
 const { ObjectID } = require('mongodb')
 
 
@@ -154,8 +155,11 @@ const purge = () => {
         const p10 = await Guest.remove({}, function(err) {
             console.log(chalk.red.bold('Guest collection removed'))
         })
+        const p11 = await Route.remove({}, function(err) {
+            console.log(chalk.red.bold('Route collection removed'))
+        })
 
-        Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10])
+        Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11])
             .then(() => {
                 console.log(chalk.red.bold("ALL DATABASE PURGED"))
                 resolve({

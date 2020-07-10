@@ -55,7 +55,7 @@ mongoose.connect(process.env.MONGO_URL, {
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
     },
     () => {
         console.log(chalk.green.bold('Connected to MongoDB'))

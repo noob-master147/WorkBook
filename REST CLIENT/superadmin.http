@@ -1,0 +1,67 @@
+
+#####################################################################################################
+#                                                                                                   #
+#                                         SUPER ADMIN ROTES                                         #
+#                                                                                                   #
+#####################################################################################################
+
+
+
+
+
+####
+# Test Route
+GET  http://localhost:8000/superAdmin
+content-type: application/json
+
+
+
+####
+# Purge the Database
+DELETE http://localhost:8000/superAdmin/purge
+content-type: application/json
+
+
+####
+# Approve Admin
+POST http://localhost:8000/superAdmin/approveAdmin
+content-type: application/json
+
+{
+    "id": "5eef64e2e59e040017aded48"
+}
+
+####
+# Delete Admin
+DELETE  http://localhost:8000/superAdmin/deleteAdmin
+content-type: application/json
+
+{
+    "id": "5eef64e2e59e040017aded48"
+}
+
+
+####
+# Create SuperAdmin
+POST http://localhost:8000/superAdmin/create
+content-type: application/json
+
+{
+    "fcmToken": "sdgsg",
+    "userID": "superAdmin",
+    "password": "123",
+    "userName": "superAdmin"
+}
+
+
+
+####
+# Login Route
+POST http://localhost:8000/login
+content-type: application/json
+
+{
+    "fcmToken" : "asdlkfccccccchdslf",
+    "userID":"superAdmin",
+    "password": "123"
+}
