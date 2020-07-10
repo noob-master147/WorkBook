@@ -1,0 +1,21 @@
+####
+POST https://hooks.spike.sh/ca621a74920dd44e03e8/push-events
+content-type: application/json
+
+{
+    "message": "Test is down",
+    "title": "Test is dOwN",
+    "status": "Down"
+}
+
+
+
+####
+POST https://hooks.spike.sh/ca621a74920dd44e03e8/push-events
+content-type: application/json
+
+{
+    "message": "Test is UP",
+    "title": "Test is UP",
+    "status": "UP"
+}

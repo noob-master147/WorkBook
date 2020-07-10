@@ -420,12 +420,12 @@ content-type: application/json
 
 ####
 # create Post
-POST http://localhost:6000/post/createPost
+POST http://localhost:8000/post/createPost
 content-type: application/json
 
 {
     "id": "5ef5d361c4be2314e90a1b4f",
-    "content": "newff sf",
+    "content": "nf",
     "createdBy": "sdg",
     "mediaUrl": "fs",
     "mediaType": "file"
@@ -435,7 +435,7 @@ content-type: application/json
 
 ####
 # delete Post
-POST http://localhost:6000/post/deletePost
+POST http://localhost:8000/post/deletePost
 content-type: application/json
 
 {
@@ -445,7 +445,7 @@ content-type: application/json
 
 ####
 # enable Post
-POST http://localhost:6000/post/enablePost
+POST http://localhost:8000/post/enablePost
 content-type: application/json
 
 {
@@ -456,7 +456,7 @@ content-type: application/json
 
 ####
 # disable Post
-POST http://localhost:6000/post/disablePost
+POST http://localhost:8000/post/disablePost
 content-type: application/json
 
 {
@@ -465,7 +465,7 @@ content-type: application/json
 
 ####
 # Update Post
-POST http://localhost:6000/post/updatePost
+POST http://localhost:8000/post/updatePost
 content-type: application/json
 
 {
@@ -478,7 +478,7 @@ content-type: application/json
 
 ####
 # View add Post
-GET  http://localhost:6000/post/viewAllPost
+GET  http://localhost:8000/post/viewAllPost
 content-type: application/json
 
 
@@ -486,7 +486,7 @@ content-type: application/json
 
 ####
 # like Post
-POST http://localhost:6000/post/like
+POST http://localhost:8000/post/like
 content-type: application/json
 
 {

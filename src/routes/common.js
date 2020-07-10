@@ -146,6 +146,20 @@ router.get('/getRoles', (req, res) => {
 
 
 
+/** Restore DataBase
+ * @api {get} /restoreDataBase Restore DataBase
+ * @apiName Restore DataBase
+ * @apiGroup Common
+ * 
+ */ // Restore DataBase
+router.get('/restoreDataBase', (req, res) => {
+    console.log(chalk.bold.yellow("Restore DataBase Route Hit!"))
+    commonControl.restoreDataBase()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
 
 
 

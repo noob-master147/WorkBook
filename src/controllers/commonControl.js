@@ -8,7 +8,10 @@ const { Employee } = require('../models/employeeSchema')
 const { Customer } = require('../models/customerSchema')
 const { Institute } = require('../models/instituteSchema')
 const { Driver } = require('../models/driverSchema')
+const { Guest } = require('../models/guestSchema')
 const { Role } = require('../models/RoleSchema')
+const { Post } = require('../models/postSchema')
+const { Query } = require('../models/querySchema')
 
 const admin = require("firebase-admin")
 admin.initializeApp({
@@ -52,8 +55,6 @@ const sendNotification = (obj) => {
     })
 }
 
-
-
 const login = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold(`${obj.user.role} Logging in...`))
@@ -90,7 +91,6 @@ const login = (obj) => {
         }
     })
 }
-
 
 const uploadPicture = (user) => {
     return new Promise(async(resolve, reject) => {
@@ -142,7 +142,6 @@ const uploadPicture = (user) => {
 
     })
 }
-
 
 const getUserProfile = (params) => {
     return new Promise(async(resolve, reject) => {
@@ -239,7 +238,6 @@ const fetchGrade = (obj) => {
                 institute.grade.forEach(obj => {
                     grades.push(obj.grade)
                 });
-                console.log(grades)
                 return grades
             })
             .then((grades) => {
@@ -266,7 +264,6 @@ const fetchGrade = (obj) => {
 
     })
 }
-
 
 
 const fetchDivision = (obj) => {
@@ -304,7 +301,6 @@ const fetchDivision = (obj) => {
     })
 }
 
-
 const getRoles = () => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Getting all Roles..."))
@@ -333,6 +329,96 @@ const getRoles = () => {
     })
 }
 
+const restoreDataBase = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        const superAdmin = await SuperAdmin.find()
+        const admin = await Admin.find()
+        const employee = await Employee.find()
+        const customer = await Customer.find()
+        const driver = await Driver.find()
+        const guest = await Guest.find()
+        const institute = await Institute.find()
+        const role = await Role.find()
+        const post = await Post.find()
+        const query = await Query.find()
+
+        const p1 = await Admin.remove({}, function(err) {
+            console.log(chalk.red.bold('Admin collection removed'))
+        })
+        const p2 = await Employee.remove({}, function(err) {
+            console.log(chalk.red.bold('Employee collection removed'))
+        })
+        const p3 = await Institute.remove({}, function(err) {
+            console.log(chalk.red.bold('Institute collection removed'))
+        })
+        const p4 = await Customer.remove({}, function(err) {
+            console.log(chalk.red.bold('Customer collection removed'))
+        })
+        const p5 = await Driver.remove({}, function(err) {
+            console.log(chalk.red.bold('Driver collection removed'))
+        })
+        const p6 = await Role.remove({}, function(err) {
+            console.log(chalk.red.bold('Role collection removed'))
+        })
+        const p7 = await SuperAdmin.remove({}, function(err) {
+            console.log(chalk.red.bold('SuperAdmin collection removed'))
+        })
+        const p8 = await Post.remove({}, function(err) {
+            console.log(chalk.red.bold('Post collection removed'))
+        })
+        const p9 = await Query.remove({}, function(err) {
+            console.log(chalk.red.bold('Querry collection removed'))
+        })
+        const p10 = await Guest.remove({}, function(err) {
+            console.log(chalk.red.bold('Guest collection removed'))
+        })
+        Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10])
+            .then(async() => {
+                const p1 = await SuperAdmin.insertMany(superAdmin)
+                const p2 = await Admin.insertMany(admin)
+                const p3 = await Employee.insertMany(employee)
+                const p4 = await Customer.insertMany(customer)
+                const p5 = await Driver.insertMany(driver)
+                const p6 = await Guest.insertMany(guest)
+                const p7 = await Institute.insertMany(institute)
+                const p8 = await Role.insertMany(role)
+                const p9 = await Post.insertMany(post)
+                const p10 = await Query.insertMany(query)
+                Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10])
+                    .then(() => {
+                        console.log(chalk.bold.green("DataBase Recovered!"))
+                        resolve({
+                            statusCode: 200,
+                        })
+                    })
+                    .catch((err) => {
+                        console.log(chalk.red.bold("Error in Fetching Grades !"))
+                        reject({
+                            statusCode: 400,
+                            payload: {
+                                msg: "Error in Pushing to DataBase! Contact Support",
+                                Error: "Issue in connecting to the Datebase",
+                                err: err
+                            }
+                        })
+                    })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Grades !"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Pushing to DataBase! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+        console.log(post)
+
+    })
+}
+
 
 module.exports = {
     sendNotification,
@@ -342,5 +428,6 @@ module.exports = {
     getInstituteProfile,
     fetchGrade,
     fetchDivision,
-    getRoles
+    getRoles,
+    restoreDataBase
 }
