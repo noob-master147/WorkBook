@@ -689,6 +689,16 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/getRoutes",
+    "title": "Get Routes",
+    "name": "Get_Routes",
+    "group": "Common",
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "get",
     "url": "/restoreDataBase",
     "title": "Restore DataBase",
     "name": "Restore_DataBase",
@@ -988,6 +998,20 @@ define({ "api": [
             "optional": false,
             "field": "routeName",
             "description": "<p>Name of the Route</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>userID of the Driver</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Driver</p>"
           }
         ]
       }
