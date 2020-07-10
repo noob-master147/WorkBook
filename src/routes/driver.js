@@ -66,6 +66,8 @@ router.post('/update', (req, res) => {
  * @apiParam {String} driverID  _id of Driver
  * @apiParam {List} location List of JSON of Coordinates 
  * @apiParam {String} routeName Name of the Route
+ * @apiParam {String} userID userID of the Driver 
+ * @apiParam {String} jwtToken JWT Token of the Driver
  */ // Create Route
 router.post('/createRoute', (req, res) => {
     driverControl.createRoute(req.body)

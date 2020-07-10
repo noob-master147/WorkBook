@@ -1,0 +1,101 @@
+#####################################################################################################
+#                                                                                                   #
+#                                          POST ROTES                                               #
+#                                                                                                   #
+#####################################################################################################
+
+####
+# create Post
+POST http://localhost:8000/post/createPost
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f",
+    "content": "nf",
+    "createdBy": "sdg",
+    "mediaUrl": "fs",
+    "mediaType": "file"
+}
+
+
+
+####
+# delete Post
+POST http://localhost:8000/post/deletePost
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f"
+}
+
+
+####
+# enable Post
+POST http://localhost:8000/post/enablePost
+content-type: application/json
+
+{
+    "id": "5ef876239ed048372551c07e"
+}
+
+
+
+####
+# disable Post
+POST http://localhost:8000/post/disablePost
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f"
+}
+
+####
+# Update Post
+POST http://localhost:8000/post/updatePost
+content-type: application/json
+
+{
+    "id": "5ef5d361c4be2314e90a1b4f",
+    "content": "newzxc s",
+    "createdBy": "szxvdg",
+    "mediaUrl": "ss"
+}
+
+
+####
+# View add Post
+GET  http://localhost:8000/post/viewAllPost
+content-type: application/json
+
+
+
+
+####
+# like Post
+POST http://localhost:8000/post/like
+content-type: application/json
+
+{
+    "id": "5ef8bc63de6aae0017ca5930",
+    "userName": "ffdsf",
+    "userID": "divyansh"
+}
+
+
+
+####
+# comment Post
+POST http://localhost:6000/post/comment
+content-type: application/json
+
+{
+    "id": "5ef8db7c2835b95b041274ab",
+    "userName": "gg",
+    "comment": "jhfkj"
+}
+
+
+####
+# delete all Post
+DELETE http://localhost:6000/post/delete
+content-type: application/json

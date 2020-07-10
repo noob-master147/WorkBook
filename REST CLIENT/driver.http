@@ -1,0 +1,23 @@
+#####################################################################################################
+#                                                                                                   #
+#                                          DRIVER ROTES                                             #
+#                                                                                                   #
+#####################################################################################################
+
+
+####
+# Register Driver Route
+POST https://app-workbook.herokuapp.com/driver/register
+content-type: application/json
+
+{
+    "userName":"driver",
+    "userID":"driver",
+    "password":"123456",
+    "carNumber":"sFsdg",
+    "instituteName":"IEEE",
+    "adharNumber":1234564564,
+    "contactNumber":1234566544,
+    "fcmToken": "afafsfg"
+}
+
