@@ -160,12 +160,13 @@ const createRoute = (obj) => {
             routeName: obj.routeName
         })
         await route.save()
-            .then(() => {
+            .then((obj) => {
                 console.log(chalk.green.bold("New Route Registered!"))
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: "Route Successfully Registered"
+                        msg: "Route Successfully Registered",
+                        route: obj
                     }
                 })
             })

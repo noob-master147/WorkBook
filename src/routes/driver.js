@@ -2,6 +2,8 @@ const chalk = require('chalk')
 const router = require("express")();
 const driverControl = require('../controllers/driverControl')
 const { hashPassword } = require('../middleware/hashPassword')
+const { authenticate } = require('../middleware/authenticate')
+
 
 router.get('/', (req, res) => {
     res.send({
@@ -69,7 +71,7 @@ router.post('/update', (req, res) => {
  * @apiParam {String} userID userID of the Driver 
  * @apiParam {String} jwtToken JWT Token of the Driver
  */ // Create Route
-router.post('/createRoute', (req, res) => {
+router.post('/createRoute', authenticate, (req, res) => {
     driverControl.createRoute(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))

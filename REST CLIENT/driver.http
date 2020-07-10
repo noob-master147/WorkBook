@@ -5,9 +5,24 @@
 #####################################################################################################
 
 
+# POST https://app-workbook.herokuapp.com/driver/register
+
+
+####
+# Login Route
+POST http://localhost:8000/login
+content-type: application/json
+
+{
+    "fcmToken" : "asdlkfccccccchdslf",
+    "userID":"driver",
+    "password": "123456"
+}
+
+
 ####
 # Register Driver Route
-POST https://app-workbook.herokuapp.com/driver/register
+POST http://localhost:8000/driver/register
 content-type: application/json
 
 {
@@ -21,3 +36,17 @@ content-type: application/json
     "fcmToken": "afafsfg"
 }
 
+
+
+####
+# Create a new Route
+POST http://localhost:8000/driver/createRoute
+content-type: application/json
+
+{
+"driverID":"5f08bc838b4a6a001733649e",
+"location": [{"longitude": 23.3, "latitude": 53.4, "name": "Some place"}],
+"routeName": "Route 1",
+"userID":"driver",
+"jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJkcml2ZXIiLCJpYXQiOjE1OTQ0MDgyMDd9.X3SPVjTa-yxiuEw9AvXQ29gTNaaH2c5xI_laKVO7Wks"
+}
