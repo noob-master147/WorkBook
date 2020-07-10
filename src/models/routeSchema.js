@@ -5,12 +5,20 @@ const customer = new mongoose.Schema({
     customerID: {
         type: String,
         trim: true
+    },
+    customerName: {
+        type: String,
+        trim: true
     }
 })
 
 
 const employee = new mongoose.Schema({
     employeeID: {
+        type: String,
+        trim: true
+    },
+    employeeName: {
         type: String,
         trim: true
     }
@@ -42,15 +50,6 @@ const routeSchema = new mongoose.Schema({
         required: true,
         trim: true,
         unique: true
-    },
-    instituteType: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    instituteImageUrl: {
-        type: String,
-        required: true
     },
     createdAt: {
         type: Date,

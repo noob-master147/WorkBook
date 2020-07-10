@@ -56,4 +56,23 @@ router.post('/update', (req, res) => {
 })
 
 
+
+
+/** Add New Route
+ * @api {post} /driver/createRoute Create Route
+ * @apiName Create Route
+ * @apiGroup Driver
+ * 
+ * @apiParam {String} driverID  _id of Driver
+ * @apiParam {List} location List of JSON of Coordinates 
+ * @apiParam {String} routeName Name of the Route
+ */ // Create Route
+router.post('/createRoute', (req, res) => {
+    driverControl.createRoute(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
 module.exports = router;
