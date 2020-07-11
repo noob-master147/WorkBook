@@ -511,6 +511,81 @@ const queryComment = (obj) => {
 }
 
 
+const addUserRoute = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        const role = obj.role
+        let alias = null
+        switch (role) {
+            case "employee":
+                alias = Employee
+                break;
+            case "customer":
+                alias = Customer
+                break;
+        }
+        alias.findByIdAndUpdate(obj.id, {
+                route: obj.route
+            }, {
+                new: true
+            })
+            .then((user) => {
+                console.log(chalk.bold.green("Route Added to the User!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Route Added to the User",
+                        user: user
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Adding Route to User!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Adding Route to User! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+const createRoute = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        route = new Route({
+            driverID: obj.driverID,
+            location: obj.location,
+            routeName: obj.routeName
+        })
+        await route.save()
+            .then((obj) => {
+                console.log(chalk.green.bold("New Route Registered!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Route Successfully Registered",
+                        route: obj
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Route Registration!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Adding Route",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
 
 module.exports = {
     register,
@@ -526,5 +601,7 @@ module.exports = {
     rejectDriver,
     deleteDriver,
     setGD,
-    queryComment
+    queryComment,
+    addUserRoute,
+    createRoute
 }

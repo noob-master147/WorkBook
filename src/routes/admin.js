@@ -299,6 +299,42 @@ router.post('/queryComment', authenticate, (req, res) => {
 })
 
 
+/** Add User to Route
+ * @api {post} /admin/addRoute Add User to Route
+ * @apiName Add User to Route
+ * @apiGroup Admin
+ *
+ * @apiParam {String} role Role of User
+ * @apiParam {String} id _id of User
+ * @apiParam {Object} route Route Object
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ * @apiParam {String} userID Email ID of Admin
+ *   
+ */ // Add User to Route
+router.post('/addUserRoute', authenticate, (req, res) => {
+    adminControl.addRoute(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+/** Create New Route
+ * @api {post} /driver/createRoute Create New Route
+ * @apiName Create New Route
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} driverID  _id of Driver
+ * @apiParam {List} location List of JSON of Coordinates 
+ * @apiParam {String} routeName Name of the Route
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ */ // Create Route
+router.post('/createRoute', authenticate, (req, res) => {
+    adminControl.createRoute(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
 
 
 
