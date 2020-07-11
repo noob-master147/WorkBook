@@ -7,6 +7,7 @@ const { Institute } = require('../models/instituteSchema')
 const { Role } = require('../models/RoleSchema')
 const bcrypt = require('bcrypt')
 const { Query } = require('../models/querySchema')
+const { Route } = require('../models/routeSchema')
 const { ObjectID } = require('mongodb')
 
 const register = (user) => {
@@ -556,6 +557,7 @@ const addUserRoute = (obj) => {
 
 const createRoute = (obj) => {
     return new Promise(async(resolve, reject) => {
+        console.log(obj)
         route = new Route({
             driverID: obj.driverID,
             location: obj.location,
