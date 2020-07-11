@@ -1,6 +1,57 @@
 define({ "api": [
   {
     "type": "post",
+    "url": "/admin/addRoute",
+    "title": "Add User to Route",
+    "name": "Add_User_to_Route",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "role",
+            "description": "<p>Role of User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "route",
+            "description": "<p>Route Object</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
     "url": "/admin/approveDriver",
     "title": "Approve Driver",
     "name": "Approve_Driver",
@@ -109,6 +160,57 @@ define({ "api": [
             "optional": false,
             "field": "userID",
             "description": "<p>Email ID of Admin</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/driver/createRoute",
+    "title": "Create New Route",
+    "name": "Create_New_Route",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "driverID",
+            "description": "<p>_id of Driver</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "List",
+            "optional": false,
+            "field": "location",
+            "description": "<p>List of JSON of Coordinates</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "routeName",
+            "description": "<p>Name of the Route</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>userID of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
           }
         ]
       }
@@ -968,57 +1070,6 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "src/routes/customer.js",
     "groupTitle": "Customer"
-  },
-  {
-    "type": "post",
-    "url": "/driver/createRoute",
-    "title": "Create Route",
-    "name": "Create_Route",
-    "group": "Driver",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "driverID",
-            "description": "<p>_id of Driver</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "List",
-            "optional": false,
-            "field": "location",
-            "description": "<p>List of JSON of Coordinates</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "routeName",
-            "description": "<p>Name of the Route</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "userID",
-            "description": "<p>userID of the Driver</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "jwtToken",
-            "description": "<p>JWT Token of the Driver</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "src/routes/driver.js",
-    "groupTitle": "Driver"
   },
   {
     "type": "post",
