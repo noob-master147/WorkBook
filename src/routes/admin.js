@@ -355,6 +355,40 @@ router.post('/updateRoute', authenticate, (req, res) => {
 })
 
 
+/** Delete Location
+ * @api {post} /admin/deleteLocation Delete Location
+ * @apiName Delete Location
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} routeID  _id of Route
+ * @apiParam {String} locationID _id of Location Point
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ */ // Delete Location
+router.post('/deleteLocation', authenticate, (req, res) => {
+    adminControl.deleteLocation(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+/** Delete Route
+ * @api {post} /admin/deleteRoute Delete Route
+ * @apiName Delete Route
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} id  _id of Route
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ */ // Delete Route
+router.post('/deleteRoute', authenticate, (req, res) => {
+    adminControl.deleteRoute(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
 
 
 
