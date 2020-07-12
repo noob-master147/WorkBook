@@ -554,7 +554,6 @@ const addUserRoute = (obj) => {
 
 const createRoute = (obj) => {
     return new Promise(async(resolve, reject) => {
-        console.log(obj)
         route = new Route({
             driverID: obj.driverID,
             location: obj.location,
@@ -587,8 +586,16 @@ const createRoute = (obj) => {
 
 const updateRoute = (obj) => {
     return new Promise(async(resolve, reject) => {
-        Route.findByIdAndUpdate(obj.id, {
-                location: obj.location,
+        console.log(chalk.yellow.bold("Updating Route..."))
+        console.log(obj)
+        await Route.findByIdAndUpdate(obj.id, {
+                $push: {
+                    location: [{
+                        latitude: obj.location.latitude,
+                        longitude: obj.location.longitude,
+                        name: obj.location.name
+                    }]
+                },
                 routeName: obj.routeName
             }, {
                 new: true
@@ -618,6 +625,74 @@ const updateRoute = (obj) => {
 }
 
 
+
+const deleteRoute = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Deleting Route..."))
+        await Route.findByIdAndDelete(obj.id)
+            .then(() => {
+                console.log(chalk.bold.green("Route Deleted!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Route Deleted"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Deleting Route!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Deleting Route! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+const deleteLocation = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Deleting Location..."))
+        await Route.findByIdAndUpdate(obj.routeID, {
+                $pull: {
+                    location: { _id: obj.locationID }
+                }
+            }, {
+                new: true
+            })
+            .then((route) => {
+                console.log(chalk.bold.green("Location Deleted!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Location Deleted",
+                        route: route
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Deleting Location!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Deleting Location! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
+
 module.exports = {
     register,
     login,
@@ -635,5 +710,7 @@ module.exports = {
     queryComment,
     addUserRoute,
     createRoute,
-    updateRoute
+    updateRoute,
+    deleteRoute,
+    deleteLocation
 }

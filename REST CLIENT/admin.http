@@ -113,3 +113,28 @@ content-type: application/json
 
 
 
+
+####
+# Update Route
+POST http://localhost:8000/admin/updateRoute
+content-type: application/json
+
+{
+    "id": "5f0b561a92315a52456b70fb",
+    "location": [{
+      "latitude": 26.884910945492,
+      "longitude": 75.83134130274,
+      "name": "4-KA-6, Jaipur, Rajasthan, 302004, India"
+    },
+    {
+      "latitude": 26.8849109448892,
+      "longitude": 75.831349231774,
+      "name": "4-KA-6, Marg, Jaipur, n, 302004, India"
+    }],
+    "routeName": "Route X",
+    "userID": "rishi@admin.com",
+    "jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJyaXNoaUBhZG1pbi5jb20iLCJpYXQiOjE1OTQ0NjU2Mjl9.-76LFHDcaEGYUHZ-c8LPia35eVQRg1Da7EPNAvszKpk"
+}
+
+
+

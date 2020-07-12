@@ -26,12 +26,12 @@ const employee = new mongoose.Schema({
 
 const coordinateSchema = new mongoose.Schema({
     longitude: {
-        type: String,
+        type: Number,
         required: true,
         trim: true
     },
     latitude: {
-        type: String,
+        type: Number,
         required: true,
         trim: true
     },
