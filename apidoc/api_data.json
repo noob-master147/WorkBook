@@ -170,7 +170,7 @@
   },
   {
     "type": "post",
-    "url": "/driver/createRoute",
+    "url": "/admin/createRoute",
     "title": "Create New Route",
     "name": "Create_New_Route",
     "group": "Admin",
@@ -664,6 +664,57 @@
             "optional": false,
             "field": "userID",
             "description": "<p>Email ID of Admin</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/updateRoute",
+    "title": "Update Route",
+    "name": "Update_Route",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of Route</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "List",
+            "optional": false,
+            "field": "location",
+            "description": "<p>List of JSON of Coordinates</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "routeName",
+            "description": "<p>Name of the Route</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>userID of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
           }
         ]
       }
