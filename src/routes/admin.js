@@ -320,7 +320,7 @@ router.post('/addUserRoute', authenticate, (req, res) => {
 
 
 /** Create New Route
- * @api {post} /driver/createRoute Create New Route
+ * @api {post} /admin/createRoute Create New Route
  * @apiName Create New Route
  * @apiGroup Admin
  * 
@@ -335,6 +335,26 @@ router.post('/createRoute', authenticate, (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+/** Update Route
+ * @api {post} /admin/updateRoute Update Route
+ * @apiName Update Route
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} id  _id of Route
+ * @apiParam {List} location List of JSON of Coordinates 
+ * @apiParam {String} routeName Name of the Route
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ */ // Update Route
+router.post('/updateRoute', authenticate, (req, res) => {
+    adminControl.updateRoute(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
 
 
 

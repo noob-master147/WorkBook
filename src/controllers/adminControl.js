@@ -585,6 +585,38 @@ const createRoute = (obj) => {
 }
 
 
+const updateRoute = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        Route.findByIdAndUpdate(obj.id, {
+                location: obj.location,
+                routeName: obj.routeName
+            }, {
+                new: true
+            })
+            .then((route) => {
+                console.log(chalk.bold.green("Route Updated!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Route Updated",
+                        route: route
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Updating Route!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating Route! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 
 module.exports = {
     register,
@@ -602,5 +634,6 @@ module.exports = {
     setGD,
     queryComment,
     addUserRoute,
-    createRoute
+    createRoute,
+    updateRoute
 }
