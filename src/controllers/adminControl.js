@@ -511,7 +511,6 @@ const queryComment = (obj) => {
     })
 }
 
-
 const addUserRoute = (obj) => {
     return new Promise(async(resolve, reject) => {
         const role = obj.role
@@ -552,8 +551,6 @@ const addUserRoute = (obj) => {
             })
     })
 }
-
-
 
 const createRoute = (obj) => {
     return new Promise(async(resolve, reject) => {

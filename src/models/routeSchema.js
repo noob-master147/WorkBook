@@ -56,6 +56,12 @@ const routeSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
+    routeName: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
     location: [coordinateSchema],
     customer: [customer],
     employee: [employee]
