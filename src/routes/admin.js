@@ -300,7 +300,7 @@ router.post('/queryComment', authenticate, (req, res) => {
 
 
 /** Add User to Route
- * @api {post} /admin/addRoute Add User to Route
+ * @api {post} /admin/addUserRoute Add User to Route
  * @apiName Add User to Route
  * @apiGroup Admin
  *
@@ -312,7 +312,7 @@ router.post('/queryComment', authenticate, (req, res) => {
  *   
  */ // Add User to Route
 router.post('/addUserRoute', authenticate, (req, res) => {
-    adminControl.addRoute(req.body)
+    adminControl.addUserRoute(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })

@@ -1,7 +1,7 @@
 define({ "api": [
   {
     "type": "post",
-    "url": "/admin/addRoute",
+    "url": "/admin/addUserRoute",
     "title": "Add User to Route",
     "name": "Add_User_to_Route",
     "group": "Admin",
