@@ -1216,22 +1216,22 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "userID",
-            "description": "<p>User Id of driver</p>"
+            "field": "routeName",
+            "description": ""
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "id",
-            "description": "<p>_id of Driver</p>"
+            "field": "userID",
+            "description": "<p>User ID of User</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
             "field": "jwtToken",
-            "description": "<p>JWT token of Driver</p>"
+            "description": "<p>JWT token of User</p>"
           }
         ]
       }
