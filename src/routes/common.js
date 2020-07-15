@@ -65,12 +65,12 @@ router.post('/uploadPicture', getUser, (req, res) => {
 
 
 
-/** Get Profile Picture
- * @api {get} /getUserProfile/:role/:id Fetch Profile Picture
+/** Get Profile
+ * @api {get} /getUserProfile/:role/:id Fetch Profile
  * @apiName Fetch Profile Picture
  * @apiGroup Common
  * 
- */ // Get Profile Picture
+ */ // Get Profile
 router.get('/getUserProfile/:role/:id', (req, res) => {
     console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
     commonControl.getUserProfile(req.params)
