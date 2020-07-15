@@ -40,8 +40,8 @@ router.post('/register', hashPassword, (req, res) => {
 
 
 /** Update Driver
- * @api {post} /driver/register Update Driver
- * @apiName Register
+ * @api {post} /driver/updateDriver Update Driver
+ * @apiName Update Driver
  * @apiGroup Driver
  *
  * @apiParam {String} userName User Name
@@ -51,8 +51,46 @@ router.post('/register', hashPassword, (req, res) => {
  * @apiParam {String} fcmToken FCM Device Token
  * 
  */ // Update Driver
-router.post('/update', (req, res) => {
-    driverControl.updateCustomer(req.body)
+router.post('/updateDriver', (req, res) => {
+    driverControl.updateDriver(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+/** Update Driver Location
+ * @api {post} /driver/updateLocation Update Driver Location
+ * @apiName Update Driver Location
+ * @apiGroup Driver
+ *
+ * @apiParam {String} userID User Id of driver
+ * @apiParam {String} id _id of Driver
+ * @apiParam {String} jwtToken JWT token of Driver
+ * @apiParam {Object} location Object of Location
+ * 
+ */ // Update Driver Location
+router.post('/updateLocation', (req, res) => {
+    driverControl.updateLocation(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+/** Get Driver Location
+ * @api {post} /driver/getLocation Get Driver Location
+ * @apiName Get Driver Location
+ * @apiGroup Driver
+ *
+ * @apiParam {String} userID User Id of driver
+ * @apiParam {String} id _id of Driver
+ * @apiParam {String} jwtToken JWT token of Driver
+ * 
+ */ // Get Driver Location
+router.post('/getLocation', (req, res) => {
+    driverControl.getLocation(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })

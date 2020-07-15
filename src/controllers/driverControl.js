@@ -152,9 +152,77 @@ const updateDriver = (driver) => {
 }
 
 
+const updateLocation = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Updating Driver Location..."))
+        Driver.findByIdAndUpdate(obj.id, {
+                location: obj.location
+            }, {
+                new: true
+            })
+            .then((driver) => {
+                console.log(chalk.bold.green("Driver Location Updated!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Driver Location Updated",
+                        driver: driver
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Updating Driver Location!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating Driver Location! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+const getLocation = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        Driver.findById(obj.id)
+            .then((driver) => {
+                return ({
+                    location: driver.location
+                })
+            })
+            .then(() => {
+                console.log(chalk.bold.green("!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: ""
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in !"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in ! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
 
 module.exports = {
     register,
     login,
     updateDriver,
+    updateLocation,
+    getLocation
 }

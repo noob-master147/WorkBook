@@ -2,6 +2,27 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 
 
+
+const coordinateSchema = new mongoose.Schema({
+    longitude: {
+        type: Number,
+        required: true,
+        trim: true
+    },
+    latitude: {
+        type: Number,
+        required: true,
+        trim: true
+    },
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    }
+})
+
+
+
 const driverSchema = new mongoose.Schema({
     role: {
         type: String,
@@ -63,6 +84,7 @@ const driverSchema = new mongoose.Schema({
         required: true,
         default: false
     },
+    location: [coordinateSchema],
     createdAt: {
         type: Date,
         required: true,

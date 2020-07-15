@@ -63,8 +63,6 @@ const routeSchema = new mongoose.Schema({
         unique: true
     },
     location: [coordinateSchema],
-    customer: [customer],
-    employee: [employee]
 });
 
 
