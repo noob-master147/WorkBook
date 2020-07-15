@@ -65,3 +65,45 @@ content-type: application/json
     "userID":"superAdmin",
     "password": "123"
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####
+POST https://hooks.spike.sh/ca621a74920dd44e03e8/push-events
+content-type: application/json
+
+{
+    "check_id": "1234565432",
+    "message": "Test is DOWn",
+    "title": "Test is DOWn",
+    "status": "DOWN"
+}
+
+
+
+####
+POST https://hooks.spike.sh/ca621a74920dd44e03e8/push-events
+content-type: application/json
+
+{
+    "check_id": "1234565432",
+    "message": "Test is UP",
+    "title": "Test is UP",
+    "status": "UP"
+}

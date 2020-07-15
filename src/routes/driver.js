@@ -71,7 +71,7 @@ router.post('/updateDriver', (req, res) => {
  * @apiParam {Object} location Object of Location
  * 
  */ // Update Driver Location
-router.post('/updateLocation', (req, res) => {
+router.post('/updateLocation', authenticate, (req, res) => {
     driverControl.updateLocation(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -84,12 +84,12 @@ router.post('/updateLocation', (req, res) => {
  * @apiName Get Driver Location
  * @apiGroup Driver
  *
- * @apiParam {String} userID User Id of driver
- * @apiParam {String} id _id of Driver
- * @apiParam {String} jwtToken JWT token of Driver
+ * @apiParam {String} routeName
+ * @apiParam {String} userID User ID of User 
+ * @apiParam {String} jwtToken JWT token of User
  * 
  */ // Get Driver Location
-router.post('/getLocation', (req, res) => {
+router.post('/getLocation', authenticate, (req, res) => {
     driverControl.getLocation(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))

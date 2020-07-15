@@ -6,6 +6,12 @@ const route = new mongoose.Schema({
         type: String,
         trim: true
     },
+    routeName: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true
+    },
     boardingPoint: {
         longitude: {
             type: Number,

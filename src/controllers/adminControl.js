@@ -513,6 +513,7 @@ const queryComment = (obj) => {
 
 const addUserRoute = (obj) => {
     return new Promise(async(resolve, reject) => {
+        console.log(obj)
         const role = obj.role
         let alias = null
         switch (role) {

@@ -43,7 +43,7 @@ const register = (user) => {
             })
             .catch(async(err) => {
                 console.log(chalk.red.bold("Error in Driver Registration!"))
-                await driver.findByIdAndDelete(id)
+                await Driver.findByIdAndDelete(id)
                 await Role.findByIdAndDelete(id)
                 reject({
                     statusCode: 400,
@@ -151,7 +151,6 @@ const updateDriver = (driver) => {
     })
 }
 
-
 const updateLocation = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Updating Driver Location..."))
@@ -184,31 +183,39 @@ const updateLocation = (obj) => {
     })
 }
 
-
-
 const getLocation = (obj) => {
     return new Promise(async(resolve, reject) => {
-        Driver.findById(obj.id)
-            .then((driver) => {
-                return ({
-                    location: driver.location
-                })
+        console.log(chalk.yellow.bold("Fetching Location..."))
+        console.log("\nobj", obj)
+        await Route.findOne({
+                routeName: obj.routeName
             })
-            .then(() => {
-                console.log(chalk.bold.green("!"))
+            .then((route) => {
+                console.log("\nroute", route)
+                return (route.driverID)
+            })
+            .then(async(id) => {
+                console.log("\nid", id)
+                const driver = await Driver.findById(id)
+                return driver.location[0]
+            })
+            .then((location) => {
+                console.log("\nLocation", location)
+                console.log(chalk.bold.green("Location Fetched!"))
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: ""
+                        msg: "Location Fetched",
+                        location: location
                     }
                 })
             })
             .catch((err) => {
-                console.log(chalk.red.bold("Error in !"))
+                console.log(chalk.red.bold("Error in Fetching Location!"))
                 reject({
                     statusCode: 400,
                     payload: {
-                        msg: "Error in ! Contact Support",
+                        msg: "Error in Fetching Location! Contact Support",
                         Error: "Issue in connecting to the Datebase",
                         err: err
                     }
