@@ -34,7 +34,7 @@ app.use('/guest', guest)
 app.use('/', common)
 
 //Load the Landing page for the form
-app.post('/', (req, res) => {
+app.get('/', (req, res) => {
     console.log(req.body)
     res.send({
         statusCode: 200,
@@ -55,7 +55,7 @@ mongoose.connect(process.env.MONGO_URL, {
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
     },
     () => {
         console.log(chalk.green.bold('Connected to MongoDB'))

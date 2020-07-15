@@ -1,6 +1,57 @@
 define({ "api": [
   {
     "type": "post",
+    "url": "/admin/addUserRoute",
+    "title": "Add User to Route",
+    "name": "Add_User_to_Route",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "role",
+            "description": "<p>Role of User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "route",
+            "description": "<p>Route Object</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
     "url": "/admin/approveDriver",
     "title": "Approve Driver",
     "name": "Approve_Driver",
@@ -75,6 +126,101 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/admin/queryComment",
+    "title": "Comment a Query",
+    "name": "Comment_a_Query",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of the Query Document</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "comment",
+            "description": "<p>Comment by Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email ID of Admin</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/createRoute",
+    "title": "Create New Route",
+    "name": "Create_New_Route",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "driverID",
+            "description": "<p>_id of Driver</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "List",
+            "optional": false,
+            "field": "location",
+            "description": "<p>List of JSON of Coordinates</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "routeName",
+            "description": "<p>Name of the Route</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>userID of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
     "url": "/admin/deleteDriver",
     "title": "Delete Driver",
     "name": "Delete_Driver",
@@ -139,6 +285,87 @@ define({ "api": [
             "optional": false,
             "field": "userID",
             "description": "<p>Email ID of Admin</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/deleteLocation",
+    "title": "Delete Location",
+    "name": "Delete_Location",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "routeID",
+            "description": "<p>_id of Route</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "locationID",
+            "description": "<p>_id of Location Point</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>userID of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/deleteRoute",
+    "title": "Delete Route",
+    "name": "Delete_Route",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of Route</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>userID of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
           }
         ]
       }
@@ -391,10 +618,10 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "File",
+            "type": "String",
             "optional": false,
-            "field": "instituteImage",
-            "description": "<p>Image of the Institute</p>"
+            "field": "instituteImageUrl",
+            "description": "<p>URL of Institute Image</p>"
           },
           {
             "group": "Parameter",
@@ -528,6 +755,57 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/admin/updateRoute",
+    "title": "Update Route",
+    "name": "Update_Route",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of Route</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "List",
+            "optional": false,
+            "field": "location",
+            "description": "<p>List of JSON of Coordinates</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "routeName",
+            "description": "<p>Name of the Route</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>userID of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
     "url": "/admin/viewAllDrivers",
     "title": "View Institute's Drivers",
     "name": "View_All_Drivers",
@@ -626,7 +904,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/getUserProfile/:role/:id",
-    "title": "Fetch Profile Picture",
+    "title": "Fetch Profile",
     "name": "Fetch_Profile_Picture",
     "group": "Common",
     "version": "0.0.0",
@@ -638,6 +916,26 @@ define({ "api": [
     "url": "/getRoles",
     "title": "Fetch Roles",
     "name": "Fetch_Roles",
+    "group": "Common",
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "get",
+    "url": "/getRoutes",
+    "title": "Get Routes",
+    "name": "Get_Routes",
+    "group": "Common",
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "get",
+    "url": "/restoreDataBase",
+    "title": "Restore DataBase",
+    "name": "Restore_DataBase",
     "group": "Common",
     "version": "0.0.0",
     "filename": "src/routes/common.js",
@@ -676,8 +974,8 @@ define({ "api": [
   {
     "type": "post",
     "url": "/uploadPicture",
-    "title": "Upload Profile Picture",
-    "name": "Upload_Profile_Picture",
+    "title": "Upload Profile Picture URL",
+    "name": "Upload_Profile_Picture_URL",
     "group": "Common",
     "parameter": {
       "fields": {
@@ -691,10 +989,10 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "File",
+            "type": "String",
             "optional": false,
-            "field": "profilePicture",
-            "description": "<p>Profile Picture</p>"
+            "field": "profilePictureUrl",
+            "description": "<p>Profile Picture URL</p>"
           }
         ]
       }
@@ -907,6 +1205,43 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/driver/getLocation",
+    "title": "Get Driver Location",
+    "name": "Get_Driver_Location",
+    "group": "Driver",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "routeName",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>User ID of User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT token of User</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/driver.js",
+    "groupTitle": "Driver"
+  },
+  {
+    "type": "post",
     "url": "/driver/register",
     "title": "Driver Register",
     "name": "Register",
@@ -979,9 +1314,9 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/driver/register",
+    "url": "/driver/updateDriver",
     "title": "Update Driver",
-    "name": "Register",
+    "name": "Update_Driver",
     "group": "Driver",
     "parameter": {
       "fields": {
@@ -1020,6 +1355,50 @@ define({ "api": [
             "optional": false,
             "field": "fcmToken",
             "description": "<p>FCM Device Token</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/driver.js",
+    "groupTitle": "Driver"
+  },
+  {
+    "type": "post",
+    "url": "/driver/updateLocation",
+    "title": "Update Driver Location",
+    "name": "Update_Driver_Location",
+    "group": "Driver",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>User Id of driver</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id of Driver</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT token of Driver</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "location",
+            "description": "<p>Object of Location</p>"
           }
         ]
       }

@@ -47,17 +47,17 @@ router.post('/login', signJWT, getUser, (req, res) => {
 
 
 /** Upload Profile Picture
- * @api {post} /uploadPicture Upload Profile Picture
- * @apiName Upload Profile Picture
+ * @api {post} /uploadPicture Upload Profile Picture URL
+ * @apiName Upload Profile Picture URL
  * @apiGroup Common
  * 
  * @apiParam {String} userID Email ID of the User
- * @apiParam {File} profilePicture Profile Picture
+ * @apiParam {String} profilePictureUrl Profile Picture URL
  *   
  */ // Upload Profile Picture
-router.post('/uploadPicture', upload.single('profilePicture'), getUser, (req, res) => {
+router.post('/uploadPicture', getUser, (req, res) => {
     console.log(chalk.bold.yellow("Upload Picture Route Hit!"))
-    commonControl.uploadPicture(req)
+    commonControl.uploadPicture(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
@@ -65,12 +65,12 @@ router.post('/uploadPicture', upload.single('profilePicture'), getUser, (req, re
 
 
 
-/** Get Profile Picture
- * @api {get} /getUserProfile/:role/:id Fetch Profile Picture
+/** Get Profile
+ * @api {get} /getUserProfile/:role/:id Fetch Profile
  * @apiName Fetch Profile Picture
  * @apiGroup Common
  * 
- */ // Get Profile Picture
+ */ // Get Profile
 router.get('/getUserProfile/:role/:id', (req, res) => {
     console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
     commonControl.getUserProfile(req.params)
@@ -146,6 +146,33 @@ router.get('/getRoles', (req, res) => {
 
 
 
+/** Restore DataBase
+ * @api {get} /restoreDataBase Restore DataBase
+ * @apiName Restore DataBase
+ * @apiGroup Common
+ * 
+ */ // Restore DataBase
+router.get('/restoreDataBase', (req, res) => {
+    console.log(chalk.bold.yellow("Restore DataBase Route Hit!"))
+    commonControl.restoreDataBase()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+/** Get Routes
+ * @api {get} /getRoutes Get Routes
+ * @apiName Get Routes
+ * @apiGroup Common
+ * 
+ */ // Get Routes
+router.get('/getRoutes', (req, res) => {
+    console.log(chalk.bold.yellow("Get Routes Route Hit!"))
+    commonControl.getRoutes()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
 
 
 

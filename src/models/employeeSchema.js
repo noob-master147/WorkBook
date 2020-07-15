@@ -1,6 +1,57 @@
 const mongoose = require('mongoose')
-const validator = require('validator');
-const jwt = require('jsonwebtoken')
+
+
+const route = new mongoose.Schema({
+    area: {
+        type: String,
+        trim: true
+    },
+    routeName: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true
+    },
+    boardingPoint: {
+        longitude: {
+            type: Number,
+            trim: true
+        },
+        latitude: {
+            type: Number,
+            trim: true
+        },
+        locationName: {
+            type: String,
+            trim: true
+        }
+
+    },
+    droppingPoint: {
+        longitude: {
+            type: Number,
+            trim: true
+        },
+        latitude: {
+            type: Number,
+            trim: true
+        },
+        locationName: {
+            type: String,
+            trim: true
+        }
+    },
+    pickUpTime: {
+        type: String,
+        trim: true
+    },
+    cost: {
+        type: Number,
+        trim: true
+    }
+})
+
+
 
 const employeeSchema = new mongoose.Schema({
     role: {
@@ -25,8 +76,8 @@ const employeeSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    profilePicture: {
-        type: Buffer
+    profilePictureUrl: {
+        type: String
     },
     instituteName: {
         type: String,
@@ -72,7 +123,8 @@ const employeeSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
-    }
+    },
+    route: [route]
 });
 
 

@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
  * @apiParam {String} password Password
  * @apiParam {String} instituteName Name of the Institute
  * @apiParam {String} instituteType Type of the Institute
- * @apiParam {File} instituteImage Image of the Institute
+ * @apiParam {String} instituteImageUrl URL of Institute Image
  * @apiParam {Number} numberOfMembers Number of Members in the Institute
  * @apiParam {String} state State
  * @apiParam {String} city City
@@ -34,10 +34,11 @@ router.get('/', (req, res) => {
  * @apiParam {Number} adharNumber Adhar Number
  * @apiParam {Number} contactNumber Contact Number
  * @apiParam {String} fcmToken FCM Device Token
+ * 
  */ //Register New Admin
-router.post('/register', upload.single('instituteImage'), hashPassword, (req, res) => {
+router.post('/register', hashPassword, (req, res) => {
     console.log(chalk.yellow.bold("\nRegister Admin route hit..."))
-    adminControl.register(req)
+    adminControl.register(req.body)
         .then((obj) => res.send(obj).status(201))
         .catch((err) => res.send(err).status(400))
 })
@@ -278,6 +279,115 @@ router.post('/setGD', authenticate, (req, res) => {
         .catch((err) => res.send(err).status(400))
 })
 
+
+
+/** Comment a Query
+ * @api {post} /admin/queryComment Comment a Query
+ * @apiName Comment a Query
+ * @apiGroup Admin
+ *
+ * @apiParam {String} id _id of the Query Document
+ * @apiParam {String} comment Comment by Admin
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} userID Email ID of Admin
+ *   
+ */ // Comment a Query
+router.post('/queryComment', authenticate, (req, res) => {
+    adminControl.queryComment(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+/** Add User to Route
+ * @api {post} /admin/addUserRoute Add User to Route
+ * @apiName Add User to Route
+ * @apiGroup Admin
+ *
+ * @apiParam {String} role Role of User
+ * @apiParam {String} id _id of User
+ * @apiParam {Object} route Route Object
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ * @apiParam {String} userID Email ID of Admin
+ *   
+ */ // Add User to Route
+router.post('/addUserRoute', authenticate, (req, res) => {
+    adminControl.addUserRoute(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+/** Create New Route
+ * @api {post} /admin/createRoute Create New Route
+ * @apiName Create New Route
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} driverID  _id of Driver
+ * @apiParam {List} location List of JSON of Coordinates 
+ * @apiParam {String} routeName Name of the Route
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ */ // Create Route
+router.post('/createRoute', authenticate, (req, res) => {
+    adminControl.createRoute(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+/** Update Route
+ * @api {post} /admin/updateRoute Update Route
+ * @apiName Update Route
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} id  _id of Route
+ * @apiParam {List} location List of JSON of Coordinates 
+ * @apiParam {String} routeName Name of the Route
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ */ // Update Route
+router.post('/updateRoute', authenticate, (req, res) => {
+    adminControl.updateRoute(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+/** Delete Location
+ * @api {post} /admin/deleteLocation Delete Location
+ * @apiName Delete Location
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} routeID  _id of Route
+ * @apiParam {String} locationID _id of Location Point
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ */ // Delete Location
+router.post('/deleteLocation', authenticate, (req, res) => {
+    adminControl.deleteLocation(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+/** Delete Route
+ * @api {post} /admin/deleteRoute Delete Route
+ * @apiName Delete Route
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} id  _id of Route
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ */ // Delete Route
+router.post('/deleteRoute', authenticate, (req, res) => {
+    adminControl.deleteRoute(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
 
 
 

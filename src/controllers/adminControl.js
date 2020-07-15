@@ -6,41 +6,41 @@ const { Driver } = require('../models/driverSchema')
 const { Institute } = require('../models/instituteSchema')
 const { Role } = require('../models/RoleSchema')
 const bcrypt = require('bcrypt')
-const sharp = require('sharp')
+const { Query } = require('../models/querySchema')
+const { Route } = require('../models/routeSchema')
 const { ObjectID } = require('mongodb')
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
-        user.body.instituteImage = await sharp(user.file.buffer).resize({ width: 500, height: 500 }).png().toBuffer()
         console.log(chalk.bold.yellow("Registering Admin..."))
         const id = new ObjectID()
         admin = new Admin({
             _id: id,
-            userName: user.body.userName,
-            userID: user.body.userID,
-            password: user.body.password,
-            instituteName: user.body.instituteName,
-            instituteType: user.body.instituteType,
-            instituteImage: user.body.instituteImage,
-            numberOfMembers: user.body.numberOfMembers,
-            state: user.body.state,
-            city: user.body.city,
-            mailAddress: user.body.mailAddress,
-            adharNumber: user.body.adharNumber,
-            contactNumber: user.body.contactNumber,
-            fcmToken: user.body.fcmToken,
+            userName: user.userName,
+            userID: user.userID,
+            password: user.password,
+            instituteName: user.instituteName,
+            instituteType: user.instituteType,
+            instituteImageUrl: user.instituteImageUrl,
+            numberOfMembers: user.numberOfMembers,
+            state: user.state,
+            city: user.city,
+            mailAddress: user.mailAddress,
+            adharNumber: user.adharNumber,
+            contactNumber: user.contactNumber,
+            fcmToken: user.fcmToken,
             approved: false
         })
         institute = new Institute({
             _id: id,
-            instituteName: user.body.instituteName,
-            instituteType: user.body.instituteType,
-            instituteImage: user.body.instituteImage,
+            instituteName: user.instituteName,
+            instituteType: user.instituteType,
+            instituteImageUrl: user.instituteImageUrl,
         })
         role = new Role({
             _id: id,
-            fcmToken: user.body.fcmToken,
-            userID: user.body.userID,
+            fcmToken: user.fcmToken,
+            userID: user.userID,
             role: "admin"
         })
 
@@ -479,6 +479,220 @@ const setGD = (obj) => {
     })
 }
 
+const queryComment = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Adding Comment to Query"))
+        await Query.findByIdAndUpdate(obj.id, {
+                comment: obj.comment
+            }, {
+                new: true
+            })
+            .then((query) => {
+                console.log(chalk.bold.green("Comment Added to Query!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Comment Added to Query",
+                        query: query
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Adding Comment to the Query!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Adding Comment to the Query! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+const addUserRoute = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(obj)
+        const role = obj.role
+        let alias = null
+        switch (role) {
+            case "employee":
+                alias = Employee
+                break;
+            case "customer":
+                alias = Customer
+                break;
+        }
+        alias.findByIdAndUpdate(obj.id, {
+                route: obj.route
+            }, {
+                new: true
+            })
+            .then((user) => {
+                console.log(chalk.bold.green("Route Added to the User!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Route Added to the User",
+                        user: user
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Adding Route to User!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Adding Route to User! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+const createRoute = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        route = new Route({
+            driverID: obj.driverID,
+            location: obj.location,
+            routeName: obj.routeName
+        })
+        await route.save()
+            .then((obj) => {
+                console.log(chalk.green.bold("New Route Registered!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Route Successfully Registered",
+                        route: obj
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Route Registration!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Adding Route",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+const updateRoute = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Updating Route..."))
+        console.log(obj)
+        await Route.findByIdAndUpdate(obj.id, {
+                $push: {
+                    location: [{
+                        latitude: obj.location.latitude,
+                        longitude: obj.location.longitude,
+                        name: obj.location.name
+                    }]
+                },
+                routeName: obj.routeName
+            }, {
+                new: true
+            })
+            .then((route) => {
+                console.log(chalk.bold.green("Route Updated!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Route Updated",
+                        route: route
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Updating Route!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating Route! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+const deleteRoute = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Deleting Route..."))
+        await Route.findByIdAndDelete(obj.id)
+            .then(() => {
+                console.log(chalk.bold.green("Route Deleted!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Route Deleted"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Deleting Route!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Deleting Route! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+const deleteLocation = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Deleting Location..."))
+        await Route.findByIdAndUpdate(obj.routeID, {
+                $pull: {
+                    location: { _id: obj.locationID }
+                }
+            }, {
+                new: true
+            })
+            .then((route) => {
+                console.log(chalk.bold.green("Location Deleted!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Location Deleted",
+                        route: route
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Deleting Location!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Deleting Location! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
 
 module.exports = {
     register,
@@ -493,5 +707,11 @@ module.exports = {
     viewAllDrivers,
     rejectDriver,
     deleteDriver,
-    setGD
+    setGD,
+    queryComment,
+    addUserRoute,
+    createRoute,
+    updateRoute,
+    deleteRoute,
+    deleteLocation
 }

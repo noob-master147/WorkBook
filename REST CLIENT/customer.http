@@ -1,0 +1,30 @@
+#####################################################################################################
+#                                                                                                   #
+#                                          CUSTOMER ROTES                                           #
+#                                                                                                   #
+#####################################################################################################
+
+
+# Root Customer Route
+GET  http://localhost:8000/customer
+content-type: application/json
+
+
+####
+# Register Customer Route
+POST http://localhost:8000/customer/register
+content-type: application/json
+
+{
+    "userName":"cus",
+    "userID":"cus",
+    "password":"123456",
+    "grade":"sFsdg",
+    "division":"sdgsdga",
+    "instituteName":"agdd",
+    "mailAddress":"sdgdsg@gmil.com",
+    "adharNumber":1234564564,
+    "contactNumber":1234566544,
+    "fcmToken": "afafsfg"
+}
+
