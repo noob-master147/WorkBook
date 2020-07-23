@@ -923,10 +923,57 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/forgot",
+    "title": "Forgot Password",
+    "name": "Forget_Password",
+    "group": "Common",
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "get",
     "url": "/getRoutes",
     "title": "Get Routes",
     "name": "Get_Routes",
     "group": "Common",
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "post",
+    "url": "/resetPassword",
+    "title": "Reset Password",
+    "name": "Reset_Password",
+    "group": "Common",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>_id ID of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "role",
+            "description": "<p>Role of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>New Password</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "src/routes/common.js",
     "groupTitle": "Common"
