@@ -1,7 +1,9 @@
 const chalk = require('chalk')
 const serviceAccount = require("../../firebase-key.json")
 const bcrypt = require('bcrypt')
-const sharp = require('sharp')
+
+const { sendMail } = require('../middleware/sendMail')
+
 const { SuperAdmin } = require('../models/superAdminSchema')
 const { Admin } = require('../models/adminSchema')
 const { Employee } = require('../models/employeeSchema')
@@ -449,6 +451,111 @@ const getRoutes = (obj) => {
 }
 
 
+const forgot = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Forgot Password, Sending new Details"))
+        await generateToken()
+            .then(async(token) => {
+                console.log("token  ", token)
+                await sendMail({
+                        mail: obj.email,
+                        token: token
+                    })
+                    .then(() => {
+                        resolve({
+                            statusCode: 200,
+                            payload: {
+                                msg: "Reset Password Mail Sent",
+                                token: token
+                            }
+                        })
+                    }).catch((err) => {
+                        reject({
+                            statusCode: 400,
+                            payload: {
+                                msg: "Error in Resetting Password! Contact Support",
+                                err: err
+                            }
+                        })
+                    })
+
+            })
+            .catch((err) => {
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Resetting Password! Contact Support",
+                        err: err
+                    }
+                })
+            })
+
+    })
+}
+
+const generateToken = () => {
+    return new Promise(async(resolve, reject) => {
+        const token = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+        resolve(token)
+    })
+}
+
+
+const resetPassword = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Resetting Password..."))
+        const role = obj.role
+        switch (role) {
+            case "superAdmin":
+                alias = SuperAdmin
+                break;
+            case "admin":
+                alias = Admin
+                break;
+            case "employee":
+                alias = Employee
+                break;
+            case "customer":
+                alias = Customer
+                break;
+            case "driver":
+                alias = Driver
+                break;
+            case "guest":
+                alias = Guest
+                break;
+        }
+        await alias.findByIdAndUpdate(obj.id, {
+                password: obj.password
+            }, {
+                next: true
+            })
+            .then((user) => {
+                if (!user)
+                    throw new Error("No User Exist")
+                console.log(chalk.bold.green("Password Changed!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Password changed",
+                        user: user
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Updating the Password!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating the Password! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
 module.exports = {
     sendNotification,
     login,
@@ -459,5 +566,7 @@ module.exports = {
     fetchDivision,
     getRoles,
     restoreDataBase,
-    getRoutes
+    getRoutes,
+    forgot,
+    resetPassword
 }

@@ -21,7 +21,6 @@ const getUser = async(req, res, next) => {
                 new: true
             })
             .then(async(obj) => {
-                console.log("user", obj)
                 const role = obj.role
                 switch (role) {
                     case "superAdmin":
@@ -51,6 +50,8 @@ const getUser = async(req, res, next) => {
                         new: true
                     })
                     .then((user) => {
+                        if (!user)
+                            throw new Error("No User Exist")
                         console.log(chalk.bold.green("User Document Fetched"))
                         req.body.user = user
                         next()

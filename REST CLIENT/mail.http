@@ -1,0 +1,13 @@
+
+#####################################################################################################
+#                                                                                                   #
+#                                          GMAUL ROTES                                              #
+#                                                                                                   #
+#####################################################################################################
+
+
+
+####
+GET https://www.googleapis.com/gmail/v1/users/104830249095862534126/profile
+content-type: application/json
+Authorization:Bearer ya29.a0AfH6SMB8us29cEE6PAz2RYU2ntCDu1_r6_7NpVqOMP2SWVJQrTRJWHJgPc-9ASbgg8gVNn5Ds33yMQTQDKWZG7cz4BAtCR3cjiDkPO9JRAtXYlY8L-F1raD8T0G0nPJ7dTTjeb23kaj44TGOy2ynyUbWhtdt4us-YFY

@@ -3,7 +3,8 @@ const chalk = require('chalk')
 const commonControl = require('../controllers/commonControl')
 const { getUser } = require('../middleware/getUser')
 const { upload } = require('../middleware/multerUpload')
-const { signJWT } = require('../middleware/signJWT')
+const { signJWT } = require('../middleware/signJWT');
+const { hashPassword } = require("../middleware/hashPassword");
 
 /** Send Notification
  * @api {post} /sendNotification Send Notifications
@@ -170,6 +171,38 @@ router.get('/restoreDataBase', (req, res) => {
 router.get('/getRoutes', (req, res) => {
     console.log(chalk.bold.yellow("Get Routes Route Hit!"))
     commonControl.getRoutes()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+/** Forgot Password
+ * @api {get} /forgot Forgot Password
+ * @apiName Forget Password
+ * @apiGroup Common
+ * 
+ */ // Forgot Password
+router.get('/forgot/:email', (req, res) => {
+    console.log(chalk.bold.yellow("Forgot Password Route Hit!"))
+    commonControl.forgot(req.params)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+/** Reset Password
+ * @api {post} /resetPassword Reset Password
+ * @apiName Reset Password
+ * @apiGroup Common
+ * 
+ * @apiParam {String} id _id ID of the User
+ * @apiParam {String} role Role of the User
+ * @apiParam {String} password New Password
+ */ // Reset Password
+router.post('/resetPassword', hashPassword, (req, res) => {
+    console.log(chalk.bold.yellow("Reset Password Route Hit!"))
+    commonControl.resetPassword(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })

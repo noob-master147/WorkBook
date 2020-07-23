@@ -85,3 +85,21 @@ GET  http://localhost:8000/getRoutes
 content-type: application/json
 
 
+
+####
+# Forgot Password
+GET  http://localhost:8000/forgot/divyansh@spike.sh
+content-type: application/json
+
+
+
+####
+# Reset Password
+POST  http://localhost:8000/resetPassword
+content-type: application/json
+
+{
+    "role": "admin",
+    "userID": "divyansh@spike.sh",
+    "password": "asdg"
+}
