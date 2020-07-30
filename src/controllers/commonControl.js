@@ -570,7 +570,7 @@ const verifyOTP = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Verifing OTP..."))
         userRole = await Role.findOne({ userID: obj.userID })
-        if (userRole.passwordResetToken.tokenExpire > Date.now()) {
+        if (userRole.passwordResetToken.tokenExpire < Date.now()) {
             console.log(chalk.red.bold("OTP Expired!"))
             reject({
                 statusCode: 400,
@@ -586,34 +586,35 @@ const verifyOTP = (obj) => {
                     msg: "Wrong OTP!"
                 }
             })
+        } else {
+            await Role.findOneAndUpdate({
+                    userID: obj.userID
+                }, {
+                    tokenVerify: {
+                        verifyOTP: true
+                    }
+                })
+                .then(() => {
+                    console.log(chalk.bold.green("OTP Verified!"))
+                    resolve({
+                        statusCode: 200,
+                        payload: {
+                            msg: "OTP Verified"
+                        }
+                    })
+                })
+                .catch((err) => {
+                    console.log(chalk.red.bold("Error in OTP Verification!"))
+                    reject({
+                        statusCode: 400,
+                        payload: {
+                            msg: "Error in OTP Verification! Contact Support",
+                            Error: "Issue in connecting to the Datebase",
+                            err: err
+                        }
+                    })
+                })
         }
-        await Role.findOneAndUpdate({
-                userID: obj.userID
-            }, {
-                tokenVerify: {
-                    verifyOTP: true
-                }
-            })
-            .then(() => {
-                console.log(chalk.bold.green("OTP Verified!"))
-                resolve({
-                    statusCode: 200,
-                    payload: {
-                        msg: "OTP Verified"
-                    }
-                })
-            })
-            .catch((err) => {
-                console.log(chalk.red.bold("Error in OTP Verification!"))
-                reject({
-                    statusCode: 400,
-                    payload: {
-                        msg: "Error in OTP Verification! Contact Support",
-                        Error: "Issue in connecting to the Datebase",
-                        err: err
-                    }
-                })
-            })
     })
 }
 

@@ -3,10 +3,10 @@ const { Role } = require('../models/RoleSchema')
 
 const checkUser = async(req, res, next) => {
     console.log(chalk.bold.cyanBright("\Checking if User Exist..."))
-
+    const userID = req.params.email || req.body.userID
     try {
         const user = await Role.findOne({
-            userID: req.params.email
+            userID: userID
         })
         if (!user) {
             console.log(chalk.red.bold("User Does Not Exist"))

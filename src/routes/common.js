@@ -210,4 +210,24 @@ router.post('/resetPassword', checkUser, hashPassword, (req, res) => {
 
 
 
+/** Verify OTP
+ * @api {post} /verifyOTP Verify OTP
+ * @apiName Verify OTP
+ * @apiGroup Common
+ * 
+ * @apiParam {String} userID Email of the User
+ * @apiParam {String} token One Time Password
+ * 
+ */ // Verify OTP
+router.post('/verifyOTP', checkUser, (req, res) => {
+    console.log(chalk.bold.yellow("Verify OTP Route Hit!"))
+    commonControl.verifyOTP(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+
 module.exports = router;
