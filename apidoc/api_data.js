@@ -954,15 +954,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "id",
-            "description": "<p>_id ID of the User</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "role",
-            "description": "<p>Role of the User</p>"
+            "field": "userID",
+            "description": "<p>Email of the User</p>"
           },
           {
             "group": "Parameter",
@@ -1040,6 +1033,36 @@ define({ "api": [
             "optional": false,
             "field": "profilePictureUrl",
             "description": "<p>Profile Picture URL</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "post",
+    "url": "/verifyOTP",
+    "title": "Verify OTP",
+    "name": "Verify_OTP",
+    "group": "Common",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>One Time Password</p>"
           }
         ]
       }

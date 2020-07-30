@@ -200,6 +200,7 @@ router.get('/forgot/:email', checkUser, (req, res) => {
  * 
  * @apiParam {String} userID Email of the User
  * @apiParam {String} password New Password
+ * 
  */ // Reset Password
 router.post('/resetPassword', checkUser, hashPassword, (req, res) => {
     console.log(chalk.bold.yellow("Reset Password Route Hit!"))
