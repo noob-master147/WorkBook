@@ -465,8 +465,7 @@ const forgot = (obj) => {
                         resolve({
                             statusCode: 200,
                             payload: {
-                                msg: "Reset Password Mail Sent",
-                                token: token
+                                msg: "Reset Password Mail Sent"
                             }
                         })
                     }).catch((err) => {
