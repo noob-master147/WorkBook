@@ -1,5 +1,5 @@
 const { Query } = require('../models/querySchema')
-
+const chalk = require('chalk')
 
 const registerQuery = async(req, res, next) => {
     console.log(chalk.bold.cyanBright("Checking Previous Query..."))
@@ -22,14 +22,12 @@ const registerQuery = async(req, res, next) => {
         res.send({
             statusCode: 400,
             payload: {
-                msg: "Could not Hash The Password, Contact Support",
+                msg: "Could not Register, Contact Support",
                 error: error
 
             },
         }).status(400)
     }
-
-
 }
 
 

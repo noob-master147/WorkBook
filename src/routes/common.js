@@ -5,6 +5,8 @@ const { getUser } = require('../middleware/getUser')
 const { upload } = require('../middleware/multerUpload')
 const { signJWT } = require('../middleware/signJWT');
 const { hashPassword } = require("../middleware/hashPassword");
+const { checkUser } = require('../middleware/checkUser')
+
 
 /** Send Notification
  * @api {post} /sendNotification Send Notifications
@@ -183,7 +185,7 @@ router.get('/getRoutes', (req, res) => {
  * @apiGroup Common
  * 
  */ // Forgot Password
-router.get('/forgot/:email', (req, res) => {
+router.get('/forgot/:email', checkUser, (req, res) => {
     console.log(chalk.bold.yellow("Forgot Password Route Hit!"))
     commonControl.forgot(req.params)
         .then((obj) => res.send(obj).status(200))
@@ -196,16 +198,36 @@ router.get('/forgot/:email', (req, res) => {
  * @apiName Reset Password
  * @apiGroup Common
  * 
- * @apiParam {String} id _id ID of the User
- * @apiParam {String} role Role of the User
+ * @apiParam {String} userID Email of the User
  * @apiParam {String} password New Password
+ * 
  */ // Reset Password
-router.post('/resetPassword', hashPassword, (req, res) => {
+router.post('/resetPassword', checkUser, hashPassword, (req, res) => {
     console.log(chalk.bold.yellow("Reset Password Route Hit!"))
     commonControl.resetPassword(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+
+/** Verify OTP
+ * @api {post} /verifyOTP Verify OTP
+ * @apiName Verify OTP
+ * @apiGroup Common
+ * 
+ * @apiParam {String} userID Email of the User
+ * @apiParam {String} token One Time Password
+ * 
+ */ // Verify OTP
+router.post('/verifyOTP', checkUser, (req, res) => {
+    console.log(chalk.bold.yellow("Verify OTP Route Hit!"))
+    commonControl.verifyOTP(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
 
 
 

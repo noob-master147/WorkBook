@@ -88,8 +88,23 @@ content-type: application/json
 
 ####
 # Forgot Password
-GET  http://localhost:8000/forgot/divyansh@spike.sh
+GET  http://localhost:8000/forgot/emp
 content-type: application/json
+
+
+
+
+####
+# OTP Verification
+POST  http://localhost:8000/verifyOTP
+content-type: application/json
+
+{
+    "userID": "r4rchhabra@gmail.com",
+    "token": "921149"
+}
+
+
 
 
 
