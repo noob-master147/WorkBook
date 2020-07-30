@@ -18,6 +18,7 @@ const checkUser = async(req, res, next) => {
             })
         } else {
             console.log(chalk.bold.green("User Exists"))
+            req.body.role = user.role
             next()
         }
 

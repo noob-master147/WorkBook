@@ -36,6 +36,10 @@ const roleSchema = new mongoose.Schema({
         },
         tokenExpire: {
             type: Date
+        },
+        tokenVerify: {
+            type: Boolean,
+            default: false
         }
     }
 });

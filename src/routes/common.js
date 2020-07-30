@@ -201,7 +201,7 @@ router.get('/forgot/:email', checkUser, (req, res) => {
  * @apiParam {String} userID Email of the User
  * @apiParam {String} password New Password
  */ // Reset Password
-router.post('/resetPassword', hashPassword, (req, res) => {
+router.post('/resetPassword', checkUser, hashPassword, (req, res) => {
     console.log(chalk.bold.yellow("Reset Password Route Hit!"))
     commonControl.resetPassword(req.body)
         .then((obj) => res.send(obj).status(200))

@@ -88,7 +88,7 @@ content-type: application/json
 
 ####
 # Forgot Password
-GET  http://localhost:8000/forgot/divyansh@spike.sh
+GET  http://localhost:8000/forgot/r4rchhabra@gmail.com
 content-type: application/json
 
 
