@@ -8,9 +8,7 @@ const route = new mongoose.Schema({
     },
     routeName: {
         type: String,
-        trim: true,
-        required: true,
-        unique: true
+        trim: true
     },
     boardingPoint: {
         longitude: {
