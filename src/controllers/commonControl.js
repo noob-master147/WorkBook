@@ -478,7 +478,6 @@ const forgot = (obj) => {
                             }
                         })
                     })
-
             })
             .catch((err) => {
                 reject({

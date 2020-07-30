@@ -27,6 +27,16 @@ const roleSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    passwordResetToken: {
+        token: {
+            type: String,
+            trim: true,
+            unique: true
+        },
+        tokenExpire: {
+            type: Date
+        }
     }
 });
 
