@@ -1,5 +1,4 @@
 const sgMail = require('@sendgrid/mail');
-
 const chalk = require('chalk')
 
 
