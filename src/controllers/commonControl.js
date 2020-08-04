@@ -532,7 +532,9 @@ const resetPassword = (obj) => {
                 alias = Guest
                 break;
         }
-        await alias.findByIdAndUpdate(obj.id, {
+        await alias.findOneAndUpdate({
+                userID: obj.userID
+            }, {
                 password: obj.password
             }, {
                 next: true
@@ -544,8 +546,7 @@ const resetPassword = (obj) => {
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: "Password changed",
-                        user: user
+                        msg: "Password changed"
                     }
                 })
             })

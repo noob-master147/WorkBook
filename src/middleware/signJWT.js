@@ -19,8 +19,6 @@ const signJWT = ((req, res, next) => {
 
 })
 
-
-
 module.exports = {
     signJWT
 }

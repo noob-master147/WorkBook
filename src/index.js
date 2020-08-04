@@ -39,14 +39,8 @@ app.get('/', (req, res) => {
     res.send({
         statusCode: 200,
         payload: {
-            msg: "The API is healthy and running",
-            Routes: {
-                admin: "/admin",
-                employee: "/employee",
-                customer: "/customer"
-            }
-
-        },
+            msg: "The API is healthy and running"
+        }
     }).status(200)
 })
 
