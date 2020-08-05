@@ -513,24 +513,16 @@ const sendVerification = (obj) => {
         await generateToken()
             .then(async(token) => {
                 console.log("token  ", token)
-                const p1 = await sendMail({
-                    mail: obj.email,
-                    token: token
-                })
-                const p2 = await Role.findOneAndUpdate({
-                    userID: obj.email
-                }, {
-                    passwordResetToken: {
-                        token: token,
-                        tokenExpire: Date.now() + 300000
-                    }
-                })
-                Promise.all([p1, p2])
+                await sendMail({
+                        mail: obj.email,
+                        token: token
+                    })
                     .then(() => {
                         resolve({
                             statusCode: 200,
                             payload: {
-                                msg: "Verification Email Sent"
+                                msg: "Verification Email Sent",
+                                token: token
                             }
                         })
                     }).catch((err) => {

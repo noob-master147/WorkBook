@@ -11,8 +11,8 @@ content-type: application/json
 
 {
     "fcmToken":"e29OU_-KNX0:APA91bESTApowSxWSETerNZ73zVgCMjhKBSkdhdfj67ZFb0DjcE26FX8BQEeqEsrtSf0vRoEgdNCD-W04eeQK9yWXwVkyTZsEW2MdRbTiknikGGRbe9SjgOUUX6TZCwFEt3eq6kciSF-",
-    "message":"Approved",
-    "title": "Workbook"
+    "message":"",
+    "title": ""
 }
 
 ####
