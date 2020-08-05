@@ -42,6 +42,10 @@ const superAdminSchema = new mongoose.Schema({
     approved: {
         type: Boolean,
         default: true
+    },
+    userVerified: {
+        type: Boolean,
+        default: false
     }
 });
 

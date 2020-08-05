@@ -78,6 +78,10 @@ const adminSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+    userVerified: {
+        type: Boolean,
+        default: false
     }
 });
 
