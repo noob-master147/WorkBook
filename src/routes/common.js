@@ -19,7 +19,7 @@ const { checkUser } = require('../middleware/checkUser')
  *   
  */ //Send Notification
 router.post('/sendNotification', (req, res) => {
-    console.log(chalk.bold.yellow("Send Notification Route Hit!"))
+    console.log(chalk.bold.yellow("/sendNotification Route Hit!"))
     commonControl.sendNotification(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -91,7 +91,7 @@ router.get('/getUserProfile/:role/:id', (req, res) => {
  * 
  */ // Get Institute Picture
 router.get('/getInstituteProfile/:instituteName', (req, res) => {
-    console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
+    console.log(chalk.bold.yellow("/getInstituteProfile Route Hit!"))
     commonControl.getInstituteProfile(req.params)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))

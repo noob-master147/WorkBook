@@ -32,6 +32,7 @@ router.get('/', (req, res) => {
  *
  */ // Register driver
 router.post('/register', hashPassword, (req, res) => {
+    console.log(chalk.yellow.bold("\n/driver/register route hit..."))
     driverControl.register(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -52,6 +53,7 @@ router.post('/register', hashPassword, (req, res) => {
  * 
  */ // Update Driver
 router.post('/updateDriver', (req, res) => {
+    console.log(chalk.yellow.bold("\n/driver/updateDriver route hit..."))
     driverControl.updateDriver(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -72,6 +74,7 @@ router.post('/updateDriver', (req, res) => {
  * 
  */ // Update Driver Location
 router.post('/updateLocation', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/driver/updateLocation route hit..."))
     driverControl.updateLocation(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -90,6 +93,7 @@ router.post('/updateLocation', authenticate, (req, res) => {
  * 
  */ // Get Driver Location
 router.post('/getLocation', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/driver/getLocation route hit..."))
     driverControl.getLocation(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
