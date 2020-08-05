@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
  */ // Register Customer
 router.post('/register', registerQuery, hashPassword, (req, res) => {
     customerControl.register(req.body)
-        .then((obj) => res.send(obj).status(201))
+        .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
 

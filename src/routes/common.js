@@ -93,7 +93,7 @@ router.get('/getUserProfile/:role/:id', (req, res) => {
 router.get('/getInstituteProfile/:instituteName', (req, res) => {
     console.log(chalk.bold.yellow("Fetch Picture Route Hit!"))
     commonControl.getInstituteProfile(req.params)
-        .then((obj) => res.set('Content-Type', 'image/png').send(obj).status(200))
+        .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
 

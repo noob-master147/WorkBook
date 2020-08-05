@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
  */ // Register driver
 router.post('/register', hashPassword, (req, res) => {
     driverControl.register(req.body)
-        .then((obj) => res.send(obj).status(201))
+        .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
 

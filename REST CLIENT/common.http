@@ -48,7 +48,7 @@ content-type: application/json
 
 ####
 # Fetch Institute Profile Picture
-GET  http://localhost:8000/fetchDivision/IEEE
+GET  http://localhost:8000/getInstituteProfile/IEEE
 content-type: application/json
 
 

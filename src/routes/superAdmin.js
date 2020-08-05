@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 })
 
 
-
 /** Approve Admin
  * @api {post} /superAdmin/approveAdmin Approve Admin
  * @apiName Approve Admin
@@ -36,7 +35,6 @@ router.post('/approveAdmin', authenticate, (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
 
 
 /** Reject Admin
@@ -57,7 +55,6 @@ router.post('/rejectAdmin', authenticate, (req, res) => {
 })
 
 
-
 /** Purge DataBase
  * @api {delete} /superAdmin/purge Purge Database
  * @apiName Purge Database
@@ -70,7 +67,6 @@ router.delete('/purge', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
 
 
 /**
@@ -91,7 +87,6 @@ router.post('/deleteAdmin', authenticate, (req, res) => {
 })
 
 
-
 /** View All Admin
  * @api {get} /superAdmin/viewAllAdmin View All Admin
  * @apiName View All Admin
@@ -104,8 +99,6 @@ router.get('/viewAllAdmin', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
-
 
 
 /** Create Super Admin
@@ -128,8 +121,6 @@ router.post('/create', hashPassword, (req, res) => {
 
 
 
-
-
 /** Get SuperAdmin
  * @api {get} /getSuperAdmin Get SuperAdmin
  * @apiName Fetch SuperAdmin
@@ -142,9 +133,6 @@ router.get('/getSuperAdmin', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
-
-
 
 
 
