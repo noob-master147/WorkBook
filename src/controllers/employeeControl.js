@@ -188,7 +188,7 @@ const approveCustomer = (customer) => {
             'approved': true,
             'employeeID': customer.employeeID
         })
-        const p2 = await Role.findByIdAndUpdate(admin.id, {
+        const p2 = await Role.findByIdAndUpdate(customer.id, {
             approved: true
         })
         Promise.all([p1, p2])
