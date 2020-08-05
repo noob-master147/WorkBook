@@ -82,6 +82,7 @@ router.post('/login', (req, res) => {
  * 
  */ // Update Admin
 router.post('/update', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/update route hit..."))
     adminControl.update(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -100,7 +101,7 @@ router.post('/update', authenticate, (req, res) => {
  *   
  */ // View all Employees
 router.post('/viewAllEmployees', authenticate, (req, res) => {
-    console.log(chalk.bold.yellow("\nView All Employees route hit..."))
+    console.log(chalk.yellow.bold("\n/admin/viewAllEmployees route hit..."))
     adminControl.viewAllEmployees(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -121,6 +122,7 @@ router.post('/viewAllEmployees', authenticate, (req, res) => {
  *   
  */ // Approve an Employee
 router.post('/approveEmployee', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/approveEmployee route hit..."))
     adminControl.approveEmployee(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -140,6 +142,7 @@ router.post('/approveEmployee', authenticate, (req, res) => {
  *   
  */ // Reject an Employee
 router.post('/rejectEmployee', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/rejectEmployee route hit..."))
     adminControl.rejectEmployee(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -157,6 +160,7 @@ router.post('/rejectEmployee', authenticate, (req, res) => {
  *   
  */ // Delete an Employee
 router.post('/deleteEmployee', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/deleteEmployee route hit..."))
     adminControl.deleteEmployee(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -173,7 +177,7 @@ router.post('/deleteEmployee', authenticate, (req, res) => {
  *   
  */ // View all institutes
 router.get('/institutes', (req, res) => {
-    console.log(chalk.bold.yellow("\nFetch All Institutes route hit..."))
+    console.log(chalk.yellow.bold("\n/admin/institutes route hit..."))
     adminControl.getInstitutes()
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -193,6 +197,7 @@ router.get('/institutes', (req, res) => {
 
  */ // Approve an Driver
 router.post('/approveDriver', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/approveDriver route hit..."))
     adminControl.approveDriver(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -213,13 +218,11 @@ router.post('/approveDriver', authenticate, (req, res) => {
  *   
  */ // View all Drivers
 router.post('/viewAllDrivers', authenticate, (req, res) => {
-    console.log(chalk.bold.yellow("\nView All Driver route hit..."))
+    console.log(chalk.yellow.bold("\n/admin/viewAllDrivers route hit..."))
     adminControl.viewAllDrivers(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
-
 
 
 
@@ -234,6 +237,7 @@ router.post('/viewAllDrivers', authenticate, (req, res) => {
  *   
  */ // Reject an Driver
 router.post('/rejectDriver', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/rejectDriver route hit..."))
     adminControl.rejectDriver(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -251,14 +255,11 @@ router.post('/rejectDriver', authenticate, (req, res) => {
  *   
  */ // Delete an Driver
 router.post('/deleteDriver', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/deleteDriver route hit..."))
     adminControl.deleteDriver(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
-
-
-
 
 
 /** Grade & Division
@@ -274,6 +275,7 @@ router.post('/deleteDriver', authenticate, (req, res) => {
  * 
  */ // Delete an Driver
 router.post('/setGD', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/setGD route hit..."))
     adminControl.setGD(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -293,6 +295,7 @@ router.post('/setGD', authenticate, (req, res) => {
  *   
  */ // Comment a Query
 router.post('/queryComment', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/queryComment route hit..."))
     adminControl.queryComment(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -312,6 +315,7 @@ router.post('/queryComment', authenticate, (req, res) => {
  *   
  */ // Add User to Route
 router.post('/addUserRoute', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/addUserRoute route hit..."))
     adminControl.addUserRoute(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -331,6 +335,7 @@ router.post('/addUserRoute', authenticate, (req, res) => {
  * @apiParam {String} jwtToken JWT Token of the Admin
  */ // Create Route
 router.post('/createRoute', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/createRoute route hit..."))
     adminControl.createRoute(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -349,6 +354,7 @@ router.post('/createRoute', authenticate, (req, res) => {
  * @apiParam {String} jwtToken JWT Token of the Admin
  */ // Update Route
 router.post('/updateRoute', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/updateRoute route hit..."))
     adminControl.updateRoute(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -366,6 +372,7 @@ router.post('/updateRoute', authenticate, (req, res) => {
  * @apiParam {String} jwtToken JWT Token of the Admin
  */ // Delete Location
 router.post('/deleteLocation', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/deleteLocation route hit..."))
     adminControl.deleteLocation(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -384,6 +391,7 @@ router.post('/deleteLocation', authenticate, (req, res) => {
  * @apiParam {String} jwtToken JWT Token of the Admin
  */ // Delete Route
 router.post('/deleteRoute', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/deleteRoute route hit..."))
     adminControl.deleteRoute(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
