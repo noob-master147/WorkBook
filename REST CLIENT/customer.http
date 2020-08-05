@@ -16,8 +16,8 @@ POST http://localhost:8000/customer/register
 content-type: application/json
 
 {
-    "userName":"cus",
-    "userID":"cus",
+    "userName":"divyansh",
+    "userID":"test@gmail.com",
     "password":"123456",
     "grade":"sFsdg",
     "division":"sdgsdga",

@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
 router.post('/register', hashPassword, (req, res) => {
     console.log(chalk.bold.yellow("\nRegister Employee route hit..."))
     employeeControl.register(req.body)
-        .then((obj) => res.send(obj).status(201))
+        .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
 

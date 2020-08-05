@@ -212,7 +212,13 @@ const getInstituteProfile = (params) => {
             })
             .then((institute) => {
                 console.log(chalk.bold.green("Institute Picture Fetched!"))
-                resolve(institute.instituteImageUrl)
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Institute Image Fetched",
+                        instituteImageUrl: institute.instituteImageUrl
+                    }
+                })
             })
             .catch((err) => {
                 console.log(chalk.red.bold("Error in Fetching Institute Picture Url!"))

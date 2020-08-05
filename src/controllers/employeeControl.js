@@ -36,7 +36,7 @@ const register = (user) => {
             .then(() => {
                 console.log(chalk.green.bold("New Employee Registered!"))
                 resolve({
-                    statusCode: 201,
+                    statusCode: 200,
                     payload: {
                         msg: "Employee Successfully Registered",
                     }
