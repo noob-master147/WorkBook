@@ -1012,6 +1012,16 @@ define({ "api": [
     "groupTitle": "Common"
   },
   {
+    "type": "get",
+    "url": "/sendVerification",
+    "title": "Send Verification",
+    "name": "Send_Verification",
+    "group": "Common",
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
     "type": "post",
     "url": "/uploadPicture",
     "title": "Upload Profile Picture URL",
@@ -1046,6 +1056,36 @@ define({ "api": [
     "url": "/verifyOTP",
     "title": "Verify OTP",
     "name": "Verify_OTP",
+    "group": "Common",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>One Time Password</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "post",
+    "url": "/verifyUser",
+    "title": "Verify OTP",
+    "name": "Verify_User",
     "group": "Common",
     "parameter": {
       "fields": {

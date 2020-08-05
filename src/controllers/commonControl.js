@@ -86,7 +86,7 @@ const login = (obj) => {
             }
         } else {
             reject({
-                statusCode: 401,
+                statusCode: 400,
                 payload: {
                     msg: "Password Incorrect",
                 }
@@ -212,7 +212,13 @@ const getInstituteProfile = (params) => {
             })
             .then((institute) => {
                 console.log(chalk.bold.green("Institute Picture Fetched!"))
-                resolve(institute.instituteImageUrl)
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Institute Image Fetched",
+                        instituteImageUrl: institute.instituteImageUrl
+                    }
+                })
             })
             .catch((err) => {
                 console.log(chalk.red.bold("Error in Fetching Institute Picture Url!"))
@@ -466,7 +472,7 @@ const forgot = (obj) => {
                 }, {
                     passwordResetToken: {
                         token: token,
-                        tokenExpire: Date.now() + 600000
+                        tokenExpire: Date.now() + 300000
                     }
                 })
                 Promise.all([p1, p2])
@@ -499,6 +505,57 @@ const forgot = (obj) => {
 
     })
 }
+
+
+const sendVerification = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Verify User, Sending Verification Email Details"))
+        await generateToken()
+            .then(async(token) => {
+                console.log("token  ", token)
+                const p1 = await sendMail({
+                    mail: obj.email,
+                    token: token
+                })
+                const p2 = await Role.findOneAndUpdate({
+                    userID: obj.email
+                }, {
+                    passwordResetToken: {
+                        token: token,
+                        tokenExpire: Date.now() + 300000
+                    }
+                })
+                Promise.all([p1, p2])
+                    .then(() => {
+                        resolve({
+                            statusCode: 200,
+                            payload: {
+                                msg: "Verification Email Sent"
+                            }
+                        })
+                    }).catch((err) => {
+                        reject({
+                            statusCode: 400,
+                            payload: {
+                                msg: "Error in Sending Verification Email! Contact Support",
+                                err: err
+                            }
+                        })
+                    })
+            })
+            .catch((err) => {
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Sending Verification Email! Contact Support",
+                        err: err
+                    }
+                })
+            })
+
+    })
+}
+
 
 const generateToken = () => {
     return new Promise(async(resolve, reject) => {
@@ -565,8 +622,6 @@ const resetPassword = (obj) => {
 }
 
 
-
-
 const verifyOTP = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Verifing OTP..."))
@@ -620,7 +675,59 @@ const verifyOTP = (obj) => {
 }
 
 
+const verifyUser = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Verifing User OTP..."))
+        userRole = await Role.findOne({ userID: obj.userID })
+        if (userRole.passwordResetToken.tokenExpire < Date.now()) {
+            console.log(chalk.red.bold("OTP Expired!"))
+            reject({
+                statusCode: 400,
+                payload: {
+                    msg: "OTP Expirred"
+                }
+            })
+        } else if (obj.token != userRole.passwordResetToken.token) {
+            console.log(chalk.red.bold("Wrong OTP!"))
+            reject({
+                statusCode: 400,
+                payload: {
+                    msg: "Wrong OTP!"
+                }
+            })
+        } else {
+            await Role.findOneAndUpdate({
+                    userID: obj.userID
+                }, {
+                    userVerified: true
+                }, {
+                    new: true
+                })
+                .then((role) => {
+                    console.log(chalk.bold.green("User Verified!"))
+                    resolve({
+                        statusCode: 200,
+                        payload: {
+                            msg: "User Verified",
+                            user: role
+                        }
+                    })
+                })
+                .catch((err) => {
+                    console.log(chalk.red.bold("Error in User Verification!"))
+                    reject({
+                        statusCode: 400,
+                        payload: {
+                            msg: "Error in User Verification! Contact Support",
+                            Error: "Issue in connecting to the Datebase",
+                            err: err
+                        }
+                    })
+                })
+        }
 
+    })
+}
 
 
 
@@ -637,5 +744,7 @@ module.exports = {
     getRoutes,
     forgot,
     resetPassword,
-    verifyOTP
+    verifyOTP,
+    verifyUser,
+    sendVerification
 }

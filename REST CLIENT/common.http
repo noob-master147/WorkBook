@@ -10,8 +10,9 @@ POST http://localhost:8000/sendNotification
 content-type: application/json
 
 {
-    "fcmToken":"dItTSf1Lq5A:APA91bFhccnuE3JjCcCgdWtyuTU0UAeD7lgIRyhqY1_8x51kt1uJc2V-YHaKEBilFSv2yiKO8VetrBc790rrkp94_EmUd4JueoVEl38keHEsqJO_Rnco6r4bAolk7Tjdp2H_3n02gTRx",
-    "message":"Approved"
+    "fcmToken":"e29OU_-KNX0:APA91bESTApowSxWSETerNZ73zVgCMjhKBSkdhdfj67ZFb0DjcE26FX8BQEeqEsrtSf0vRoEgdNCD-W04eeQK9yWXwVkyTZsEW2MdRbTiknikGGRbe9SjgOUUX6TZCwFEt3eq6kciSF-",
+    "message":"Approved",
+    "title": "Workbook"
 }
 
 ####
@@ -47,7 +48,7 @@ content-type: application/json
 
 ####
 # Fetch Institute Profile Picture
-GET  http://localhost:8000/fetchDivision/IEEE
+GET  http://localhost:8000/getInstituteProfile/IEEE
 content-type: application/json
 
 
@@ -88,7 +89,13 @@ content-type: application/json
 
 ####
 # Forgot Password
-GET  http://localhost:8000/forgot/emp
+GET  http://localhost:8000/forgot/rishirajsinghchhabra@gmail.com 
+content-type: application/json
+
+
+####
+# Forgot Password
+GET  http://localhost:8000/forgot/divyanshkhandelwal147@gmail.com 
 content-type: application/json
 
 

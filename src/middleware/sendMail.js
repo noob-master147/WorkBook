@@ -35,7 +35,7 @@ const generateMessage = async(user, sender) => {
         to: user.mail,
         from: sender,
         subject: "Reset Password",
-        text: ` Your One Time Password is ${user.token}`
+        text: ` Your One Time Password is ${user.token}\n OTP expires in 5 Minute`
     }
     await sgMail.send(msg)
         .then((obj) => {

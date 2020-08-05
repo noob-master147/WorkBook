@@ -35,8 +35,9 @@ router.get('/', (req, res) => {
  *
  */ // Register Customer
 router.post('/register', registerQuery, hashPassword, (req, res) => {
+    console.log(chalk.yellow.bold("\nRegister Customer route hit..."))
     customerControl.register(req.body)
-        .then((obj) => res.send(obj).status(201))
+        .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
 
@@ -60,6 +61,7 @@ router.post('/register', registerQuery, hashPassword, (req, res) => {
  * 
  */ // Update Customer
 router.post('/update', authenticate, (req, res) => {
+    console.log(chalk.yellow.bold("\n/customer/update route hit..."))
     customerControl.updateCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))

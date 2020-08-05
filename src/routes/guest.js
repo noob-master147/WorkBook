@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
  */ // Create Query
 router.post('/createQuery', (req, res) => {
     guestControl.createQuery(req.body)
-        .then((obj) => res.send(obj).status(201))
+        .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
 
@@ -44,7 +44,7 @@ router.post('/createQuery', (req, res) => {
  */ // Get All Query
 router.post('/getAllQuery', (req, res) => {
     guestControl.getAllQuery(req.body)
-        .then((obj) => res.send(obj).status(201))
+        .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
 

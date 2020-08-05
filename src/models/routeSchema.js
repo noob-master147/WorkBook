@@ -63,6 +63,10 @@ const routeSchema = new mongoose.Schema({
         unique: true
     },
     location: [coordinateSchema],
+    userVerified: {
+        type: Boolean,
+        default: false
+    }
 });
 
 

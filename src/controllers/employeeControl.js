@@ -36,7 +36,7 @@ const register = (user) => {
             .then(() => {
                 console.log(chalk.green.bold("New Employee Registered!"))
                 resolve({
-                    statusCode: 201,
+                    statusCode: 200,
                     payload: {
                         msg: "Employee Successfully Registered",
                     }
@@ -188,7 +188,7 @@ const approveCustomer = (customer) => {
             'approved': true,
             'employeeID': customer.employeeID
         })
-        const p2 = await Role.findByIdAndUpdate(admin.id, {
+        const p2 = await Role.findByIdAndUpdate(customer.id, {
             approved: true
         })
         Promise.all([p1, p2])
