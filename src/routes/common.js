@@ -193,6 +193,24 @@ router.get('/forgot/:email', checkUser, (req, res) => {
 })
 
 
+
+
+/** Send Verification
+ * @api {get} /sendVerification Send Verification
+ * @apiName Send Verification
+ * @apiGroup Common
+ * 
+ */ // Send Verification
+router.get('/sendVerification/:email', checkUser, (req, res) => {
+    console.log(chalk.bold.yellow("Verify User Route Hit!"))
+    commonControl.verifyUser(req.params)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
 /** Reset Password
  * @api {post} /resetPassword Reset Password
  * @apiName Reset Password
@@ -223,6 +241,24 @@ router.post('/resetPassword', checkUser, hashPassword, (req, res) => {
 router.post('/verifyOTP', checkUser, (req, res) => {
     console.log(chalk.bold.yellow("Verify OTP Route Hit!"))
     commonControl.verifyOTP(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+/** Verify User
+ * @api {post} /verifyUser Verify OTP
+ * @apiName Verify User
+ * @apiGroup Common
+ * 
+ * @apiParam {String} userID Email of the User
+ * @apiParam {String} token One Time Password
+ * 
+ */ // Verify User
+router.post('/verifyUser', checkUser, (req, res) => {
+    console.log(chalk.bold.yellow("Verify OTP Route Hit!"))
+    commonControl.verifyUser(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })

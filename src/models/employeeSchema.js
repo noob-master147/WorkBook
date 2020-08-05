@@ -122,11 +122,7 @@ const employeeSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
-    route: [route],
-    userVerified: {
-        type: Boolean,
-        default: false
-    }
+    route: [route]
 });
 
 
