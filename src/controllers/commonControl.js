@@ -472,7 +472,7 @@ const forgot = (obj) => {
                 }, {
                     passwordResetToken: {
                         token: token,
-                        tokenExpire: Date.now() + 600000
+                        tokenExpire: Date.now() + 300000
                     }
                 })
                 Promise.all([p1, p2])
