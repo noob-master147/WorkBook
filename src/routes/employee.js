@@ -78,6 +78,7 @@ router.post('/login', (req, res) => {
  * 
  */ // Update Admin
 router.post('/update', authenticate, (req, res) => {
+    console.log(chalk.bold.yellow("\n/employee/update route hit..."))
     employeeControl.update(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -97,6 +98,7 @@ router.post('/update', authenticate, (req, res) => {
  * 
  */ // View All Customers
 router.post('/viewAllCustomers', authenticate, (req, res) => {
+    console.log(chalk.bold.yellow("\n/employee/viewAllCustomers route hit..."))
     employeeControl.viewAllCustomers(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -116,6 +118,7 @@ router.post('/viewAllCustomers', authenticate, (req, res) => {
  *    
  */ // Approve a Customer
 router.post('/approveCustomer', authenticate, (req, res) => {
+    console.log(chalk.bold.yellow("\n/employee/approveCustomer route hit..."))
     employeeControl.approveCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -136,6 +139,7 @@ router.post('/approveCustomer', authenticate, (req, res) => {
  *   
  */ // Reject a Customer
 router.post('/rejectCustomer', authenticate, (req, res) => {
+    console.log(chalk.bold.yellow("\n/employee/rejectCustomer route hit..."))
     employeeControl.rejectCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -155,6 +159,7 @@ router.post('/rejectCustomer', authenticate, (req, res) => {
  *   
  */ // Delete a Customer
 router.post('/deleteCustomer', authenticate, (req, res) => {
+    console.log(chalk.bold.yellow("\n/employee/deleteCustomer route hit..."))
     employeeControl.deleteCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -175,6 +180,7 @@ router.post('/deleteCustomer', authenticate, (req, res) => {
  *   
  */ // Active Customer
 router.post('/activeCustomer', authenticate, (req, res) => {
+    console.log(chalk.bold.yellow("\n/employee/activeCustomer route hit..."))
     employeeControl.activeCustomer(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
