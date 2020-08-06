@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
  * @apiParam {String} id _id of the Admin Document
  *
  */ // Approve Admin
-router.post('/approveAdmin', checkDuplicate, authenticate, (req, res) => {
+router.post('/approveAdmin', authenticate, (req, res) => {
     console.log(chalk.yellow.bold('Approve Admin Route Hit'))
     superAdminControl.approveAdmin(req.body)
         .then((obj) => res.send(obj).status(200))
