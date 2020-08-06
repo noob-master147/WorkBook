@@ -13,20 +13,6 @@ const { ObjectID } = require('mongodb')
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Registering Admin..."))
-        await Role.findOne({
-                role: "admin",
-                userID: user.userID
-            })
-            .then((obj) => {
-                if (obj) {
-                    reject({
-                        statusCode: 400,
-                        payload: {
-                            msg: "Admin Already Exists. Contact Support"
-                        }
-                    })
-                }
-            })
         const id = new ObjectID()
         admin = new Admin({
             _id: id,
@@ -309,8 +295,8 @@ const rejectEmployee = (employee) => {
 const deleteEmployee = (employee) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Deleting Eployee..."))
-        const p1 = await Employee.findByIdAndDelete(employee.id)
-        const p2 = await Role.findByIdAndDelete(employee.id)
+        const p1 = Employee.findByIdAndDelete(employee.id)
+        const p2 = Role.findByIdAndDelete(employee.id)
         Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.bold.green("Employee Deleted!"))
@@ -432,8 +418,8 @@ const rejectDriver = (obj) => {
 const deleteDriver = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Deleting Driver..."))
-        const p1 = await Driver.findByIdAndDelete(obj.id)
-        const p2 = await Role.findByIdAndDelete(obj.id)
+        const p1 = Driver.findByIdAndDelete(obj.id)
+        const p2 = Role.findByIdAndDelete(obj.id)
         Promise.all([p1, p2])
             .then(() => {
                 console.log(chalk.bold.green("Driver Deleted!"))

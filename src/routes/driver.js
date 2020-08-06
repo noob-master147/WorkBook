@@ -3,6 +3,7 @@ const router = require("express")();
 const driverControl = require('../controllers/driverControl')
 const { hashPassword } = require('../middleware/hashPassword')
 const { authenticate } = require('../middleware/authenticate')
+const { checkDuplicate } = require('../middleware/checkDuplicate')
 
 
 router.get('/', (req, res) => {
@@ -31,7 +32,7 @@ router.get('/', (req, res) => {
  * 
  *
  */ // Register driver
-router.post('/register', hashPassword, (req, res) => {
+router.post('/register', checkDuplicate, hashPassword, (req, res) => {
     console.log(chalk.yellow.bold("\n/driver/register route hit..."))
     driverControl.register(req.body)
         .then((obj) => res.send(obj).status(200))

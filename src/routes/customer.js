@@ -4,6 +4,7 @@ const customerControl = require('../controllers/customerControl')
 const { hashPassword } = require('../middleware/hashPassword')
 const { registerQuery } = require('../middleware/registerQuery')
 const { authenticate } = require('../middleware/authenticate')
+const { checkDuplicate } = require('../middleware/checkDuplicate')
 
 
 
@@ -34,7 +35,7 @@ router.get('/', (req, res) => {
  * 
  *
  */ // Register Customer
-router.post('/register', registerQuery, hashPassword, (req, res) => {
+router.post('/register', checkDuplicate, registerQuery, hashPassword, (req, res) => {
     console.log(chalk.yellow.bold("\nRegister Customer route hit..."))
     customerControl.register(req.body)
         .then((obj) => res.send(obj).status(200))

@@ -8,20 +8,6 @@ const { ObjectID } = require('mongodb')
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
-        await Role.find({
-                role: "employee",
-                userID: user.userID
-            })
-            .then((obj) => {
-                if (user.userID == obj.userID) {
-                    reject({
-                        statusCode: 400,
-                        payload: {
-                            msg: "Employee Already Exists. Contact Support"
-                        }
-                    })
-                }
-            })
         const id = new ObjectID()
         employee = new Employee({
             _id: id,
