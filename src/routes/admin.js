@@ -4,6 +4,7 @@ const { hashPassword } = require('../middleware/hashPassword')
 const chalk = require('chalk')
 const { upload } = require('../middleware/multerUpload')
 const { authenticate } = require('../middleware/authenticate')
+const { checkDuplicate } = require('../middleware/checkDuplicate')
 
 // TEST ROUTE
 router.get('/', (req, res) => {
@@ -36,7 +37,7 @@ router.get('/', (req, res) => {
  * @apiParam {String} fcmToken FCM Device Token
  * 
  */ //Register New Admin
-router.post('/register', hashPassword, (req, res) => {
+router.post('/register', checkDuplicate, hashPassword, (req, res) => {
     console.log(chalk.yellow.bold("\nRegister Admin route hit..."))
     adminControl.register(req.body)
         .then((obj) => res.send(obj).status(200))

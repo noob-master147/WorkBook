@@ -3,6 +3,7 @@ const superAdminControl = require('../controllers/superAdminControl')
 const { hashPassword } = require('../middleware/hashPassword')
 const chalk = require('chalk')
 const { authenticate } = require('../middleware/authenticate')
+const { checkDuplicate } = require('../middleware/checkDuplicate')
 
 // TEST ROUTE
 router.get('/', (req, res) => {

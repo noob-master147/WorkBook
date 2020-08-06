@@ -16,21 +16,6 @@ const { ObjectID } = require('mongodb')
 
 const create = (user) => {
     return new Promise(async(resolve, reject) => {
-        await Role.findOne({
-                role: "superAdmin",
-                userID: user.userID
-            })
-            .then((obj) => {
-                if (obj) {
-                    reject({
-                        statusCode: 400,
-                        payload: {
-                            msg: "SuperAdmin Already Exists. Contact Support"
-                        }
-                    })
-                }
-            })
-
         console.log(chalk.bold.yellow("Creating SuperAdmin..."))
         const id = new ObjectID()
         superAdmin = new SuperAdmin({

@@ -3,6 +3,7 @@ const employeeControl = require('../controllers/employeeControl')
 const { hashPassword } = require('../middleware/hashPassword')
 const chalk = require('chalk')
 const { authenticate } = require('../middleware/authenticate')
+const { checkDuplicate } = require('../middleware/checkDuplicate')
 
 // TEST ROUTE
 router.get('/', (req, res) => {
@@ -35,7 +36,7 @@ router.get('/', (req, res) => {
  * @apiParam {String} fcmToken FCM Device Token  
  * 
  */ // Register an Employee
-router.post('/register', hashPassword, (req, res) => {
+router.post('/register', checkDuplicate, hashPassword, (req, res) => {
     console.log(chalk.bold.yellow("\nRegister Employee route hit..."))
     employeeControl.register(req.body)
         .then((obj) => res.send(obj).status(200))

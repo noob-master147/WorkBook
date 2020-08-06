@@ -7,6 +7,7 @@ const { Role } = require('../models/RoleSchema')
 
 const createQuery = (obj) => {
     return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Creating New Query"))
         const id = new ObjectID()
         query = new Query({
             _id: id,
@@ -45,6 +46,7 @@ const createQuery = (obj) => {
 
 const getAllQuery = (obj) => {
     return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Fetching all Query"))
         await Query.find({
                 instituteName: obj.instituteName
             })
@@ -76,6 +78,7 @@ const getAllQuery = (obj) => {
 
 const unregister = (obj) => {
     return new Promise(async(resolve, reject) => {
+        console.log(chalk.yellow.bold("Unregister Query"))
         await Query.findByIdAndUpdate(obj.id, {
                 status: 'unregistered'
             }, {
