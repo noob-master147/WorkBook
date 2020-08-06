@@ -196,7 +196,7 @@ router.get('/forgot/:email', checkUser, (req, res) => {
 
 
 /** Send Verification
- * @api {get} /sendVerification Send Verification
+ * @api {post} /sendVerification Send Verification
  * @apiName Send Verification
  * @apiGroup Common
  * 
@@ -247,27 +247,6 @@ router.post('/verifyOTP', checkUser, (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
-
-
-// /** Verify User
-//  * @api {post} /verifyUser Verify OTP
-//  * @apiName Verify User
-//  * @apiGroup Common
-//  * 
-//  * @apiParam {String} userID Email of the User
-//  * @apiParam {String} token One Time Password
-//  * 
-//  */ // Verify User
-// router.post('/verifyUser', (req, res) => {
-//     console.log(chalk.bold.yellow("Verify OTP Route Hit!"))
-//     commonControl.verifyUser(req.body)
-//         .then((obj) => res.send(obj).status(200))
-//         .catch((err) => res.send(err).status(400))
-// })
-
-
-
 
 
 module.exports = router;
