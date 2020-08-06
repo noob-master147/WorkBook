@@ -27,6 +27,7 @@ router.get('/', (req, res) => {
  *
  */ // Create Query
 router.post('/createQuery', (req, res) => {
+    console.log(chalk.yellow.bold("\n/guest/createQuery Route Hit"))
     guestControl.createQuery(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -43,6 +44,7 @@ router.post('/createQuery', (req, res) => {
  *
  */ // Get All Query
 router.post('/getAllQuery', (req, res) => {
+    console.log(chalk.yellow.bold("\n/guest/getAllQuery Route Hit"))
     guestControl.getAllQuery(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
@@ -61,6 +63,7 @@ router.post('/getAllQuery', (req, res) => {
  *
  */ // Unregister
 router.post('/unregister', (req, res) => {
+    console.log(chalk.yellow.bold("\n/guest/unregister Route Hit"))
     guestControl.unregister(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
