@@ -16,7 +16,22 @@ const { ObjectID } = require('mongodb')
 
 const create = (user) => {
     return new Promise(async(resolve, reject) => {
-        console.log(chalk.yellow("Creating SuperAdmin..."))
+        await Role.findOne({
+                role: "superAdmin",
+                userID: user.userID
+            })
+            .then((obj) => {
+                if (obj) {
+                    reject({
+                        statusCode: 400,
+                        payload: {
+                            msg: "SuperAdmin Already Exists. Contact Support"
+                        }
+                    })
+                }
+            })
+
+        console.log(chalk.bold.yellow("Creating SuperAdmin..."))
         const id = new ObjectID()
         superAdmin = new SuperAdmin({
             _id: id,
@@ -32,8 +47,8 @@ const create = (user) => {
             userID: user.userID,
             role: "superAdmin"
         })
-        const p1 = await superAdmin.save()
-        const p2 = await role.save()
+        const p1 = superAdmin.save()
+        const p2 = role.save()
 
         Promise.all([p1, p2])
             .then((superAdmin) => {

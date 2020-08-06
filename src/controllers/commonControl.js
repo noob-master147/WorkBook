@@ -510,48 +510,73 @@ const forgot = (obj) => {
 const sendVerification = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Verify User, Sending Verification Email Details"))
-        await generateToken()
-            .then(async(token) => {
-                console.log("token  ", token)
-                const p1 = await sendMail({
-                    mail: obj.email,
-                    token: token
-                })
-                const p2 = await Role.findOneAndUpdate({
-                    userID: obj.email
-                }, {
-                    passwordResetToken: {
-                        token: token,
-                        tokenExpire: Date.now() + 300000
-                    }
-                })
-                Promise.all([p1, p2])
-                    .then(() => {
-                        resolve({
-                            statusCode: 200,
-                            payload: {
-                                msg: "Verification Email Sent"
-                            }
+        const role = obj.role
+        let alias = null
+        switch (role) {
+            case "admin":
+                alias = Admin
+                break;
+            case "employee":
+                alias = Employee
+                break;
+            case "customer":
+                alias = Customer
+                break;
+            case "driver":
+                alias = Driver
+                break;
+            case "guest":
+                alias = Guest
+                break;
+        }
+        const checkUser = await alias.findOne({
+            userID: obj.userID
+        })
+        if (checkUser) {
+            console.log(chalk.red.bold("Verification Email not Sent, User already exist"))
+            reject({
+                statusCode: 401,
+                payload: {
+                    msg: "User Already Exist!"
+                }
+            })
+        } else {
+            await generateToken()
+                .then(async(token) => {
+                    console.log("token  ", token)
+                    await sendMail({
+                            mail: obj.userID,
+                            token: token
                         })
-                    }).catch((err) => {
-                        reject({
-                            statusCode: 400,
-                            payload: {
-                                msg: "Error in Sending Verification Email! Contact Support",
-                                err: err
-                            }
+                        .then(() => {
+                            resolve({
+                                statusCode: 200,
+                                payload: {
+                                    msg: "Verification Email Sent",
+                                    token: token
+                                }
+                            })
+                        }).catch((err) => {
+                            reject({
+                                statusCode: 400,
+                                payload: {
+                                    msg: "Error in Sending Verification Email! Contact Support",
+                                    err: err
+                                }
+                            })
                         })
+                })
+                .catch((err) => {
+                    reject({
+                        statusCode: 400,
+                        payload: {
+                            msg: "Error in Sending Verification Email! Contact Support",
+                            err: err
+                        }
                     })
-            })
-            .catch((err) => {
-                reject({
-                    statusCode: 400,
-                    payload: {
-                        msg: "Error in Sending Verification Email! Contact Support",
-                        err: err
-                    }
                 })
-            })
+        }
+
 
     })
 }
