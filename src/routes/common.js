@@ -200,10 +200,13 @@ router.get('/forgot/:email', checkUser, (req, res) => {
  * @apiName Send Verification
  * @apiGroup Common
  * 
+ * @apiParam {String} userID Email ID of the user
+ * @apiParam {String} role Role of the User
+ * 
  */ // Send Verification
-router.get('/sendVerification/:email', (req, res) => {
+router.post('/sendVerification', (req, res) => {
     console.log(chalk.bold.yellow("Verify User Route Hit!"))
-    commonControl.sendVerification(req.params)
+    commonControl.sendVerification(req.body)
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })

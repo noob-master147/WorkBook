@@ -16,6 +16,21 @@ content-type: application/json
 
 
 
+
+####
+# Create SuperAdmin
+POST http://localhost:8000/superAdmin/create
+content-type: application/json
+
+{
+    "fcmToken": "sdgsg",
+    "userID": "superAdmin@gmail.com",
+    "password": "123",
+    "userName": "superAdmin"
+}
+
+
+
 ####
 # Purge the Database
 DELETE http://localhost:8000/superAdmin/purge
@@ -38,19 +53,6 @@ content-type: application/json
 
 {
     "id": "5eef64e2e59e040017aded48"
-}
-
-
-####
-# Create SuperAdmin
-POST http://localhost:8000/superAdmin/create
-content-type: application/json
-
-{
-    "fcmToken": "sdgsg",
-    "userID": "superAdmin",
-    "password": "123",
-    "userName": "superAdmin"
 }
 
 

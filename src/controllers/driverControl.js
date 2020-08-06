@@ -9,6 +9,20 @@ const { ObjectID } = require('mongodb')
 
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
+        await Role.find({
+                role: "driver",
+                userID: user.userID
+            })
+            .then((obj) => {
+                if (obj) {
+                    reject({
+                        statusCode: 400,
+                        payload: {
+                            msg: "Driver Already Exists. Contact Support"
+                        }
+                    })
+                }
+            })
         const id = new ObjectID()
         driver = new Driver({
             _id: id,

@@ -13,6 +13,20 @@ const { ObjectID } = require('mongodb')
 const register = (user) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Registering Admin..."))
+        await Role.findOne({
+                role: "admin",
+                userID: user.userID
+            })
+            .then((obj) => {
+                if (obj) {
+                    reject({
+                        statusCode: 400,
+                        payload: {
+                            msg: "Admin Already Exists. Contact Support"
+                        }
+                    })
+                }
+            })
         const id = new ObjectID()
         admin = new Admin({
             _id: id,

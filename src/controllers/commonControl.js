@@ -510,40 +510,73 @@ const forgot = (obj) => {
 const sendVerification = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Verify User, Sending Verification Email Details"))
-        await generateToken()
-            .then(async(token) => {
-                console.log("token  ", token)
-                await sendMail({
-                        mail: obj.email,
-                        token: token
-                    })
-                    .then(() => {
-                        resolve({
-                            statusCode: 200,
-                            payload: {
-                                msg: "Verification Email Sent",
-                                token: token
-                            }
-                        })
-                    }).catch((err) => {
-                        reject({
-                            statusCode: 400,
-                            payload: {
-                                msg: "Error in Sending Verification Email! Contact Support",
-                                err: err
-                            }
-                        })
-                    })
+        const role = obj.role
+        let alias = null
+        switch (role) {
+            case "admin":
+                alias = Admin
+                break;
+            case "employee":
+                alias = Employee
+                break;
+            case "customer":
+                alias = Customer
+                break;
+            case "driver":
+                alias = Driver
+                break;
+            case "guest":
+                alias = Guest
+                break;
+        }
+        const checkUser = await alias.findOne({
+            userID: obj.userID
+        })
+        if (checkUser) {
+            console.log(chalk.red.bold("Verification Email not Sent, User already exist"))
+            reject({
+                statusCode: 401,
+                payload: {
+                    msg: "User Already Exist!"
+                }
             })
-            .catch((err) => {
-                reject({
-                    statusCode: 400,
-                    payload: {
-                        msg: "Error in Sending Verification Email! Contact Support",
-                        err: err
-                    }
+        } else {
+            await generateToken()
+                .then(async(token) => {
+                    console.log("token  ", token)
+                    await sendMail({
+                            mail: obj.userID,
+                            token: token
+                        })
+                        .then(() => {
+                            resolve({
+                                statusCode: 200,
+                                payload: {
+                                    msg: "Verification Email Sent",
+                                    token: token
+                                }
+                            })
+                        }).catch((err) => {
+                            reject({
+                                statusCode: 400,
+                                payload: {
+                                    msg: "Error in Sending Verification Email! Contact Support",
+                                    err: err
+                                }
+                            })
+                        })
                 })
-            })
+                .catch((err) => {
+                    reject({
+                        statusCode: 400,
+                        payload: {
+                            msg: "Error in Sending Verification Email! Contact Support",
+                            err: err
+                        }
+                    })
+                })
+        }
+
 
     })
 }

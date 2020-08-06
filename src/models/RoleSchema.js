@@ -31,8 +31,7 @@ const roleSchema = new mongoose.Schema({
     passwordResetToken: {
         token: {
             type: String,
-            trim: true,
-            unique: true
+            trim: true
         },
         tokenExpire: {
             type: Date
@@ -41,6 +40,11 @@ const roleSchema = new mongoose.Schema({
             type: Boolean,
             default: false
         }
+    },
+    userVerified: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
