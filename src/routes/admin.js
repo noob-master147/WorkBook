@@ -6,6 +6,15 @@ const { upload } = require('../middleware/multerUpload')
 const { authenticate } = require('../middleware/authenticate')
 const { checkDuplicate } = require('../middleware/checkDuplicate')
 
+
+``
+`jsom http
+{
+  "method": "get",
+  "url": "https://spinbot-app.herokuapp.com/"
+}
+`
+``
 // TEST ROUTE
 router.get('/', (req, res) => {
     res.send({
@@ -17,6 +26,15 @@ router.get('/', (req, res) => {
 })
 
 
+
+``
+`jsom http
+{
+  "method": "post",
+  "url": "https://spinbot-app.herokuapp.com/"
+}
+`
+``
 /** Register New Admin
  * @api {post} /admin/register Register Admin
  * @apiName Register
