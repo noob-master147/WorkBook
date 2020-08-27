@@ -1,6 +1,6 @@
-const mongo = require('mongoose')
+const mongoose = require('mongoose')
 
-const assigneeSchema = new mongo.Schema({
+const assigneeSchema = new mongoose.Schema({
     userID: {
         type: String,
         trim: true
@@ -8,7 +8,7 @@ const assigneeSchema = new mongo.Schema({
 })
 
 
-const taskSchema = new mongo.Schema({
+const taskSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,

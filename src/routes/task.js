@@ -43,3 +43,7 @@ router.post('/employeeCreate', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+
+module.exports = router;
