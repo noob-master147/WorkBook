@@ -12,10 +12,17 @@ const { Task } = require('../models/taskSchema')
 const { ObjectID } = require('mongodb')
 
 
+const serviceAccount = require("../../firebase-key.json")
+const admin = require("firebase-admin")
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: process.env.DATABASE_URL
+})
 
 const adminCreate = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.bold.yellow("Creating Task..."))
+
         const id = new ObjectID()
         task = new Task({
             _id: id,

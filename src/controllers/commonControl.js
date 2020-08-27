@@ -58,6 +58,43 @@ const sendNotification = (obj) => {
     })
 }
 
+const sendTopicNotification = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(chalk.bold.yellow("Sending Topic Notification..."))
+        const payload = {
+            notification: {
+                title: obj.name,
+                body: obj.description
+            }
+        }
+        await admin.messaging().sendToTopic(obj.topic, payload)
+            .then((response) => {
+                console.log(chalk.bold.green("Topic Notification Sent!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Topic Notification Sent",
+                        response: response
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Notification Not Sent!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Sending Notification! Contact Support",
+                        Error: "Issue in connecting to the Firebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
 const login = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold(`${obj.user.role} Logging in...`))
@@ -771,5 +808,6 @@ module.exports = {
     resetPassword,
     verifyOTP,
     verifyUser,
-    sendVerification
+    sendVerification,
+    sendTopicNotification
 }
