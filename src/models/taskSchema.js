@@ -4,10 +4,6 @@ const assigneeSchema = new mongo.Schema({
     userID: {
         type: String,
         trim: true
-    },
-    fcmToken: {
-        type: String,
-        trim: true
     }
 })
 
