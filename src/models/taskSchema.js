@@ -3,12 +3,10 @@ const mongo = require('mongoose')
 const assigneeSchema = new mongo.Schema({
     userID: {
         type: String,
-        required: true,
         trim: true
     },
     fcmToken: {
         type: String,
-        required: true,
         trim: true
     }
 })
@@ -34,12 +32,10 @@ const taskSchema = new mongo.Schema({
     },
     grade: {
         type: String,
-        required: true,
         trim: true
     },
     division: {
         type: String,
-        required: true,
         trim: true
     },
     instituteName: {
@@ -51,6 +47,9 @@ const taskSchema = new mongo.Schema({
     createdBy: {
         type: String,
         required: true
+    },
+    universal: {
+        type: Boolean
     }
 })
 

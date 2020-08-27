@@ -45,6 +45,10 @@ const roleSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    instituteName: {
+        type: String,
+        trim: true
     }
 });
 
