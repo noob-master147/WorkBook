@@ -14,6 +14,7 @@ const { checkUser } = require('../middleware/checkUser')
  * @apiGroup Common
  *
  * @apiParam {String} fcmToken FCM Device Token
+ * @apiParam {String} title Notification Title
  * @apiParam {String} message Notification Message
  * 
  *   
@@ -24,6 +25,27 @@ router.post('/sendNotification', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+
+/** Send Notification
+ * @api {post} /sendTopicNotification Send Notifications
+ * @apiName Send Notifications
+ * @apiGroup Common
+ *
+ * @apiParam {String} topic Notification Topic 
+ * @apiParam {String} title Notification Title
+ * @apiParam {String} message Notification Message
+ * 
+ *   
+ */ //Send Notification
+router.post('/sendTopicNotification', (req, res) => {
+    console.log(chalk.bold.yellow("/sendTopicNotification Route Hit!"))
+    commonControl.sendTopicNotification(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
 
 
 

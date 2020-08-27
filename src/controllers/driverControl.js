@@ -26,6 +26,7 @@ const register = (user) => {
             _id: id,
             fcmToken: user.fcmToken,
             userID: user.userID,
+            instituteName: user.instituteName,
             role: "driver"
         })
         Promise.all([

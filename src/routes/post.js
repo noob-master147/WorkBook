@@ -3,8 +3,6 @@ const postControl = require('../controllers/postControl')
 const chalk = require('chalk')
 
 
-
-
 /** 
  * @api {post} /post/create Create Post
  * @apiName Create Post
@@ -25,8 +23,6 @@ router.post('/createPost', (req, res) => {
 
 
 
-
-
 /** 
  * @api {post} /post/delete Delete Post
  * @apiName Delete Post
@@ -41,8 +37,6 @@ router.post('/deletePost', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
-
 
 
 /** 
@@ -62,8 +56,6 @@ router.post('/enablePost', (req, res) => {
 
 
 
-
-
 /** 
  * @api {post} /post/disablePost Disable Post
  * @apiName Disable Post
@@ -78,8 +70,6 @@ router.post('/disablePost', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
-
 
 
 
@@ -102,8 +92,6 @@ router.post('/updatePost', (req, res) => {
 
 
 
-
-
 /** 
  * @api {get} /post/viewAllPost View All Post
  * @apiName View All Post
@@ -116,7 +104,6 @@ router.get('/viewAllPost', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
 
 
 
@@ -140,8 +127,6 @@ router.post('/like', (req, res) => {
 
 
 
-
-
 /** 
  * @api {post} /post/comment Comment on Post
  * @apiName Comment Post
@@ -158,8 +143,6 @@ router.post('/comment', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
-
 
 
 
@@ -181,8 +164,6 @@ router.post('/updateViews', (req, res) => {
 
 
 
-
-
 /** 
  * @api {delete} /post/delete Delete All Post
  * @apiName Delete All Post
@@ -196,10 +177,6 @@ router.delete('/delete', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
-
-
-
 
 
 
@@ -217,8 +194,6 @@ router.post('/enableComment', (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
-
-
 
 
 

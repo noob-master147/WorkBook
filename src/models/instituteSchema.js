@@ -11,6 +11,10 @@ const divisionSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    schedule: {
+        type: String,
+        trim: true
     }
 })
 
