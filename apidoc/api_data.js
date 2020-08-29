@@ -1021,8 +1021,8 @@ define({ "api": [
   {
     "type": "post",
     "url": "/sendTopicNotification",
-    "title": "Send Notifications",
-    "name": "Send_Notifications",
+    "title": "Send Topic Notifications",
+    "name": "Send_Topic_Notifications",
     "group": "Common",
     "parameter": {
       "fields": {

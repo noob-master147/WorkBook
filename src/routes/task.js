@@ -15,7 +15,7 @@ const { authenticate } = require('../middleware/authenticate')
  * @apiParam {String} description Description of the Task
  * 
  */ //Create Task
-router.post('/adminCreate', (req, res) => {
+router.post('/adminCreate', authenticate, (req, res) => {
     console.log(chalk.bold.yellow("\n/task/adminCreate Route Hit!"))
     taskControl.adminCreate(req.body)
         .then((obj) => res.send(obj).status(200))
@@ -37,7 +37,7 @@ router.post('/adminCreate', (req, res) => {
  * @apiParam {String} Division Division
  * 
  */ // Create Task
-router.post('/employeeCreate', (req, res) => {
+router.post('/employeeCreate', authenticate, (req, res) => {
     console.log(chalk.bold.yellow("\n/task/employeeCreate Route Hit!"))
     taskControl.employeeCreate(req.body)
         .then((obj) => res.send(obj).status(200))

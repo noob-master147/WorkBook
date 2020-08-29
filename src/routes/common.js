@@ -29,8 +29,8 @@ router.post('/sendNotification', (req, res) => {
 
 
 /** Send Notification
- * @api {post} /sendTopicNotification Send Notifications
- * @apiName Send Notifications
+ * @api {post} /sendTopicNotification Send Topic Notifications
+ * @apiName Send Topic Notifications
  * @apiGroup Common
  *
  * @apiParam {String} topic Notification Topic 
@@ -38,7 +38,7 @@ router.post('/sendNotification', (req, res) => {
  * @apiParam {String} message Notification Message
  * 
  *   
- */ //Send Notification
+ */ //Send Topic Notification
 router.post('/sendTopicNotification', (req, res) => {
     console.log(chalk.bold.yellow("/sendTopicNotification Route Hit!"))
     commonControl.sendTopicNotification(req.body)

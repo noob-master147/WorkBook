@@ -27,20 +27,20 @@ const adminCreate = (obj) => {
         })
         await task.save()
             .then(() => {
-                console.log(chalk.bold.green("!"))
+                console.log(chalk.bold.green("Task Created!"))
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: ""
+                        msg: "Task Created"
                     }
                 })
             })
             .catch((err) => {
-                console.log(chalk.red.bold("Error in !"))
+                console.log(chalk.red.bold("Error in Creating Task!"))
                 reject({
                     statusCode: 400,
                     payload: {
-                        msg: "Error in ! Contact Support",
+                        msg: "Error in Creating Task! Contact Support",
                         Error: "Issue in connecting to the Datebase",
                         err: err
                     }
