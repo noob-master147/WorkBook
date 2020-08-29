@@ -2649,5 +2649,56 @@
     "version": "0.0.0",
     "filename": "src/routes/task.js",
     "groupTitle": "Task"
+  },
+  {
+    "type": "post",
+    "url": "/task/fetch",
+    "title": "Get Tasks of GD Combination",
+    "name": "Get_Tasks_of_GD_Combination",
+    "group": "Task",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "usedID",
+            "description": "<p>User Id of user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Institute Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>Grade</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Division",
+            "description": "<p>Division</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/task.js",
+    "groupTitle": "Task"
   }
 ]
