@@ -4,7 +4,7 @@ jest.setTimeout(100000);
 
 
 
-test('/', async() => {
+test('/driver', async() => {
     await request(app).get('/')
         .expect(200)
 
