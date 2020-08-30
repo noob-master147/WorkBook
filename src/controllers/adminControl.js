@@ -585,7 +585,6 @@ const createRoute = (obj) => {
     })
 }
 
-
 const updateRoute = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Updating Route..."))
@@ -626,8 +625,6 @@ const updateRoute = (obj) => {
     })
 }
 
-
-
 const deleteRoute = (obj) => {
     return new Promise(async(resolve, reject) => {
         console.log(chalk.yellow.bold("Deleting Route..."))
@@ -654,8 +651,6 @@ const deleteRoute = (obj) => {
             })
     })
 }
-
-
 
 const deleteLocation = (obj) => {
     return new Promise(async(resolve, reject) => {
@@ -691,8 +686,86 @@ const deleteLocation = (obj) => {
     })
 }
 
+const createSchedule = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        await Institute.findOneAndUpdate({
+                'division.division': obj.division,
+                'division.grade': obj.grade
+            }, {
+                'division.$.grade': obj.grade,
+                'division.$.division': obj.division,
+                'division.$.schedule': obj.schedule
+            }, {
+                new: true
+            })
+            .then((institute) => {
+                console.log(chalk.bold.green("New Schedule Set!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "New Schedule Set"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Setting New Schedule!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Setting New Schedule! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
 
 
+const fetchSchedule = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        await Institute.findOne({
+                instituteName: obj.instituteName
+            })
+            .then((institute) => {
+                let divisions = institute.division
+                divisions.forEach(div => {
+                    if (div.schedule != undefined) {
+                        if (div.division == obj.division && div.grade == obj.grade) {
+                            console.log(chalk.bold.green("Schedule Fetched!"))
+                            resolve({
+                                statusCode: 200,
+                                payload: {
+                                    msg: "Schedule Fetched",
+                                    schedule: div.schedule
+                                }
+                            })
+                        } else {
+                            console.log(chalk.bold.green("Schedule Not Found!"))
+                            resolve({
+                                statusCode: 400,
+                                payload: {
+                                    msg: "Schedule Not Found"
+                                }
+                            })
+                        }
+
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Schedule!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Schedule! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
 
 
 module.exports = {
@@ -714,5 +787,7 @@ module.exports = {
     createRoute,
     updateRoute,
     deleteRoute,
-    deleteLocation
+    deleteLocation,
+    createSchedule,
+    fetchSchedule
 }

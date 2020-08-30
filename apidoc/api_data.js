@@ -232,6 +232,20 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
+            "field": "userID",
+            "description": "<p>userID of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
             "field": "grade",
             "description": "<p>Grade</p>"
           },
@@ -253,6 +267,29 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
+            "field": "schedule",
+            "description": "<p>Schedule Media URL</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/fetchSchedule",
+    "title": "Create Schedule",
+    "name": "Create_Schedule",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
             "field": "userID",
             "description": "<p>userID of the Admin</p>"
           },
@@ -262,6 +299,27 @@ define({ "api": [
             "optional": false,
             "field": "jwtToken",
             "description": "<p>JWT Token of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grade",
+            "description": "<p>Grade</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "division",
+            "description": "<p>Division</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Institute Name</p>"
           }
         ]
       }

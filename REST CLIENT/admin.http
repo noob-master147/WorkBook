@@ -138,17 +138,28 @@ content-type: application/json
 
 
 
-
-
 ####
 # Update Route
 POST http://localhost:8000/admin/deleteLocation
 content-type: application/json
 
 {
-    
     "userID": "rishi@admin.com",
     "jwtToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJyaXNoaUBhZG1pbi5jb20iLCJpYXQiOjE1OTQ0NjU2Mjl9.-76LFHDcaEGYUHZ-c8LPia35eVQRg1Da7EPNAvszKpk"
+}
+
+
+
+####
+# Create Schedule
+POST http://localhost:8000/admin/fetchSchedule
+content-type: application/json
+
+{
+    "instituteName": "IEEE",
+    "division": "D1",
+    "grade": "Grade 1",
+    "schedule": "qwerty"
 }
 
 

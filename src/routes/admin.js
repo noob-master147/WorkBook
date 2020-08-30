@@ -406,19 +406,40 @@ router.post('/deleteRoute', authenticate, (req, res) => {
  * @api {post} /admin/createSchedule Create Schedule
  * @apiName Create Schedule
  * @apiGroup Admin
- * 
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
  * @apiParam {String} grade Grade
  * @apiParam {String} division  Division
  * @apiParam {String} instituteName Institute Name
+ * @apiParam {String} schedule Schedule Media URL
+
+ */ // Create Schedule
+router.post('/createSchedule', (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/createSchedule route hit..."))
+    adminControl.createSchedule(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+/** Fetch Schedule
+ * @api {post} /admin/fetchSchedule Create Schedule
+ * @apiName Create Schedule
+ * @apiGroup Admin
  * @apiParam {String} userID userID of the Admin 
  * @apiParam {String} jwtToken JWT Token of the Admin
- */ // Create Schedule
-// router.post('/createSchedule', authenticate, (req, res) => {
-//     console.log(chalk.yellow.bold("\n/admin/createSchedule route hit..."))
-//     adminControl.createSchedule(req.body)
-//         .then((obj) => res.send(obj).status(200))
-//         .catch((err) => res.send(err).status(400))
-// })
+ * @apiParam {String} grade Grade
+ * @apiParam {String} division  Division
+ * @apiParam {String} instituteName Institute Name
+
+ */ // Fetch Schedule
+router.post('/fetchSchedule', (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/fetchSchedule route hit..."))
+    adminControl.fetchSchedule(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
 
 
 
