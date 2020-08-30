@@ -10,6 +10,7 @@ const { authenticate } = require('../middleware/authenticate')
  * 
  * @apiParam {String} usedID User Id of Admin
  * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} name Name of the Task
  * @apiParam {String} instituteName Institute Name
  * @apiParam {String} type Type of Task
  * @apiParam {String} description Description of the Task
@@ -30,6 +31,7 @@ router.post('/adminCreate', authenticate, (req, res) => {
  * 
  * @apiParam {String} usedID User Id of Employee
  * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} name Name of the Task
  * @apiParam {String} instituteName Institute Name 
  * @apiParam {String} type Type of Task
  * @apiParam {String} description Description of the Task
@@ -43,6 +45,29 @@ router.post('/employeeCreate', authenticate, (req, res) => {
         .then((obj) => res.send(obj).status(200))
         .catch((err) => res.send(err).status(400))
 })
+
+
+
+/** 
+ * @api {post} /task/fetch Get Tasks of GD Combination 
+ * @apiName Get Tasks of GD Combination
+ * @apiGroup Task
+ * 
+ * @apiParam {String} usedID User Id of user
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} instituteName Institute Name 
+ * @apiParam {String} grade Grade
+ * @apiParam {String} Division Division
+ * 
+ */ // Create Task
+router.post('/fetch', authenticate, (req, res) => {
+    console.log(chalk.bold.yellow("\n/task/fetch Route Hit!"))
+    taskControl.fetch(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
 
 
 

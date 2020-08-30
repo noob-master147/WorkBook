@@ -1,8 +1,8 @@
 const chalk = require('chalk')
-const serviceAccount = require("../../firebase-key.json")
 const bcrypt = require('bcrypt')
 
 const { sendMail } = require('../middleware/sendMail')
+const admin = require("firebase-admin")
 
 const { SuperAdmin } = require('../models/superAdminSchema')
 const { Admin } = require('../models/adminSchema')
@@ -16,11 +16,8 @@ const { Post } = require('../models/postSchema')
 const { Route } = require('../models/routeSchema')
 const { Query } = require('../models/querySchema')
 
-const admin = require("firebase-admin")
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: process.env.DATABASE_URL
-})
+
+
 
 const sendNotification = (obj) => {
     return new Promise(async(resolve, reject) => {
@@ -63,8 +60,8 @@ const sendTopicNotification = (obj) => {
         console.log(chalk.bold.yellow("Sending Topic Notification..."))
         const payload = {
             notification: {
-                title: obj.name,
-                body: obj.description
+                title: obj.title,
+                body: obj.message
             }
         }
         await admin.messaging().sendToTopic(obj.topic, payload)

@@ -15,6 +15,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/apidoc', express.static('apidoc'));
 
+
+const serviceAccount = require("../firebase-key.json")
+const firebaseAdmin = require("firebase-admin")
+firebaseAdmin.initializeApp({
+    credential: firebaseAdmin.credential.cert(serviceAccount),
+    databaseURL: process.env.DATABASE_URL
+})
+
 //Route imports
 const admin = require('./routes/admin');
 const customer = require('./routes/customer');

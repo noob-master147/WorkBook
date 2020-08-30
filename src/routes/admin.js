@@ -402,6 +402,24 @@ router.post('/deleteRoute', authenticate, (req, res) => {
 
 
 
+/** Create Schedule
+ * @api {post} /admin/createSchedule Create Schedule
+ * @apiName Create Schedule
+ * @apiGroup Admin
+ * 
+ * @apiParam {String} grade Grade
+ * @apiParam {String} division  Division
+ * @apiParam {String} instituteName Institute Name
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ */ // Create Schedule
+// router.post('/createSchedule', authenticate, (req, res) => {
+//     console.log(chalk.yellow.bold("\n/admin/createSchedule route hit..."))
+//     adminControl.createSchedule(req.body)
+//         .then((obj) => res.send(obj).status(200))
+//         .catch((err) => res.send(err).status(400))
+// })
+
 
 
 module.exports = router;
