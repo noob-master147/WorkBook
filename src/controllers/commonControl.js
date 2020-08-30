@@ -1,8 +1,8 @@
 const chalk = require('chalk')
-
 const bcrypt = require('bcrypt')
 
 const { sendMail } = require('../middleware/sendMail')
+const admin = require("firebase-admin")
 
 const { SuperAdmin } = require('../models/superAdminSchema')
 const { Admin } = require('../models/adminSchema')

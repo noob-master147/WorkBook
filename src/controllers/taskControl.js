@@ -30,7 +30,7 @@ const adminCreate = (obj) => {
                 await sendTopicNotification({
                     title: obj.name,
                     message: `New ${obj.name} Received! Click here to view!`,
-                    topic: obj.instituteName
+                    topic: obj.topic
                 })
                 console.log(chalk.bold.green("Task Created!"))
                 resolve({
@@ -75,7 +75,7 @@ const employeeCreate = (obj) => {
                 await sendTopicNotification({
                     title: obj.name,
                     message: `New ${obj.name} Received! Click here to view!`,
-                    topic: `${obj.grade}${obj.division}`
+                    topic: obj.topic
                 })
                 console.log(chalk.bold.green("Task Created!"))
                 resolve({
