@@ -13,6 +13,7 @@ const { authenticate } = require('../middleware/authenticate')
  * @apiParam {String} name Name of the Task
  * @apiParam {String} instituteName Institute Name
  * @apiParam {String} type Type of Task
+ * @apiParam {String} mediaUrl Media URL of the Task
  * @apiParam {String} description Description of the Task
  * 
  */ //Create Task
@@ -34,6 +35,7 @@ router.post('/adminCreate', authenticate, (req, res) => {
  * @apiParam {String} name Name of the Task
  * @apiParam {String} instituteName Institute Name 
  * @apiParam {String} type Type of Task
+ * @apiParam {String} mediaUrl Media URL of the Task
  * @apiParam {String} description Description of the Task
  * @apiParam {String} grade Grade
  * @apiParam {String} Division Division
