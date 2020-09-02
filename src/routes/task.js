@@ -70,5 +70,23 @@ router.post('/fetch', authenticate, (req, res) => {
 
 
 
+/** 
+ * @api {post} /task/createdBy Get Tasks of GD Combination 
+ * @apiName Get Tasks by UserID
+ * @apiGroup Task
+ * 
+ * @apiParam {String} usedID User Id of user
+ * @apiParam {String} jwtToken JWT Token of the User
+ * 
+ */ // Get Tasks by UserID
+router.post('/createdBy', authenticate, (req, res) => {
+    console.log(chalk.bold.yellow("\n/task/createdBy Route Hit!"))
+    taskControl.createdBy(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
 
 module.exports = router;

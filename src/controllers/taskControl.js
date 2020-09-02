@@ -23,6 +23,7 @@ const adminCreate = (obj) => {
             type: obj.type,
             description: obj.description,
             createdBy: obj.userID,
+            mediaUrl: obj.mediaUrl,
             universal: true
         })
         await task.save()
@@ -68,6 +69,7 @@ const employeeCreate = (obj) => {
             type: obj.type,
             description: obj.description,
             createdBy: obj.userID,
+            mediaUrl: obj.mediaUrl,
             universal: false
         })
         await task.save()
@@ -148,8 +150,41 @@ const fetch = (obj) => {
     })
 }
 
+
+const createdBy = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        Task.find({
+                createdBy: obj.userID
+            })
+            .then((task) => {
+                console.log(task)
+                console.log(chalk.bold.green("Task Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Task Fetched",
+                        task: task
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Tasks!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Tasks! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
 module.exports = {
     adminCreate,
     employeeCreate,
-    fetch
+    fetch,
+    createdBy
 }
