@@ -1,21 +1,20 @@
 const jwt = require('jsonwebtoken')
 const chalk = require('chalk')
 
-const authenticate = ((req, res, next) => {
-    console.log(chalk.bold.cyanBright("Authenticating JWT Token..."))
+const authenticateHeaders = ((req, res, next) => {
+    console.log(chalk.bold.cyanBright("Authenticating Headers..."))
     try {
         let data
         if (req.headers.jwttoken) {
             data = jwt.verify(req.headers.jwttoken, process.env.JWT_SECRET)
-        } else if (req.body.jwtToken) {
-            data = jwt.verify(req.body.jwtToken, process.env.JWT_SECRET)
         } else {
             throw new Error("JWT Authentication failed")
         }
 
         // check the token
-        if (data.userID == req.body.userID) {
+        if (data.userID == req.headers.userid) {
             console.log(chalk.bold.green("JWT Authenticated"))
+            req.body.userID = req.headers.userid
             next()
         } else {
             throw new Error("JWT Authentication failed")
@@ -37,5 +36,5 @@ const authenticate = ((req, res, next) => {
 
 
 module.exports = {
-    authenticate
+    authenticateHeaders
 }

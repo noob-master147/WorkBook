@@ -271,4 +271,23 @@ router.post('/verifyOTP', checkUser, (req, res) => {
 })
 
 
+/** Get Institute Holidays
+ * @api {post} /getHolidays Get Institute Holidays
+ * @apiName Verify OTP
+ * @apiGroup Common
+ * 
+ * @apiParam {String} userID Email of the User
+ * @apiParam {String} jwtToken JWT Token of the User
+ * @apiParam {String} instituteName Name of the Institute
+ * 
+ */ // Get Institute Holidays
+router.post('/getHolidays', (req, res) => {
+    console.log(chalk.bold.yellow("/getHolidays Route Hit!"))
+    commonControl.getHolidays(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
 module.exports = router;

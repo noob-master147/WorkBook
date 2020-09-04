@@ -443,4 +443,57 @@ router.post('/fetchSchedule', (req, res) => {
 
 
 
+
+/** Fetch Schedule
+ * @api {post} /admin/fetchAllSchedule Fetch All Schedule in Institute
+ * @apiName Fetch All Schedule in Institute
+ * @apiGroup Admin
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ * @apiParam {String} instituteName Institute Name
+
+ */ // Fetch All Schedule in Institute
+router.post('/fetchAllSchedule', (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/fetchAllSchedule route hit..."))
+    adminControl.fetchAllSchedule(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+/** Default Holidays
+ * @api {get} /admin/defaultHolidays Fetch Default Holidays
+ * @apiName Fetch Default Holidays
+ * @apiGroup Admin
+ * 
+ */ // Fetch All Schedule in Institute
+router.get('/defaultHolidays', (req, res) => {
+    adminControl.defaultHolidays()
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+/** Set Holidays
+ * @api {post} /admin/setHolidays Set Holidays
+ * @apiName Set Holidays
+ * @apiGroup Admin
+ * @apiParam {String} userID userID of the Admin 
+ * @apiParam {String} jwtToken JWT Token of the Admin
+ * @apiParam {String} instituteName Institute Name
+ * @apiParam {List} holidays List of Holiday Objects
+
+ */ // Set Holidays
+router.post('/setHolidays', (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/setHolidays route hit..."))
+    adminControl.setHolidays(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
 module.exports = router;

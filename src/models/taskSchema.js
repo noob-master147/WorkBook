@@ -45,9 +45,9 @@ const taskSchema = new mongoose.Schema({
         required: true
     },
     createdAt: {
-        type: Date,
+        type: Number,
         required: true,
-        default: Date.now
+        default: Date.now()
     },
     mediaUrl: {
         type: String,

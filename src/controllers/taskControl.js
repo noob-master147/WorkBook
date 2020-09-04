@@ -153,7 +153,7 @@ const fetch = (obj) => {
 
 const createdBy = (obj) => {
     return new Promise(async(resolve, reject) => {
-        Task.find({
+        await Task.find({
                 createdBy: obj.userID
             })
             .then((task) => {

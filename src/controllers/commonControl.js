@@ -788,6 +788,34 @@ const verifyUser = (obj) => {
     })
 }
 
+const getHolidays = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        Institute.findOne({
+                instituteName: obj.instituteName
+            })
+            .then((institute) => {
+                console.log(chalk.bold.green("Holidays Fetched!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Holidays Fetched",
+                        holidays: institute.holidays
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Holidays!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Holidays! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
 
 
 module.exports = {
@@ -806,5 +834,6 @@ module.exports = {
     verifyOTP,
     verifyUser,
     sendVerification,
-    sendTopicNotification
+    sendTopicNotification,
+    getHolidays
 }
