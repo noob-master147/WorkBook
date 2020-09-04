@@ -485,6 +485,53 @@
   },
   {
     "type": "post",
+    "url": "/admin/fetchAllSchedule",
+    "title": "Fetch All Schedule in Institute",
+    "name": "Fetch_All_Schedule_in_Institute",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>userID of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Institute Name</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "get",
+    "url": "/admin/defaultHolidays",
+    "title": "Fetch Default Holidays",
+    "name": "Fetch_Default_Holidays",
+    "group": "Admin",
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
     "url": "/admin/setGD",
     "title": "Grade & Division",
     "name": "Grade_&_Division",
@@ -854,6 +901,50 @@
             "optional": false,
             "field": "userID",
             "description": "<p>Email ID of Admin</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/admin.js",
+    "groupTitle": "Admin"
+  },
+  {
+    "type": "post",
+    "url": "/admin/setHolidays",
+    "title": "Set Holidays",
+    "name": "Set_Holidays",
+    "group": "Admin",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>userID of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the Admin</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Institute Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "List",
+            "optional": false,
+            "field": "holidays",
+            "description": "<p>List of Holiday Objects</p>"
           }
         ]
       }
@@ -1246,6 +1337,43 @@
             "optional": false,
             "field": "token",
             "description": "<p>One Time Password</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/common.js",
+    "groupTitle": "Common"
+  },
+  {
+    "type": "post",
+    "url": "/getHolidays",
+    "title": "Get Institute Holidays",
+    "name": "Verify_OTP",
+    "group": "Common",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userID",
+            "description": "<p>Email of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "jwtToken",
+            "description": "<p>JWT Token of the User</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "instituteName",
+            "description": "<p>Name of the Institute</p>"
           }
         ]
       }
