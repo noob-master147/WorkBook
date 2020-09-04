@@ -688,22 +688,42 @@ const deleteLocation = (obj) => {
 
 const createSchedule = (obj) => {
     return new Promise(async(resolve, reject) => {
+        // const institute = await Institute.findOne({
+        //     instituteName: obj.instituteName
+        // })
+        // currentSchedule = institute.schedule
+        // console.log(`${obj.grade}_${obj.division}`)
+        // currentSchedule.forEach(element => {
+        //     if (element.grade_division == `${obj.grade}_${obj.division}`) {
+        //         console.log(chalk.bold.green("Schedule Already Exist!"))
+        //         resolve({
+        //             statusCode: 200,
+        //             payload: {
+        //                 msg: "Schedule Already Exist",
+        //             }
+        //         })
+        //     }
+        // })
         await Institute.findOneAndUpdate({
-                'division.division': obj.division,
-                'division.grade': obj.grade
+                instituteName: obj.instituteName
             }, {
-                'division.$.grade': obj.grade,
-                'division.$.division': obj.division,
-                'division.$.schedule': obj.schedule
+                $push: {
+                    schedule: [{
+                        grade_division: `${obj.grade}_${obj.division}`,
+                        scheduleUrl: obj.schedule
+                    }]
+                }
             }, {
                 new: true
             })
-            .then((institute) => {
+            .then((insitute) => {
                 console.log(chalk.bold.green("New Schedule Set!"))
+                console.log(insitute.schedule)
                 resolve({
                     statusCode: 200,
                     payload: {
-                        msg: "New Schedule Set"
+                        msg: "New Schedule Set",
+                        schedule: insitute.schedule
                     }
                 })
             })
@@ -721,37 +741,38 @@ const createSchedule = (obj) => {
     })
 }
 
-
 const fetchSchedule = (obj) => {
     return new Promise(async(resolve, reject) => {
         await Institute.findOne({
                 instituteName: obj.instituteName
             })
             .then((institute) => {
-                let divisions = institute.division
-                divisions.forEach(div => {
-                    if (div.schedule != undefined) {
-                        if (div.division == obj.division && div.grade == obj.grade) {
-                            console.log(chalk.bold.green("Schedule Fetched!"))
-                            resolve({
-                                statusCode: 200,
-                                payload: {
-                                    msg: "Schedule Fetched",
-                                    schedule: div.schedule
-                                }
-                            })
-                        } else {
-                            console.log(chalk.bold.green("Schedule Not Found!"))
-                            resolve({
-                                statusCode: 400,
-                                payload: {
-                                    msg: "Schedule Not Found"
-                                }
-                            })
-                        }
-
-                    }
+                let schedules = institute.schedule
+                console.log(schedules)
+                let url = false
+                schedules.forEach(schedule => {
+                    if (schedule.grade_division === `${obj.grade}_${obj.division}`)
+                        url = schedule.scheduleUrl
                 })
+                if (!url) {
+                    console.log(chalk.green.bold("Institute Schedule Does Not Exist"))
+                    resolve({
+                        statusCode: 200,
+                        payload: {
+                            msg: "Institute Schedule Does Not Exist"
+                        }
+                    })
+                } else {
+                    console.log(chalk.green.bold("Schedule Fetched!"))
+                    resolve({
+                        statusCode: 200,
+                        payload: {
+                            msg: "Institute Schedule Fetched",
+                            schedule: url
+                        }
+                    })
+                }
+
             })
             .catch((err) => {
                 console.log(chalk.red.bold("Error in Fetching Schedule!"))
@@ -759,6 +780,104 @@ const fetchSchedule = (obj) => {
                     statusCode: 400,
                     payload: {
                         msg: "Error in Fetching Schedule! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+const fetchAllSchedule = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        await Institute.findOne({
+                instituteName: obj.instituteName
+            })
+            .then((institute) => {
+                console.log(chalk.bold.green("Institute Schedule Fetched!"))
+                console.log(institute.schedule)
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Institute Schedule Fetched",
+                        schedule: institute.schedule
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Fetching Institute Schedules!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Fetching Institute Schedules! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+const defaultHolidays = () => {
+    return new Promise(async(resolve, reject) => {
+        holidays = [{
+                name: "Republic Day",
+                date: "1579996800000"
+            },
+            {
+                name: "Independence Day",
+                date: "1597449600000"
+            },
+            {
+                name: "Gandhi Jayanti",
+                date: "1601596800000"
+            },
+            {
+                name: "Chistmas",
+                date: "1608854400000"
+            },
+            {
+                name: "New Year",
+                date: "1577836800000"
+            },
+            {
+                name: "Dr. B. R. Ambedkar's Jayanti",
+                date: "1586822400000"
+            }
+        ]
+        resolve({
+            statusCode: 200,
+            payload: {
+                msg: "Default Holidays",
+                holidays: holidays
+            }
+        })
+    })
+}
+
+const setHolidays = (obj) => {
+    return new Promise(async(resolve, reject) => {
+        console.log(obj)
+        await Institute.findOneAndUpdate({
+                instituteName: obj.instituteName
+            }, {
+                holidays: obj.holidays
+            })
+            .then(() => {
+                console.log(chalk.bold.green("Holidays Set!"))
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Holidays Set"
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Setting Holidays!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Setting Holidays! Contact Support",
                         Error: "Issue in connecting to the Datebase",
                         err: err
                     }
@@ -789,5 +908,8 @@ module.exports = {
     deleteRoute,
     deleteLocation,
     createSchedule,
-    fetchSchedule
+    fetchSchedule,
+    fetchAllSchedule,
+    defaultHolidays,
+    setHolidays
 }

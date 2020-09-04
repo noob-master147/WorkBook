@@ -11,10 +11,6 @@ const divisionSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
-    },
-    schedule: {
-        type: String,
-        trim: true
     }
 })
 
@@ -27,6 +23,32 @@ const gradeSchema = new mongoose.Schema({
     }
 })
 
+
+const scheduleSchema = new mongoose.Schema({
+    grade_division: {
+        type: String,
+        trim: true,
+        unique: true
+    },
+    scheduleUrl: {
+        type: String,
+        trim: true,
+        unique: true
+    }
+})
+
+const holidaySchema = new mongoose.Schema({
+    name: {
+        type: String,
+        trim: true,
+        unique: true
+    },
+    date: {
+        type: String,
+        trim: true,
+        unique: true
+    },
+})
 
 
 
@@ -52,7 +74,9 @@ const instituteSchema = new mongoose.Schema({
         default: Date.now
     },
     grade: [gradeSchema],
-    division: [divisionSchema]
+    division: [divisionSchema],
+    schedule: [scheduleSchema],
+    holidays: [holidaySchema]
 });
 
 

@@ -78,7 +78,7 @@ POST http://localhost:8000/admin/deleteEmployee
 content-type: application/json
 
 {
-    "id": "5eef66dceaad484382c4f4e9"
+    "id": ""
 }
 
 
@@ -152,12 +152,27 @@ content-type: application/json
 
 ####
 # Create Schedule
+POST http://localhost:8000/admin/createSchedule
+content-type: application/json
+
+{
+    "instituteName": "IEEE",
+    "division": "Division 1",
+    "grade": "Grade 1",
+    "schedule": "qwerty"
+}
+
+
+
+
+####
+# Fetch Schedule
 POST http://localhost:8000/admin/fetchSchedule
 content-type: application/json
 
 {
     "instituteName": "IEEE",
-    "division": "D1",
+    "division": "Division1",
     "grade": "Grade 1",
     "schedule": "qwerty"
 }
