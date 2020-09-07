@@ -833,7 +833,7 @@ const defaultHolidays = () => {
                 date: "1601596800000"
             },
             {
-                name: "Chistmas",
+                name: "Christmas",
                 date: "1608854400000"
             },
             {
