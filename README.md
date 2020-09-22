@@ -25,8 +25,8 @@ This app will help the user to manage their organization efficiently.
 * Manage membership status of every role.
 
 ## Tools and Technologies used
-* Flutter
-* Node.js for backend (https://github.com/noob-master147/WorkBook)
+* Flutter (https://github.com/rish07/workbook)
+* Node.js for backend
 * Mongo DB Atlas for database
 * Firebase cloud messaging 
 * Firebase storage

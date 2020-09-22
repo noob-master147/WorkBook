@@ -21,9 +21,8 @@ POST http://localhost:8000/login
 content-type: application/json
 
 {
-    "fcmToken" : "asdlkfccccccchdslf",
-    "userID":"superAdmin",
-    "password": "123"
+    "userID":"rishi@admin.com",
+    "password": "spearFish#24"
 }
 
 

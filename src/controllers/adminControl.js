@@ -35,7 +35,7 @@ const register = (user) => {
             _id: id,
             instituteName: user.instituteName,
             instituteType: user.instituteType,
-            instituteImageUrl: user.instituteImageUrl,
+            instituteImageUrl: user.instituteImageUrl
         })
         role = new Role({
             _id: id,
