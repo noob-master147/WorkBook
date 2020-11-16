@@ -178,3 +178,10 @@ content-type: application/json
 }
 
 
+####
+POST https://hooks.spike.sh/97b6759c8540334df5a6/push-events
+content-type: application/json
+
+{
+    "title": "testing email"
+}

@@ -495,5 +495,56 @@ router.post('/setHolidays', (req, res) => {
 })
 
 
+/** Update employee
+ * @api {post} /admin/updateEmployee Update Employee
+ * @apiName Set Holidays
+ * @apiGroup Admin
+ * @apiParam {String} id _id of User
+ * @apiParam {String} data Data Object
+
+ */ // Update Employee
+router.post('/updateEmployee', (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/updateEmployee route hit..."))
+    adminControl.updateEmployee(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+
+/** Update Driver
+ * @api {post} /admin/updateDriver Update Driver
+ * @apiName Set Holidays
+ * @apiGroup Admin
+ * @apiParam {String} id _id of User
+ * @apiParam {String} data Data Object
+
+ */ // Update Driver
+router.post('/updateDriver', (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/updateDriver route hit..."))
+    adminControl.updateDriver(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
+
+/** Update Customer
+ * @api {post} /admin/updateCustomer Update Customer
+ * @apiName Set Holidays
+ * @apiGroup Admin
+ * @apiParam {String} id _id of User
+ * @apiParam {String} data Data Object
+
+ */ // Update Customer
+router.post('/updateCustomer', (req, res) => {
+    console.log(chalk.yellow.bold("\n/admin/updateCustomer route hit..."))
+    adminControl.updateCustomer(req.body)
+        .then((obj) => res.send(obj).status(200))
+        .catch((err) => res.send(err).status(400))
+})
+
+
 
 module.exports = router;
