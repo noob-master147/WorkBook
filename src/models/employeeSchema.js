@@ -122,7 +122,37 @@ const employeeSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
-    route: [route]
+    route: [route],
+    joiningDate: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    dob: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    gender: {
+        type: String,
+        trim: true,
+        default: "male"
+    },
+    bloodGroup: {
+        type: String,
+        trim: true,
+        default: "A+"
+    },
+    nationality: {
+        type: String,
+        trim: true,
+        default: "indian"
+    },
+    motherTounge: {
+        type: String,
+        trim: true,
+        default: "english"
+    }
 });
 
 

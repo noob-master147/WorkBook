@@ -11,7 +11,7 @@ const { Route } = require('../models/routeSchema')
 const { ObjectID } = require('mongodb')
 
 const register = (user) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.bold.yellow("Registering Admin..."))
         const id = new ObjectID()
         admin = new Admin({
@@ -29,6 +29,7 @@ const register = (user) => {
             adharNumber: user.adharNumber,
             contactNumber: user.contactNumber,
             fcmToken: user.fcmToken,
+            reference: user.reference,
             approved: false
         })
         institute = new Institute({
@@ -46,10 +47,10 @@ const register = (user) => {
         })
 
         Promise.all([
-                admin.save(),
-                institute.save(),
-                role.save()
-            ])
+            admin.save(),
+            institute.save(),
+            role.save()
+        ])
             .then(() => {
                 console.log(chalk.bold.green("New Admin Added!"))
                 console.log(chalk.bold.green("New Institute Added!"))
@@ -61,7 +62,7 @@ const register = (user) => {
                     }
                 })
             })
-            .catch(async(err) => {
+            .catch(async (err) => {
                 console.log(chalk.red.bold("Error in Adding Admin!"))
                 await Admin.findByIdAndDelete(id)
                 await Institute.findByIdAndDelete(id)
@@ -79,17 +80,17 @@ const register = (user) => {
 }
 
 const login = (user) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Admin Logging in..."))
         const formPassword = user.password
         await Admin.findOneAndUpdate({
-                'userID': user.userID
-            }, {
-                'fcmToken': user.fcmToken
-            }, {
-                new: true
-            })
-            .then(async(admin) => {
+            'userID': user.userID
+        }, {
+            'fcmToken': user.fcmToken
+        }, {
+            new: true
+        })
+            .then(async (admin) => {
                 if (await bcrypt.compare(formPassword, admin.password) === true) {
                     console.log(chalk.green.bold('Admin Authenticated'))
                     if (admin.approved === true) {
@@ -134,7 +135,7 @@ const login = (user) => {
 }
 
 const getInstitutes = () => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.bold.yellow("Fetching Institutes..."))
         Institute.find()
             .then((institutes) => {
@@ -162,21 +163,21 @@ const getInstitutes = () => {
 }
 
 const update = (user) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Updating Admin"))
         await Admin.findByIdAndUpdate(user.id, {
-                userName: user.userName,
-                instituteType: user.instituteType,
-                numberOfMembers: user.numberOfMembers,
-                state: user.state,
-                city: user.city,
-                mailAddress: user.mailAddress,
-                adharNumber: user.adharNumber,
-                contactNumber: user.contactNumber,
-                fcmToken: user.fcmToken
-            }, {
-                new: true
-            })
+            userName: user.userName,
+            instituteType: user.instituteType,
+            numberOfMembers: user.numberOfMembers,
+            state: user.state,
+            city: user.city,
+            mailAddress: user.mailAddress,
+            adharNumber: user.adharNumber,
+            contactNumber: user.contactNumber,
+            fcmToken: user.fcmToken
+        }, {
+            new: true
+        })
             .then((admin) => {
                 console.log(chalk.green.bold("Admin Updated"))
                 resolve({
@@ -202,11 +203,11 @@ const update = (user) => {
 }
 
 const viewAllEmployees = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Fetching All Employees..."))
         await Employee.find({
-                'instituteName': obj.instituteName
-            })
+            'instituteName': obj.instituteName
+        })
             .then((employees) => {
                 console.log(chalk.green.bold("Fetched All Employees"))
                 resolve({
@@ -232,7 +233,7 @@ const viewAllEmployees = (obj) => {
 }
 
 const approveEmployee = (employee) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.bold.yellow("Approving Employee..."))
         const p1 = await Employee.findByIdAndUpdate(employee.id, {
             approved: true
@@ -265,7 +266,7 @@ const approveEmployee = (employee) => {
 }
 
 const rejectEmployee = (employee) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.bold.yellow("Rejecting Employee..."))
         const p1 = await Employee.findByIdAndDelete(employee.id)
         const p2 = await Role.findByIdAndDelete(employee.id)
@@ -294,7 +295,7 @@ const rejectEmployee = (employee) => {
 }
 
 const deleteEmployee = (employee) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.bold.yellow("Deleting Eployee..."))
         const p1 = Employee.findByIdAndDelete(employee.id)
         const p2 = Role.findByIdAndDelete(employee.id)
@@ -323,7 +324,7 @@ const deleteEmployee = (employee) => {
 }
 
 const approveDriver = (driver) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Approving Driver..."))
         const p1 = await Driver.findByIdAndUpdate(driver.id, {
             approved: true
@@ -358,11 +359,11 @@ const approveDriver = (driver) => {
 }
 
 const viewAllDrivers = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Fetching All Drivers..."))
         await Driver.find({
-                'instituteName': obj.instituteName
-            })
+            'instituteName': obj.instituteName
+        })
             .then((drivers) => {
                 console.log(chalk.green.bold("Fetched All Drivers"))
                 resolve({
@@ -388,7 +389,7 @@ const viewAllDrivers = (obj) => {
 }
 
 const rejectDriver = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.bold.yellow("Rejecting Driver..."))
         const p1 = await Driver.findByIdAndDelete(obj.id)
         const p2 = await Role.findByIdAndDelete(obj.id)
@@ -417,7 +418,7 @@ const rejectDriver = (obj) => {
 }
 
 const deleteDriver = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.bold.yellow("Deleting Driver..."))
         const p1 = Driver.findByIdAndDelete(obj.id)
         const p2 = Role.findByIdAndDelete(obj.id)
@@ -446,16 +447,16 @@ const deleteDriver = (obj) => {
 }
 
 const setGD = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Setting Grades and Division"))
         Institute.findOneAndUpdate({
-                instituteName: obj.instituteName
-            }, {
-                grade: obj.grade,
-                division: obj.division
-            }, {
-                new: true
-            })
+            instituteName: obj.instituteName
+        }, {
+            grade: obj.grade,
+            division: obj.division
+        }, {
+            new: true
+        })
             .then((institute) => {
                 console.log(chalk.bold.green("Institute Grade and Division Set!"))
                 resolve({
@@ -481,13 +482,13 @@ const setGD = (obj) => {
 }
 
 const queryComment = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Adding Comment to Query"))
         await Query.findByIdAndUpdate(obj.id, {
-                comment: obj.comment
-            }, {
-                new: true
-            })
+            comment: obj.comment
+        }, {
+            new: true
+        })
             .then((query) => {
                 console.log(chalk.bold.green("Comment Added to Query!"))
                 resolve({
@@ -513,7 +514,7 @@ const queryComment = (obj) => {
 }
 
 const addUserRoute = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(obj)
         const role = obj.role
         let alias = null
@@ -526,10 +527,10 @@ const addUserRoute = (obj) => {
                 break;
         }
         alias.findByIdAndUpdate(obj.id, {
-                route: obj.route
-            }, {
-                new: true
-            })
+            route: obj.route
+        }, {
+            new: true
+        })
             .then((user) => {
                 console.log(chalk.bold.green("Route Added to the User!"))
                 resolve({
@@ -555,7 +556,7 @@ const addUserRoute = (obj) => {
 }
 
 const createRoute = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         route = new Route({
             driverID: obj.driverID,
             location: obj.location,
@@ -586,21 +587,21 @@ const createRoute = (obj) => {
 }
 
 const updateRoute = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Updating Route..."))
         console.log(obj)
         await Route.findByIdAndUpdate(obj.id, {
-                $push: {
-                    location: [{
-                        latitude: obj.location.latitude,
-                        longitude: obj.location.longitude,
-                        name: obj.location.name
-                    }]
-                },
-                routeName: obj.routeName
-            }, {
-                new: true
-            })
+            $push: {
+                location: [{
+                    latitude: obj.location.latitude,
+                    longitude: obj.location.longitude,
+                    name: obj.location.name
+                }]
+            },
+            routeName: obj.routeName
+        }, {
+            new: true
+        })
             .then((route) => {
                 console.log(chalk.bold.green("Route Updated!"))
                 resolve({
@@ -626,7 +627,7 @@ const updateRoute = (obj) => {
 }
 
 const deleteRoute = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Deleting Route..."))
         await Route.findByIdAndDelete(obj.id)
             .then(() => {
@@ -653,15 +654,15 @@ const deleteRoute = (obj) => {
 }
 
 const deleteLocation = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Deleting Location..."))
         await Route.findByIdAndUpdate(obj.routeID, {
-                $pull: {
-                    location: { _id: obj.locationID }
-                }
-            }, {
-                new: true
-            })
+            $pull: {
+                location: { _id: obj.locationID }
+            }
+        }, {
+            new: true
+        })
             .then((route) => {
                 console.log(chalk.bold.green("Location Deleted!"))
                 resolve({
@@ -687,7 +688,7 @@ const deleteLocation = (obj) => {
 }
 
 const createSchedule = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         // const institute = await Institute.findOne({
         //     instituteName: obj.instituteName
         // })
@@ -705,17 +706,17 @@ const createSchedule = (obj) => {
         //     }
         // })
         await Institute.findOneAndUpdate({
-                instituteName: obj.instituteName
-            }, {
-                $push: {
-                    schedule: [{
-                        grade_division: `${obj.grade}_${obj.division}`,
-                        scheduleUrl: obj.schedule
-                    }]
-                }
-            }, {
-                new: true
-            })
+            instituteName: obj.instituteName
+        }, {
+            $push: {
+                schedule: [{
+                    grade_division: `${obj.grade}_${obj.division}`,
+                    scheduleUrl: obj.schedule
+                }]
+            }
+        }, {
+            new: true
+        })
             .then((insitute) => {
                 console.log(chalk.bold.green("New Schedule Set!"))
                 console.log(insitute.schedule)
@@ -742,10 +743,10 @@ const createSchedule = (obj) => {
 }
 
 const fetchSchedule = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         await Institute.findOne({
-                instituteName: obj.instituteName
-            })
+            instituteName: obj.instituteName
+        })
             .then((institute) => {
                 let schedules = institute.schedule
                 console.log(schedules)
@@ -789,10 +790,10 @@ const fetchSchedule = (obj) => {
 }
 
 const fetchAllSchedule = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         await Institute.findOne({
-                instituteName: obj.instituteName
-            })
+            instituteName: obj.instituteName
+        })
             .then((institute) => {
                 console.log(chalk.bold.green("Institute Schedule Fetched!"))
                 console.log(institute.schedule)
@@ -819,31 +820,31 @@ const fetchAllSchedule = (obj) => {
 }
 
 const defaultHolidays = () => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         holidays = [{
-                name: "Republic Day",
-                date: "1579996800000"
-            },
-            {
-                name: "Independence Day",
-                date: "1597449600000"
-            },
-            {
-                name: "Gandhi Jayanti",
-                date: "1601596800000"
-            },
-            {
-                name: "Christmas",
-                date: "1608854400000"
-            },
-            {
-                name: "New Year",
-                date: "1577836800000"
-            },
-            {
-                name: "Dr. B. R. Ambedkar's Jayanti",
-                date: "1586822400000"
-            }
+            name: "Republic Day",
+            date: "1579996800000"
+        },
+        {
+            name: "Independence Day",
+            date: "1597449600000"
+        },
+        {
+            name: "Gandhi Jayanti",
+            date: "1601596800000"
+        },
+        {
+            name: "Christmas",
+            date: "1608854400000"
+        },
+        {
+            name: "New Year",
+            date: "1577836800000"
+        },
+        {
+            name: "Dr. B. R. Ambedkar's Jayanti",
+            date: "1586822400000"
+        }
         ]
         resolve({
             statusCode: 200,
@@ -856,13 +857,13 @@ const defaultHolidays = () => {
 }
 
 const setHolidays = (obj) => {
-    return new Promise(async(resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         console.log(obj)
         await Institute.findOneAndUpdate({
-                instituteName: obj.instituteName
-            }, {
-                holidays: obj.holidays
-            })
+            instituteName: obj.instituteName
+        }, {
+            holidays: obj.holidays
+        })
             .then(() => {
                 console.log(chalk.bold.green("Holidays Set!"))
                 resolve({
@@ -885,6 +886,102 @@ const setHolidays = (obj) => {
             })
     })
 }
+
+
+const updateEmployee = ({ id, data }) => {
+    return new Promise(async (resolve, reject) => {
+        console.log(id, data)
+        await Employee.findByIdAndUpdate(id, data, { new: true })
+            .then((emp) => {
+                console.log(chalk.bold.green("Employee updated!"))
+                console.log(emp)
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Employee updated",
+                        emp
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Updating Employee!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating Employee! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+const updateCustomer = ({ id, data }) => {
+    return new Promise(async (resolve, reject) => {
+        console.log(id, data)
+        await Customer.findByIdAndUpdate(id, data, { new: true })
+            .then((customer) => {
+                console.log(chalk.bold.green("Customer updated!"))
+                console.log(customer)
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Customer updated",
+                        customer
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Updating Customer!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating Customer! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
+
+const updateDriver = ({ id, data }) => {
+    return new Promise(async (resolve, reject) => {
+        console.log(id, data)
+        await Driver.findByIdAndUpdate(id, data, { new: true })
+            .then((driver) => {
+                console.log(chalk.bold.green("Driver updated!"))
+                console.log(emp)
+                resolve({
+                    statusCode: 200,
+                    payload: {
+                        msg: "Driver updated",
+                        emp
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log(chalk.red.bold("Error in Updating Driver!"))
+                reject({
+                    statusCode: 400,
+                    payload: {
+                        msg: "Error in Updating Driver! Contact Support",
+                        Error: "Issue in connecting to the Datebase",
+                        err: err
+                    }
+                })
+            })
+    })
+}
+
+
+
 
 
 module.exports = {
@@ -911,5 +1008,8 @@ module.exports = {
     fetchSchedule,
     fetchAllSchedule,
     defaultHolidays,
-    setHolidays
+    setHolidays,
+    updateEmployee,
+    updateCustomer,
+    updateDriver
 }
