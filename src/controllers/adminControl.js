@@ -46,11 +46,9 @@ const register = (user) => {
             instituteName: user.instituteName
         })
 
-        Promise.all([
-            admin.save(),
-            institute.save(),
-            role.save()
-        ])
+        admin.save()
+        institute.save()
+        role.save()
             .then(() => {
                 console.log(chalk.bold.green("New Admin Added!"))
                 console.log(chalk.bold.green("New Institute Added!"))
@@ -957,12 +955,12 @@ const updateDriver = ({ id, data }) => {
         await Driver.findByIdAndUpdate(id, data, { new: true })
             .then((driver) => {
                 console.log(chalk.bold.green("Driver updated!"))
-                console.log(emp)
+                console.log(driver)
                 resolve({
                     statusCode: 200,
                     payload: {
                         msg: "Driver updated",
-                        emp
+                        driver
                     }
                 })
             })
