@@ -444,14 +444,16 @@ const deleteDriver = (obj) => {
     })
 }
 
-const setGD = (obj) => {
+const setGD = ({ data, instituteName }) => {
     return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Setting Grades and Division"))
+        const grade = data.map((i) => i.grade)
+
         Institute.findOneAndUpdate({
-            instituteName: obj.instituteName
+            instituteName: instituteName
         }, {
-            grade: obj.grade,
-            division: obj.division
+            grade: grade,
+            division: data
         }, {
             new: true
         })

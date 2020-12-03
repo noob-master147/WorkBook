@@ -85,3 +85,25 @@ const instituteSchema = new mongoose.Schema({
 module.exports = {
     Institute: mongoose.model('Institute', instituteSchema)
 }
+
+// obj = {
+    // data: [
+    //     {
+    //         grade: "qwert",
+    //         division: "1"
+    //     },
+    //     {
+    //         grade: "qwert",
+    //         division: "2"
+    //     },
+    //     {
+    //         grade: "asd",
+    //         division: "1"
+    //     },
+    //     {
+    //         grade: "asd",
+    //         division: "2"
+    //     },
+
+    // ]
+// }
