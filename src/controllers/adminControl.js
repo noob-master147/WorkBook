@@ -447,7 +447,13 @@ const deleteDriver = (obj) => {
 const setGD = ({ data, instituteName }) => {
     return new Promise(async (resolve, reject) => {
         console.log(chalk.yellow.bold("Setting Grades and Division"))
-        const grade = data.map((i) => i.grade)
+
+        console.log("DATA ", data)
+        const grade = data.map((gradeItem) => {
+            console.log("GRADE ITEM", gradeItem)
+            return { grade: gradeItem.grade }
+        })
+        console.log("GRADE LIST", grade)
 
         Institute.findOneAndUpdate({
             instituteName: instituteName
@@ -473,7 +479,6 @@ const setGD = ({ data, instituteName }) => {
                     statusCode: 400,
                     payload: {
                         msg: "Error in Setting Institute Grade and Division! Contact Support",
-                        Error: "Issue in connecting to the Datebase",
                         err: err
                     }
                 })
